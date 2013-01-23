@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 janv. 2013 18:39:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.EtymoMcq" table="etymo_mcq" catalog="bddictionnairique">
+        <id name="idEtymo" type="java.lang.Integer">
+            <column name="id_etymo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="headword" class="database.Headword" fetch="select">
+            <column name="id_headword" not-null="true" />
+        </many-to-one>
+        <property name="date" type="string">
+            <column name="date" length="15" />
+        </property>
+        <property name="langue" type="string">
+            <column name="langue" length="25" />
+        </property>
+        <property name="contenu" type="string">
+            <column name="contenu" length="65535" />
+        </property>
+        <property name="flag" type="java.lang.Integer">
+            <column name="flag" />
+        </property>
+    </class>
+</hibernate-mapping>

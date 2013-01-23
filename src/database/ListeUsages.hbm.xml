@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 janv. 2013 18:39:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.ListeUsages" table="liste_usages" catalog="bddictionnairique">
+        <id name="idUsage" type="java.lang.Integer">
+            <column name="id_usage" />
+            <generator class="identity" />
+        </id>
+        <property name="usage" type="string">
+            <column name="usage" length="15" />
+        </property>
+        <set name="usageLiens" table="usage_lien" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usage" not-null="true" />
+            </key>
+            <one-to-many class="database.UsageLien" />
+        </set>
+    </class>
+</hibernate-mapping>

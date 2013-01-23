@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 janv. 2013 18:39:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.TypesMorphologie" table="types_morphologie" catalog="bddictionnairique">
+        <id name="idTypeMorph" type="java.lang.Integer">
+            <column name="id_type_morph" />
+            <generator class="identity" />
+        </id>
+        <property name="typeMorph" type="string">
+            <column name="type_morph" length="50" />
+        </property>
+        <set name="labellisationMorphologiquesForM6" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="m6" />
+            </key>
+            <one-to-many class="database.LabellisationMorphologique" />
+        </set>
+        <set name="labellisationMorphologiquesForM10" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="m10" />
+            </key>
+            <one-to-many class="database.LabellisationMorphologique" />
+        </set>
+        <set name="labellisationMorphologiquesForM5" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="m5" />
+            </key>
+            <one-to-many class="database.LabellisationMorphologique" />
+        </set>
+        <set name="labellisationMorphologiquesForM4" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="m4" />
+            </key>
+            <one-to-many class="database.LabellisationMorphologique" />
+        </set>
+        <set name="labellisationMorphologiquesForM3" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="m3" />
+            </key>
+            <one-to-many class="database.LabellisationMorphologique" />
+        </set>
+        <set name="labellisationMorphologiquesForM9" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="m9" />
+            </key>
+            <one-to-many class="database.LabellisationMorphologique" />
+        </set>
+        <set name="labellisationMorphologiquesForM8" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="m8" />
+            </key>
+            <one-to-many class="database.LabellisationMorphologique" />
+        </set>
+        <set name="labellisationMorphologiquesForM7" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="m7" />
+            </key>
+            <one-to-many class="database.LabellisationMorphologique" />
+        </set>
+        <set name="labellisationMorphologiquesForM2" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="m2" />
+            </key>
+            <one-to-many class="database.LabellisationMorphologique" />
+        </set>
+        <set name="labellisationMorphologiquesForM1" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="m1" />
+            </key>
+            <one-to-many class="database.LabellisationMorphologique" />
+        </set>
+    </class>
+</hibernate-mapping>

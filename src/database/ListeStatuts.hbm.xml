@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 janv. 2013 18:39:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.ListeStatuts" table="liste_statuts" catalog="bddictionnairique">
+        <id name="idStatut" type="java.lang.Integer">
+            <column name="id_statut" />
+            <generator class="identity" />
+        </id>
+        <property name="statut" type="string">
+            <column name="statut" length="15" />
+        </property>
+        <set name="lexiques" table="lexique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_statut" not-null="true" />
+            </key>
+            <one-to-many class="database.Lexique" />
+        </set>
+    </class>
+</hibernate-mapping>

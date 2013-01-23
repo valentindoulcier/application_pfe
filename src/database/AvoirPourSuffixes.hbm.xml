@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 janv. 2013 18:39:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.AvoirPourSuffixes" table="avoir_pour_suffixes" catalog="bddictionnairique">
+        <composite-id name="id" class="database.AvoirPourSuffixesId">
+            <key-property name="idCategorieDepart" type="int">
+                <column name="id_categorie_depart" />
+            </key-property>
+            <key-property name="idCategorieArrivee" type="int">
+                <column name="id_categorie_arrivee" />
+            </key-property>
+            <key-property name="idMorphPrefsuffbase" type="int">
+                <column name="id_morph_prefsuffbase" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="listeCategoriesByIdCategorieArrivee" class="database.ListeCategories" update="false" insert="false" fetch="select">
+            <column name="id_categorie_arrivee" not-null="true" />
+        </many-to-one>
+        <many-to-one name="listeMorphemesPrefsuffbase" class="database.ListeMorphemesPrefsuffbase" update="false" insert="false" fetch="select">
+            <column name="id_morph_prefsuffbase" not-null="true" />
+        </many-to-one>
+        <many-to-one name="listeCategoriesByIdCategorieDepart" class="database.ListeCategories" update="false" insert="false" fetch="select">
+            <column name="id_categorie_depart" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

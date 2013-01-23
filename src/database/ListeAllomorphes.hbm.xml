@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 janv. 2013 18:39:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.ListeAllomorphes" table="liste_allomorphes" catalog="bddictionnairique">
+        <id name="idAllo" type="java.lang.Integer">
+            <column name="id_allo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="listeMorphemesPrefsuffbase" class="database.ListeMorphemesPrefsuffbase" fetch="select">
+            <column name="id_morph_prefsuffbase" />
+        </many-to-one>
+        <property name="type" type="string">
+            <column name="type" length="25" />
+        </property>
+        <property name="contenu" type="string">
+            <column name="contenu" length="50" />
+        </property>
+        <property name="actif" type="java.lang.Double">
+            <column name="actif" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

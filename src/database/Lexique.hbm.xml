@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 janv. 2013 18:39:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.Lexique" table="lexique" catalog="bddictionnairique">
+        <id name="idLienLex" type="java.lang.Integer">
+            <column name="id_lien_lex" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="liensDictByIdLienDictMotEtudie" class="database.LiensDict" fetch="select">
+            <column name="id_lien_dict_mot_etudie" not-null="true" />
+        </many-to-one>
+        <many-to-one name="liensDictByIdLienDictMotReferent1" class="database.LiensDict" fetch="select">
+            <column name="id_lien_dict_mot_referent1" not-null="true" />
+        </many-to-one>
+        <many-to-one name="liensDictByIdLienDictMotReferent2" class="database.LiensDict" fetch="select">
+            <column name="id_lien_dict_mot_referent2" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typesConstruction" class="database.TypesConstruction" fetch="select">
+            <column name="id_construction" not-null="true" />
+        </many-to-one>
+        <many-to-one name="listeTypesLexicaux" class="database.ListeTypesLexicaux" fetch="select">
+            <column name="id_type_lexical" not-null="true" />
+        </many-to-one>
+        <many-to-one name="listeStatuts" class="database.ListeStatuts" fetch="select">
+            <column name="id_statut" not-null="true" />
+        </many-to-one>
+        <property name="note" type="string">
+            <column name="note" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 janv. 2013 18:39:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.SourceFrequence" table="source_frequence" catalog="bddictionnairique">
+        <id name="idSourceFreq" type="java.lang.Integer">
+            <column name="id_source_freq" />
+            <generator class="identity" />
+        </id>
+        <property name="source" type="string">
+            <column name="source" length="50" />
+        </property>
+        <set name="frequences" table="frequence" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_source_freq" not-null="true" />
+            </key>
+            <one-to-many class="database.Frequence" />
+        </set>
+    </class>
+</hibernate-mapping>

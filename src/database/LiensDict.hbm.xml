@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 janv. 2013 18:39:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.LiensDict" table="liens_dict" catalog="bddictionnairique">
+        <id name="idLienDict" type="java.lang.Integer">
+            <column name="id_lien_dict" />
+            <generator class="identity" />
+        </id>
+        <property name="mot" type="string">
+            <column name="mot" length="100" />
+        </property>
+        <property name="var1" type="string">
+            <column name="var1" length="100" />
+        </property>
+        <property name="var2" type="string">
+            <column name="var2" length="100" />
+        </property>
+        <property name="var3" type="string">
+            <column name="var3" length="100" />
+        </property>
+        <property name="var4" type="string">
+            <column name="var4" length="100" />
+        </property>
+        <property name="var5" type="string">
+            <column name="var5" length="100" />
+        </property>
+        <property name="flagLien" type="java.lang.Integer">
+            <column name="flag_lien" />
+        </property>
+        <property name="flagCat" type="java.lang.Integer">
+            <column name="flag_cat" />
+        </property>
+        <set name="decompositionGraphiques" table="decomposition_graphique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lien_dict" not-null="true" />
+            </key>
+            <one-to-many class="database.DecompositionGraphique" />
+        </set>
+        <set name="decompositionMorphologiques" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lien_dict" not-null="true" />
+            </key>
+            <one-to-many class="database.DecompositionMorphologique" />
+        </set>
+        <set name="usageLiens" table="usage_lien" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lien_dict" not-null="true" />
+            </key>
+            <one-to-many class="database.UsageLien" />
+        </set>
+        <set name="frequences" table="frequence" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lien_dict" not-null="true" />
+            </key>
+            <one-to-many class="database.Frequence" />
+        </set>
+        <set name="headwords" table="headword" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lien_dict" />
+            </key>
+            <one-to-many class="database.Headword" />
+        </set>
+        <set name="lexiquesForIdLienDictMotReferent2" table="lexique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lien_dict_mot_referent2" not-null="true" />
+            </key>
+            <one-to-many class="database.Lexique" />
+        </set>
+        <set name="lexiquesForIdLienDictMotReferent1" table="lexique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lien_dict_mot_referent1" not-null="true" />
+            </key>
+            <one-to-many class="database.Lexique" />
+        </set>
+        <set name="lexiquesForIdLienDictMotEtudie" table="lexique" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lien_dict_mot_etudie" not-null="true" />
+            </key>
+            <one-to-many class="database.Lexique" />
+        </set>
+    </class>
+</hibernate-mapping>
