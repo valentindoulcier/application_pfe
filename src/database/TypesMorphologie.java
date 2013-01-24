@@ -1,6 +1,6 @@
 package database;
 
-// Generated 23 janv. 2013 18:39:10 by Hibernate Tools 3.4.0.CR1
+// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,16 +22,16 @@ public class TypesMorphologie implements java.io.Serializable {
 
 	private Integer idTypeMorph;
 	private String typeMorph;
-	private Set labellisationMorphologiquesForM6 = new HashSet(0);
-	private Set labellisationMorphologiquesForM10 = new HashSet(0);
-	private Set labellisationMorphologiquesForM5 = new HashSet(0);
-	private Set labellisationMorphologiquesForM4 = new HashSet(0);
-	private Set labellisationMorphologiquesForM3 = new HashSet(0);
-	private Set labellisationMorphologiquesForM9 = new HashSet(0);
-	private Set labellisationMorphologiquesForM8 = new HashSet(0);
-	private Set labellisationMorphologiquesForM7 = new HashSet(0);
-	private Set labellisationMorphologiquesForM2 = new HashSet(0);
 	private Set labellisationMorphologiquesForM1 = new HashSet(0);
+	private Set labellisationMorphologiquesForM2 = new HashSet(0);
+	private Set labellisationMorphologiquesForM3 = new HashSet(0);
+	private Set labellisationMorphologiquesForM4 = new HashSet(0);
+	private Set labellisationMorphologiquesForM5 = new HashSet(0);
+	private Set labellisationMorphologiquesForM6 = new HashSet(0);
+	private Set labellisationMorphologiquesForM7 = new HashSet(0);
+	private Set labellisationMorphologiquesForM8 = new HashSet(0);
+	private Set labellisationMorphologiquesForM9 = new HashSet(0);
+	private Set labellisationMorphologiquesForM10 = new HashSet(0);
 
 	public TypesMorphologie() {
 	}

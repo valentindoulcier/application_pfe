@@ -4,11 +4,6 @@ import utils.*;
 import database.*;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 
 
 /**
@@ -18,17 +13,16 @@ import org.hibernate.Transaction;
  * @version 0.0.1
  */
 public class Main {
-	
-	private static Session s = null;
 
 	/**
 	 * Fonction Main.
 	 * Cette classe lance un thread initialisant la fenêtre.
 	 * 
 	 * @param args
+	 * @throws DatabaseOffException 
 	 */
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws DatabaseOffException {
+
 		/*
 		EventQueue.invokeLater(new Runnable() {
 			@SuppressWarnings("unused")
@@ -40,63 +34,38 @@ public class Main {
 				}
 			}
 		});
-		*/
-		
-		// Ouverture d'une session Hibernate
-		s = HibernateUtils.getSession();
+		 */
 
 		// Lancement des tests successifs
-		testCreate();
 
-		// Affiche le contenu de la table ListeStatus
-		print();
+		ArrayList<String> columnName = new ArrayList<String>();
+		ArrayList<String> comparisonMode = new ArrayList<String>();
+		ArrayList<String> value = new ArrayList<String>();
+		ArrayList<String> typeValue = new ArrayList<String>();
 
-		// Fermeture de la session Hibernate
-		s.close();
-		
-	}
-	
-	private static void testCreate(Object obj) {
-		
-		ListeStatuts ls = new ListeStatuts();
-		ls.setIdStatut(7);
-		ls.setStatut("Guezgfu");
-		
-		// Début de la transaction
-		Transaction tx = s.beginTransaction();
-		// Sauvegarde des objets
-		s.save(obj);
-		// Fermeture de la transaction
-		tx.commit();
-	}
-	
-	
-	// Affiche le contenu de la table ListeStatus
-	private static void print() {
-		// Début de la transaction
-		Transaction tx = s.beginTransaction();
+		columnName.add("statut");
+		comparisonMode.add("like");
+		value.add("%an%");
+		typeValue.add("string");
 
-		// Création de la requête
-		//Query q = s.createQuery("from database.ListeStatus");
-		//List result = s.createQuery( "from database.ListeStatuts" ).list(); //database/ListeStatuts.hbm.xml
-		//List result = s.createQuery( "from database.ListeStatuts where statut= ?").setString(0, "dieux").list();
-		//List result = s.createQuery( "from database.ListeStatuts where statut like ?").setString(0, "di%").list();
-		List result = s.createQuery( "from database.ListeStatuts where statut like 'V%'").list();
+		//CREATE
+		new Queries<ListeStatuts>().create(HibernateUtils.getInstanceLocale(), new ListeStatuts("Dieux"));//ArrayList<ListeStatuts> list = new Queries<ListeStatuts>().print("ListeStatuts", columnName, comparisonMode, value, typeValue);
 		
-		/*
-		System.out.println(result.size());
-		for(int i = 0; i < result.size(); i++)
-			System.out.println(result.get(i) + "\n");
-		*/
+		//UPDATE
+		// new Queries<ListeStatuts>().update(new ListeStatuts(27, "Franck"));
 		
-		ArrayList<ListeStatuts> list = (ArrayList<ListeStatuts>) result;
-		// Affichage de la liste de résultats
-		for (ListeStatuts e: list) {
-			System.out.println("ListeStatuts : [" + e.getIdStatut() + "] = " + e.getStatut());
+		//PRINT
+		ArrayList<ListeStatuts> list = new Queries<ListeStatuts>().print(HibernateUtils.getInstanceLocale(), "ListeStatuts", null, null, null, null);
+
+		for(ListeStatuts l : list) {
+			System.out.println("-" + l.getStatut() + "-");
 		}
-
-		// Fin de la transaction
-		tx.commit();
+		
+		
+		// Fermeture de la session Hibernate
+		//s = HibernateUtils.getInstance();
+		//s.close();
+		HibernateUtils.getInstanceLocale().close();
 	}
 
 }
