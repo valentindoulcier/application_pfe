@@ -1,10 +1,11 @@
 package utils;
 
+import java.io.FileReader;
+import java.util.Properties;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.cfg.Configuration;
 
 
 public class HibernateUtils {
@@ -20,21 +21,46 @@ public class HibernateUtils {
 	public static Session getInstanceLocale() {
 		if (sessionFactoryLocale == null) { // Premier appel
 			try {
-				sessionFactoryLocale = new AnnotationConfiguration().configure("hibernateLocal.cfg.xml").buildSessionFactory();
-			} catch (HibernateException ex) {
-				//throw new RuntimeException("[ HibernateUtils ] - Problème de configuration Local : " + ex.getMessage(), ex);
+
+				Configuration configurationLocale = new Configuration();
+				configurationLocale.configure("hibernateLocal.cfg.xml");
+
+				try {
+					//InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/hibernateLocal.properties");
+					Properties propertiesLocales = new Properties();
+					propertiesLocales.load(new FileReader("src/hibernateLocal.properties"));
+					configurationLocale.addProperties(propertiesLocales);
+				} catch (Exception e) {
+					System.out.println("Erreur lecture fichier properties Locales" + e.toString());
+				}
+
+				sessionFactoryLocale = configurationLocale.buildSessionFactory();
+			} catch (Throwable ex) {
+				System.out.println("Erreur creation de la SessionFactory" + ex.toString());
 			}
 		}
 		return sessionFactoryLocale.openSession();
 	}
 
-
-	public static Session getInstanceMaster() throws DatabaseOffException {
+	public static Session getInstanceMaster() {
 		if (sessionFactoryMaster == null) { // Premier appel
 			try {
-				sessionFactoryMaster = new AnnotationConfiguration().configure("hibernateMaster.cfg.xml").buildSessionFactory();
-			} catch (HibernateException ex) {
-				throw new DatabaseOffException("[ HibernateUtils ] - Problème de configuration Master : " + ex.getMessage(), ex);
+
+				Configuration configurationMaster = new Configuration();
+				configurationMaster.configure("hibernateMaster.cfg.xml");
+
+				try {
+					//InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/hibernateMaster.properties");
+					Properties propertiesMaster = new Properties();
+					propertiesMaster.load(new FileReader("src/hibernateMaster.properties"));
+					configurationMaster.addProperties(propertiesMaster);
+				} catch (Exception e) {
+					System.out.println("Erreur lecture fichier properties Master" + e.toString());
+				}
+
+				sessionFactoryMaster = configurationMaster.buildSessionFactory();
+			} catch (Throwable ex) {
+				System.out.println("Erreur creation de la SessionFactory" + ex.toString());
 			}
 		}
 		return sessionFactoryMaster.openSession();

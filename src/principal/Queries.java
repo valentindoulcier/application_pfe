@@ -6,9 +6,13 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import utils.HibernateUtils;
+
 
 @SuppressWarnings("unchecked")
 public class Queries<T> {
+	
+	Session sessionLocale = HibernateUtils.getInstanceLocale();
 
 	public Queries() {
 		;
@@ -21,14 +25,14 @@ public class Queries<T> {
 	 * 
 	 * @param data
 	 */
-	public void create(Session s, T data) {
+	public void create(T data) {
 		System.out.println("CREATE");
 
 		// Début de la transaction
-		Transaction tx = s.beginTransaction();
+		Transaction tx = sessionLocale.beginTransaction();
 		
 		// Sauvegarde des objets
-		s.save(data);
+		sessionLocale.save(data);
 		
 		// Fermeture de la transaction
 		tx.commit();
@@ -40,14 +44,14 @@ public class Queries<T> {
 	 * 
 	 * @param data
 	 */
-	public void update(Session s, T data) {
+	public void update(T data) {
 		System.out.println("UPDATE");
 
 		// Début de la transaction
-		Transaction tx = s.beginTransaction();
+		Transaction tx = sessionLocale.beginTransaction();
 
 		// Sauvegarde des objets
-		s.update(data);
+		sessionLocale.update(data);
 
 		// Fermeture de la transaction
 		tx.commit();
@@ -59,14 +63,14 @@ public class Queries<T> {
 	 * 
 	 * @param data
 	 */
-	public void delete(Session s, T data) {
+	public void delete(T data) {
 		System.out.println("DELETE");
 
 		// Début de la transaction
-		Transaction tx = s.beginTransaction();
+		Transaction tx = sessionLocale.beginTransaction();
 
 		// Suppression des objets
-		s.delete(data);
+		sessionLocale.delete(data);
 
 		// Fin de la transaction
 		tx.commit();
@@ -78,19 +82,19 @@ public class Queries<T> {
 	 * 
 	 * @param typeData
 	 */
-	public void clean(Session s, String typeData) {
+	public void clean(String typeData) {
 		System.out.println("CLEAN");
 
 		// Début de la transaction
-		Transaction tx = s.beginTransaction();
+		Transaction tx = sessionLocale.beginTransaction();
 
 		// Création de la requête
-		Query q = s.createQuery("from database." + typeData);
+		Query q = sessionLocale.createQuery("from database." + typeData);
 		ArrayList<T> list = (ArrayList<T>) q.list();
 
 		// Suppression
 		for(int i = 0; i < list.size(); i++)
-			delete(s, list.get(i));
+			delete(list.get(i));
 
 		// Fin de la transaction
 		tx.commit();
@@ -119,11 +123,11 @@ public class Queries<T> {
 	 
 
 	// Affiche le contenu de la table
-	public ArrayList<T> print(Session s, String table, ArrayList<String> columnName, ArrayList<String> comparisonMode, ArrayList<String> value, ArrayList<String> typeValue) {
+	public ArrayList<T> print(String table, ArrayList<String> columnName, ArrayList<String> comparisonMode, ArrayList<String> value, ArrayList<String> typeValue) {
 		System.out.println("PRINT");
 		
 		// Début de la transaction
-		Transaction tx = s.beginTransaction();
+		Transaction tx = sessionLocale.beginTransaction();
 		
 		String query ="from database." + table;
 
@@ -146,7 +150,7 @@ public class Queries<T> {
 		}
 		
 		// Création de la requête
-		Query q = s.createQuery(query);
+		Query q = sessionLocale.createQuery(query);
 		
 		if (columnName != null) {
 			for (int i = 0; i < columnName.size(); i++) {

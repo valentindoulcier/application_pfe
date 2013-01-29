@@ -3,8 +3,9 @@
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
+	<!-- 
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://192.168.0.254:3306/bddictionnairique</property>
+		<property name="hibernate.connection.url">jdbc:mysql://appart.dyndns-wiki.com:110/bddictionnairique</property>
 		<property name="hibernate.connection.username">admin</property>
 		<property name="hibernate.connection.password" />
 
@@ -12,6 +13,7 @@
 		<property name="hibernate.connection.pool_size">10</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
+	-->
 		
 		<mapping resource="database/AvoirPourCategorieHeadword.hbm.xml" />
         <mapping resource="database/LiensDict.hbm.xml" />
