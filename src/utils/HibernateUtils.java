@@ -12,13 +12,27 @@ public class HibernateUtils {
 
 	private static SessionFactory sessionFactoryLocale = null;
 	private static SessionFactory sessionFactoryMaster = null;
+	
+	private static boolean connecteLocal;
+	private static boolean connecteMaster;
 
 	private HibernateUtils(){
 		;
 	}
+	
+	public static void deconnectionLocale() {
+		HibernateUtils.getInstanceLocale().close();
+		sessionFactoryLocale.close();
+	}
+	
+	public static void deconnectionMaster() {
+		HibernateUtils.getInstanceMaster().close();
+		sessionFactoryMaster.close();
+	}
 
 
 	public static Session getInstanceLocale() {
+		connecteLocal = true;
 		if (sessionFactoryLocale == null) { // Premier appel
 			try {
 
@@ -31,18 +45,47 @@ public class HibernateUtils {
 					propertiesLocales.load(new FileReader("src/hibernateLocal.properties"));
 					configurationLocale.addProperties(propertiesLocales);
 				} catch (Exception e) {
+					connecteLocal = false;
 					System.out.println("Erreur lecture fichier properties Locales" + e.toString());
 				}
 
 				sessionFactoryLocale = configurationLocale.buildSessionFactory();
 			} catch (Throwable ex) {
+				connecteLocal = false;
 				System.out.println("Erreur creation de la SessionFactory" + ex.toString());
 			}
 		}
 		return sessionFactoryLocale.openSession();
 	}
 
+	public static Session changeInstanceLocale(Properties properties) {
+
+		deconnectionLocale();
+		connecteLocal = true;
+		
+		try {
+
+			Configuration configurationLocale = new Configuration();
+			configurationLocale.configure("hibernateLocal.cfg.xml");
+
+			try {
+				//InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/hibernateLocal.properties");
+				configurationLocale.addProperties(properties);
+			} catch (Exception e) {
+				connecteLocal = false;
+				System.out.println("changeInstanceLocale : Erreur dans le Properties" + e.toString());
+			}
+
+			sessionFactoryLocale = configurationLocale.buildSessionFactory();
+		} catch (Throwable ex) {
+			connecteLocal = false;
+			System.out.println("Erreur creation de la SessionFactory" + ex.toString());
+		}
+		return sessionFactoryLocale.openSession();
+	}
+
 	public static Session getInstanceMaster() {
+		setConnecteMaster(true);
 		if (sessionFactoryMaster == null) { // Premier appel
 			try {
 
@@ -55,15 +98,58 @@ public class HibernateUtils {
 					propertiesMaster.load(new FileReader("src/hibernateMaster.properties"));
 					configurationMaster.addProperties(propertiesMaster);
 				} catch (Exception e) {
+					setConnecteMaster(false);
 					System.out.println("Erreur lecture fichier properties Master" + e.toString());
 				}
 
 				sessionFactoryMaster = configurationMaster.buildSessionFactory();
 			} catch (Throwable ex) {
+				setConnecteMaster(false);
 				System.out.println("Erreur creation de la SessionFactory" + ex.toString());
 			}
 		}
 		return sessionFactoryMaster.openSession();
+	}
+	
+	public static Session changeInstanceMaster(Properties properties) {
+
+		deconnectionMaster();
+		connecteMaster = true;
+		
+		try {
+
+			Configuration configurationLocale = new Configuration();
+			configurationLocale.configure("hibernateLocal.cfg.xml");
+
+			try {
+				//InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/hibernateLocal.properties");
+				configurationLocale.addProperties(properties);
+			} catch (Exception e) {
+				System.out.println("changeInstanceLocale : Erreur dans le Properties" + e.toString());
+			}
+
+			sessionFactoryLocale = configurationLocale.buildSessionFactory();
+		} catch (Throwable ex) {
+			System.out.println("Erreur creation de la SessionFactory" + ex.toString());
+		}
+		return sessionFactoryLocale.openSession();
+	}
+
+	
+	public static boolean isConnecteLocal() {
+		return connecteLocal;
+	}
+
+	public static void setConnecteLocal(boolean connecteLocal) {
+		HibernateUtils.connecteLocal = connecteLocal;
+	}
+
+	public static boolean isConnecteMaster() {
+		return connecteMaster;
+	}
+
+	public static void setConnecteMaster(boolean connecteMaster) {
+		HibernateUtils.connecteMaster = connecteMaster;
 	}
 
 }
