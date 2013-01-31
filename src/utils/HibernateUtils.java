@@ -3,13 +3,19 @@ package utils;
 import java.io.FileReader;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 
 public class HibernateUtils {
 
+	private static Logger logger = Logger.getLogger(HibernateUtils.class);
+    
 	private static SessionFactory sessionFactoryLocale = null;
 	private static SessionFactory sessionFactoryMaster = null;
 	
@@ -49,7 +55,13 @@ public class HibernateUtils {
 					System.out.println("Erreur lecture fichier properties Locales" + e.toString());
 				}
 
-				sessionFactoryLocale = configurationLocale.buildSessionFactory();
+				try {
+					sessionFactoryLocale = configurationLocale.buildSessionFactory();
+					} catch (HibernateException e) {
+						//TODO
+						System.out.println("getInstanceLocale ligne 64" + e.getMessage());
+			            //throw new DataAccessLayerException(e);
+			        }
 			} catch (Throwable ex) {
 				connecteLocal = false;
 				System.out.println("Erreur creation de la SessionFactory" + ex.toString());
@@ -76,7 +88,13 @@ public class HibernateUtils {
 				System.out.println("changeInstanceLocale : Erreur dans le Properties" + e.toString());
 			}
 
+			try {
 			sessionFactoryLocale = configurationLocale.buildSessionFactory();
+			} catch (HibernateException e) {
+				//TODO
+				System.out.println("changeInstanceLocale ligne 96" + e.getMessage());
+	            //throw new DataAccessLayerException(e);
+	        }
 		} catch (Throwable ex) {
 			connecteLocal = false;
 			System.out.println("Erreur creation de la SessionFactory" + ex.toString());
@@ -102,7 +120,14 @@ public class HibernateUtils {
 					System.out.println("Erreur lecture fichier properties Master" + e.toString());
 				}
 
-				sessionFactoryMaster = configurationMaster.buildSessionFactory();
+				try {
+					sessionFactoryMaster = configurationMaster.buildSessionFactory();
+					} catch (HibernateException e) {
+						//TODO
+						System.out.println("getInstanceMaster ligne 127" + e.getMessage());
+			            //throw new DataAccessLayerException(e);
+			        }
+				
 			} catch (Throwable ex) {
 				setConnecteMaster(false);
 				System.out.println("Erreur creation de la SessionFactory" + ex.toString());
@@ -118,21 +143,27 @@ public class HibernateUtils {
 		
 		try {
 
-			Configuration configurationLocale = new Configuration();
-			configurationLocale.configure("hibernateLocal.cfg.xml");
+			Configuration configurationMaster = new Configuration();
+			configurationMaster.configure("hibernateMaster.cfg.xml");
 
 			try {
 				//InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/hibernateLocal.properties");
-				configurationLocale.addProperties(properties);
+				configurationMaster.addProperties(properties);
 			} catch (Exception e) {
-				System.out.println("changeInstanceLocale : Erreur dans le Properties" + e.toString());
+				System.out.println("changeInstanceMaster : Erreur dans le Properties" + e.toString());
 			}
 
-			sessionFactoryLocale = configurationLocale.buildSessionFactory();
+			try {
+				sessionFactoryMaster = configurationMaster.buildSessionFactory();
+				} catch (HibernateException e) {
+					//TODO
+					System.out.println("changeInstanceMaster ligne 159" + e.getMessage());
+		            //throw new DataAccessLayerException(e);
+		        }
 		} catch (Throwable ex) {
 			System.out.println("Erreur creation de la SessionFactory" + ex.toString());
 		}
-		return sessionFactoryLocale.openSession();
+		return sessionFactoryMaster.openSession();
 	}
 
 	
@@ -151,6 +182,16 @@ public class HibernateUtils {
 	public static void setConnecteMaster(boolean connecteMaster) {
 		HibernateUtils.connecteMaster = connecteMaster;
 	}
+	
+	public static void rollback(Transaction tx) {
+        try {
+            if (tx != null) {
+                tx.rollback();
+            }
+        } catch (HibernateException ignored) {
+            logger.error("Couldn't rollback Transaction", ignored);
+        }
+    }
 
 }
 

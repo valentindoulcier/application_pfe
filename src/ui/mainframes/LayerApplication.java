@@ -1,30 +1,34 @@
-/**
- * 
- */
 package ui.mainframes;
 
-import javax.swing.JPanel;
 
 import principal.Application;
 
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import javax.swing.JTextField;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import javax.swing.Box;
+import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
+import javax.swing.JTextField;
+
+import java.awt.Color;
+import java.awt.Insets;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
-import javax.swing.Box;
+import java.awt.GridBagConstraints;
+import java.awt.event.ActionListener;
+
+import org.apache.log4j.Logger;
 
 /**
  * @author Valentin
  *
  */
+@SuppressWarnings("unused")
 public class LayerApplication extends JPanel {
 
 	private static final long serialVersionUID = -7537563501231664829L;
+	
+	private static Logger logger = Logger.getLogger(LayerApplication.class);
+	
 	private JTextField textField;
 
 	public LayerApplication(final Application application) {

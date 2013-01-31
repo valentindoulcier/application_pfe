@@ -10,7 +10,7 @@ import utils.HibernateUtils;
 
 
 @SuppressWarnings("unchecked")
-public class Queries<T> {
+public class Queries {
 
 	Session sessionLocale = HibernateUtils.getInstanceLocale();
 
@@ -25,7 +25,7 @@ public class Queries<T> {
 	 * 
 	 * @param data
 	 */
-	public void create(T data) {
+	public void create(Object data) {
 		System.out.println("CREATE");
 
 		// Début de la transaction
@@ -44,7 +44,7 @@ public class Queries<T> {
 	 * 
 	 * @param data
 	 */
-	public void update(T data) {
+	public void update(Object data) {
 		System.out.println("UPDATE");
 
 		// Début de la transaction
@@ -63,7 +63,7 @@ public class Queries<T> {
 	 * 
 	 * @param data
 	 */
-	public void delete(T data) {
+	public void delete(Object data) {
 		System.out.println("DELETE");
 
 		// Début de la transaction
@@ -90,7 +90,7 @@ public class Queries<T> {
 
 		// Création de la requête
 		Query q = sessionLocale.createQuery("from database." + typeData);
-		ArrayList<T> list = (ArrayList<T>) q.list();
+		ArrayList<Object> list = (ArrayList<Object>) q.list();
 
 		// Suppression
 		for(int i = 0; i < list.size(); i++)
@@ -123,7 +123,7 @@ public class Queries<T> {
 
 
 	// Affiche le contenu de la table
-	public ArrayList<T> print(String table, ArrayList<String> columnName, ArrayList<String> comparisonMode, ArrayList<String> value, ArrayList<String> typeValue) {
+	public ArrayList<Object> print(String table, ArrayList<String> columnName, ArrayList<String> comparisonMode, ArrayList<String> value, ArrayList<String> typeValue) {
 		System.out.println("PRINT");
 
 		// Début de la transaction
@@ -166,7 +166,7 @@ public class Queries<T> {
 
 		tx.commit();
 
-		return (ArrayList<T>) q.list();
+		return (ArrayList<Object>) q.list();
 
 		//ArrayList<T> list = (ArrayList<T>) q.list();
 

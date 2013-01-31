@@ -1,5 +1,6 @@
 package principal;
 
+import dao.*;
 import utils.*;
 import database.*;
 
@@ -7,9 +8,12 @@ import java.awt.EventQueue;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import org.apache.log4j.Logger;
 
 
 /**
@@ -18,9 +22,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Valentin DOULCIER
  * @version 0.0.1
  */
+@SuppressWarnings("unused")
 public class Main {
+	
+	private static Logger logger = Logger.getLogger(Main.class);
 
-	private static String jeTravailleSur = "appli";
+	private static String jeTravailleSur = "bdd";
 
 	/**
 	 * Fonction Main.
@@ -34,10 +41,16 @@ public class Main {
 
 		if("appli".equalsIgnoreCase(jeTravailleSur))
 		{
+			logger.debug("msg de debogage");
+			logger.info("msg d'information");
+			logger.warn("msg d'avertissement");
+			logger.error("msg d'erreur");
+			logger.fatal("msg d'erreur fatale"); 
+			
+			
 			useScreenMenuBar();
 			
 			EventQueue.invokeLater(new Runnable() {
-				@SuppressWarnings("unused")
 				public void run() {
 					try {
 						Application window = new Application();
@@ -49,38 +62,37 @@ public class Main {
 		}
 		else if ("bdd".equalsIgnoreCase(jeTravailleSur))
 		{
-			Date date = new Date( System.currentTimeMillis() );
-			SimpleDateFormat maDate = new SimpleDateFormat( "hh:mm:ss" );
-
-			ArrayList<String> columnName = new ArrayList<String>();
-			ArrayList<String> comparisonMode = new ArrayList<String>();
-			ArrayList<String> value = new ArrayList<String>();
-			ArrayList<String> typeValue = new ArrayList<String>();
-
-			columnName.add("statut");
-			comparisonMode.add("like");
-			value.add("%an%");
-			typeValue.add("string");
+			logger.debug("msg de debogage");
+			logger.info("msg d'information");
+			logger.warn("msg d'avertissement");
+			logger.error("msg d'erreur");
+			logger.fatal("msg d'erreur fatale"); 
+			
+			
+			//Date date = new Date( System.currentTimeMillis() );
+			//SimpleDateFormat maDate = new SimpleDateFormat( "hh:mm:ss" );
 
 			//CREATE
-			new Queries<ListeStatuts>().create(new ListeStatuts(maDate.format(date)));
-			//ArrayList<ListeStatuts> list = new Queries<ListeStatuts>().print("ListeStatuts", columnName, comparisonMode, value, typeValue);
+			
+			//ListeStatutsDAO test = new ListeStatutsDAO("local");
+			//test.create(new ListeStatuts(maDate.format(date)));
+			
 
 			//UPDATE
-			// new Queries<ListeStatuts>().update(new ListeStatuts(27, "Franck"));
 
 			//PRINT
-			ArrayList<ListeStatuts> list = new Queries<ListeStatuts>().print("ListeStatuts", null, null, null, null);
+			
+			//List list = test.findAll();
 
-			for(ListeStatuts l : list) {
-				System.out.println("*" + l.getIdStatut() + "* *" + l.getStatut() + "*");
-			}
+			//for(Object l : list) {
+			//	System.out.println("*" + ((ListeStatuts) l).getIdStatut() + "* *" + ((ListeStatuts) l).getStatut() + "*");
+			//}
 
 
 			// Fermeture de la session Hibernate
 			//s = HibernateUtils.getInstance();
 			//s.close();
-			HibernateUtils.getInstanceLocale().close();
+			//HibernateUtils.getInstanceLocale().close();
 		}
 	}
 
