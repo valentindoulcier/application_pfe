@@ -3,18 +3,19 @@
  */
 package ui.mainframes;
 
-import java.awt.Color;
 
+import javax.swing.JList;
 import javax.swing.JPanel;
-
-import principal.Application;
-import javax.swing.JEditorPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
+import javax.swing.JEditorPane;
+
+import java.awt.Color;
 import java.awt.Insets;
-import javax.swing.JList;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.GridBagConstraints;
+import java.awt.event.ActionListener;
 
 /**
  * @author Valentin
@@ -24,22 +25,29 @@ public class ConfigSqlEditor extends JPanel {
 
 	private static final long serialVersionUID = -5336871510589064273L;
 
-	private JEditorPane editorPane;
-	private JButton btnNewButton;
-	private JTable table;
-	private JList list;
+	private JTable tableResult;
+	private JList listRequetes;
+	private JButton btnLancerRequete;
+	private JEditorPane editorPaneRequete;
 
 	/**
 	 * Create the panel.
 	 */
-	public ConfigSqlEditor(final Application application) {
+	public ConfigSqlEditor() {
 		
-		initComponents(application);
+		initComponents();
+		
+		btnLancerRequete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//String requete = editorPaneRequete.getText();
+			}
+		});
 
 	}
 	
 	
-	public void initComponents(final Application application) {
+	public void initComponents() {
 		setBounds(100, 100, 450, 500);
 
 		setBackground(Color.PINK);
@@ -50,38 +58,38 @@ public class ConfigSqlEditor extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		editorPane = new JEditorPane();
-		GridBagConstraints gbc_editorPane = new GridBagConstraints();
-		gbc_editorPane.gridwidth = 2;
-		gbc_editorPane.insets = new Insets(0, 0, 5, 5);
-		gbc_editorPane.fill = GridBagConstraints.BOTH;
-		gbc_editorPane.gridx = 0;
-		gbc_editorPane.gridy = 0;
-		add(editorPane, gbc_editorPane);
+		editorPaneRequete = new JEditorPane();
+		GridBagConstraints gbc_editorPaneRequete = new GridBagConstraints();
+		gbc_editorPaneRequete.gridwidth = 2;
+		gbc_editorPaneRequete.insets = new Insets(0, 0, 5, 5);
+		gbc_editorPaneRequete.fill = GridBagConstraints.BOTH;
+		gbc_editorPaneRequete.gridx = 0;
+		gbc_editorPaneRequete.gridy = 0;
+		add(editorPaneRequete, gbc_editorPaneRequete);
 		
-		btnNewButton = new JButton("Lancer");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.anchor = GridBagConstraints.BELOW_BASELINE_TRAILING;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 2;
-		gbc_btnNewButton.gridy = 0;
-		add(btnNewButton, gbc_btnNewButton);
+		btnLancerRequete = new JButton("Lancer");
+		GridBagConstraints gbc_btnLancerRequete = new GridBagConstraints();
+		gbc_btnLancerRequete.anchor = GridBagConstraints.BELOW_BASELINE_TRAILING;
+		gbc_btnLancerRequete.insets = new Insets(0, 0, 5, 0);
+		gbc_btnLancerRequete.gridx = 2;
+		gbc_btnLancerRequete.gridy = 0;
+		add(btnLancerRequete, gbc_btnLancerRequete);
 		
-		table = new JTable();
+		tableResult = new JTable();
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.gridwidth = 3;
 		gbc_table.insets = new Insets(0, 0, 5, 0);
 		gbc_table.fill = GridBagConstraints.BOTH;
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
-		add(table, gbc_table);
+		add(tableResult, gbc_table);
 		
-		list = new JList();
+		listRequetes = new JList();
 		GridBagConstraints gbc_list = new GridBagConstraints();
 		gbc_list.gridwidth = 3;
 		gbc_list.fill = GridBagConstraints.BOTH;
 		gbc_list.gridx = 0;
 		gbc_list.gridy = 2;
-		add(list, gbc_list);
+		add(listRequetes, gbc_list);
 	}
 }

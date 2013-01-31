@@ -4,28 +4,31 @@
 package ui.mainframes;
 
 import javax.swing.JPanel;
+
 import java.awt.Color;
 
 import principal.Application;
 import ui.components.ConfigParamSql;
-import utils.HibernateUtils;
+
+import javax.swing.JTabbedPane;
+import javax.swing.JOptionPane;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import javax.swing.JTabbedPane;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.Properties;
 
-import javax.swing.JEditorPane;
-import javax.swing.JOptionPane;
+import java.util.Properties;
+import utils.HibernateUtils;
+
 
 /**
  * @author Valentin
@@ -37,12 +40,16 @@ public class LayerConfiguration extends JPanel {
 
 	Object[] options = {"Instance unique", "Mettre à jour"};
 
-	private ConfigSqlEditor configSqlEditor;
-
 	private ConfigParamSql configParamSqlLocal = new ConfigParamSql();
 	private ConfigParamSql configParamSqlMaster = new ConfigParamSql();
+	
+	private ConfigSqlEditor configSqlEditorLocal = new ConfigSqlEditor();
+	private ConfigSqlEditor configSqlEditorMaster = new ConfigSqlEditor();
 
 	private Properties properties;
+	
+	private JTabbedPane tabbedPaneConfig;
+	private JTabbedPane tabbedPaneRequetes;
 
 
 	public LayerConfiguration(final Application application) {
@@ -186,34 +193,31 @@ public class LayerConfiguration extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		GridBagConstraints gbc_tabbedPane = new GridBagConstraints();
-		gbc_tabbedPane.insets = new Insets(0, 0, 5, 5);
-		gbc_tabbedPane.fill = GridBagConstraints.BOTH;
-		gbc_tabbedPane.gridx = 1;
-		gbc_tabbedPane.gridy = 1;
+		tabbedPaneConfig = new JTabbedPane(JTabbedPane.TOP);
+		GridBagConstraints gbc_tabbedPaneConfig = new GridBagConstraints();
+		gbc_tabbedPaneConfig.insets = new Insets(0, 0, 5, 5);
+		gbc_tabbedPaneConfig.fill = GridBagConstraints.BOTH;
+		gbc_tabbedPaneConfig.gridx = 1;
+		gbc_tabbedPaneConfig.gridy = 1;
 
-		tabbedPane.addTab("Local", configParamSqlLocal);
-		tabbedPane.addTab("Master", configParamSqlMaster);
+		tabbedPaneConfig.addTab("Local", configParamSqlLocal);
+		tabbedPaneConfig.addTab("Master", configParamSqlMaster);
 
-		add(tabbedPane, gbc_tabbedPane);
-
-		configSqlEditor = new ConfigSqlEditor(application);
-		GridBagConstraints gbc_configSqlEditor = new GridBagConstraints();
-		gbc_configSqlEditor.gridheight = 3;
-		gbc_configSqlEditor.fill = GridBagConstraints.BOTH;
-		gbc_configSqlEditor.insets = new Insets(0, 0, 5, 5);
-		gbc_configSqlEditor.gridx = 3;
-		gbc_configSqlEditor.gridy = 1;
-		add(configSqlEditor, gbc_configSqlEditor);
-
-		JEditorPane editorPane = new JEditorPane();
-		GridBagConstraints gbc_editorPane = new GridBagConstraints();
-		gbc_editorPane.insets = new Insets(0, 0, 5, 5);
-		gbc_editorPane.fill = GridBagConstraints.BOTH;
-		gbc_editorPane.gridx = 1;
-		gbc_editorPane.gridy = 3;
-		add(editorPane, gbc_editorPane);
+		add(tabbedPaneConfig, gbc_tabbedPaneConfig);
+		
+		tabbedPaneRequetes = new JTabbedPane(JTabbedPane.TOP);
+		GridBagConstraints gbc_tabbedPaneRequetes = new GridBagConstraints();
+		gbc_tabbedPaneRequetes.gridheight = 3;
+		gbc_tabbedPaneRequetes.insets = new Insets(0, 0, 5, 5);
+		gbc_tabbedPaneRequetes.fill = GridBagConstraints.BOTH;
+		gbc_tabbedPaneRequetes.gridx = 3;
+		gbc_tabbedPaneRequetes.gridy = 1;
+		add(tabbedPaneRequetes, gbc_tabbedPaneRequetes);
+		
+		tabbedPaneRequetes.addTab("Local", configSqlEditorLocal);
+		tabbedPaneRequetes.addTab("Master", configSqlEditorMaster);
+		
+		add(tabbedPaneRequetes, gbc_tabbedPaneRequetes);
 	}
 	
 	public Properties chargerPropertiesLocal() {

@@ -11,13 +11,13 @@ import utils.HibernateUtils;
 
 @SuppressWarnings("unchecked")
 public class Queries<T> {
-	
+
 	Session sessionLocale = HibernateUtils.getInstanceLocale();
 
 	public Queries() {
 		;
 	}
-
+	
 
 	/**
 	 * Cette méthode prend en paramètre un objet de type T et
@@ -30,10 +30,10 @@ public class Queries<T> {
 
 		// Début de la transaction
 		Transaction tx = sessionLocale.beginTransaction();
-		
+
 		// Sauvegarde des objets
 		sessionLocale.save(data);
-		
+
 		// Fermeture de la transaction
 		tx.commit();
 	}
@@ -102,9 +102,9 @@ public class Queries<T> {
 
 
 
-	
-	
-	
+
+
+
 
 	// Lecture d'un objet de type T
 	/*
@@ -119,26 +119,26 @@ public class Queries<T> {
 		// Affichage de l'objet récupéré
 
 	}
-	*/
-	 
+	 */
+
 
 	// Affiche le contenu de la table
 	public ArrayList<T> print(String table, ArrayList<String> columnName, ArrayList<String> comparisonMode, ArrayList<String> value, ArrayList<String> typeValue) {
 		System.out.println("PRINT");
-		
+
 		// Début de la transaction
 		Transaction tx = sessionLocale.beginTransaction();
-		
+
 		String query ="from database." + table;
 
 		if (columnName != null) {
 			query += " where ";
-			
+
 			int sizeColumnName = columnName.size();
 			int sizeComparisonMode = comparisonMode.size();
 			int sizeValue = value.size();
 			int sizeTypeValue = typeValue.size();
-			
+
 			if (sizeColumnName == sizeComparisonMode && sizeComparisonMode == sizeValue && sizeValue == sizeTypeValue) {
 				for (int i = 0; i < sizeColumnName; i++) {
 					query += " " + columnName.get(i) + " " + comparisonMode.get(i) + " ? ";
@@ -148,10 +148,10 @@ public class Queries<T> {
 				//throw new IOException();
 			}
 		}
-		
+
 		// Création de la requête
 		Query q = sessionLocale.createQuery(query);
-		
+
 		if (columnName != null) {
 			for (int i = 0; i < columnName.size(); i++) {
 				if (typeValue.get(i).equals("int")) {
@@ -163,25 +163,25 @@ public class Queries<T> {
 				}
 			}
 		}
-		
+
 		tx.commit();
-		
+
 		return (ArrayList<T>) q.list();
-		
+
 		//ArrayList<T> list = (ArrayList<T>) q.list();
 
 		// Affichage de la liste de résultats
-		
+
 		//int cpt = 0;
 		//for (T e: list) {
-			//e.toString();
-			//System.out.println("test : " + );
+		//e.toString();
+		//System.out.println("test : " + );
 		//}
 
 		// Fin de la transaction
-		
+
 	}
-	
+
 
 	// Affiche le contenu de la table ListeStatus
 	/*

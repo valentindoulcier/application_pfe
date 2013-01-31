@@ -4,6 +4,7 @@ import ui.mainframes.*;
 
 import java.awt.Window;
 import java.lang.reflect.Method;
+
 import javax.swing.JFrame;
 
 import javax.swing.JMenuBar;
@@ -37,7 +38,6 @@ public class Application extends JFrame {
 	 * Constructeur de la fenêtre.
 	 */
 	public Application() {
-
 
 		if (isMacOSX()) {
 			enableFullScreenMode(this);
@@ -73,11 +73,7 @@ public class Application extends JFrame {
 		mnTemporaire.add(mntmConfigurationItem);
 		mnTemporaire.add(mntmApplicationItem);
 
-
-
-
-
-
+		
 		cardLayout = new CardLayout(0, 0);
 		getContentPane().setLayout(cardLayout);
 

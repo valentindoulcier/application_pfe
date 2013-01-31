@@ -63,7 +63,8 @@ public class Main {
 			typeValue.add("string");
 
 			//CREATE
-			new Queries<ListeStatuts>().create(new ListeStatuts(maDate.format(date)));//ArrayList<ListeStatuts> list = new Queries<ListeStatuts>().print("ListeStatuts", columnName, comparisonMode, value, typeValue);
+			new Queries<ListeStatuts>().create(new ListeStatuts(maDate.format(date)));
+			//ArrayList<ListeStatuts> list = new Queries<ListeStatuts>().print("ListeStatuts", columnName, comparisonMode, value, typeValue);
 
 			//UPDATE
 			// new Queries<ListeStatuts>().update(new ListeStatuts(27, "Franck"));
