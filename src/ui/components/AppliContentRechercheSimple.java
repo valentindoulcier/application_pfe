@@ -20,6 +20,7 @@ import java.awt.GridBagConstraints;
  * @author Valentin
  *
  */
+@SuppressWarnings({ "static-access"})
 public class AppliContentRechercheSimple extends JPanel {
 
 	private static final long serialVersionUID = -6948901479750294821L;
