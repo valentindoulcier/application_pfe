@@ -27,7 +27,7 @@ public class Main {
 	
 	private static Logger logger = Logger.getLogger(Main.class);
 
-	private static String jeTravailleSur = "bdd";
+	private static String jeTravailleSur = "appli";
 
 	/**
 	 * Fonction Main.
@@ -46,7 +46,6 @@ public class Main {
 			logger.warn("msg d'avertissement");
 			logger.error("msg d'erreur");
 			logger.fatal("msg d'erreur fatale"); 
-			
 			
 			useScreenMenuBar();
 			

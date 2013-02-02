@@ -50,8 +50,6 @@ public class Application extends JFrame {
 
 		initComponents();
 
-
-
 	}
 
 
@@ -84,8 +82,8 @@ public class Application extends JFrame {
 
 		layerApplication = new LayerApplication(this);
 		layerConfiguration = new LayerConfiguration(this);
-		getContentPane().add(layerConfiguration, "layerConfiguration");
 		getContentPane().add(layerApplication, "layerApplication");
+		getContentPane().add(layerConfiguration, "layerConfiguration");
 
 		mntmConfigurationItem.addActionListener(new ActionListener() {
 

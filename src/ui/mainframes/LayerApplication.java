@@ -2,6 +2,7 @@ package ui.mainframes;
 
 
 import principal.Application;
+import ui.components.*;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
@@ -17,6 +18,13 @@ import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
 
 import org.apache.log4j.Logger;
+import javax.swing.JTree;
+import java.awt.Component;
+import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JSlider;
+import javax.swing.SwingConstants;
 
 /**
  * @author Valentin
@@ -29,11 +37,68 @@ public class LayerApplication extends JPanel {
 	
 	private static Logger logger = Logger.getLogger(LayerApplication.class);
 	
-	private JTextField textField;
+	
+	private JButton btnRechercher;
+	private JButton btnRechercheSimple;
+	private JButton btnLiensDict;
+	private JButton btnRechercheAvancee;
+	private JButton btnOptions;
+	private JButton btnHistorique;
+	
+	private JSlider sliderDetails;
+	
+	private JTextField textFieldRecherche;
 
+	private Box verticalBoxHaut;
+	private Box verticalBoxBas;
+	
+	private JPanel panelMenu;
+	private JPanel panelContent;
+	
+	private CardLayout cardLayoutMenu = new CardLayout(0, 0);
+	private CardLayout cardLayoutContent = new CardLayout(0, 0);
+	
+	private AppliMenuRechercheSimple appliMenuRechercheSimple;
+	private AppliMenuLiensDictionnaires appliMenuLiensDictionnaires;
+	private AppliMenuRechercheAvancee appliMenuRechercheAvancee;
+	
+	private AppliContentRechercheSimple appliContentRechercheSimple;
+	private AppliContentRechercheAvancee appliContentRechercheAvancee;
+	
+	
 	public LayerApplication(final Application application) {
 
 		initComponents(application);
+		
+		final SimpleDateFormat maDate = new SimpleDateFormat( "hh:mm:ss" );
+		
+		btnRechercher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Date date = new Date(System.currentTimeMillis());
+				textFieldRecherche.setText(maDate.format(date).toString());
+			}
+		});
+		
+		btnRechercheSimple.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayoutMenu.show(panelMenu, "AppliMenuRechercheSimple");
+				cardLayoutContent.show(panelContent, "AppliContentRechercheSimple");
+			}
+		});
+		
+		btnLiensDict.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayoutMenu.show(panelMenu, "AppliMenuLiensDictionnaires");
+			}
+		});
+		
+		btnRechercheAvancee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayoutMenu.show(panelMenu, "AppliMenuRechercheAvancee");
+				cardLayoutContent.show(panelContent, "AppliContentRechercheAvancee");
+			}
+		});
+		
 
 	}
 	
@@ -49,80 +114,98 @@ public class LayerApplication extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.gridwidth = 4;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 1;
-		add(textField, gbc_textField);
-		textField.setColumns(10);
+		textFieldRecherche = new JTextField();
+		GridBagConstraints gbc_textFieldRecherche = new GridBagConstraints();
+		gbc_textFieldRecherche.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldRecherche.gridwidth = 4;
+		gbc_textFieldRecherche.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldRecherche.gridx = 1;
+		gbc_textFieldRecherche.gridy = 1;
+		add(textFieldRecherche, gbc_textFieldRecherche);
+		textFieldRecherche.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Chercher");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 6;
-		gbc_btnNewButton.gridy = 1;
-		add(btnNewButton, gbc_btnNewButton);
+		btnRechercher = new JButton("Chercher");
+		GridBagConstraints gbc_btnRechercher = new GridBagConstraints();
+		gbc_btnRechercher.insets = new Insets(0, 0, 5, 5);
+		gbc_btnRechercher.gridx = 6;
+		gbc_btnRechercher.gridy = 1;
+		add(btnRechercher, gbc_btnRechercher);
 		
-		JComboBox comboBox = new JComboBox();
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 8;
-		gbc_comboBox.gridy = 1;
-		add(comboBox, gbc_comboBox);
+		sliderDetails = new JSlider();
+		GridBagConstraints gbc_sliderDetail = new GridBagConstraints();
+		gbc_sliderDetail.fill = GridBagConstraints.HORIZONTAL;
+		gbc_sliderDetail.insets = new Insets(0, 0, 5, 5);
+		gbc_sliderDetail.gridx = 8;
+		gbc_sliderDetail.gridy = 1;
+		add(sliderDetails, gbc_sliderDetail);
 		
-		JPanel panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridheight = 2;
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 2;
-		gbc_panel.gridy = 3;
-		add(panel, gbc_panel);
+		verticalBoxHaut = Box.createVerticalBox();
+		GridBagConstraints gbc_verticalBoxHaut = new GridBagConstraints();
+		gbc_verticalBoxHaut.fill = GridBagConstraints.HORIZONTAL;
+		gbc_verticalBoxHaut.anchor = GridBagConstraints.NORTH;
+		gbc_verticalBoxHaut.insets = new Insets(0, 0, 5, 5);
+		gbc_verticalBoxHaut.gridx = 1;
+		gbc_verticalBoxHaut.gridy = 3;
+		add(verticalBoxHaut, gbc_verticalBoxHaut);
 		
-		Box verticalBox = Box.createVerticalBox();
-		GridBagConstraints gbc_verticalBox = new GridBagConstraints();
-		gbc_verticalBox.anchor = GridBagConstraints.NORTH;
-		gbc_verticalBox.insets = new Insets(0, 0, 5, 5);
-		gbc_verticalBox.gridx = 1;
-		gbc_verticalBox.gridy = 3;
-		add(verticalBox, gbc_verticalBox);
+		btnRechercheSimple = new JButton("Rech. Simple");
+		verticalBoxHaut.add(btnRechercheSimple);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		verticalBox.add(btnNewButton_1);
+		btnLiensDict = new JButton("Liens Dict.");
+		verticalBoxHaut.add(btnLiensDict);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		verticalBox.add(btnNewButton_2);
+		btnRechercheAvancee = new JButton("Rech. Avancée");
+		verticalBoxHaut.add(btnRechercheAvancee);
 		
-		Box verticalBox_2 = Box.createVerticalBox();
-		verticalBox.add(verticalBox_2);
+		verticalBoxBas = Box.createVerticalBox();
+		GridBagConstraints gbc_verticalBoxBas = new GridBagConstraints();
+		gbc_verticalBoxBas.fill = GridBagConstraints.HORIZONTAL;
+		gbc_verticalBoxBas.anchor = GridBagConstraints.SOUTH;
+		gbc_verticalBoxBas.insets = new Insets(0, 0, 5, 5);
+		gbc_verticalBoxBas.gridx = 1;
+		gbc_verticalBoxBas.gridy = 4;
+		add(verticalBoxBas, gbc_verticalBoxBas);
 		
-		JPanel panel_1 = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.gridheight = 2;
-		gbc_panel_1.gridwidth = 5;
-		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 4;
-		gbc_panel_1.gridy = 3;
-		add(panel_1, gbc_panel_1);
+		btnOptions = new JButton("Options");
+		verticalBoxBas.add(btnOptions);
 		
-		Box verticalBox_1 = Box.createVerticalBox();
-		GridBagConstraints gbc_verticalBox_1 = new GridBagConstraints();
-		gbc_verticalBox_1.anchor = GridBagConstraints.SOUTH;
-		gbc_verticalBox_1.insets = new Insets(0, 0, 5, 5);
-		gbc_verticalBox_1.gridx = 1;
-		gbc_verticalBox_1.gridy = 4;
-		add(verticalBox_1, gbc_verticalBox_1);
+		btnHistorique = new JButton("Historique");
+		verticalBoxBas.add(btnHistorique);
 		
-		JButton btnNewButton_3 = new JButton("New button");
-		verticalBox_1.add(btnNewButton_3);
+		panelMenu = new JPanel();
+		GridBagConstraints gbc_panelMenu = new GridBagConstraints();
+		gbc_panelMenu.gridheight = 2;
+		gbc_panelMenu.insets = new Insets(0, 0, 5, 5);
+		gbc_panelMenu.fill = GridBagConstraints.BOTH;
+		gbc_panelMenu.gridx = 2;
+		gbc_panelMenu.gridy = 3;
+		add(panelMenu, gbc_panelMenu);
+		panelMenu.setLayout(cardLayoutMenu);
+		
+		appliMenuRechercheSimple = new AppliMenuRechercheSimple();
+		appliMenuLiensDictionnaires = new AppliMenuLiensDictionnaires();
+		appliMenuRechercheAvancee = new AppliMenuRechercheAvancee();
+		
+		panelMenu.add(appliMenuRechercheSimple, "AppliMenuRechercheSimple");
+		panelMenu.add(appliMenuLiensDictionnaires, "AppliMenuLiensDictionnaires");
+		panelMenu.add(appliMenuRechercheAvancee, "AppliMenuRechercheAvancee");
+		
+		panelContent = new JPanel();
+		GridBagConstraints gbc_panelContent = new GridBagConstraints();
+		gbc_panelContent.gridheight = 2;
+		gbc_panelContent.gridwidth = 5;
+		gbc_panelContent.insets = new Insets(0, 0, 5, 5);
+		gbc_panelContent.fill = GridBagConstraints.BOTH;
+		gbc_panelContent.gridx = 4;
+		gbc_panelContent.gridy = 3;
+		add(panelContent, gbc_panelContent);
+		panelContent.setLayout(cardLayoutContent);
+		
+		appliContentRechercheSimple = new AppliContentRechercheSimple();
+		appliContentRechercheAvancee = new AppliContentRechercheAvancee();
+		
+		panelContent.add(appliContentRechercheSimple, "AppliContentRechercheSimple");
+		panelContent.add(appliContentRechercheAvancee, "AppliContentRechercheAvancee");
+		
 	}
 }
