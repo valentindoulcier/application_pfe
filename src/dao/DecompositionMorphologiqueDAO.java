@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class DecompositionMorphologique.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class DecompositionMorphologiqueDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="DecompositionMorphologique";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(DecompositionMorphologiqueDAO.class);
 
-	public DecompositionMorphologiqueDAO() {
-        super();
-    }
+	public DecompositionMorphologiqueDAO() {}
 	
 	public DecompositionMorphologiqueDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class DecompositionMorphologiqueDAO extends AbstractDAO {
      * @param decompositionMorphologique
      */
     public void create(DecompositionMorphologique decompositionMorphologique) throws DataAccessLayerException {
-        super.saveOrUpdate(decompositionMorphologique);
+        super.saveOrUpdate(session, decompositionMorphologique);
     }
 
 
@@ -39,7 +50,7 @@ public class DecompositionMorphologiqueDAO extends AbstractDAO {
      * @param decompositionMorphologique
      */
     public void delete(DecompositionMorphologique decompositionMorphologique) throws DataAccessLayerException {
-        super.delete(decompositionMorphologique);
+        super.delete(session, decompositionMorphologique);
     }
 
     /**
@@ -48,7 +59,7 @@ public class DecompositionMorphologiqueDAO extends AbstractDAO {
      * @return
      */
     public DecompositionMorphologique find(Long id) throws DataAccessLayerException {
-        return (DecompositionMorphologique) super.find(DecompositionMorphologique.class, id);
+        return (DecompositionMorphologique) super.find(session, DecompositionMorphologique.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class DecompositionMorphologiqueDAO extends AbstractDAO {
      * @param event
      */
     public void update(DecompositionMorphologique decompositionMorphologique) throws DataAccessLayerException {
-        super.saveOrUpdate(decompositionMorphologique);
+        super.saveOrUpdate(session, decompositionMorphologique);
     }
 
     /**
@@ -65,6 +76,6 @@ public class DecompositionMorphologiqueDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(DecompositionMorphologique.class);
+        return super.findAll(session, DecompositionMorphologique.class);
     }
 }

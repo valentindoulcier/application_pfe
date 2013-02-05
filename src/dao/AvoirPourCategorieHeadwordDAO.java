@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class AvoirPourCategorieHeadword.
@@ -15,14 +19,21 @@ public class AvoirPourCategorieHeadwordDAO extends AbstractDAO {
 	
 	public static String NOM_TABLE="AvoirPourCategorieHeadword";
 	
+	private Session session;
+	private Transaction tx;
+	
 	private static Logger logger = Logger.getLogger(AvoirPourCategorieHeadwordDAO.class);
 	
-	public AvoirPourCategorieHeadwordDAO() {
-        super();
-    }
+	public AvoirPourCategorieHeadwordDAO() {}
 	
 	public AvoirPourCategorieHeadwordDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class AvoirPourCategorieHeadwordDAO extends AbstractDAO {
      * @param avoirPourCategorieHeadword
      */
     public void create(AvoirPourCategorieHeadword avoirPourCategorieHeadword) throws DataAccessLayerException {
-        super.saveOrUpdate(avoirPourCategorieHeadword);
+        super.saveOrUpdate(session, avoirPourCategorieHeadword);
     }
 
 
@@ -39,7 +50,7 @@ public class AvoirPourCategorieHeadwordDAO extends AbstractDAO {
      * @param avoirPourCategorieHeadword
      */
     public void delete(AvoirPourCategorieHeadword avoirPourCategorieHeadword) throws DataAccessLayerException {
-        super.delete(avoirPourCategorieHeadword);
+        super.delete(session, avoirPourCategorieHeadword);
     }
 
     /**
@@ -48,7 +59,7 @@ public class AvoirPourCategorieHeadwordDAO extends AbstractDAO {
      * @return
      */
     public AvoirPourCategorieHeadword find(Long id) throws DataAccessLayerException {
-        return (AvoirPourCategorieHeadword) super.find(AvoirPourCategorieHeadword.class, id);
+        return (AvoirPourCategorieHeadword) super.find(session, AvoirPourCategorieHeadword.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class AvoirPourCategorieHeadwordDAO extends AbstractDAO {
      * @param event
      */
     public void update(AvoirPourCategorieHeadword avoirPourCategorieHeadword) throws DataAccessLayerException {
-        super.saveOrUpdate(avoirPourCategorieHeadword);
+        super.saveOrUpdate(session, avoirPourCategorieHeadword);
     }
 
     /**
@@ -65,6 +76,6 @@ public class AvoirPourCategorieHeadwordDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(AvoirPourCategorieHeadword.class);
+        return super.findAll(session, AvoirPourCategorieHeadword.class);
     }
 }

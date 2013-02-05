@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class DecompositionGraphique.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class DecompositionGraphiqueDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="DecompositionGraphique";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(DecompositionGraphiqueDAO.class);
 	
-	public DecompositionGraphiqueDAO() {
-        super();
-    }
+	public DecompositionGraphiqueDAO() {}
 	
 	public DecompositionGraphiqueDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class DecompositionGraphiqueDAO extends AbstractDAO {
      * @param decompositionGraphique
      */
     public void create(DecompositionGraphique decompositionGraphique) throws DataAccessLayerException {
-        super.saveOrUpdate(decompositionGraphique);
+        super.saveOrUpdate(session, decompositionGraphique);
     }
 
 
@@ -39,7 +50,7 @@ public class DecompositionGraphiqueDAO extends AbstractDAO {
      * @param decompositionGraphique
      */
     public void delete(DecompositionGraphique decompositionGraphique) throws DataAccessLayerException {
-        super.delete(decompositionGraphique);
+        super.delete(session, decompositionGraphique);
     }
 
     /**
@@ -48,7 +59,7 @@ public class DecompositionGraphiqueDAO extends AbstractDAO {
      * @return
      */
     public DecompositionGraphique find(Long id) throws DataAccessLayerException {
-        return (DecompositionGraphique) super.find(DecompositionGraphique.class, id);
+        return (DecompositionGraphique) super.find(session, DecompositionGraphique.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class DecompositionGraphiqueDAO extends AbstractDAO {
      * @param event
      */
     public void update(DecompositionGraphique decompositionGraphique) throws DataAccessLayerException {
-        super.saveOrUpdate(decompositionGraphique);
+        super.saveOrUpdate(session, decompositionGraphique);
     }
 
     /**
@@ -65,6 +76,6 @@ public class DecompositionGraphiqueDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(DecompositionGraphique.class);
+        return super.findAll(session, DecompositionGraphique.class);
     }
 }

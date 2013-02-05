@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class Dictionnaires.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class DictionnairesDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="Dictionnaires";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(DictionnairesDAO.class);	
 
-	public DictionnairesDAO() {
-        super();
-    }
+	public DictionnairesDAO() {}
 	
 	public DictionnairesDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class DictionnairesDAO extends AbstractDAO {
      * @param dictionnaires
      */
     public void create(Dictionnaires dictionnaires) throws DataAccessLayerException {
-        super.saveOrUpdate(dictionnaires);
+        super.saveOrUpdate(session, dictionnaires);
     }
 
 
@@ -39,7 +50,7 @@ public class DictionnairesDAO extends AbstractDAO {
      * @param dictionnaires
      */
     public void delete(Dictionnaires dictionnaires) throws DataAccessLayerException {
-        super.delete(dictionnaires);
+        super.delete(session, dictionnaires);
     }
 
     /**
@@ -48,7 +59,7 @@ public class DictionnairesDAO extends AbstractDAO {
      * @return
      */
     public Dictionnaires find(Long id) throws DataAccessLayerException {
-        return (Dictionnaires) super.find(Dictionnaires.class, id);
+        return (Dictionnaires) super.find(session, Dictionnaires.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class DictionnairesDAO extends AbstractDAO {
      * @param event
      */
     public void update(Dictionnaires dictionnaires) throws DataAccessLayerException {
-        super.saveOrUpdate(dictionnaires);
+        super.saveOrUpdate(session, dictionnaires);
     }
 
     /**
@@ -65,6 +76,6 @@ public class DictionnairesDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(Dictionnaires.class);
+        return super.findAll(session, Dictionnaires.class);
     }
 }

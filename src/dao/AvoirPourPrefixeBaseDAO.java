@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class AvoirPourPrefixeBase.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class AvoirPourPrefixeBaseDAO extends AbstractDAO{
 
 	public static String NOM_TABLE="AvoirPourPrefixeBase";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(AvoirPourPrefixeBaseDAO.class);
 	
-	public AvoirPourPrefixeBaseDAO() {
-        super();
-    }
+	public AvoirPourPrefixeBaseDAO() {}
 	
 	public AvoirPourPrefixeBaseDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class AvoirPourPrefixeBaseDAO extends AbstractDAO{
      * @param avoirPourPrefixeBase
      */
     public void create(AvoirPourPrefixeBase avoirPourPrefixeBase) throws DataAccessLayerException {
-        super.saveOrUpdate(avoirPourPrefixeBase);
+        super.saveOrUpdate(session, avoirPourPrefixeBase);
     }
 
 
@@ -39,7 +50,7 @@ public class AvoirPourPrefixeBaseDAO extends AbstractDAO{
      * @param avoirPourPrefixeBase
      */
     public void delete(AvoirPourPrefixeBase avoirPourPrefixeBase) throws DataAccessLayerException {
-        super.delete(avoirPourPrefixeBase);
+        super.delete(session, avoirPourPrefixeBase);
     }
 
     /**
@@ -48,7 +59,7 @@ public class AvoirPourPrefixeBaseDAO extends AbstractDAO{
      * @return
      */
     public AvoirPourPrefixeBase find(Long id) throws DataAccessLayerException {
-        return (AvoirPourPrefixeBase) super.find(AvoirPourPrefixeBase.class, id);
+        return (AvoirPourPrefixeBase) super.find(session, AvoirPourPrefixeBase.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class AvoirPourPrefixeBaseDAO extends AbstractDAO{
      * @param event
      */
     public void update(AvoirPourPrefixeBase avoirPourPrefixeBase) throws DataAccessLayerException {
-        super.saveOrUpdate(avoirPourPrefixeBase);
+        super.saveOrUpdate(session, avoirPourPrefixeBase);
     }
 
     /**
@@ -65,6 +76,6 @@ public class AvoirPourPrefixeBaseDAO extends AbstractDAO{
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(AvoirPourPrefixeBase.class);
+        return super.findAll(session, AvoirPourPrefixeBase.class);
     }
 }

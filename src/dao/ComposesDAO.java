@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class Composes.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class ComposesDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="Composes";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(ComposesDAO.class);
 
-	public ComposesDAO() {
-        super();
-    }
+	public ComposesDAO() {}
 	
 	public ComposesDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class ComposesDAO extends AbstractDAO {
      * @param composes
      */
     public void create(Composes composes) throws DataAccessLayerException {
-        super.saveOrUpdate(composes);
+        super.saveOrUpdate(session, composes);
     }
 
 
@@ -39,7 +50,7 @@ public class ComposesDAO extends AbstractDAO {
      * @param composes
      */
     public void delete(Composes composes) throws DataAccessLayerException {
-        super.delete(composes);
+        super.delete(session, composes);
     }
 
     /**
@@ -48,7 +59,7 @@ public class ComposesDAO extends AbstractDAO {
      * @return
      */
     public Composes find(Long id) throws DataAccessLayerException {
-        return (Composes) super.find(Composes.class, id);
+        return (Composes) super.find(session, Composes.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class ComposesDAO extends AbstractDAO {
      * @param event
      */
     public void update(Composes composes) throws DataAccessLayerException {
-        super.saveOrUpdate(composes);
+        super.saveOrUpdate(session, composes);
     }
 
     /**
@@ -65,6 +76,6 @@ public class ComposesDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(Composes.class);
+        return super.findAll(session, Composes.class);
     }
 }

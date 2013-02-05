@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class AvoirPourSuffixes.
@@ -14,23 +18,29 @@ import org.apache.log4j.Logger;
 public class AvoirPourSuffixesDAO extends AbstractDAO{
 
 	public static String NOM_TABLE="AvoirPourSuffixes";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(AvoirPourSuffixesDAO.class);
 	
-	public AvoirPourSuffixesDAO() {
-        super();
-    }
+	public AvoirPourSuffixesDAO() {}
 	
 	public AvoirPourSuffixesDAO(String type) {
-        super(type);
-    }
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();    }
 
     /**
      * Insert a new Event into the database.
      * @param avoirPourSuffixes
      */
     public void create(AvoirPourSuffixes avoirPourSuffixes) throws DataAccessLayerException {
-        super.saveOrUpdate(avoirPourSuffixes);
+        super.saveOrUpdate(session, avoirPourSuffixes);
     }
 
 
@@ -39,7 +49,7 @@ public class AvoirPourSuffixesDAO extends AbstractDAO{
      * @param avoirPourSuffixes
      */
     public void delete(AvoirPourSuffixes avoirPourSuffixes) throws DataAccessLayerException {
-        super.delete(avoirPourSuffixes);
+        super.delete(session, avoirPourSuffixes);
     }
 
     /**
@@ -48,7 +58,7 @@ public class AvoirPourSuffixesDAO extends AbstractDAO{
      * @return
      */
     public AvoirPourSuffixes find(Long id) throws DataAccessLayerException {
-        return (AvoirPourSuffixes) super.find(AvoirPourSuffixes.class, id);
+        return (AvoirPourSuffixes) super.find(session, AvoirPourSuffixes.class, id);
     }
 
     /**
@@ -57,7 +67,7 @@ public class AvoirPourSuffixesDAO extends AbstractDAO{
      * @param event
      */
     public void update(AvoirPourSuffixes avoirPourSuffixes) throws DataAccessLayerException {
-        super.saveOrUpdate(avoirPourSuffixes);
+        super.saveOrUpdate(session, avoirPourSuffixes);
     }
 
     /**
@@ -65,7 +75,7 @@ public class AvoirPourSuffixesDAO extends AbstractDAO{
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(AvoirPourSuffixes.class);
+        return super.findAll(session, AvoirPourSuffixes.class);
     }
 
 

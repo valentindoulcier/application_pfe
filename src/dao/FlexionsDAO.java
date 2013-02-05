@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class Flexions.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class FlexionsDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="Flexions";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(FlexionsDAO.class);
 	
-	public FlexionsDAO() {
-        super();
-    }
+	public FlexionsDAO() {}
 	
 	public FlexionsDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class FlexionsDAO extends AbstractDAO {
      * @param flexions
      */
     public void create(Flexions flexions) throws DataAccessLayerException {
-        super.saveOrUpdate(flexions);
+        super.saveOrUpdate(session, flexions);
     }
 
 
@@ -39,7 +50,7 @@ public class FlexionsDAO extends AbstractDAO {
      * @param flexions
      */
     public void delete(Flexions flexions) throws DataAccessLayerException {
-        super.delete(flexions);
+        super.delete(session, flexions);
     }
 
     /**
@@ -48,7 +59,7 @@ public class FlexionsDAO extends AbstractDAO {
      * @return
      */
     public Flexions find(Long id) throws DataAccessLayerException {
-        return (Flexions) super.find(Flexions.class, id);
+        return (Flexions) super.find(session, Flexions.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class FlexionsDAO extends AbstractDAO {
      * @param event
      */
     public void update(Flexions flexions) throws DataAccessLayerException {
-        super.saveOrUpdate(flexions);
+        super.saveOrUpdate(session, flexions);
     }
 
     /**
@@ -65,6 +76,6 @@ public class FlexionsDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(Flexions.class);
+        return super.findAll(session, Flexions.class);
     }
 }

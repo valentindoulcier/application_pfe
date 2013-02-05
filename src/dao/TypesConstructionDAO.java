@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class TypesConstruction.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class TypesConstructionDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="TypesConstruction";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(TypesConstructionDAO.class);
 	
-	public TypesConstructionDAO() {
-        super();
-    }
+	public TypesConstructionDAO() {}
 	
 	public TypesConstructionDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class TypesConstructionDAO extends AbstractDAO {
      * @param typesConstruction
      */
     public void create(TypesConstruction typesConstruction) throws DataAccessLayerException {
-        super.saveOrUpdate(typesConstruction);
+        super.saveOrUpdate(session, typesConstruction);
     }
 
 
@@ -39,7 +50,7 @@ public class TypesConstructionDAO extends AbstractDAO {
      * @param typesConstruction
      */
     public void delete(TypesConstruction typesConstruction) throws DataAccessLayerException {
-        super.delete(typesConstruction);
+        super.delete(session, typesConstruction);
     }
 
     /**
@@ -48,7 +59,7 @@ public class TypesConstructionDAO extends AbstractDAO {
      * @return
      */
     public TypesConstruction find(Long id) throws DataAccessLayerException {
-        return (TypesConstruction) super.find(TypesConstruction.class, id);
+        return (TypesConstruction) super.find(session, TypesConstruction.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class TypesConstructionDAO extends AbstractDAO {
      * @param event
      */
     public void update(TypesConstruction typesConstruction) throws DataAccessLayerException {
-        super.saveOrUpdate(typesConstruction);
+        super.saveOrUpdate(session, typesConstruction);
     }
 
     /**
@@ -65,6 +76,6 @@ public class TypesConstructionDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(TypesConstruction.class);
+        return super.findAll(session, TypesConstruction.class);
     }
 }

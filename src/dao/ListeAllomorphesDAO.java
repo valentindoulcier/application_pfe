@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 
 /**
@@ -15,15 +19,22 @@ import org.apache.log4j.Logger;
 public class ListeAllomorphesDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="ListeAllomorphes";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(ListeAllomorphesDAO.class);
 	
-	public ListeAllomorphesDAO() {
-        super();
-    }
+	public ListeAllomorphesDAO() {}
 	
 	public ListeAllomorphesDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -31,7 +42,7 @@ public class ListeAllomorphesDAO extends AbstractDAO {
      * @param listeAllomorphes
      */
     public void create(ListeAllomorphes listeAllomorphes) throws DataAccessLayerException {
-        super.saveOrUpdate(listeAllomorphes);
+        super.saveOrUpdate(session, listeAllomorphes);
     }
 
 
@@ -40,7 +51,7 @@ public class ListeAllomorphesDAO extends AbstractDAO {
      * @param listeAllomorphes
      */
     public void delete(ListeAllomorphes listeAllomorphes) throws DataAccessLayerException {
-        super.delete(listeAllomorphes);
+        super.delete(session, listeAllomorphes);
     }
 
     /**
@@ -49,7 +60,7 @@ public class ListeAllomorphesDAO extends AbstractDAO {
      * @return
      */
     public ListeAllomorphes find(Long id) throws DataAccessLayerException {
-        return (ListeAllomorphes) super.find(ListeAllomorphes.class, id);
+        return (ListeAllomorphes) super.find(session, ListeAllomorphes.class, id);
     }
 
     /**
@@ -58,7 +69,7 @@ public class ListeAllomorphesDAO extends AbstractDAO {
      * @param event
      */
     public void update(ListeAllomorphes listeAllomorphes) throws DataAccessLayerException {
-        super.saveOrUpdate(listeAllomorphes);
+        super.saveOrUpdate(session, listeAllomorphes);
     }
 
     /**
@@ -66,6 +77,6 @@ public class ListeAllomorphesDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(ListeAllomorphes.class);
+        return super.findAll(session, ListeAllomorphes.class);
     }
 }

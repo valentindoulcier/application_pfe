@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class Lexique.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class LexiqueDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="Lexique";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(LexiqueDAO.class);
 	
-	public LexiqueDAO() {
-        super();
-    }
+	public LexiqueDAO() {}
 	
 	public LexiqueDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class LexiqueDAO extends AbstractDAO {
      * @param lexique
      */
     public void create(Lexique lexique) throws DataAccessLayerException {
-        super.saveOrUpdate(lexique);
+        super.saveOrUpdate(session, lexique);
     }
 
 
@@ -39,7 +50,7 @@ public class LexiqueDAO extends AbstractDAO {
      * @param lexique
      */
     public void delete(Lexique lexique) throws DataAccessLayerException {
-        super.delete(lexique);
+        super.delete(session, lexique);
     }
 
     /**
@@ -48,7 +59,7 @@ public class LexiqueDAO extends AbstractDAO {
      * @return
      */
     public Lexique find(Long id) throws DataAccessLayerException {
-        return (Lexique) super.find(Lexique.class, id);
+        return (Lexique) super.find(session, Lexique.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class LexiqueDAO extends AbstractDAO {
      * @param event
      */
     public void update(Lexique lexique) throws DataAccessLayerException {
-        super.saveOrUpdate(lexique);
+        super.saveOrUpdate(session, lexique);
     }
 
     /**
@@ -65,6 +76,6 @@ public class LexiqueDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(Lexique.class);
+        return super.findAll(session, Lexique.class);
     }
 }

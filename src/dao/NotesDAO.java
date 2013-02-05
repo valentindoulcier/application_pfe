@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class Notes.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class NotesDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="Notes";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(NotesDAO.class);
 	
-	public NotesDAO() {
-        super();
-    }
+	public NotesDAO() {}
 	
 	public NotesDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class NotesDAO extends AbstractDAO {
      * @param notes
      */
     public void create(Notes notes) throws DataAccessLayerException {
-        super.saveOrUpdate(notes);
+        super.saveOrUpdate(session, notes);
     }
 
 
@@ -39,7 +50,7 @@ public class NotesDAO extends AbstractDAO {
      * @param notes
      */
     public void delete(Notes notes) throws DataAccessLayerException {
-        super.delete(notes);
+        super.delete(session, notes);
     }
 
     /**
@@ -48,7 +59,7 @@ public class NotesDAO extends AbstractDAO {
      * @return
      */
     public Notes find(Long id) throws DataAccessLayerException {
-        return (Notes) super.find(Notes.class, id);
+        return (Notes) super.find(session, Notes.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class NotesDAO extends AbstractDAO {
      * @param event
      */
     public void update(Notes notes) throws DataAccessLayerException {
-        super.saveOrUpdate(notes);
+        super.saveOrUpdate(session, notes);
     }
 
     /**
@@ -65,6 +76,6 @@ public class NotesDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(Notes.class);
+        return super.findAll(session, Notes.class);
     }
 }

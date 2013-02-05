@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class Sens.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class SensDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="Sens";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(SensDAO.class);
 	
-	public SensDAO() {
-        super();
-    }
+	public SensDAO() {}
 	
 	public SensDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class SensDAO extends AbstractDAO {
      * @param sens
      */
     public void create(Sens sens) throws DataAccessLayerException {
-        super.saveOrUpdate(sens);
+        super.saveOrUpdate(session, sens);
     }
 
 
@@ -39,7 +50,7 @@ public class SensDAO extends AbstractDAO {
      * @param sens
      */
     public void delete(Sens sens) throws DataAccessLayerException {
-        super.delete(sens);
+        super.delete(session, sens);
     }
 
     /**
@@ -48,7 +59,7 @@ public class SensDAO extends AbstractDAO {
      * @return
      */
     public Sens find(Long id) throws DataAccessLayerException {
-        return (Sens) super.find(Sens.class, id);
+        return (Sens) super.find(session, Sens.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class SensDAO extends AbstractDAO {
      * @param event
      */
     public void update(Sens sens) throws DataAccessLayerException {
-        super.saveOrUpdate(sens);
+        super.saveOrUpdate(session, sens);
     }
 
     /**
@@ -65,6 +76,6 @@ public class SensDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(Sens.class);
+        return super.findAll(session, Sens.class);
     }
 }

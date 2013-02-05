@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class EtymoMcq.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class EtymoMcqDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="EtymoMcq";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(EtymoMcqDAO.class);
 	
-	public EtymoMcqDAO() {
-        super();
-    }
+	public EtymoMcqDAO() {}
 	
 	public EtymoMcqDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class EtymoMcqDAO extends AbstractDAO {
      * @param etymoMcq
      */
     public void create(EtymoMcq etymoMcq) throws DataAccessLayerException {
-        super.saveOrUpdate(etymoMcq);
+        super.saveOrUpdate(session, etymoMcq);
     }
 
 
@@ -39,7 +50,7 @@ public class EtymoMcqDAO extends AbstractDAO {
      * @param etymoMcq
      */
     public void delete(EtymoMcq etymoMcq) throws DataAccessLayerException {
-        super.delete(etymoMcq);
+        super.delete(session, etymoMcq);
     }
 
     /**
@@ -48,7 +59,7 @@ public class EtymoMcqDAO extends AbstractDAO {
      * @return
      */
     public EtymoMcq find(Long id) throws DataAccessLayerException {
-        return (EtymoMcq) super.find(EtymoMcq.class, id);
+        return (EtymoMcq) super.find(session, EtymoMcq.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class EtymoMcqDAO extends AbstractDAO {
      * @param event
      */
     public void update(EtymoMcq etymoMcq) throws DataAccessLayerException {
-        super.saveOrUpdate(etymoMcq);
+        super.saveOrUpdate(session, etymoMcq);
     }
 
     /**
@@ -65,6 +76,6 @@ public class EtymoMcqDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(EtymoMcq.class);
+        return super.findAll(session, EtymoMcq.class);
     }
 }

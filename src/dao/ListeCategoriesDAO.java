@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class ListeCategories.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class ListeCategoriesDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="ListeCategories";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(ListeCategoriesDAO.class);
 	
-	public ListeCategoriesDAO() {
-        super();
-    }
+	public ListeCategoriesDAO() {}
 	
 	public ListeCategoriesDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class ListeCategoriesDAO extends AbstractDAO {
      * @param listeCategories
      */
     public void create(ListeCategories listeCategories) throws DataAccessLayerException {
-        super.saveOrUpdate(listeCategories);
+        super.saveOrUpdate(session, listeCategories);
     }
 
 
@@ -39,7 +50,7 @@ public class ListeCategoriesDAO extends AbstractDAO {
      * @param listeCategories
      */
     public void delete(ListeCategories listeCategories) throws DataAccessLayerException {
-        super.delete(listeCategories);
+        super.delete(session, listeCategories);
     }
 
     /**
@@ -48,7 +59,7 @@ public class ListeCategoriesDAO extends AbstractDAO {
      * @return
      */
     public ListeCategories find(Long id) throws DataAccessLayerException {
-        return (ListeCategories) super.find(ListeCategories.class, id);
+        return (ListeCategories) super.find(session, ListeCategories.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class ListeCategoriesDAO extends AbstractDAO {
      * @param event
      */
     public void update(ListeCategories listeCategories) throws DataAccessLayerException {
-        super.saveOrUpdate(listeCategories);
+        super.saveOrUpdate(session, listeCategories);
     }
 
     /**
@@ -65,6 +76,6 @@ public class ListeCategoriesDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(ListeCategories.class);
+        return super.findAll(session, ListeCategories.class);
     }
 }

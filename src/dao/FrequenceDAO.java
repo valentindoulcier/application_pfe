@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class Frequence.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class FrequenceDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="Frequence";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(FrequenceDAO.class);
 	
-	public FrequenceDAO() {
-        super();
-    }
+	public FrequenceDAO() {}
 	
 	public FrequenceDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class FrequenceDAO extends AbstractDAO {
      * @param frequence
      */
     public void create(Frequence frequence) throws DataAccessLayerException {
-        super.saveOrUpdate(frequence);
+        super.saveOrUpdate(session, frequence);
     }
 
 
@@ -39,7 +50,7 @@ public class FrequenceDAO extends AbstractDAO {
      * @param frequence
      */
     public void delete(Frequence frequence) throws DataAccessLayerException {
-        super.delete(frequence);
+        super.delete(session, frequence);
     }
 
     /**
@@ -48,7 +59,7 @@ public class FrequenceDAO extends AbstractDAO {
      * @return
      */
     public Frequence find(Long id) throws DataAccessLayerException {
-        return (Frequence) super.find(Frequence.class, id);
+        return (Frequence) super.find(session, Frequence.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class FrequenceDAO extends AbstractDAO {
      * @param event
      */
     public void update(Frequence frequence) throws DataAccessLayerException {
-        super.saveOrUpdate(frequence);
+        super.saveOrUpdate(session, frequence);
     }
 
     /**
@@ -65,6 +76,6 @@ public class FrequenceDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(Frequence.class);
+        return super.findAll(session, Frequence.class);
     }
 }

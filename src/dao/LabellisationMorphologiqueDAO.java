@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class LabellisationMorphologique.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class LabellisationMorphologiqueDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="LabellisationMorphologique";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(LabellisationMorphologiqueDAO.class);
 	
-	public LabellisationMorphologiqueDAO() {
-        super();
-    }
+	public LabellisationMorphologiqueDAO() {}
 	
 	public LabellisationMorphologiqueDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class LabellisationMorphologiqueDAO extends AbstractDAO {
      * @param labellisationMorphologique
      */
     public void create(LabellisationMorphologique labellisationMorphologique) throws DataAccessLayerException {
-        super.saveOrUpdate(labellisationMorphologique);
+        super.saveOrUpdate(session, labellisationMorphologique);
     }
 
 
@@ -39,7 +50,7 @@ public class LabellisationMorphologiqueDAO extends AbstractDAO {
      * @param labellisationMorphologique
      */
     public void delete(LabellisationMorphologique labellisationMorphologique) throws DataAccessLayerException {
-        super.delete(labellisationMorphologique);
+        super.delete(session, labellisationMorphologique);
     }
 
     /**
@@ -48,7 +59,7 @@ public class LabellisationMorphologiqueDAO extends AbstractDAO {
      * @return
      */
     public LabellisationMorphologique find(Long id) throws DataAccessLayerException {
-        return (LabellisationMorphologique) super.find(LabellisationMorphologique.class, id);
+        return (LabellisationMorphologique) super.find(session, LabellisationMorphologique.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class LabellisationMorphologiqueDAO extends AbstractDAO {
      * @param event
      */
     public void update(LabellisationMorphologique labellisationMorphologique) throws DataAccessLayerException {
-        super.saveOrUpdate(labellisationMorphologique);
+        super.saveOrUpdate(session, labellisationMorphologique);
     }
 
     /**
@@ -65,6 +76,6 @@ public class LabellisationMorphologiqueDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(LabellisationMorphologique.class);
+        return super.findAll(session, LabellisationMorphologique.class);
     }
 }

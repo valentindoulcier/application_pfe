@@ -15,22 +15,22 @@ import org.hibernate.cfg.Configuration;
 public class HibernateUtils {
 
 	private static Logger logger = Logger.getLogger(HibernateUtils.class);
-    
+
 	private static SessionFactory sessionFactoryLocale = null;
 	private static SessionFactory sessionFactoryMaster = null;
-	
+
 	private static boolean connecteLocal;
 	private static boolean connecteMaster;
 
 	private HibernateUtils(){
 		;
 	}
-	
+
 	public static void deconnectionLocale() {
 		HibernateUtils.getInstanceLocale().close();
 		sessionFactoryLocale.close();
 	}
-	
+
 	public static void deconnectionMaster() {
 		HibernateUtils.getInstanceMaster().close();
 		sessionFactoryMaster.close();
@@ -57,11 +57,11 @@ public class HibernateUtils {
 
 				try {
 					sessionFactoryLocale = configurationLocale.buildSessionFactory();
-					} catch (HibernateException e) {
-						//TODO
-						System.out.println("getInstanceLocale ligne 64" + e.getMessage());
-			            //throw new DataAccessLayerException(e);
-			        }
+				} catch (HibernateException e) {
+					//TODO
+					System.out.println("getInstanceLocale ligne 64" + e.getMessage());
+					//throw new DataAccessLayerException(e);
+				}
 			} catch (Throwable ex) {
 				connecteLocal = false;
 				System.out.println("Erreur creation de la SessionFactory" + ex.toString());
@@ -74,7 +74,7 @@ public class HibernateUtils {
 
 		deconnectionLocale();
 		connecteLocal = true;
-		
+
 		try {
 
 			Configuration configurationLocale = new Configuration();
@@ -89,12 +89,12 @@ public class HibernateUtils {
 			}
 
 			try {
-			sessionFactoryLocale = configurationLocale.buildSessionFactory();
+				sessionFactoryLocale = configurationLocale.buildSessionFactory();
 			} catch (HibernateException e) {
 				//TODO
 				System.out.println("changeInstanceLocale ligne 96" + e.getMessage());
-	            //throw new DataAccessLayerException(e);
-	        }
+				//throw new DataAccessLayerException(e);
+			}
 		} catch (Throwable ex) {
 			connecteLocal = false;
 			System.out.println("Erreur creation de la SessionFactory" + ex.toString());
@@ -122,12 +122,12 @@ public class HibernateUtils {
 
 				try {
 					sessionFactoryMaster = configurationMaster.buildSessionFactory();
-					} catch (HibernateException e) {
-						//TODO
-						System.out.println("getInstanceMaster ligne 127" + e.getMessage());
-			            //throw new DataAccessLayerException(e);
-			        }
-				
+				} catch (HibernateException e) {
+					//TODO
+					System.out.println("getInstanceMaster ligne 127" + e.getMessage());
+					//throw new DataAccessLayerException(e);
+				}
+
 			} catch (Throwable ex) {
 				setConnecteMaster(false);
 				System.out.println("Erreur creation de la SessionFactory" + ex.toString());
@@ -135,12 +135,12 @@ public class HibernateUtils {
 		}
 		return sessionFactoryMaster.openSession();
 	}
-	
+
 	public static Session changeInstanceMaster(Properties properties) {
 
 		deconnectionMaster();
 		connecteMaster = true;
-		
+
 		try {
 
 			Configuration configurationMaster = new Configuration();
@@ -155,18 +155,18 @@ public class HibernateUtils {
 
 			try {
 				sessionFactoryMaster = configurationMaster.buildSessionFactory();
-				} catch (HibernateException e) {
-					//TODO
-					System.out.println("changeInstanceMaster ligne 159" + e.getMessage());
-		            //throw new DataAccessLayerException(e);
-		        }
+			} catch (HibernateException e) {
+				//TODO
+				System.out.println("changeInstanceMaster ligne 159" + e.getMessage());
+				//throw new DataAccessLayerException(e);
+			}
 		} catch (Throwable ex) {
 			System.out.println("Erreur creation de la SessionFactory" + ex.toString());
 		}
 		return sessionFactoryMaster.openSession();
 	}
 
-	
+
 	public static boolean isConnecteLocal() {
 		return connecteLocal;
 	}
@@ -182,17 +182,16 @@ public class HibernateUtils {
 	public static void setConnecteMaster(boolean connecteMaster) {
 		HibernateUtils.connecteMaster = connecteMaster;
 	}
-	
-	public static void rollback(Transaction tx) {
-        try {
-            if (tx != null) {
-                tx.rollback();
-            }
-        } catch (HibernateException ignored) {
-            logger.error("Couldn't rollback Transaction", ignored);
-        }
-    }
 
+	public static void rollback(Transaction tx) {
+		try {
+			if (tx != null) {
+				tx.rollback();
+			}
+		} catch (HibernateException ignored) {
+			logger.error("Couldn't rollback Transaction", ignored);
+		}
+	}
 }
 
 

@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class LiensDict.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class LiensDictDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="LiensDict";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(LiensDictDAO.class);
 	
-	public LiensDictDAO() {
-        super();
-    }
+	public LiensDictDAO() {}
 
 	public LiensDictDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 	
     /**
@@ -30,7 +41,7 @@ public class LiensDictDAO extends AbstractDAO {
      * @param liensDict
      */
     public void create(LiensDict liensDict) throws DataAccessLayerException {
-        super.saveOrUpdate(liensDict);
+        super.saveOrUpdate(session, liensDict);
     }
 
 
@@ -39,7 +50,7 @@ public class LiensDictDAO extends AbstractDAO {
      * @param liensDict
      */
     public void delete(LiensDict liensDict) throws DataAccessLayerException {
-        super.delete(liensDict);
+        super.delete(session, liensDict);
     }
 
     /**
@@ -48,7 +59,7 @@ public class LiensDictDAO extends AbstractDAO {
      * @return
      */
     public LiensDict find(Long id) throws DataAccessLayerException {
-        return (LiensDict) super.find(LiensDict.class, id);
+        return (LiensDict) super.find(session, LiensDict.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class LiensDictDAO extends AbstractDAO {
      * @param event
      */
     public void update(LiensDict liensDict) throws DataAccessLayerException {
-        super.saveOrUpdate(liensDict);
+        super.saveOrUpdate(session, liensDict);
     }
 
     /**
@@ -65,6 +76,6 @@ public class LiensDictDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(LiensDict.class);
+        return super.findAll(session, LiensDict.class);
     }
 }

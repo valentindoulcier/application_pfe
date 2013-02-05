@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class SourceFrequence.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class SourceFrequenceDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="SourceFrequence";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(SourceFrequenceDAO.class);
 	
-	public SourceFrequenceDAO() {
-        super();
-    }
+	public SourceFrequenceDAO() {}
 	
 	public SourceFrequenceDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class SourceFrequenceDAO extends AbstractDAO {
      * @param sourceFrequence
      */
     public void create(SourceFrequence sourceFrequence) throws DataAccessLayerException {
-        super.saveOrUpdate(sourceFrequence);
+        super.saveOrUpdate(session, sourceFrequence);
     }
 
 
@@ -39,7 +50,7 @@ public class SourceFrequenceDAO extends AbstractDAO {
      * @param sourceFrequence
      */
     public void delete(SourceFrequence sourceFrequence) throws DataAccessLayerException {
-        super.delete(sourceFrequence);
+        super.delete(session, sourceFrequence);
     }
 
     /**
@@ -48,7 +59,7 @@ public class SourceFrequenceDAO extends AbstractDAO {
      * @return
      */
     public SourceFrequence find(Long id) throws DataAccessLayerException {
-        return (SourceFrequence) super.find(SourceFrequence.class, id);
+        return (SourceFrequence) super.find(session, SourceFrequence.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class SourceFrequenceDAO extends AbstractDAO {
      * @param event
      */
     public void update(SourceFrequence sourceFrequence) throws DataAccessLayerException {
-        super.saveOrUpdate(sourceFrequence);
+        super.saveOrUpdate(session, sourceFrequence);
     }
 
     /**
@@ -65,6 +76,6 @@ public class SourceFrequenceDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(SourceFrequence.class);
+        return super.findAll(session, SourceFrequence.class);
     }
 }

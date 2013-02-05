@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 
 /**
@@ -15,15 +19,22 @@ import org.apache.log4j.Logger;
 public class ListeTypesLexicauxDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="ListeTypesLexicaux";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(ListeTypesLexicauxDAO.class);
 	
-	public ListeTypesLexicauxDAO() {
-        super();
-    }
+	public ListeTypesLexicauxDAO() {}
 	
 	public ListeTypesLexicauxDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -31,7 +42,7 @@ public class ListeTypesLexicauxDAO extends AbstractDAO {
      * @param listeTypesLexicaux
      */
     public void create(ListeTypesLexicaux listeTypesLexicaux) throws DataAccessLayerException {
-        super.saveOrUpdate(listeTypesLexicaux);
+        super.saveOrUpdate(session, listeTypesLexicaux);
     }
 
 
@@ -40,7 +51,7 @@ public class ListeTypesLexicauxDAO extends AbstractDAO {
      * @param listeTypesLexicaux
      */
     public void delete(ListeTypesLexicaux listeTypesLexicaux) throws DataAccessLayerException {
-        super.delete(listeTypesLexicaux);
+        super.delete(session, listeTypesLexicaux);
     }
 
     /**
@@ -49,7 +60,7 @@ public class ListeTypesLexicauxDAO extends AbstractDAO {
      * @return
      */
     public ListeTypesLexicaux find(Long id) throws DataAccessLayerException {
-        return (ListeTypesLexicaux) super.find(ListeTypesLexicaux.class, id);
+        return (ListeTypesLexicaux) super.find(session, ListeTypesLexicaux.class, id);
     }
 
     /**
@@ -58,7 +69,7 @@ public class ListeTypesLexicauxDAO extends AbstractDAO {
      * @param event
      */
     public void update(ListeTypesLexicaux listeTypesLexicaux) throws DataAccessLayerException {
-        super.saveOrUpdate(listeTypesLexicaux);
+        super.saveOrUpdate(session, listeTypesLexicaux);
     }
 
     /**
@@ -66,6 +77,6 @@ public class ListeTypesLexicauxDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(ListeTypesLexicaux.class);
+        return super.findAll(session, ListeTypesLexicaux.class);
     }
 }

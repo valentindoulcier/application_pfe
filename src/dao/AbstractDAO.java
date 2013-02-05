@@ -26,52 +26,40 @@ public class AbstractDAO {
 
 	public AbstractDAO() {}
 
-	public AbstractDAO(String typeBdd) {
-		if("local".equalsIgnoreCase(typeBdd)) {
-			this.session = HibernateUtils.getInstanceLocale();
-		}
-		else if ("master".equalsIgnoreCase(typeBdd)) {
-			this.session = HibernateUtils.getInstanceMaster();
-		}
-	}
 
-	public AbstractDAO(String typeBdd, Transaction tx) {
-		if("local".equalsIgnoreCase(typeBdd)) {
-			this.session = HibernateUtils.getInstanceLocale();
-		}
-		else if ("master".equalsIgnoreCase(typeBdd)) {
-			this.session = HibernateUtils.getInstanceMaster();
-		}
-		this.tx = tx;
-	}
-
-	protected void create(Object obj) {
+	protected void create(Session session, Object obj) {
 		try {
-			startOperation();
+			this.session = session;
+			this.tx = session.beginTransaction();
+			
 			session.save(obj);
 			tx.commit();
 		} catch (HibernateException e) {
 			handleException(e);
 		} finally {
-			HibernateUtils.getInstanceLocale().close();
+			session.close();
 		}
 	}
 
-	protected void update(Object obj) {
+	protected void update(Session session, Object obj) {
 		try {
-			startOperation();
+			this.session = session;
+			this.tx = session.beginTransaction();
+
 			session.update(obj);
 			tx.commit();
 		} catch (HibernateException e) {
 			handleException(e);
 		} finally {
-			HibernateUtils.getInstanceLocale().close();
+			session.close();
 		}
 	}
 
-	protected void saveOrUpdate(Object obj) {
+	protected void saveOrUpdate(Session session, Object obj) {
 		try {
-			startOperation();
+			this.session = session;
+			this.tx = session.beginTransaction();
+			
 			session.saveOrUpdate(obj);
 			tx.commit();
 
@@ -79,47 +67,53 @@ public class AbstractDAO {
 		} catch (HibernateException e) {
 			handleException(e);
 		} finally {
-			HibernateUtils.getInstanceLocale().close();
+			session.close();
 		}
 	}
 
-	protected void delete(Object obj) {
+	protected void delete(Session session, Object obj) {
 		try {
-			startOperation();
+			this.session = session;
+			this.tx = session.beginTransaction();
+			
 			session.delete(obj);
 			tx.commit();
 		} catch (HibernateException e) {
 			handleException(e);
 		} finally {
-			HibernateUtils.getInstanceLocale().close();
+			session.close();
 		}
 	}
 
-	protected Object find(Class clazz, Long id) {
+	protected Object find(Session session, Class clazz, Long id) {
 		Object obj = null;
 		try {
-			startOperation();
+			this.session = session;
+			this.tx = session.beginTransaction();
+			
 			obj = session.load(clazz, id);
 			tx.commit();
 		} catch (HibernateException e) {
 			handleException(e);
 		} finally {
-			HibernateUtils.getInstanceLocale().close();
+			session.close();
 		}
 		return obj;
 	}
 
-	protected List findAll(Class clazz) {
+	protected List findAll(Session session, Class clazz) {
 		List objects = null;
 		try {
-			startOperation();
+			this.session = session;
+			this.tx = session.beginTransaction();
+			
 			Query query = session.createQuery("from " + clazz.getName());
 			objects = query.list();
 			tx.commit();
 		} catch (HibernateException e) {
 			handleException(e);
 		} finally {
-			HibernateUtils.getInstanceLocale().close();
+			session.close();
 		}
 		return objects;
 	}
@@ -127,10 +121,6 @@ public class AbstractDAO {
 	protected void handleException(HibernateException e) throws DataAccessLayerException {
 		HibernateUtils.rollback(tx);
 		throw new DataAccessLayerException(e);
-	}
-
-	protected void startOperation() throws HibernateException {
-		tx = session.beginTransaction();
 	}
 
 }

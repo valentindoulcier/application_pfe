@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class TypesMorphologie.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class TypesMorphologieDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="TypesMorphologie";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(TypesMorphologieDAO.class);
 	
-	public TypesMorphologieDAO() {
-        super();
-    }
+	public TypesMorphologieDAO() {}
 	
 	public TypesMorphologieDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class TypesMorphologieDAO extends AbstractDAO {
      * @param typesMorphologie
      */
     public void create(TypesMorphologie typesMorphologie) throws DataAccessLayerException {
-        super.saveOrUpdate(typesMorphologie);
+        super.saveOrUpdate(session, typesMorphologie);
     }
 
 
@@ -39,7 +50,7 @@ public class TypesMorphologieDAO extends AbstractDAO {
      * @param typesMorphologie
      */
     public void delete(TypesMorphologie typesMorphologie) throws DataAccessLayerException {
-        super.delete(typesMorphologie);
+        super.delete(session, typesMorphologie);
     }
 
     /**
@@ -48,7 +59,7 @@ public class TypesMorphologieDAO extends AbstractDAO {
      * @return
      */
     public TypesMorphologie find(Long id) throws DataAccessLayerException {
-        return (TypesMorphologie) super.find(TypesMorphologie.class, id);
+        return (TypesMorphologie) super.find(session, TypesMorphologie.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class TypesMorphologieDAO extends AbstractDAO {
      * @param event
      */
     public void update(TypesMorphologie typesMorphologie) throws DataAccessLayerException {
-        super.saveOrUpdate(typesMorphologie);
+        super.saveOrUpdate(session, typesMorphologie);
     }
 
     /**
@@ -65,6 +76,6 @@ public class TypesMorphologieDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(TypesMorphologie.class);
+        return super.findAll(session, TypesMorphologie.class);
     }
 }

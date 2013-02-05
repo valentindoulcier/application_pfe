@@ -1,9 +1,19 @@
 package dao;
 import database.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class ListeStatuts.
@@ -13,16 +23,23 @@ import org.apache.log4j.Logger;
 @SuppressWarnings("unused")
 public class ListeStatutsDAO extends AbstractDAO {
 
-	public static String NOM_TABLE="ListeStatuts";
+	public static String NOM_TABLE="liste_statuts";
+	
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(ListeStatutsDAO.class);
 	
-	public ListeStatutsDAO() {
-        super();
-    }
+	public ListeStatutsDAO() {}
 
 	public ListeStatutsDAO(String type) {
-		super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
 	}
 	
 
@@ -31,7 +48,7 @@ public class ListeStatutsDAO extends AbstractDAO {
      * @param listeStatuts
      */
     public void create(ListeStatuts listeStatuts) throws DataAccessLayerException {
-        super.saveOrUpdate(listeStatuts);
+        super.saveOrUpdate(session, listeStatuts);
     }
 
 
@@ -40,7 +57,7 @@ public class ListeStatutsDAO extends AbstractDAO {
      * @param listeStatuts
      */
     public void delete(ListeStatuts listeStatuts) throws DataAccessLayerException {
-        super.delete(listeStatuts);
+        super.delete(session, listeStatuts);
     }
 
     /**
@@ -49,7 +66,7 @@ public class ListeStatutsDAO extends AbstractDAO {
      * @return
      */
     public ListeStatuts find(Long id) throws DataAccessLayerException {
-        return (ListeStatuts) super.find(ListeStatuts.class, id);
+        return (ListeStatuts) super.find(session, ListeStatuts.class, id);
     }
 
     /**
@@ -58,7 +75,7 @@ public class ListeStatutsDAO extends AbstractDAO {
      * @param event
      */
     public void update(ListeStatuts listeStatuts) throws DataAccessLayerException {
-        super.saveOrUpdate(listeStatuts);
+        super.saveOrUpdate(session, listeStatuts);
     }
 
     /**
@@ -66,6 +83,14 @@ public class ListeStatutsDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(ListeStatuts.class);
+        return super.findAll(session, ListeStatuts.class);
     }
+    
+    
+    public ListeStatuts findTheStatut(int idStatut) {
+    	Criteria criteria = session.createCriteria(ListeStatuts.class)
+    			.add(Restrictions.like("idStatut", idStatut));
+    	
+    	return (ListeStatuts) criteria.uniqueResult();
+	}
 }

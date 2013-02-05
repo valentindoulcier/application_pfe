@@ -27,7 +27,7 @@ public class Main {
 	
 	private static Logger logger = Logger.getLogger(Main.class);
 
-	private static String jeTravailleSur = "appli";
+	private static String jeTravailleSur = "bdd";
 
 	/**
 	 * Fonction Main.
@@ -65,7 +65,7 @@ public class Main {
 			logger.info("msg d'information");
 			logger.warn("msg d'avertissement");
 			logger.error("msg d'erreur");
-			logger.fatal("msg d'erreur fatale"); 
+			logger.fatal("msg d'erreur fatale");
 			
 			
 			//Date date = new Date( System.currentTimeMillis() );
@@ -74,6 +74,8 @@ public class Main {
 			//CREATE
 			
 			//ListeStatutsDAO test = new ListeStatutsDAO("local");
+			//ListeStatuts tempo = test.findTheStatut(3);
+			//System.out.println(tempo.getStatut() + "  " + tempo.getIdStatut());
 			//test.create(new ListeStatuts(maDate.format(date)));
 			
 

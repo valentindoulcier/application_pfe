@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class Headword.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class HeadwordDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="Headword";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(HeadwordDAO.class);
 	
-	public HeadwordDAO() {
-        super();
-    }
+	public HeadwordDAO() {}
 	
 	public HeadwordDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class HeadwordDAO extends AbstractDAO {
      * @param headword
      */
     public void create(Headword headword) throws DataAccessLayerException {
-        super.saveOrUpdate(headword);
+        super.saveOrUpdate(session, headword);
     }
 
 
@@ -39,7 +50,7 @@ public class HeadwordDAO extends AbstractDAO {
      * @param headword
      */
     public void delete(Headword headword) throws DataAccessLayerException {
-        super.delete(headword);
+        super.delete(session, headword);
     }
 
     /**
@@ -48,7 +59,7 @@ public class HeadwordDAO extends AbstractDAO {
      * @return
      */
     public Headword find(Long id) throws DataAccessLayerException {
-        return (Headword) super.find(Headword.class, id);
+        return (Headword) super.find(session, Headword.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class HeadwordDAO extends AbstractDAO {
      * @param event
      */
     public void update(Headword headword) throws DataAccessLayerException {
-        super.saveOrUpdate(headword);
+        super.saveOrUpdate(session, headword);
     }
 
     /**
@@ -65,6 +76,6 @@ public class HeadwordDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(Headword.class);
+        return super.findAll(session, Headword.class);
     }
 }

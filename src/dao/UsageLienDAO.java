@@ -4,6 +4,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 /**
  * Home object for domain model class UsageLien.
@@ -14,15 +18,22 @@ import org.apache.log4j.Logger;
 public class UsageLienDAO extends AbstractDAO {
 
 	public static String NOM_TABLE="UsageLien";
+
+	private Session session;
+	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(UsageLienDAO.class);
 	
-	public UsageLienDAO() {
-        super();
-    }
+	public UsageLienDAO() {}
 	
 	public UsageLienDAO(String type) {
-        super(type);
+		if("local".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceLocale();
+		}
+		else if ("master".equalsIgnoreCase(type)) {
+			this.session = HibernateUtils.getInstanceMaster();
+		}
+		tx = session.beginTransaction();
     }
 
     /**
@@ -30,7 +41,7 @@ public class UsageLienDAO extends AbstractDAO {
      * @param usageLien
      */
     public void create(UsageLien usageLien) throws DataAccessLayerException {
-        super.saveOrUpdate(usageLien);
+        super.saveOrUpdate(session, usageLien);
     }
 
 
@@ -39,7 +50,7 @@ public class UsageLienDAO extends AbstractDAO {
      * @param usageLien
      */
     public void delete(UsageLien usageLien) throws DataAccessLayerException {
-        super.delete(usageLien);
+        super.delete(session, usageLien);
     }
 
     /**
@@ -48,7 +59,7 @@ public class UsageLienDAO extends AbstractDAO {
      * @return
      */
     public UsageLien find(Long id) throws DataAccessLayerException {
-        return (UsageLien) super.find(UsageLien.class, id);
+        return (UsageLien) super.find(session, UsageLien.class, id);
     }
 
     /**
@@ -57,7 +68,7 @@ public class UsageLienDAO extends AbstractDAO {
      * @param event
      */
     public void update(UsageLien usageLien) throws DataAccessLayerException {
-        super.saveOrUpdate(usageLien);
+        super.saveOrUpdate(session, usageLien);
     }
 
     /**
@@ -65,6 +76,6 @@ public class UsageLienDAO extends AbstractDAO {
      * @return
      */
     public List findAll() throws DataAccessLayerException{
-        return super.findAll(UsageLien.class);
+        return super.findAll(session, UsageLien.class);
     }
 }
