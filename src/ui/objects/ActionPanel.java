@@ -16,6 +16,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+//import org.apache.log4j.Logger;
+
 /**
  * @author Valentin
  *
@@ -23,6 +25,8 @@ import javax.swing.JPanel;
 public class ActionPanel extends JPanel {
 
 	private static final long serialVersionUID = -2211953654486892627L;
+	
+	//private static Logger logger = Logger.getLogger(ActionPanel.class);
 
 	private String text;
 	private Font font;

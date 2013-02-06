@@ -1,14 +1,8 @@
 package principal;
 
-import dao.*;
 import utils.*;
-import database.*;
 
 import java.awt.EventQueue;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -22,12 +16,11 @@ import org.apache.log4j.Logger;
  * @author Valentin DOULCIER
  * @version 0.0.1
  */
-@SuppressWarnings("unused")
 public class Main {
-	
+
 	private static Logger logger = Logger.getLogger(Main.class);
 
-	private static String jeTravailleSur = "bdd";
+	private static String jeTravailleSur = "appli";
 
 	/**
 	 * Fonction Main.
@@ -46,13 +39,13 @@ public class Main {
 			logger.warn("msg d'avertissement");
 			logger.error("msg d'erreur");
 			logger.fatal("msg d'erreur fatale");
-			
+
 			useScreenMenuBar();
-			
+
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						Application window = new Application();
+						new Application();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -66,23 +59,30 @@ public class Main {
 			logger.warn("msg d'avertissement");
 			logger.error("msg d'erreur");
 			logger.fatal("msg d'erreur fatale");
-			
-			
+
+
 			//Date date = new Date( System.currentTimeMillis() );
 			//SimpleDateFormat maDate = new SimpleDateFormat( "hh:mm:ss" );
 
 			//CREATE
-			
+
 			//ListeStatutsDAO test = new ListeStatutsDAO("local");
 			//ListeStatuts tempo = test.findTheStatut(3);
 			//System.out.println(tempo.getStatut() + "  " + tempo.getIdStatut());
 			//test.create(new ListeStatuts(maDate.format(date)));
-			
+
+			//HeadwordDAO test = new HeadwordDAO("local");
+			//List<?> tempo = test.findExactly("house", "mcq");
+
+			//for(Object l : tempo) {
+			//	System.out.println("*" + ((Headword) l).getDictionnaires().getNomDictionnaire() + "* *" + ((Headword) l).getMot() + "*");
+			//}
+
 
 			//UPDATE
 
 			//PRINT
-			
+
 			//List list = test.findAll();
 
 			//for(Object l : list) {

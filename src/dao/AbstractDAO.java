@@ -85,7 +85,7 @@ public class AbstractDAO {
 		}
 	}
 
-	protected Object find(Session session, Class clazz, Long id) {
+	protected Object find(Session session, Class<?> clazz, Long id) {
 		Object obj = null;
 		try {
 			this.session = session;
@@ -101,8 +101,8 @@ public class AbstractDAO {
 		return obj;
 	}
 
-	protected List findAll(Session session, Class clazz) {
-		List objects = null;
+	protected List<?> findAll(Session session, Class<?> clazz) {
+		List<?> objects = null;
 		try {
 			this.session = session;
 			this.tx = session.beginTransaction();

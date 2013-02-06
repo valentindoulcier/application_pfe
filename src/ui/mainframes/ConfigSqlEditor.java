@@ -7,7 +7,7 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import java.awt.Color;
 import java.awt.Insets;
@@ -20,12 +20,11 @@ import java.awt.event.ActionListener;
  * @author Valentin
  *
  */
-@SuppressWarnings("unused")
 public class ConfigSqlEditor extends JPanel {
 
 	private static final long serialVersionUID = -5336871510589064273L;
 	
-	private static Logger logger = Logger.getLogger(ConfigSqlEditor.class);
+	//private static Logger logger = Logger.getLogger(ConfigSqlEditor.class);
 
 	private JTable tableResult;
 	private JList listRequetes;

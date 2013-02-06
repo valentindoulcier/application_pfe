@@ -23,7 +23,6 @@ import java.awt.event.ActionListener;
  * @author Valentin DOULCIER
  * @version 0.0.1
  */
-@SuppressWarnings("unused")
 public class Application extends JFrame {
 
 	private static final long serialVersionUID = -8042460976894676449L;
@@ -49,6 +48,7 @@ public class Application extends JFrame {
 		}
 
 		initComponents();
+		logger.debug("Nouvelle Occurrence d'Application");
 
 	}
 

@@ -75,7 +75,7 @@ public class FrequenceDAO extends AbstractDAO {
      * Finds all Events in the database.
      * @return
      */
-    public List findAll() throws DataAccessLayerException{
+    public List<?> findAll() throws DataAccessLayerException{
         return super.findAll(session, Frequence.class);
     }
 }

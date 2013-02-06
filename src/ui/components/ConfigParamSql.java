@@ -11,18 +11,17 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 /**
  * @author Valentin
  *
  */
-@SuppressWarnings("unused")
 public class ConfigParamSql extends JPanel {
 
 	private static final long serialVersionUID = -4182978053014203936L;
 	
-	private static Logger logger = Logger.getLogger(ConfigParamSql.class);
+	//private static Logger logger = Logger.getLogger(ConfigParamSql.class);
 
 	private GridBagLayout gridBagLayout;
 	

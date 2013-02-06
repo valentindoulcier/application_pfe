@@ -20,6 +20,8 @@ import javax.persistence.Table;
 @Table(name = "types_morphologie", catalog = "bddictionnairique")
 public class TypesMorphologie implements java.io.Serializable {
 
+	private static final long serialVersionUID = 8792704918655934233L;
+
 	private Integer idTypeMorph;
 	private String typeMorph;
 	private Set labellisationMorphologiquesForM1 = new HashSet(0);

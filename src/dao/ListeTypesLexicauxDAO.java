@@ -76,7 +76,7 @@ public class ListeTypesLexicauxDAO extends AbstractDAO {
      * Finds all Events in the database.
      * @return
      */
-    public List findAll() throws DataAccessLayerException{
+    public List<?> findAll() throws DataAccessLayerException{
         return super.findAll(session, ListeTypesLexicaux.class);
     }
 }

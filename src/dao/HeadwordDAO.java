@@ -1,11 +1,14 @@
 package dao;
 import database.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import utils.HibernateUtils;
 
@@ -75,7 +78,18 @@ public class HeadwordDAO extends AbstractDAO {
      * Finds all Events in the database.
      * @return
      */
-    public List findAll() throws DataAccessLayerException{
+    public List<?> findAll() throws DataAccessLayerException{
         return super.findAll(session, Headword.class);
     }
+    
+
+	public List<?> findExactly(String mot, String dictionnaire) {
+    	Criteria criteria = session.createCriteria(Headword.class)
+    			.add(Restrictions.like("mot", mot))
+    			.createCriteria("dictionnaires", "dico")
+    			.add(Restrictions.eq("dico.nomDictionnaire", dictionnaire));
+
+    	
+    	return criteria.list();
+	}
 }

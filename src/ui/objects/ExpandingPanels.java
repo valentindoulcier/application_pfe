@@ -10,11 +10,15 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+//import org.apache.log4j.Logger;
+
 /**
  * @author Valentin
  *
  */
 public class ExpandingPanels extends MouseAdapter {
+	
+	//private static Logger logger = Logger.getLogger(ExpandingPanels.class);
 
 	ArrayList<ActionPanel> aps;
     ArrayList<JPanel> panels;
@@ -59,6 +63,12 @@ public class ExpandingPanels extends MouseAdapter {
     	panels.add(panel);
     	aps.add(new ActionPanel(title, this));
     }
+    
+    public void clear() {
+    	ids.clear();
+    	panels.clear();
+    	aps.clear();
+    }
  
 
     public JPanel getComponent() {
@@ -66,8 +76,8 @@ public class ExpandingPanels extends MouseAdapter {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(1,3,0,3);
         gbc.weightx = 1.0;
-        gbc.fill = gbc.HORIZONTAL;
-        gbc.gridwidth = gbc.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         for(int j = 0; j < aps.size(); j++)
         {
             panel.add(aps.get(j), gbc);

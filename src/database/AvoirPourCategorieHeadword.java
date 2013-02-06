@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "avoir_pour_categorie_headword", catalog = "bddictionnairique")
 public class AvoirPourCategorieHeadword implements java.io.Serializable {
-	
+
 	private AvoirPourCategorieHeadwordId id;
 	private ListeCategories listeCategories;
 	private Headword headword;

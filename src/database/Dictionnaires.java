@@ -2,6 +2,7 @@ package database;
 
 // Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
 
+import java.awt.event.MouseEvent;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -83,5 +84,4 @@ public class Dictionnaires implements java.io.Serializable {
 	public void setFlexionses(Set flexionses) {
 		this.flexionses = flexionses;
 	}
-
 }

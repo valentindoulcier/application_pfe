@@ -11,7 +11,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-
+/**
+ * @author Valentin
+ *
+ */
 public class HibernateUtils {
 
 	private static Logger logger = Logger.getLogger(HibernateUtils.class);
