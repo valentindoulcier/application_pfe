@@ -11,9 +11,7 @@ import ui.objects.ExpandingPanels;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 
-import renderers.MotsRenderer_1;
-import renderers.MotsRenderer_2;
-import renderers.MotsRenderer_3;
+import renderers.*;
 
 import dao.*;
 import database.*;
@@ -95,16 +93,22 @@ public class AppliContentRechercheSimple extends JPanel {
 			// DETAIL 1
 			if (layerApplication.getSliderDetails().getValue() == layerApplication.getSliderDetails().getMinimum()) {
 
+				System.out.println("NB MOTS : " + mots.size());
+				
 				Vector<RSDetail_1> listeMots = new Vector<RSDetail_1>();
 				RSDetail_1 rsdetail_1;
 
 				for(Object hw : mots) {
 					rsdetail_1 = new RSDetail_1();
-					rsdetail_1.getLblMot().setText(((Headword) hw).getMot());
+					rsdetail_1.setIdHeadword(((Headword) hw).getIdHeadword());
+					rsdetail_1.getLblMots().setText(((Headword) hw).getMot());
 					listeMots.addElement(rsdetail_1);
 				}
-
+				
+				System.out.println("TAILLE 1 : " + listeMots.size());
+				
 				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new MotsRenderer_1(listeMots));
+				//this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new ComponentTable(listeMots));
 			}
 			// DETAIL 2
 			else if (layerApplication.getSliderDetails().getValue() == (layerApplication.getSliderDetails().getMaximum())/2) {
@@ -114,7 +118,8 @@ public class AppliContentRechercheSimple extends JPanel {
 
 				for(Object hw : mots) {
 					rsdetail_2 = new RSDetail_2();
-					rsdetail_2.getLblMot().setText(((Headword) hw).getMot());
+					rsdetail_2.setIdHeadword(((Headword) hw).getIdHeadword());
+					rsdetail_2.getLblMots().setText(((Headword) hw).getMot());
 					listeMots.addElement(rsdetail_2);
 				}
 
@@ -128,7 +133,8 @@ public class AppliContentRechercheSimple extends JPanel {
 
 				for(Object hw : mots) {
 					rsdetail_3 = new RSDetail_3();
-					rsdetail_3.getLblMot().setText(((Headword) hw).getMot());
+					rsdetail_3.setIdHeadword(((Headword) hw).getIdHeadword());
+					rsdetail_3.getLblMots().setText(((Headword) hw).getMot());
 					listeMots.addElement(rsdetail_3);
 				}
 
