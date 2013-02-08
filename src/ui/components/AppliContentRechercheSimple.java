@@ -99,7 +99,7 @@ public class AppliContentRechercheSimple extends JPanel {
 				RSDetail_1 rsdetail_1;
 
 				for(Object hw : mots) {
-					rsdetail_1 = new RSDetail_1();
+					rsdetail_1 = new RSDetail_1(layerApplication);
 					rsdetail_1.setIdHeadword(((Headword) hw).getIdHeadword());
 					rsdetail_1.getLblMots().setText(((Headword) hw).getMot());
 					listeMots.addElement(rsdetail_1);
@@ -107,7 +107,7 @@ public class AppliContentRechercheSimple extends JPanel {
 				
 				System.out.println("TAILLE 1 : " + listeMots.size());
 				
-				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new MotsRenderer_1(listeMots));
+				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new MotsRenderer_1(layerApplication, listeMots));
 				//this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new ComponentTable(listeMots));
 			}
 			// DETAIL 2
@@ -117,13 +117,13 @@ public class AppliContentRechercheSimple extends JPanel {
 				RSDetail_2 rsdetail_2;
 
 				for(Object hw : mots) {
-					rsdetail_2 = new RSDetail_2();
+					rsdetail_2 = new RSDetail_2(layerApplication);
 					rsdetail_2.setIdHeadword(((Headword) hw).getIdHeadword());
 					rsdetail_2.getLblMots().setText(((Headword) hw).getMot());
 					listeMots.addElement(rsdetail_2);
 				}
 
-				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new MotsRenderer_2(listeMots));
+				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new MotsRenderer_2(layerApplication, listeMots));
 			}
 			// DETAIL 3
 			else if (layerApplication.getSliderDetails().getValue() == layerApplication.getSliderDetails().getMaximum()) {
@@ -132,13 +132,13 @@ public class AppliContentRechercheSimple extends JPanel {
 				RSDetail_3 rsdetail_3;
 
 				for(Object hw : mots) {
-					rsdetail_3 = new RSDetail_3();
+					rsdetail_3 = new RSDetail_3(layerApplication);
 					rsdetail_3.setIdHeadword(((Headword) hw).getIdHeadword());
 					rsdetail_3.getLblMots().setText(((Headword) hw).getMot());
 					listeMots.addElement(rsdetail_3);
 				}
 
-				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new MotsRenderer_3(listeMots));
+				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new MotsRenderer_3(layerApplication, listeMots));
 			}
 
 

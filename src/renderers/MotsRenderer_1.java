@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
+import ui.mainframes.LayerApplication;
 import ui.objects.*;
 
 /**
@@ -29,7 +30,7 @@ public class MotsRenderer_1 extends JPanel {
 	private TableModel_1 compModel = null;
 
 
-	public MotsRenderer_1(Vector<RSDetail_1> listeMots) {
+	public MotsRenderer_1(LayerApplication layerApplication, Vector<RSDetail_1> listeMots) {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
@@ -38,7 +39,7 @@ public class MotsRenderer_1 extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JScrollPane compTableScrollpane = new JScrollPane(CreateCompTable(listeMots), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane compTableScrollpane = new JScrollPane(CreateCompTable(layerApplication, listeMots), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
@@ -46,7 +47,7 @@ public class MotsRenderer_1 extends JPanel {
 		add(compTableScrollpane, gbc_scrollPane);
 	}
 
-	public JTable CreateCompTable(Vector<RSDetail_1> listeMots) {
+	public JTable CreateCompTable(LayerApplication layerApplication, Vector<RSDetail_1> listeMots) {
 
 		compModel = new TableModel_1();
 
@@ -57,7 +58,7 @@ public class MotsRenderer_1 extends JPanel {
 		JTable table = new JTable(compModel);
 		table.setRowHeight(30);
 		table.setTableHeader(null);
-		CellEditorRenderer_1 cellEditorRenderer = new CellEditorRenderer_1();
+		CellEditorRenderer_1 cellEditorRenderer = new CellEditorRenderer_1(layerApplication);
 		table.setDefaultRenderer(Object.class, cellEditorRenderer);
 		table.setDefaultEditor(Object.class, cellEditorRenderer);
 		return table;
@@ -71,8 +72,13 @@ class CellEditorRenderer_1 extends AbstractCellEditor implements TableCellRender
 
 	private static final long serialVersionUID = -1167972153205157391L;
 
-	private RSDetail_1 renderer = new RSDetail_1();
-    private RSDetail_1 editor = new RSDetail_1();
+	private RSDetail_1 renderer;
+    private RSDetail_1 editor;
+    
+    public CellEditorRenderer_1(LayerApplication layerApplication) {
+    	renderer = new RSDetail_1(layerApplication);
+    	editor = new RSDetail_1(layerApplication);
+    }
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {

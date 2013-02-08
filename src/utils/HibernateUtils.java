@@ -1,6 +1,6 @@
 package utils;
 
-import java.io.FileReader;
+import java.io.InputStream;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
@@ -49,28 +49,43 @@ public class HibernateUtils {
 				configurationLocale.configure("hibernateLocal.cfg.xml");
 
 				try {
-					//InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/hibernateLocal.properties");
+					InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernateLocal.properties");
 					Properties propertiesLocales = new Properties();
-					propertiesLocales.load(new FileReader("src/hibernateLocal.properties"));
+					propertiesLocales.load(is);
+					//propertiesLocales.load(new FileReader("./hibernateLocal.properties"));
 					configurationLocale.addProperties(propertiesLocales);
 				} catch (Exception e) {
 					connecteLocal = false;
-					System.out.println("Erreur lecture fichier properties Locales" + e.toString());
+					logger.fatal("Erreur lecture fichier properties Locales" + e.toString());
 				}
 
 				try {
 					sessionFactoryLocale = configurationLocale.buildSessionFactory();
-				} catch (HibernateException e) {
+				} catch (Throwable ex) {
+		            // Make sure you log the exception, as it might be swallowed
+		            System.err.println("Initial SessionFactory creation failed." + ex);
+		            logger.fatal("TATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		            throw new ExceptionInInitializerError(ex);
+		        } /*catch (HibernateException e) {
 					//TODO
-					System.out.println("getInstanceLocale ligne 64" + e.getMessage());
+					logger.fatal("getInstanceLocale ligne 64" + e.getMessage());
 					//throw new DataAccessLayerException(e);
-				}
+				}*/
 			} catch (Throwable ex) {
 				connecteLocal = false;
-				System.out.println("Erreur creation de la SessionFactory" + ex.toString());
+				logger.fatal("Erreur creation de la SessionFactory" + ex.toString());
 			}
 		}
-		return sessionFactoryLocale.openSession();
+		
+		Session test = null;
+		
+		try {
+			test = sessionFactoryLocale.openSession();
+		} catch(HibernateException e) {
+			logger.fatal("OUVERTURE SESSION IMPOSSIBLE");
+		}
+		
+		return test;
 	}
 
 	public static Session changeInstanceLocale(Properties properties) {
@@ -114,9 +129,10 @@ public class HibernateUtils {
 				configurationMaster.configure("hibernateMaster.cfg.xml");
 
 				try {
-					//InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/hibernateMaster.properties");
+					InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/hibernateMaster.properties");
 					Properties propertiesMaster = new Properties();
-					propertiesMaster.load(new FileReader("src/hibernateMaster.properties"));
+					propertiesMaster.load(is);
+					//propertiesMaster.load(new FileReader("src/hibernateMaster.properties"));
 					configurationMaster.addProperties(propertiesMaster);
 				} catch (Exception e) {
 					setConnecteMaster(false);

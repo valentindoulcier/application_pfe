@@ -60,6 +60,7 @@ public class LayerApplication extends JPanel {
 	private AppliMenuLiensDictionnaires appliMenuLiensDictionnaires;
 	private AppliMenuRechercheAvancee appliMenuRechercheAvancee;
 	
+	private AppliContentEditionMot appliContentEditionMot;
 	private AppliContentRechercheSimple appliContentRechercheSimple;
 	private AppliContentRechercheAvancee appliContentRechercheAvancee;
 	
@@ -225,11 +226,13 @@ public class LayerApplication extends JPanel {
 		add(panelContent, gbc_panelContent);
 		panelContent.setLayout(cardLayoutContent);
 		
+		appliContentEditionMot = new AppliContentEditionMot();
 		appliContentRechercheSimple = new AppliContentRechercheSimple();
 		appliContentRechercheAvancee = new AppliContentRechercheAvancee();
 		
 		panelContent.add(appliContentRechercheSimple, "AppliContentRechercheSimple");
 		panelContent.add(appliContentRechercheAvancee, "AppliContentRechercheAvancee");
+		panelContent.add(appliContentEditionMot, "AppliContentEditionMot");
 		
 		this.revalidate();
 	}
@@ -528,6 +531,23 @@ public class LayerApplication extends JPanel {
 	public void setAppliMenuRechercheAvancee(
 			AppliMenuRechercheAvancee appliMenuRechercheAvancee) {
 		this.appliMenuRechercheAvancee = appliMenuRechercheAvancee;
+	}
+
+
+	/**
+	 * @return the appliContentEditionMot
+	 */
+	public AppliContentEditionMot getAppliContentEditionMot() {
+		return appliContentEditionMot;
+	}
+
+
+	/**
+	 * @param appliContentEditionMot the appliContentEditionMot to set
+	 */
+	public void setAppliContentEditionMot(
+			AppliContentEditionMot appliContentEditionMot) {
+		this.appliContentEditionMot = appliContentEditionMot;
 	}
 
 

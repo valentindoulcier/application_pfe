@@ -21,8 +21,8 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 
 import java.util.Properties;
@@ -258,7 +258,10 @@ public class LayerConfiguration extends JPanel {
 		properties = new Properties();
 
 		try {
-			properties.load(new FileReader("src/hibernateLocal.properties"));
+			InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernateLocal.properties");
+			//Properties propertiesLocales = new Properties();
+			properties.load(is);
+			//properties.load(new FileReader("src/hibernateLocal.properties"));
 		} catch (IOException ex) {
 			JOptionPane.showMessageDialog(null, "initValueLocal : Fichier de configuration LOCAL introuvable:\n" + ex.getMessage());
 		}
@@ -289,7 +292,10 @@ public class LayerConfiguration extends JPanel {
 		properties = new Properties();
 
 		try {
-			properties.load(new FileReader("src/hibernateMaster.properties"));
+			InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernateMaster.properties");
+			//Properties propertiesLocales = new Properties();
+			properties.load(is);
+			//properties.load(new FileReader("src/hibernateMaster.properties"));
 		} catch (IOException ex) {
 			JOptionPane.showMessageDialog(null, "initValueMaster : Fichier de configuration MASTER introuvable:\n" + ex.getMessage());
 		}
