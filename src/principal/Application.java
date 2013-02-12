@@ -48,12 +48,14 @@ public class Application extends JFrame {
 		}
 
 		initComponents();
+		
 		logger.debug("Nouvelle Occurrence d'Application");
-
 	}
 
 
 	private void initComponents() {
+		
+		final Application appli = this;
 
 		// Main Frame
 		this.setTitle("Application L.L.L.");
@@ -79,16 +81,22 @@ public class Application extends JFrame {
 		
 		cardLayout = new CardLayout(0, 0);
 		getContentPane().setLayout(cardLayout);
+		
 
+		this.setVisible(true);
+
+		logger.debug("2 - Je vais créer le Layer Application");
 		layerApplication = new LayerApplication(this);
-		layerConfiguration = new LayerConfiguration(this);
+		//layerConfiguration = new LayerConfiguration(this);
 		getContentPane().add(layerApplication, "layerApplication");
-		getContentPane().add(layerConfiguration, "layerConfiguration");
+		//getContentPane().add(layerConfiguration, "layerConfiguration");
 
 		mntmConfigurationItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				layerConfiguration = new LayerConfiguration(appli);
+				getContentPane().add(layerConfiguration, "layerConfiguration");
 				cardLayout.show(getContentPane(), "layerConfiguration");
 			}
 		});
@@ -97,6 +105,7 @@ public class Application extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				getContentPane().remove(layerConfiguration);
 				cardLayout.show(getContentPane(), "layerApplication");
 			}
 		});

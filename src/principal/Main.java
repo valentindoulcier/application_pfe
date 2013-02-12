@@ -45,6 +45,7 @@ public class Main {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
+						logger.debug("1 - Je vais créer l'application");
 						new Application();
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -59,7 +60,6 @@ public class Main {
 			logger.warn("msg d'avertissement");
 			logger.error("msg d'erreur");
 			logger.fatal("msg d'erreur fatale");
-
 
 			//Date date = new Date( System.currentTimeMillis() );
 			//SimpleDateFormat maDate = new SimpleDateFormat( "hh:mm:ss" );

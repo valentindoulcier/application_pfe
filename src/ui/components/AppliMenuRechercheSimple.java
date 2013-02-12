@@ -11,7 +11,7 @@ import java.util.Vector;
 
 import javax.swing.JLabel;
 
-//import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 
 import renderers.MenuRenderer;
 import ui.objects.RSMenuListe;
@@ -27,7 +27,7 @@ public class AppliMenuRechercheSimple extends JPanel {
 
 	private static final long serialVersionUID = -1450575053596774785L;
 	
-	//private static Logger logger = Logger.getLogger(AppliMenuRechercheSimple.class);
+	private static Logger logger = Logger.getLogger(AppliMenuRechercheSimple.class);
 	
 	private GridBagLayout gridBagLayout;
 	
@@ -78,18 +78,24 @@ public class AppliMenuRechercheSimple extends JPanel {
 	
 	
 	public JPanel listeDico() {
-		
+
+		logger.debug("4 - Je vais créer le menu recherche simple");
 		DictionnairesDAO dictionnaires = new DictionnairesDAO("local");
-		List<?> dico = dictionnaires.findAll();
+		List<?> dico = null;
+		if(dictionnaires.getSession() != null) {
+			dico = dictionnaires.findAll();
+		}
 		
 		Vector<RSMenuListe> listeDictionnaires = new Vector<RSMenuListe>();
 		
 		RSMenuListe rsmenuListe;
 
+		if(dico != null){
 		for(Object l : dico) {
 			rsmenuListe = new RSMenuListe();
 			rsmenuListe.getChckbxDictionnaires().setText(((Dictionnaires) l).getNomDictionnaire().toUpperCase());
 			listeDictionnaires.addElement(rsmenuListe);
+		}
 		}
 		
 		menuRenderer = new MenuRenderer(listeDictionnaires);

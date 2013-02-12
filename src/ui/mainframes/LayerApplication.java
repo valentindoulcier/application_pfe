@@ -207,6 +207,8 @@ public class LayerApplication extends JPanel {
 		add(panelMenu, gbc_panelMenu);
 		panelMenu.setLayout(cardLayoutMenu);
 		
+
+		logger.debug("3 - Je vais créer le menu recherche simple");
 		appliMenuRechercheSimple = new AppliMenuRechercheSimple();
 		appliMenuLiensDictionnaires = new AppliMenuLiensDictionnaires();
 		appliMenuRechercheAvancee = new AppliMenuRechercheAvancee();

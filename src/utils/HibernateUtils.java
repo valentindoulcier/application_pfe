@@ -3,6 +3,8 @@ package utils;
 import java.io.InputStream;
 import java.util.Properties;
 
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
 import org.hibernate.HibernateException;
@@ -42,29 +44,36 @@ public class HibernateUtils {
 
 	public static Session getInstanceLocale() {
 		connecteLocal = true;
+		logger.debug("A - Je suis dans l'instance");
 		if (sessionFactoryLocale == null) { // Premier appel
 			try {
-
+				logger.debug("B - La session Factory est nulle");
 				Configuration configurationLocale = new Configuration();
 				configurationLocale.configure("hibernateLocal.cfg.xml");
 
 				try {
+					logger.debug("C - Je rentre dans le premier try");
 					InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernateLocal.properties");
 					Properties propertiesLocales = new Properties();
 					propertiesLocales.load(is);
 					//propertiesLocales.load(new FileReader("./hibernateLocal.properties"));
 					configurationLocale.addProperties(propertiesLocales);
+					logger.debug("D - Je termine le premier try");
 				} catch (Exception e) {
 					connecteLocal = false;
-					logger.fatal("Erreur lecture fichier properties Locales" + e.toString());
+					logger.fatal("CD - Erreur lecture fichier properties Locales" + e.toString());
 				}
 
 				try {
+					logger.debug("E - Je rentre dans le deuxième try");
 					sessionFactoryLocale = configurationLocale.buildSessionFactory();
-				} catch (Throwable ex) {
+					logger.debug("F - Je termine le deuxième try");
+		        } catch (Throwable ex) {
 		            // Make sure you log the exception, as it might be swallowed
-		            System.err.println("Initial SessionFactory creation failed." + ex);
-		            logger.fatal("TATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		            //System.err.println("Initial SessionFactory creation failed." + ex);
+		            //logger.fatal("TATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		        	logger.fatal("EF - Erreur lecture fichier properties Locales" + ex.getMessage());
+		        	JOptionPane.showMessageDialog(null, "Connexion fermée !");
 		            throw new ExceptionInInitializerError(ex);
 		        } /*catch (HibernateException e) {
 					//TODO
@@ -72,18 +81,26 @@ public class HibernateUtils {
 					//throw new DataAccessLayerException(e);
 				}*/
 			} catch (Throwable ex) {
-				connecteLocal = false;
-				logger.fatal("Erreur creation de la SessionFactory" + ex.toString());
+				logger.fatal("B - Erreur lecture fichier properties Locales" + ex.getMessage());
+				JOptionPane.showMessageDialog(null, "Connexion fermée !");
+				//connecteLocal = false;
+				//logger.fatal("Erreur creation de la SessionFactory" + ex.toString());
 			}
 		}
-		
+		logger.debug("G - La session factory n'est pas nulle");
 		Session test = null;
 		
 		try {
+			logger.debug("H - Je rentre dans le try pour openSession");
 			test = sessionFactoryLocale.openSession();
+			logger.debug("I - Je termine le try pour openSession");
 		} catch(HibernateException e) {
-			logger.fatal("OUVERTURE SESSION IMPOSSIBLE");
+			logger.fatal("HI - La session factory n'est pas nulle");
+			JOptionPane.showMessageDialog(null, "Session");
+			//logger.fatal("OUVERTURE SESSION IMPOSSIBLE");
 		}
+		
+		logger.debug("J - Je retourne la session qui vaut" + test);
 		
 		return test;
 	}

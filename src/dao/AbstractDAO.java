@@ -16,12 +16,10 @@ import org.hibernate.HibernateException;
  * @author Valentin
  *
  */
-@SuppressWarnings("unused")
 public class AbstractDAO {
 
 	private static Logger logger = Logger.getLogger(AbstractDAO.class);
 
-	private Session session;
 	private Transaction tx;
 
 	public AbstractDAO() {}
@@ -29,12 +27,12 @@ public class AbstractDAO {
 
 	protected void create(Session session, Object obj) {
 		try {
-			this.session = session;
 			this.tx = session.beginTransaction();
 			
 			session.save(obj);
 			tx.commit();
 		} catch (HibernateException e) {
+			logger.fatal("TESSST");
 			handleException(e);
 		} finally {
 			session.close();
@@ -43,12 +41,12 @@ public class AbstractDAO {
 
 	protected void update(Session session, Object obj) {
 		try {
-			this.session = session;
 			this.tx = session.beginTransaction();
 
 			session.update(obj);
 			tx.commit();
 		} catch (HibernateException e) {
+			logger.fatal("TESSST");
 			handleException(e);
 		} finally {
 			session.close();
@@ -57,14 +55,12 @@ public class AbstractDAO {
 
 	protected void saveOrUpdate(Session session, Object obj) {
 		try {
-			this.session = session;
 			this.tx = session.beginTransaction();
 			
 			session.saveOrUpdate(obj);
 			tx.commit();
-
-			System.out.println("Terminé");
 		} catch (HibernateException e) {
+			logger.fatal("TESSST");
 			handleException(e);
 		} finally {
 			session.close();
@@ -73,12 +69,12 @@ public class AbstractDAO {
 
 	protected void delete(Session session, Object obj) {
 		try {
-			this.session = session;
 			this.tx = session.beginTransaction();
 			
 			session.delete(obj);
 			tx.commit();
 		} catch (HibernateException e) {
+			logger.fatal("TESSST");
 			handleException(e);
 		} finally {
 			session.close();
@@ -88,12 +84,12 @@ public class AbstractDAO {
 	protected Object find(Session session, Class<?> clazz, Long id) {
 		Object obj = null;
 		try {
-			this.session = session;
 			this.tx = session.beginTransaction();
 			
 			obj = session.load(clazz, id);
 			tx.commit();
 		} catch (HibernateException e) {
+			logger.fatal("TESSST");
 			handleException(e);
 		} finally {
 			session.close();
@@ -104,13 +100,13 @@ public class AbstractDAO {
 	protected List<?> findAll(Session session, Class<?> clazz) {
 		List<?> objects = null;
 		try {
-			this.session = session;
 			this.tx = session.beginTransaction();
 			
 			Query query = session.createQuery("from " + clazz.getName());
 			objects = query.list();
 			tx.commit();
 		} catch (HibernateException e) {
+			logger.fatal("TESSST");
 			handleException(e);
 		} finally {
 			session.close();
