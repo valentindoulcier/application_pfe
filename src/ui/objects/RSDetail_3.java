@@ -14,8 +14,9 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
+import principal.Application;
+
 import renderers.Caract_3;
-import ui.mainframes.LayerApplication;
 
 //import org.apache.log4j.Logger;
 
@@ -38,7 +39,7 @@ public class RSDetail_3 extends JPanel {
 	private JButton btnNewButton_2;
 	private JButton btnNewButton_1;
 
-	public RSDetail_3(final LayerApplication layerApplication) {
+	public RSDetail_3(final Application application) {
 
 		//setPreferredSize(new Dimension(438, 45));
 
@@ -100,8 +101,8 @@ public class RSDetail_3 extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				layerApplication.getCardLayoutContent().show(layerApplication.getPanelContent(), "AppliContentEditionMot");
-				layerApplication.getAppliContentEditionMot().getVolet_1().getTextField().setText(String.valueOf(idHeadword));
+				//layerApplication.getCardLayoutContent().show(layerApplication.getPanelContent(), "AppliContentEditionMot");
+				//layerApplication.getAppliContentEditionMot().getVolet_1().getTextField().setText(String.valueOf(idHeadword));
 				//System.out.println("Je suis : " + idHeadword);
 			}
 		});
