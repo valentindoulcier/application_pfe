@@ -5,9 +5,7 @@ package ui.mainframes.volets;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.util.List;
 import java.util.Vector;
 
@@ -15,9 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import org.apache.log4j.Logger;
 
@@ -36,7 +31,7 @@ public class VoletRechercheAvancee extends JPanel {
 
 	private static final long serialVersionUID = 7997937547434852750L;
 
-	private static Logger logger = Logger.getLogger(VoletRechercheSimple.class);
+	private static Logger logger = Logger.getLogger(VoletRechercheAvancee.class);
 
 	private GridBagLayout gridBagLayout;
 
@@ -58,6 +53,7 @@ public class VoletRechercheAvancee extends JPanel {
 
 		initComponents();
 		
+		/*
 		sliderDetails.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	        	if(sliderDetails.getValue() == 0)
@@ -72,11 +68,14 @@ public class VoletRechercheAvancee extends JPanel {
 	        	}
 	        }
 	    });
+	    */
 	}
 
 	public void initComponents() {
 		setBackground(Color.LIGHT_GRAY);
 		setPreferredSize(new Dimension(300, 540));
+		
+		/*
 		
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 260, 20, 0};
@@ -121,6 +120,7 @@ public class VoletRechercheAvancee extends JPanel {
 		gbc_sliderDetail.gridx = 1;
 		gbc_sliderDetail.gridy = 5;
 		add(sliderDetails, gbc_sliderDetail);
+		*/
 
 	}
 

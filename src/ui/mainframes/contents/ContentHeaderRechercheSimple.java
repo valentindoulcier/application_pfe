@@ -51,7 +51,6 @@ public class ContentHeaderRechercheSimple extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				application.getContentHeader().show(application.getcHeader(), "ContentHeaderHome");
 				application.getContentPanel().show(application.getcPanel(), "ContentHome");
 				application.getContentFooter().show(application.getcFooter(), "ContentFooterHome");
@@ -59,6 +58,7 @@ public class ContentHeaderRechercheSimple extends JPanel {
 				application.FermerVolet();
 
 				application.getcFooter().remove(application.getContentHome().getContentFooterRecherche());
+				application.getcFooter().remove(application.getContentHome().getContentFooterEdition());
 				
 				application.getcHeader().remove(application.getContentHome().getContentHeaderRechercheSimple());
 				application.getcPanel().remove(application.getContentHome().getContentRechercheSimple());
@@ -66,15 +66,20 @@ public class ContentHeaderRechercheSimple extends JPanel {
 				application.getcPanel().remove(application.getContentHome().getContentRechercheAvancee());
 				application.getcHeader().remove(application.getContentHome().getContentHeaderHistorique());
 				application.getcPanel().remove(application.getContentHome().getContentHistorique());
+				application.getcHeader().remove(application.getContentHome().getContentHeaderEdition());
+				application.getcPanel().remove(application.getContentHome().getContentEdition());
 
-				application.getcFooter().remove(application.getContentHome().getVoletFooterRecherche());
+				application.getvFooter().remove(application.getContentHome().getVoletFooterRecherche());
+				application.getvFooter().remove(application.getContentHome().getVoletFooterEdition());
 				
-				application.getcHeader().remove(application.getContentHome().getVoletHeaderRechercheSimple());
-				application.getcPanel().remove(application.getContentHome().getVoletRechercheSimple());
-				application.getcHeader().remove(application.getContentHome().getVoletHeaderRechercheAvancee());
-				application.getcPanel().remove(application.getContentHome().getVoletRechercheAvancee());
-				application.getcHeader().remove(application.getContentHome().getVoletHeaderHistorique());
-				application.getcPanel().remove(application.getContentHome().getVoletHistorique());
+				application.getvHeader().remove(application.getContentHome().getVoletHeaderRechercheSimple());
+				application.getvPanel().remove(application.getContentHome().getVoletRechercheSimple());
+				application.getvHeader().remove(application.getContentHome().getVoletHeaderRechercheAvancee());
+				application.getvPanel().remove(application.getContentHome().getVoletRechercheAvancee());
+				application.getvHeader().remove(application.getContentHome().getVoletHeaderHistorique());
+				application.getvPanel().remove(application.getContentHome().getVoletHistorique());
+				application.getvHeader().remove(application.getContentHome().getVoletHeaderEdition());
+				application.getvPanel().remove(application.getContentHome().getVoletEdition());
 				
 			}
 		});

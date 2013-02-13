@@ -105,9 +105,9 @@ class CellEditorRenderer_3 extends AbstractCellEditor implements TableCellRender
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         editor.setCaract((Caract_3) value);
-    	editor.getBtnNewButton_2().setVisible(true);
-    	editor.getBtnNewButton_1().setVisible(true);
-    	editor.setBackground(Color.ORANGE);
+    	editor.getBtnEditer().setVisible(true);
+    	editor.getBtnMasquer().setVisible(true);
+    	editor.setBackground(new Color(204, 255, 229));
         return editor;
     }
 

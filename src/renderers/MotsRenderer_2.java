@@ -35,11 +35,11 @@ public class MotsRenderer_2 extends JPanel {
 	public MotsRenderer_2(Application application, Vector<RSDetail_2> listeMots) {
 		
 		if(listeMots.size() > 0) {
-			if(60*listeMots.size()+5 > 250) {
-				this.setPreferredSize(new Dimension(0, 250));
+			if(110*listeMots.size()+5 > 300) {
+				this.setPreferredSize(new Dimension(0, 300));
 			}
 			else {
-				this.setPreferredSize(new Dimension(0, 60*listeMots.size()+5));
+				this.setPreferredSize(new Dimension(0, 110*listeMots.size()+5));
 			}
 		}
 		else {
@@ -70,7 +70,7 @@ public class MotsRenderer_2 extends JPanel {
 		compModel.addRows(listeMots);
 
 		JTable table = new JTable(compModel);
-		table.setRowHeight(60);
+		table.setRowHeight(110);
 		table.setTableHeader(null);
 		CellEditorRenderer_2 cellEditorRenderer = new CellEditorRenderer_2(application);
 		table.setDefaultRenderer(Object.class, cellEditorRenderer);
@@ -103,9 +103,9 @@ class CellEditorRenderer_2 extends AbstractCellEditor implements TableCellRender
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         editor.setCaract((Caract_2) value);
-    	editor.getBtnNewButton_2().setVisible(true);
-    	editor.getBtnNewButton_1().setVisible(true);
-    	editor.setBackground(Color.ORANGE);
+    	editor.getBtnEditer().setVisible(true);
+    	editor.getBtnMasquer().setVisible(true);
+    	editor.setBackground(new Color(204, 255, 229));
         return editor;
     }
 

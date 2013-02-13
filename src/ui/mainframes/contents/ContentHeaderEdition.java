@@ -19,17 +19,17 @@ import principal.Application;
  * @author Valentin
  *
  */
-public class ContentHeaderHistorique extends JPanel {
+public class ContentHeaderEdition extends JPanel {
 
-	private static final long serialVersionUID = 4317613445205581498L;
-
+	private static final long serialVersionUID = 8799181913257422463L;
+	
 	private static boolean ouvert = false;
 
 	/**
 	 * Create the panel.
 	 * @param application 
 	 */
-	public ContentHeaderHistorique(final Application application) {
+	public ContentHeaderEdition(final Application application) {
 		setBackground(Color.GRAY);		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};

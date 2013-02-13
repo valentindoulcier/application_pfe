@@ -39,6 +39,7 @@ public class ContentHome extends JPanel {
 
 	// Recherche
 	private VoletFooterRecherche voletFooterRecherche;
+	private VoletFooterEdition voletFooterEdition;
 	
 	private VoletHeaderRechercheSimple voletHeaderRechercheSimple;
 	private VoletRechercheSimple voletRechercheSimple;
@@ -46,8 +47,11 @@ public class ContentHome extends JPanel {
 	private VoletRechercheAvancee voletRechercheAvancee;
 	private VoletHeaderHistorique voletHeaderHistorique;
 	private VoletHistorique voletHistorique;
+	private VoletHeaderEdition voletHeaderEdition;
+	private VoletEdition voletEdition;
 
 	private ContentFooterRecherche contentFooterRecherche;
+	private ContentFooterEdition contentFooterEdition;
 	
 	private ContentHeaderRechercheSimple contentHeaderRechercheSimple;
 	private ContentRechercheSimple contentRechercheSimple;
@@ -55,6 +59,8 @@ public class ContentHome extends JPanel {
 	private ContentRechercheAvancee contentRechercheAvancee;
 	private ContentHeaderHistorique contentHeaderHistorique;
 	private ContentHistorique contentHistorique;
+	private ContentHeaderEdition contentHeaderEdition;
+	private ContentEdition contentEdition;
 
 	// Liens Dictionnaires
 	private VoletHeaderLiensDictionnaires voletHeaderLiensDictionnaires;
@@ -92,6 +98,7 @@ public class ContentHome extends JPanel {
 
 				// VOLET
 				voletFooterRecherche = new VoletFooterRecherche(application);
+				voletFooterEdition = new VoletFooterEdition(application);
 				
 				voletHeaderRechercheSimple = new VoletHeaderRechercheSimple();
 				voletRechercheSimple = new VoletRechercheSimple(application);
@@ -99,8 +106,11 @@ public class ContentHome extends JPanel {
 				voletRechercheAvancee = new VoletRechercheAvancee(application);
 				voletHeaderHistorique = new VoletHeaderHistorique();
 				voletHistorique = new VoletHistorique(application);
+				voletHeaderEdition = new VoletHeaderEdition();
+				voletEdition = new VoletEdition(application);
 
 				application.getvFooter().add(voletFooterRecherche, "voletFooterRecherche");
+				application.getvFooter().add(voletFooterEdition, "voletFooterEdition");
 				
 				application.getvHeader().add(voletHeaderRechercheSimple, "voletHeaderRechercheSimple");
 				application.getvPanel().add(voletRechercheSimple, "voletRechercheSimple");
@@ -108,6 +118,8 @@ public class ContentHome extends JPanel {
 				application.getvPanel().add(voletRechercheAvancee, "voletRechercheAvancee");
 				application.getvHeader().add(voletHeaderHistorique, "voletHeaderHistorique");
 				application.getvPanel().add(voletHistorique, "voletHistorique");
+				application.getvHeader().add(voletHeaderEdition, "voletHeaderEdition");
+				application.getvPanel().add(voletEdition, "voletEdition");
 
 
 				application.getVoletHeader().show(application.getvHeader(), "voletHeaderRechercheSimple");
@@ -116,6 +128,7 @@ public class ContentHome extends JPanel {
 
 				// CONTENT
 				contentFooterRecherche = new ContentFooterRecherche(application);
+				contentFooterEdition = new ContentFooterEdition(application);
 				
 				contentHeaderRechercheSimple = new ContentHeaderRechercheSimple(application);
 				contentRechercheSimple = new ContentRechercheSimple(application);
@@ -123,8 +136,11 @@ public class ContentHome extends JPanel {
 				contentRechercheAvancee = new ContentRechercheAvancee(application);
 				contentHeaderHistorique = new ContentHeaderHistorique(application);
 				contentHistorique = new ContentHistorique(application);
+				contentHeaderEdition = new ContentHeaderEdition(application);
+				contentEdition = new ContentEdition(application);
 
 				application.getcFooter().add(contentFooterRecherche, "contentFooterRecherche");
+				application.getcFooter().add(contentFooterEdition, "contentFooterEdition");
 				
 				application.getcHeader().add(contentHeaderRechercheSimple, "contentHeaderRechercheSimple");
 				application.getcPanel().add(contentRechercheSimple, "contentRechercheSimple");
@@ -132,6 +148,8 @@ public class ContentHome extends JPanel {
 				application.getcPanel().add(contentRechercheAvancee, "contentRechercheAvancee");
 				application.getcHeader().add(contentHeaderHistorique, "contentHeaderHistorique");
 				application.getcPanel().add(contentHistorique, "contentHistorique");
+				application.getcHeader().add(contentHeaderEdition, "contentHeaderEdition");
+				application.getcPanel().add(contentEdition, "contentEdition");
 
 				application.getContentHeader().show(application.getcHeader(), "contentHeaderRechercheSimple");
 				application.getContentPanel().show(application.getcPanel(), "contentRechercheSimple");
@@ -483,6 +501,90 @@ public class ContentHome extends JPanel {
 	public void setContentRechercheAvancee(
 			ContentRechercheAvancee contentRechercheAvancee) {
 		this.contentRechercheAvancee = contentRechercheAvancee;
+	}
+
+	/**
+	 * @return the voletFooterEdition
+	 */
+	public VoletFooterEdition getVoletFooterEdition() {
+		return voletFooterEdition;
+	}
+
+	/**
+	 * @param voletFooterEdition the voletFooterEdition to set
+	 */
+	public void setVoletFooterEdition(VoletFooterEdition voletFooterEdition) {
+		this.voletFooterEdition = voletFooterEdition;
+	}
+
+	/**
+	 * @return the voletHeaderEdition
+	 */
+	public VoletHeaderEdition getVoletHeaderEdition() {
+		return voletHeaderEdition;
+	}
+
+	/**
+	 * @param voletHeaderEdition the voletHeaderEdition to set
+	 */
+	public void setVoletHeaderEdition(VoletHeaderEdition voletHeaderEdition) {
+		this.voletHeaderEdition = voletHeaderEdition;
+	}
+
+	/**
+	 * @return the voletEdition
+	 */
+	public VoletEdition getVoletEdition() {
+		return voletEdition;
+	}
+
+	/**
+	 * @param voletEdition the voletEdition to set
+	 */
+	public void setVoletEdition(VoletEdition voletEdition) {
+		this.voletEdition = voletEdition;
+	}
+
+	/**
+	 * @return the contentFooterEdition
+	 */
+	public ContentFooterEdition getContentFooterEdition() {
+		return contentFooterEdition;
+	}
+
+	/**
+	 * @param contentFooterEdition the contentFooterEdition to set
+	 */
+	public void setContentFooterEdition(ContentFooterEdition contentFooterEdition) {
+		this.contentFooterEdition = contentFooterEdition;
+	}
+
+	/**
+	 * @return the contentHeaderEdition
+	 */
+	public ContentHeaderEdition getContentHeaderEdition() {
+		return contentHeaderEdition;
+	}
+
+	/**
+	 * @param contentHeaderEdition the contentHeaderEdition to set
+	 */
+	public void setContentHeaderEdition(ContentHeaderEdition contentHeaderEdition) {
+		this.contentHeaderEdition = contentHeaderEdition;
+	}
+
+	/**
+	 * @return the contentEdition
+	 */
+	public ContentEdition getContentEdition() {
+		return contentEdition;
+	}
+
+	/**
+	 * @param contentEdition the contentEdition to set
+	 */
+	public void setContentEdition(ContentEdition contentEdition) {
+		this.contentEdition = contentEdition;
 	}
 
 	/**

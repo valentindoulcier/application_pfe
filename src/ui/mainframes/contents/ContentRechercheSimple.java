@@ -199,6 +199,104 @@ public class ContentRechercheSimple extends JPanel {
 		this.revalidate();
 	}
 
+	/**
+	 * @return the textFieldRecherche
+	 */
+	public JTextField getTextFieldRecherche() {
+		return textFieldRecherche;
+	}
+
+	/**
+	 * @param textFieldRecherche the textFieldRecherche to set
+	 */
+	public void setTextFieldRecherche(JTextField textFieldRecherche) {
+		this.textFieldRecherche = textFieldRecherche;
+	}
+
+	/**
+	 * @return the btnRechercher
+	 */
+	public JButton getBtnRechercher() {
+		return btnRechercher;
+	}
+
+	/**
+	 * @param btnRechercher the btnRechercher to set
+	 */
+	public void setBtnRechercher(JButton btnRechercher) {
+		this.btnRechercher = btnRechercher;
+	}
+
+	/**
+	 * @return the jScrollPane
+	 */
+	public JScrollPane getjScrollPane() {
+		return jScrollPane;
+	}
+
+	/**
+	 * @param jScrollPane the jScrollPane to set
+	 */
+	public void setjScrollPane(JScrollPane jScrollPane) {
+		this.jScrollPane = jScrollPane;
+	}
+
+	/**
+	 * @return the gridBagLayout
+	 */
+	public GridBagLayout getGridBagLayout() {
+		return gridBagLayout;
+	}
+
+	/**
+	 * @param gridBagLayout the gridBagLayout to set
+	 */
+	public void setGridBagLayout(GridBagLayout gridBagLayout) {
+		this.gridBagLayout = gridBagLayout;
+	}
+
+	/**
+	 * @return the expandingPanels
+	 */
+	public ExpandingPanels getExpandingPanels() {
+		return expandingPanels;
+	}
+
+	/**
+	 * @param expandingPanels the expandingPanels to set
+	 */
+	public void setExpandingPanels(ExpandingPanels expandingPanels) {
+		this.expandingPanels = expandingPanels;
+	}
+
+	/**
+	 * @return the resultat
+	 */
+	public JPanel getResultat() {
+		return resultat;
+	}
+
+	/**
+	 * @param resultat the resultat to set
+	 */
+	public void setResultat(JPanel resultat) {
+		this.resultat = resultat;
+	}
+
+	/**
+	 * @return the gbc_result
+	 */
+	public GridBagConstraints getGbc_result() {
+		return gbc_result;
+	}
+
+	/**
+	 * @param gbc_result the gbc_result to set
+	 */
+	public void setGbc_result(GridBagConstraints gbc_result) {
+		this.gbc_result = gbc_result;
+	}
+
 }
 
 

@@ -51,20 +51,19 @@ public class ContentHeaderLiensDictionnaires extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				application.getContentHeader().show(application.getcHeader(), "ContentHeaderHome");
 				application.getContentPanel().show(application.getcPanel(), "ContentHome");
 				application.getContentFooter().show(application.getcFooter(), "ContentFooterHome");
 				
 				application.FermerVolet();
+
+				application.getvHeader().remove(application.getContentHome().getVoletHeaderLiensDictionnaires());
+				application.getvPanel().remove(application.getContentHome().getVoletLiensDictionnaires());
+				application.getvFooter().remove(application.getContentHome().getVoletFooterLiensDictionnaires());
 				
 				application.getcHeader().remove(application.getContentHome().getContentHeaderLiensDictionnaires());
 				application.getcPanel().remove(application.getContentHome().getContentLiensDictionnaires());
 				application.getcFooter().remove(application.getContentHome().getContentFooterLiensDictionnaires());
-				
-				application.getcHeader().remove(application.getContentHome().getVoletHeaderLiensDictionnaires());
-				application.getcPanel().remove(application.getContentHome().getVoletLiensDictionnaires());
-				application.getcFooter().remove(application.getContentHome().getVoletFooterLiensDictionnaires());
 				
 			}
 		});

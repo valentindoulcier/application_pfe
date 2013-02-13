@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import javax.swing.JSplitPane;
 
@@ -58,6 +59,8 @@ public class Application extends JFrame {
 	private ContentFooterHome contentFooterHome;
 
 	private JSplitPane splitPane;
+	
+	private ArrayList<Recherche> mesRecherches;
 
 	/**
 	 * Create the frame.
@@ -207,6 +210,20 @@ public class Application extends JFrame {
 			System.err.println("Full screen mode is not supported");
 			t.printStackTrace();
 		}
+	}
+
+	/**
+	 * @return the mesRecherches
+	 */
+	public ArrayList<Recherche> getMesRecherches() {
+		return mesRecherches;
+	}
+
+	/**
+	 * @param mesRecherches the mesRecherches to set
+	 */
+	public void setMesRecherches(ArrayList<Recherche> mesRecherches) {
+		this.mesRecherches = mesRecherches;
 	}
 
 	/**

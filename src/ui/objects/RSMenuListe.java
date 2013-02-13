@@ -19,8 +19,6 @@ public class RSMenuListe extends JPanel {
 	//private static Logger logger = Logger.getLogger(RSMenuListe.class);
 	
 	private JCheckBox chckbxDictionnaire;
-	
-	private static int tempo = 0;
 
 	/**
 	 * Create the panel.
@@ -51,7 +49,6 @@ public class RSMenuListe extends JPanel {
 	 * @param arg0
 	 */
 	public void mousePressed(MouseEvent arg0) {
-		System.out.println("Numéro : " + tempo++);
 		
 		//chckbxDictionnaire.setSelected(!chckbxDictionnaire.isSelected());
 		
@@ -61,7 +58,6 @@ public class RSMenuListe extends JPanel {
 		else {
 			chckbxDictionnaire.setSelected(true);
 		}
-
 		this.revalidate();
 	}
 

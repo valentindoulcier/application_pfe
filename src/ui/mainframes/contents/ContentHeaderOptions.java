@@ -63,9 +63,9 @@ public class ContentHeaderOptions extends JPanel {
 				application.getcPanel().remove(application.getContentHome().getContentOptions());
 				application.getcFooter().remove(application.getContentHome().getContentFooterOptions());
 				
-				application.getcHeader().remove(application.getContentHome().getVoletHeaderOptions());
-				application.getcPanel().remove(application.getContentHome().getVoletOptions());
-				application.getcFooter().remove(application.getContentHome().getVoletFooterOptions());
+				application.getvHeader().remove(application.getContentHome().getVoletHeaderOptions());
+				application.getvPanel().remove(application.getContentHome().getVoletOptions());
+				application.getvFooter().remove(application.getContentHome().getVoletFooterOptions());
 				
 			}
 		});

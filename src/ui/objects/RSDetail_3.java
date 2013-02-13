@@ -1,5 +1,6 @@
 package ui.objects;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import principal.Application;
 
 import renderers.Caract_3;
+import java.awt.Font;
 
 //import org.apache.log4j.Logger;
 
@@ -35,58 +37,36 @@ public class RSDetail_3 extends JPanel {
 	private GridBagLayout gridBagLayout;
 
 	private JLabel lblMots;
+	private JLabel lblCategories;
 
-	private JButton btnNewButton_2;
-	private JButton btnNewButton_1;
+	private JButton btnEditer;
+	private JButton btnMasquer;
 
 	public RSDetail_3(final Application application) {
 
-		//setPreferredSize(new Dimension(438, 45));
+		initComponents();
 
-		gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{5, 20, 232, 30, 30, 0, 0};
-		gridBagLayout.rowHeights = new int[]{10, 10, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+		
+		btnEditer.addActionListener(new ActionListener() {
 
-		lblMots = new JLabel("New label");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel.gridwidth = 2;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 1;
-		gbc_lblNewLabel.gridy = 0;
-		add(lblMots, gbc_lblNewLabel);
-
-		btnNewButton_1 = new JButton("Supprimer");
-		btnNewButton_1.setVisible(false);
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.anchor = GridBagConstraints.SOUTHEAST;
-		gbc_btnNewButton_1.gridheight = 2;
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_1.gridx = 4;
-		gbc_btnNewButton_1.gridy = 0;
-		add(btnNewButton_1, gbc_btnNewButton_1);
-
-		btnNewButton_2 = new JButton("Je suis");
-		btnNewButton_2.setVisible(false);
-		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.anchor = GridBagConstraints.SOUTHEAST;
-		gbc_btnNewButton_2.gridheight = 2;
-		gbc_btnNewButton_2.gridx = 5;
-		gbc_btnNewButton_2.gridy = 0;
-		add(btnNewButton_2, gbc_btnNewButton_2);
-
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_1.gridx = 2;
-		gbc_lblNewLabel_1.gridy = 1;
-		add(lblNewLabel_1, gbc_lblNewLabel_1);
-
-		btnNewButton_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				application.getVoletHeader().show(application.getvHeader(), "voletHeaderEdition");
+				application.getVoletPanel().show(application.getvPanel(), "voletEdition");
+				application.getVoletFooter().show(application.getvFooter(), "voletFooterEdition");
+				
+				application.getContentHeader().show(application.getcHeader(), "contentHeaderEdition");
+				application.getContentPanel().show(application.getcPanel(), "contentEdition");
+				application.getContentFooter().show(application.getcFooter(), "contentFooterEdition");
+				
+				
+				//layerApplication.getCardLayoutContent().show(layerApplication.getPanelContent(), "AppliContentEditionMot");
+				//layerApplication.getAppliContentEditionMot().getVolet_1().getTextField().setText(String.valueOf(idHeadword));
+				//System.out.println("Je suis : " + idHeadword);
+			}
+		});
+		
+		btnMasquer.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -97,16 +77,55 @@ public class RSDetail_3 extends JPanel {
 			}
 		});
 
-		btnNewButton_2.addActionListener(new ActionListener() {
+	}
+	
+	public void initComponents() {
+		gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{5, 20, 232, 30, 30, 0, 0};
+		gridBagLayout.rowHeights = new int[]{10, 10, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//layerApplication.getCardLayoutContent().show(layerApplication.getPanelContent(), "AppliContentEditionMot");
-				//layerApplication.getAppliContentEditionMot().getVolet_1().getTextField().setText(String.valueOf(idHeadword));
-				//System.out.println("Je suis : " + idHeadword);
-			}
-		});
+		lblMots = new JLabel("Mot");
+		lblMots.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel.gridwidth = 2;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridy = 0;
+		add(lblMots, gbc_lblNewLabel);
 
+		
+		lblCategories = new JLabel("Catégories");
+		lblCategories.setForeground(new Color(50, 205, 50));
+		GridBagConstraints gbc_lblCategories = new GridBagConstraints();
+		gbc_lblCategories.anchor = GridBagConstraints.WEST;
+		gbc_lblCategories.insets = new Insets(0, 0, 0, 5);
+		gbc_lblCategories.gridx = 2;
+		gbc_lblCategories.gridy = 1;
+		add(lblCategories, gbc_lblCategories);
+
+		
+		btnEditer = new JButton("Editer");
+		btnEditer.setVisible(false);
+		GridBagConstraints gbc_btnEditer = new GridBagConstraints();
+		gbc_btnEditer.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_btnEditer.gridheight = 2;
+		gbc_btnEditer.insets = new Insets(0, 0, 0, 5);
+		gbc_btnEditer.gridx = 4;
+		gbc_btnEditer.gridy = 0;
+		add(btnEditer, gbc_btnEditer);
+
+		btnMasquer = new JButton("Masquer");
+		btnMasquer.setVisible(false);
+		GridBagConstraints gbc_btnMasquer = new GridBagConstraints();
+		gbc_btnMasquer.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_btnMasquer.gridheight = 2;
+		gbc_btnMasquer.gridx = 5;
+		gbc_btnMasquer.gridy = 0;
+		add(btnMasquer, gbc_btnMasquer);
 	}
 
 
@@ -150,34 +169,6 @@ public class RSDetail_3 extends JPanel {
 	}
 
 	/**
-	 * @return the btnNewButton_2
-	 */
-	public JButton getBtnNewButton_2() {
-		return btnNewButton_2;
-	}
-
-	/**
-	 * @param btnNewButton_2 the btnNewButton_2 to set
-	 */
-	public void setBtnNewButton_2(JButton btnNewButton_2) {
-		this.btnNewButton_2 = btnNewButton_2;
-	}
-
-	/**
-	 * @return the btnNewButton_1
-	 */
-	public JButton getBtnNewButton_1() {
-		return btnNewButton_1;
-	}
-
-	/**
-	 * @param btnNewButton_1 the btnNewButton_1 to set
-	 */
-	public void setBtnNewButton_1(JButton btnNewButton_1) {
-		this.btnNewButton_1 = btnNewButton_1;
-	}
-
-	/**
 	 * @return the lblMots
 	 */
 	public JLabel getLblMots() {
@@ -189,6 +180,38 @@ public class RSDetail_3 extends JPanel {
 	 */
 	public void setLblMots(JLabel lblMots) {
 		this.lblMots = lblMots;
+	}
+
+
+	/**
+	 * @return the btnEditer
+	 */
+	public JButton getBtnEditer() {
+		return btnEditer;
+	}
+
+
+	/**
+	 * @param btnEditer the btnEditer to set
+	 */
+	public void setBtnEditer(JButton btnEditer) {
+		this.btnEditer = btnEditer;
+	}
+
+
+	/**
+	 * @return the btnMasquer
+	 */
+	public JButton getBtnMasquer() {
+		return btnMasquer;
+	}
+
+
+	/**
+	 * @param btnMasquer the btnMasquer to set
+	 */
+	public void setBtnMasquer(JButton btnMasquer) {
+		this.btnMasquer = btnMasquer;
 	}
 }
 

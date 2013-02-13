@@ -90,4 +90,46 @@ public class ExpandingPanels extends MouseAdapter {
         return panel;
     }
 
+	/**
+	 * @return the aps
+	 */
+	public ArrayList<ActionPanel> getAps() {
+		return aps;
+	}
+
+	/**
+	 * @param aps the aps to set
+	 */
+	public void setAps(ArrayList<ActionPanel> aps) {
+		this.aps = aps;
+	}
+
+	/**
+	 * @return the panels
+	 */
+	public ArrayList<JPanel> getPanels() {
+		return panels;
+	}
+
+	/**
+	 * @param panels the panels to set
+	 */
+	public void setPanels(ArrayList<JPanel> panels) {
+		this.panels = panels;
+	}
+
+	/**
+	 * @return the ids
+	 */
+	public ArrayList<String> getIds() {
+		return ids;
+	}
+
+	/**
+	 * @param ids the ids to set
+	 */
+	public void setIds(ArrayList<String> ids) {
+		this.ids = ids;
+	}
+
 }
