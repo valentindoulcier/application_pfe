@@ -2,6 +2,7 @@ package renderers;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -32,6 +33,19 @@ public class MotsRenderer_3 extends JPanel {
 
 
 	public MotsRenderer_3(Application application, Vector<RSDetail_3> listeMots) {
+		
+		if(listeMots.size() > 0) {
+			if(60*listeMots.size()+5 > 250) {
+				this.setPreferredSize(new Dimension(0, 250));
+			}
+			else {
+				this.setPreferredSize(new Dimension(0, 60*listeMots.size()+5));
+			}
+		}
+		else {
+			this.setPreferredSize(new Dimension(0, 0));
+		}
+		
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};

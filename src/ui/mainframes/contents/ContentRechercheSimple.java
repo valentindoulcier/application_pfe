@@ -37,11 +37,11 @@ import database.Headword;
  * @author Valentin
  *
  */
-public class ContentRecherche extends JPanel {
+public class ContentRechercheSimple extends JPanel {
 
 	private static final long serialVersionUID = 848524817828466211L;
 	
-	private static Logger logger = Logger.getLogger(ContentRecherche.class);
+	private static Logger logger = Logger.getLogger(ContentRechercheSimple.class);
 	
 	private JTextField textFieldRecherche;
 	
@@ -51,15 +51,17 @@ public class ContentRecherche extends JPanel {
 
 	private GridBagLayout gridBagLayout;
 
-	private GridBagConstraints gbc_scrollPane;
-
 	private ExpandingPanels expandingPanels;
+	
+	private JPanel resultat;
+	
+	private GridBagConstraints gbc_result;
 
 	/**
 	 * Create the panel.
 	 * @param application 
 	 */
-	public ContentRecherche(final Application application) {
+	public ContentRechercheSimple(final Application application) {
 		
 		initComponents();
 		
@@ -98,26 +100,39 @@ public class ContentRecherche extends JPanel {
 		gbc_btnRechercher.gridy = 1;
 		add(btnRechercher, gbc_btnRechercher);
 		
-		jScrollPane = new JScrollPane();
-		gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 3;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 3;
+		resultat = new JPanel();
+		GridBagConstraints gbc_resultat = new GridBagConstraints();
+		gbc_resultat.gridwidth = 3;
+		gbc_resultat.insets = new Insets(0, 0, 5, 5);
+		gbc_resultat.fill = GridBagConstraints.BOTH;
+		gbc_resultat.gridx = 1;
+		gbc_resultat.gridy = 3;
+		add(resultat, gbc_resultat);
+		
+		GridBagLayout gbl_resultat = new GridBagLayout();
+		gbl_resultat.columnWidths = new int[]{0, 0};
+		gbl_resultat.rowHeights = new int[]{0, 0};
+		gbl_resultat.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_resultat.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		resultat.setLayout(gbl_resultat);
+		
+		gbc_result = new GridBagConstraints();
+		gbc_result.fill = GridBagConstraints.BOTH;
+		gbc_result.gridx = 0;
+		gbc_result.gridy = 0;
 	}
 	
 	
 	public void afficherRecherche(Application application) {
 		
-		jScrollPane.removeAll();
+		resultat.removeAll();
 		
 		ArrayList<String> dico = new ArrayList<String>();
-		int nbDictionnaires = application.getContentHome().getVoletRecherche().getMenuRenderer().getListeItems().size();
+		int nbDictionnaires = application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().size();
 
 		for(int i = 0; i < nbDictionnaires; i++) {
-			if(application.getContentHome().getVoletRecherche().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().isSelected()) {
-				dico.add(application.getContentHome().getVoletRecherche().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().getText());
+			if(application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().isSelected()) {
+				dico.add(application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().getText());
 			}
 		}
 		
@@ -132,10 +147,7 @@ public class ContentRecherche extends JPanel {
 			List<?> mots = headwords.findExactly(textFieldRecherche.getText(), dictionnaire);
 
 			// DETAIL 1
-			if (application.getContentHome().getVoletRecherche().getSliderDetails().getValue() == application.getContentHome().getVoletRecherche().getSliderDetails().getMinimum()) {
-
-				System.out.println("\t\tDETAIL 1");
-				System.out.println("NB MOTS : " + mots.size());
+			if (application.getContentHome().getVoletRechercheSimple().getSliderDetails().getValue() == application.getContentHome().getVoletRechercheSimple().getSliderDetails().getMinimum()) {
 				
 				Vector<RSDetail_1> listeMots = new Vector<RSDetail_1>();
 				RSDetail_1 rsdetail_1;
@@ -147,15 +159,10 @@ public class ContentRecherche extends JPanel {
 					listeMots.addElement(rsdetail_1);
 				}
 				
-				System.out.println("TAILLE 1 : " + listeMots.size());
-				
-				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new MotsRenderer_1(application, listeMots));
-				//this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new ComponentTable(listeMots));
+				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_1(application, listeMots));
 			}
 			// DETAIL 2
-			else if (application.getContentHome().getVoletRecherche().getSliderDetails().getValue() == (application.getContentHome().getVoletRecherche().getSliderDetails().getMaximum())/2) {
-
-				System.out.println("\t\tDETAIL 2");
+			else if (application.getContentHome().getVoletRechercheSimple().getSliderDetails().getValue() == (application.getContentHome().getVoletRechercheSimple().getSliderDetails().getMaximum())/2) {
 				
 				Vector<RSDetail_2> listeMots = new Vector<RSDetail_2>();
 
@@ -168,12 +175,10 @@ public class ContentRecherche extends JPanel {
 					listeMots.addElement(rsdetail_2);
 				}
 
-				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new MotsRenderer_2(application, listeMots));
+				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_2(application, listeMots));
 			}
 			// DETAIL 3
-			else if (application.getContentHome().getVoletRecherche().getSliderDetails().getValue() == application.getContentHome().getVoletRecherche().getSliderDetails().getMaximum()) {
-
-				System.out.println("\t\tDETAIL 3");
+			else if (application.getContentHome().getVoletRechercheSimple().getSliderDetails().getValue() == application.getContentHome().getVoletRechercheSimple().getSliderDetails().getMaximum()) {
 				
 				Vector<RSDetail_3> listeMots = new Vector<RSDetail_3>();
 
@@ -186,11 +191,11 @@ public class ContentRecherche extends JPanel {
 					listeMots.addElement(rsdetail_3);
 				}
 
-				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), new MotsRenderer_3(application, listeMots));
+				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_3(application, listeMots));
 			}
 		}
 		
-		add(new JScrollPane(expandingPanels.getComponent()), gbc_scrollPane);
+		resultat.add(new JScrollPane(expandingPanels.getComponent()), gbc_result);
 		this.revalidate();
 	}
 

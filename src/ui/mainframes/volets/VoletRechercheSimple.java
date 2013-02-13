@@ -4,12 +4,15 @@
 package ui.mainframes.volets;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import java.awt.GridBagLayout;
 
 import org.apache.log4j.Logger;
+
+import principal.Application;
 
 import dao.DictionnairesDAO;
 import database.Dictionnaires;
@@ -31,11 +34,11 @@ import javax.swing.event.ChangeListener;
  * @author Valentin
  *
  */
-public class VoletRecherche extends JPanel {
+public class VoletRechercheSimple extends JPanel {
 
 	private static final long serialVersionUID = -7929534743664074552L;
 
-	private static Logger logger = Logger.getLogger(VoletRecherche.class);
+	private static Logger logger = Logger.getLogger(VoletRechercheSimple.class);
 
 	private GridBagLayout gridBagLayout;
 
@@ -51,8 +54,9 @@ public class VoletRecherche extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param application 
 	 */
-	public VoletRecherche() {
+	public VoletRechercheSimple(Application application) {
 
 		initComponents();
 		
@@ -127,9 +131,17 @@ public class VoletRecherche extends JPanel {
 		logger.debug("4 - Chargement des dictionnaires");
 		DictionnairesDAO dictionnaires = new DictionnairesDAO("local");
 		List<?> dico = null;
-		if(dictionnaires.getSession() != null) {
+		
+		
+		if(dictionnaires.getSession().isOpen()) {
 			dico = dictionnaires.findAll();
 		}
+		else
+			JOptionPane.showMessageDialog(null, "Connexion fermée VOLET DICO 2 !");
+		
+		
+		
+		
 
 		Vector<RSMenuListe> listeDictionnaires = new Vector<RSMenuListe>();
 

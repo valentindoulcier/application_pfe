@@ -38,12 +38,12 @@ public class ExpandingPanels extends MouseAdapter {
         if(ap.getTarget().contains(e.getPoint()))
         {
             ap.toggleSelection();
-            togglePanelVisibility(ap);
+            togglePanel1Visibility(ap);
         }
     }
  
-    private void togglePanelVisibility(ActionPanel ap) {
-        int index = getPanelIndex(ap);
+    private void togglePanel1Visibility(ActionPanel ap) {
+        int index = getPanel1Index(ap);
         if(panels.get(index).isShowing())
         	panels.get(index).setVisible(false);
         else
@@ -51,17 +51,17 @@ public class ExpandingPanels extends MouseAdapter {
         ap.getParent().validate();
     }
  
-    private int getPanelIndex(ActionPanel ap) {
+    private int getPanel1Index(ActionPanel ap) {
         for(int j = 0; j < aps.size(); j++)
             if(ap == aps.get(j))
                 return j;
         return -1;
     }
 
-    public void addVolet(String title, JPanel panel) {
+    public void addVolet(String title, int nb, JPanel panel) {
     	ids.add(title);
     	panels.add(panel);
-    	aps.add(new ActionPanel(title, this));
+    	aps.add(new ActionPanel(title, nb, this));
     }
     
     public void clear() {

@@ -2,6 +2,7 @@ package renderers;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -33,26 +34,37 @@ public class MotsRenderer_1 extends JPanel {
 
 	public MotsRenderer_1(Application application, Vector<RSDetail_1> listeMots) {
 		
+		if(listeMots.size() > 0) {
+			if(30*listeMots.size()+5 > 250) {
+				this.setPreferredSize(new Dimension(0, 250));
+			}
+			else {
+				this.setPreferredSize(new Dimension(0, 30*listeMots.size()+5));
+			}
+		}
+		else {
+			this.setPreferredSize(new Dimension(0, 0));
+		}
+		
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+		this.setLayout(gridBagLayout);
 		
 		JScrollPane compTableScrollpane = new JScrollPane(CreateCompTable(application, listeMots), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
-		add(compTableScrollpane, gbc_scrollPane);
+		this.add(compTableScrollpane, gbc_scrollPane);
 	}
 
 	public JTable CreateCompTable(Application application, Vector<RSDetail_1> listeMots) {
 
 		compModel = new TableModel_1();
-
-		System.out.println("TAILLE 1 : " + listeMots.size());
 
 		compModel.addRows(listeMots);
 

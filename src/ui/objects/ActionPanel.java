@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package ui.objects;
 
 import java.awt.Color;
@@ -15,8 +18,9 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-
-//import org.apache.log4j.Logger;
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import java.awt.GridBagConstraints;
 
 /**
  * @author Valentin
@@ -24,10 +28,11 @@ import javax.swing.JPanel;
  */
 public class ActionPanel extends JPanel {
 
-	private static final long serialVersionUID = -2211953654486892627L;
+private static final long serialVersionUID = -2211953654486892627L;
 	
 	//private static Logger logger = Logger.getLogger(ActionPanel.class);
 
+	private int nb;
 	private String text;
 	private Font font;
 	private boolean selected;
@@ -38,8 +43,9 @@ public class ActionPanel extends JPanel {
 			OFFSET = 30,
 			PAD    =  5;
 
-	public ActionPanel(String text, MouseListener ml)
+	public ActionPanel(String text, int nb, MouseListener ml)
 	{
+		this.setNb(nb);
 		this.text = text;
 		this.addMouseListener(ml);
 		this.font = new Font("sans-serif", Font.PLAIN, 12);
@@ -50,6 +56,21 @@ public class ActionPanel extends JPanel {
 		this.setPreferredSize(new Dimension(200,20));
 		createImages();
 		this.setRequestFocusEnabled(true);
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 40, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
+		JLabel lblNewLabel = new JLabel("(" + String.valueOf(nb) + ")");
+		lblNewLabel.setForeground(Color.GRAY);
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.ITALIC, 12));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridx = 3;
+		gbc_lblNewLabel.gridy = 0;
+		add(lblNewLabel, gbc_lblNewLabel);
 	}
 
 	public void toggleSelection()
@@ -124,6 +145,14 @@ public class ActionPanel extends JPanel {
 
 	public void setTarget(Rectangle target) {
 		this.target = target;
+	}
+
+	public int getNb() {
+		return nb;
+	}
+
+	public void setNb(int nb) {
+		this.nb = nb;
 	}
 
 }

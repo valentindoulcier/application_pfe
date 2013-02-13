@@ -19,16 +19,17 @@ import principal.Application;
  * @author Valentin
  *
  */
-public class ContentHeaderRecherche extends JPanel {
+public class ContentHeaderHistorique extends JPanel {
 
-	private static final long serialVersionUID = 5428423567932680960L;
-	
+	private static final long serialVersionUID = 4317613445205581498L;
+
 	private static boolean ouvert = false;
 
 	/**
 	 * Create the panel.
+	 * @param application 
 	 */
-	public ContentHeaderRecherche(final Application application) {
+	public ContentHeaderHistorique(final Application application) {
 		setBackground(Color.GRAY);		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
@@ -57,14 +58,24 @@ public class ContentHeaderRecherche extends JPanel {
 				application.getContentFooter().show(application.getcFooter(), "ContentFooterHome");
 				
 				application.FermerVolet();
-				
-				application.getcHeader().remove(application.getContentHome().getContentHeaderRecherche());
-				application.getcPanel().remove(application.getContentHome().getContentRecherche());
+
 				application.getcFooter().remove(application.getContentHome().getContentFooterRecherche());
 				
-				application.getcHeader().remove(application.getContentHome().getVoletHeaderRecherche());
-				application.getcPanel().remove(application.getContentHome().getVoletRecherche());
+				application.getcHeader().remove(application.getContentHome().getContentHeaderRechercheSimple());
+				application.getcPanel().remove(application.getContentHome().getContentRechercheSimple());
+				application.getcHeader().remove(application.getContentHome().getContentHeaderRechercheAvancee());
+				application.getcPanel().remove(application.getContentHome().getContentRechercheAvancee());
+				application.getcHeader().remove(application.getContentHome().getContentHeaderHistorique());
+				application.getcPanel().remove(application.getContentHome().getContentHistorique());
+
 				application.getcFooter().remove(application.getContentHome().getVoletFooterRecherche());
+				
+				application.getcHeader().remove(application.getContentHome().getVoletHeaderRechercheSimple());
+				application.getcPanel().remove(application.getContentHome().getVoletRechercheSimple());
+				application.getcHeader().remove(application.getContentHome().getVoletHeaderRechercheAvancee());
+				application.getcPanel().remove(application.getContentHome().getVoletRechercheAvancee());
+				application.getcHeader().remove(application.getContentHome().getVoletHeaderHistorique());
+				application.getcPanel().remove(application.getContentHome().getVoletHistorique());
 				
 			}
 		});

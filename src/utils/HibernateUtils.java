@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.FileReader;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -73,7 +74,7 @@ public class HibernateUtils {
 		            //System.err.println("Initial SessionFactory creation failed." + ex);
 		            //logger.fatal("TATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		        	logger.fatal("EF - Erreur lecture fichier properties Locales" + ex.getMessage());
-		        	JOptionPane.showMessageDialog(null, "Connexion fermée !");
+		        	JOptionPane.showMessageDialog(null, "Connexion fermée 1!");
 		            throw new ExceptionInInitializerError(ex);
 		        } /*catch (HibernateException e) {
 					//TODO
@@ -82,7 +83,7 @@ public class HibernateUtils {
 				}*/
 			} catch (Throwable ex) {
 				logger.fatal("B - Erreur lecture fichier properties Locales" + ex.getMessage());
-				JOptionPane.showMessageDialog(null, "Connexion fermée !");
+				JOptionPane.showMessageDialog(null, "Connexion fermée 2!");
 				//connecteLocal = false;
 				//logger.fatal("Erreur creation de la SessionFactory" + ex.toString());
 			}
