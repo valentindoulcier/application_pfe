@@ -80,6 +80,8 @@ public class Application extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 1000, 600);
 		this.setMinimumSize(getSize());
+		
+		mesRecherches = new ArrayList<Recherche>();
 
 		// Panel Volet
 		volet = new JPanel();

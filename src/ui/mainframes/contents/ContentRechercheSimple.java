@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import principal.Application;
+import principal.Recherche;
 import renderers.MotsRenderer_1;
 import renderers.MotsRenderer_2;
 import renderers.MotsRenderer_3;
@@ -23,6 +24,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -47,8 +49,6 @@ public class ContentRechercheSimple extends JPanel {
 	
 	private JButton btnRechercher;
 
-	private JScrollPane jScrollPane;
-
 	private GridBagLayout gridBagLayout;
 
 	private ExpandingPanels expandingPanels;
@@ -68,8 +68,7 @@ public class ContentRechercheSimple extends JPanel {
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				logger.debug("On lance la recherche");
-				jScrollPane = new JScrollPane();
-				jScrollPane.removeAll();
+				enregistrerRecherche(application);
 				afficherRecherche(application);
 			}
 		});
@@ -122,6 +121,44 @@ public class ContentRechercheSimple extends JPanel {
 		gbc_result.gridy = 0;
 	}
 	
+	public void enregistrerRecherche(Application application) {
+		
+		Recherche maRecherche = new Recherche();
+		
+		maRecherche.setNumRecherche(application.getMesRecherches().size());
+		
+		maRecherche.setDateRecherche(new Date());
+		
+		maRecherche.setCritereRecherche(textFieldRecherche.getText());
+		
+		int nbDictionnaires = application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().size();
+		
+		System.out.println("On bosse sur " + nbDictionnaires + " dico !!");
+
+		for(int i = 0; i < nbDictionnaires; i++) {
+			if(application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().isSelected()) {
+				maRecherche.getListeDictionnaire().add(application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().getText());
+			}
+		}
+		
+		HeadwordDAO headwords = new HeadwordDAO("local");
+
+		for(String dictionnaire : maRecherche.getListeDictionnaire()) {
+
+			System.out.println("Ici le dico " + dictionnaire);
+			
+			List<?> mots = headwords.findExactly(textFieldRecherche.getText(), dictionnaire);
+			
+			for(Object headword : mots) {
+				maRecherche.getListeResultat().put(((Headword) headword).getIdHeadword(), ((Headword) headword));
+				System.out.println("\tAjout du mot : " + ((Headword) headword).getIdHeadword() + " - " + ((Headword) headword).getMot());
+			}
+		}
+		
+		application.getMesRecherches().add(maRecherche);
+		
+		System.out.println("On a " + application.getMesRecherches().size() + " recherches !!");
+	}
 	
 	public void afficherRecherche(Application application) {
 		
@@ -225,20 +262,6 @@ public class ContentRechercheSimple extends JPanel {
 	 */
 	public void setBtnRechercher(JButton btnRechercher) {
 		this.btnRechercher = btnRechercher;
-	}
-
-	/**
-	 * @return the jScrollPane
-	 */
-	public JScrollPane getjScrollPane() {
-		return jScrollPane;
-	}
-
-	/**
-	 * @param jScrollPane the jScrollPane to set
-	 */
-	public void setjScrollPane(JScrollPane jScrollPane) {
-		this.jScrollPane = jScrollPane;
 	}
 
 	/**

@@ -43,10 +43,7 @@ public class ContentHome extends JPanel {
 	
 	private VoletHeaderRechercheSimple voletHeaderRechercheSimple;
 	private VoletRechercheSimple voletRechercheSimple;
-	private VoletHeaderRechercheAvancee voletHeaderRechercheAvancee;
-	private VoletRechercheAvancee voletRechercheAvancee;
-	private VoletHeaderHistorique voletHeaderHistorique;
-	private VoletHistorique voletHistorique;
+	
 	private VoletHeaderEdition voletHeaderEdition;
 	private VoletEdition voletEdition;
 
@@ -55,10 +52,7 @@ public class ContentHome extends JPanel {
 	
 	private ContentHeaderRechercheSimple contentHeaderRechercheSimple;
 	private ContentRechercheSimple contentRechercheSimple;
-	private ContentHeaderRechercheAvancee contentHeaderRechercheAvancee;
-	private ContentRechercheAvancee contentRechercheAvancee;
-	private ContentHeaderHistorique contentHeaderHistorique;
-	private ContentHistorique contentHistorique;
+	
 	private ContentHeaderEdition contentHeaderEdition;
 	private ContentEdition contentEdition;
 
@@ -100,24 +94,18 @@ public class ContentHome extends JPanel {
 				voletFooterRecherche = new VoletFooterRecherche(application);
 				voletFooterEdition = new VoletFooterEdition(application);
 				
-				voletHeaderRechercheSimple = new VoletHeaderRechercheSimple();
-				voletRechercheSimple = new VoletRechercheSimple(application);
-				voletHeaderRechercheAvancee = new VoletHeaderRechercheAvancee();
-				voletRechercheAvancee = new VoletRechercheAvancee(application);
-				voletHeaderHistorique = new VoletHeaderHistorique();
-				voletHistorique = new VoletHistorique(application);
-				voletHeaderEdition = new VoletHeaderEdition();
-				voletEdition = new VoletEdition(application);
-
 				application.getvFooter().add(voletFooterRecherche, "voletFooterRecherche");
 				application.getvFooter().add(voletFooterEdition, "voletFooterEdition");
 				
+				voletHeaderRechercheSimple = new VoletHeaderRechercheSimple();
+				voletRechercheSimple = new VoletRechercheSimple(application);
+				
 				application.getvHeader().add(voletHeaderRechercheSimple, "voletHeaderRechercheSimple");
 				application.getvPanel().add(voletRechercheSimple, "voletRechercheSimple");
-				application.getvHeader().add(voletHeaderRechercheAvancee, "voletHeaderRechercheAvancee");
-				application.getvPanel().add(voletRechercheAvancee, "voletRechercheAvancee");
-				application.getvHeader().add(voletHeaderHistorique, "voletHeaderHistorique");
-				application.getvPanel().add(voletHistorique, "voletHistorique");
+				
+				voletHeaderEdition = new VoletHeaderEdition();
+				voletEdition = new VoletEdition(application);
+
 				application.getvHeader().add(voletHeaderEdition, "voletHeaderEdition");
 				application.getvPanel().add(voletEdition, "voletEdition");
 
@@ -130,24 +118,18 @@ public class ContentHome extends JPanel {
 				contentFooterRecherche = new ContentFooterRecherche(application);
 				contentFooterEdition = new ContentFooterEdition(application);
 				
-				contentHeaderRechercheSimple = new ContentHeaderRechercheSimple(application);
-				contentRechercheSimple = new ContentRechercheSimple(application);
-				contentHeaderRechercheAvancee = new ContentHeaderRechercheAvancee(application);
-				contentRechercheAvancee = new ContentRechercheAvancee(application);
-				contentHeaderHistorique = new ContentHeaderHistorique(application);
-				contentHistorique = new ContentHistorique(application);
-				contentHeaderEdition = new ContentHeaderEdition(application);
-				contentEdition = new ContentEdition(application);
-
 				application.getcFooter().add(contentFooterRecherche, "contentFooterRecherche");
 				application.getcFooter().add(contentFooterEdition, "contentFooterEdition");
 				
+				contentHeaderRechercheSimple = new ContentHeaderRechercheSimple(application);
+				contentRechercheSimple = new ContentRechercheSimple(application);
+				
 				application.getcHeader().add(contentHeaderRechercheSimple, "contentHeaderRechercheSimple");
 				application.getcPanel().add(contentRechercheSimple, "contentRechercheSimple");
-				application.getcHeader().add(contentHeaderRechercheAvancee, "contentHeaderRechercheAvancee");
-				application.getcPanel().add(contentRechercheAvancee, "contentRechercheAvancee");
-				application.getcHeader().add(contentHeaderHistorique, "contentHeaderHistorique");
-				application.getcPanel().add(contentHistorique, "contentHistorique");
+				
+				contentHeaderEdition = new ContentHeaderEdition(application);
+				contentEdition = new ContentEdition(application);
+
 				application.getcHeader().add(contentHeaderEdition, "contentHeaderEdition");
 				application.getcPanel().add(contentEdition, "contentEdition");
 
@@ -444,64 +426,6 @@ public class ContentHome extends JPanel {
 		this.voletHeaderRechercheSimple = voletHeaderRechercheSimple;
 	}
 
-	/**
-	 * @return the voletHeaderRechercheAvancee
-	 */
-	public VoletHeaderRechercheAvancee getVoletHeaderRechercheAvancee() {
-		return voletHeaderRechercheAvancee;
-	}
-
-	/**
-	 * @param voletHeaderRechercheAvancee the voletHeaderRechercheAvancee to set
-	 */
-	public void setVoletHeaderRechercheAvancee(
-			VoletHeaderRechercheAvancee voletHeaderRechercheAvancee) {
-		this.voletHeaderRechercheAvancee = voletHeaderRechercheAvancee;
-	}
-
-	/**
-	 * @return the voletRechercheAvancee
-	 */
-	public VoletRechercheAvancee getVoletRechercheAvancee() {
-		return voletRechercheAvancee;
-	}
-
-	/**
-	 * @param voletRechercheAvancee the voletRechercheAvancee to set
-	 */
-	public void setVoletRechercheAvancee(VoletRechercheAvancee voletRechercheAvancee) {
-		this.voletRechercheAvancee = voletRechercheAvancee;
-	}
-
-	/**
-	 * @return the contentHeaderRechercheAvancee
-	 */
-	public ContentHeaderRechercheAvancee getContentHeaderRechercheAvancee() {
-		return contentHeaderRechercheAvancee;
-	}
-
-	/**
-	 * @param contentHeaderRechercheAvancee the contentHeaderRechercheAvancee to set
-	 */
-	public void setContentHeaderRechercheAvancee(
-			ContentHeaderRechercheAvancee contentHeaderRechercheAvancee) {
-		this.contentHeaderRechercheAvancee = contentHeaderRechercheAvancee;
-	}
-
-	/**
-	 * @return the contentRechercheAvancee
-	 */
-	public ContentRechercheAvancee getContentRechercheAvancee() {
-		return contentRechercheAvancee;
-	}
-
-	/**
-	 * @param contentRechercheAvancee the contentRechercheAvancee to set
-	 */
-	public void setContentRechercheAvancee(
-			ContentRechercheAvancee contentRechercheAvancee) {
-		this.contentRechercheAvancee = contentRechercheAvancee;
-	}
 
 	/**
 	 * @return the voletFooterEdition
@@ -585,63 +509,6 @@ public class ContentHome extends JPanel {
 	 */
 	public void setContentEdition(ContentEdition contentEdition) {
 		this.contentEdition = contentEdition;
-	}
-
-	/**
-	 * @return the voletHeaderHistorique
-	 */
-	public VoletHeaderHistorique getVoletHeaderHistorique() {
-		return voletHeaderHistorique;
-	}
-
-	/**
-	 * @param voletHeaderHistorique the voletHeaderHistorique to set
-	 */
-	public void setVoletHeaderHistorique(VoletHeaderHistorique voletHeaderHistorique) {
-		this.voletHeaderHistorique = voletHeaderHistorique;
-	}
-
-	/**
-	 * @return the voletHistorique
-	 */
-	public VoletHistorique getVoletHistorique() {
-		return voletHistorique;
-	}
-
-	/**
-	 * @param voletHistorique the voletHistorique to set
-	 */
-	public void setVoletHistorique(VoletHistorique voletHistorique) {
-		this.voletHistorique = voletHistorique;
-	}
-
-	/**
-	 * @return the contentHeaderHistorique
-	 */
-	public ContentHeaderHistorique getContentHeaderHistorique() {
-		return contentHeaderHistorique;
-	}
-
-	/**
-	 * @param contentHeaderHistorique the contentHeaderHistorique to set
-	 */
-	public void setContentHeaderHistorique(
-			ContentHeaderHistorique contentHeaderHistorique) {
-		this.contentHeaderHistorique = contentHeaderHistorique;
-	}
-
-	/**
-	 * @return the contentHistorique
-	 */
-	public ContentHistorique getContentHistorique() {
-		return contentHistorique;
-	}
-
-	/**
-	 * @param contentHistorique the contentHistorique to set
-	 */
-	public void setContentHistorique(ContentHistorique contentHistorique) {
-		this.contentHistorique = contentHistorique;
 	}
 
 	/**

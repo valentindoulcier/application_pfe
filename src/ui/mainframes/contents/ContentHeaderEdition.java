@@ -58,29 +58,41 @@ public class ContentHeaderEdition extends JPanel {
 				
 				application.FermerVolet();
 
-				application.getcFooter().remove(application.getContentHome().getContentFooterRecherche());
-				application.getcFooter().remove(application.getContentHome().getContentFooterEdition());
-				
-				application.getcHeader().remove(application.getContentHome().getContentHeaderRechercheSimple());
-				application.getcPanel().remove(application.getContentHome().getContentRechercheSimple());
-				application.getcHeader().remove(application.getContentHome().getContentHeaderRechercheAvancee());
-				application.getcPanel().remove(application.getContentHome().getContentRechercheAvancee());
-				application.getcHeader().remove(application.getContentHome().getContentHeaderHistorique());
-				application.getcPanel().remove(application.getContentHome().getContentHistorique());
 				application.getcHeader().remove(application.getContentHome().getContentHeaderEdition());
 				application.getcPanel().remove(application.getContentHome().getContentEdition());
+				application.getcFooter().remove(application.getContentHome().getContentFooterEdition());
 
-				application.getvFooter().remove(application.getContentHome().getVoletFooterRecherche());
-				application.getvFooter().remove(application.getContentHome().getVoletFooterEdition());
-				
-				application.getvHeader().remove(application.getContentHome().getVoletHeaderRechercheSimple());
-				application.getvPanel().remove(application.getContentHome().getVoletRechercheSimple());
-				application.getvHeader().remove(application.getContentHome().getVoletHeaderRechercheAvancee());
-				application.getvPanel().remove(application.getContentHome().getVoletRechercheAvancee());
-				application.getvHeader().remove(application.getContentHome().getVoletHeaderHistorique());
-				application.getvPanel().remove(application.getContentHome().getVoletHistorique());
 				application.getvHeader().remove(application.getContentHome().getVoletHeaderEdition());
 				application.getvPanel().remove(application.getContentHome().getVoletEdition());
+				application.getvFooter().remove(application.getContentHome().getVoletFooterEdition());
+				
+				
+				application.getcFooter().remove(application.getContentHome().getContentFooterRecherche());
+				application.getvFooter().remove(application.getContentHome().getVoletFooterRecherche());
+				
+				if(application.getContentHome().getVoletFooterRecherche().getJeViensDe() == 1) {
+					application.getvHeader().remove(application.getContentHome().getVoletFooterRecherche().getVoletHeaderRechercheSimple());
+					application.getvPanel().remove(application.getContentHome().getVoletFooterRecherche().getVoletRechercheSimple());
+					
+					application.getcHeader().remove(application.getContentHome().getVoletFooterRecherche().getContentHeaderRechercheSimple());
+					application.getcPanel().remove(application.getContentHome().getVoletFooterRecherche().getContentRechercheSimple());
+					
+				}
+				else if(application.getContentHome().getVoletFooterRecherche().getJeViensDe() == 2) {
+					application.getvHeader().remove(application.getContentHome().getVoletFooterRecherche().getVoletHeaderRechercheAvancee());
+					application.getvPanel().remove(application.getContentHome().getVoletFooterRecherche().getVoletRechercheAvancee());
+					
+					application.getcHeader().remove(application.getContentHome().getVoletFooterRecherche().getContentHeaderRechercheAvancee());
+					application.getcPanel().remove(application.getContentHome().getVoletFooterRecherche().getContentRechercheAvancee());
+				}
+				else if(application.getContentHome().getVoletFooterRecherche().getJeViensDe() == 3) {
+					application.getvHeader().remove(application.getContentHome().getVoletFooterRecherche().getVoletHeaderHistorique());
+					application.getvPanel().remove(application.getContentHome().getVoletFooterRecherche().getVoletHistorique());
+					
+					application.getcHeader().remove(application.getContentHome().getVoletFooterRecherche().getContentHeaderHistorique());
+					application.getcPanel().remove(application.getContentHome().getVoletFooterRecherche().getContentHistorique());
+				}
+
 				
 			}
 		});
