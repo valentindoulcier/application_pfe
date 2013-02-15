@@ -27,7 +27,7 @@ public class VoletHeaderEdition extends JPanel {
 		setPreferredSize(new Dimension(300, 30));
 		setLayout(null);
 		
-		JLabel lblRecherche = new JLabel("Ã‰dition");
+		JLabel lblRecherche = new JLabel("ƒdition");
 		lblRecherche.setForeground(Color.WHITE);
 		lblRecherche.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRecherche.setFont(new Font("Lucida Grande", Font.ITALIC, 23));

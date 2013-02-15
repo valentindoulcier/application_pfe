@@ -24,7 +24,7 @@ public class Main {
 
 	/**
 	 * Fonction Main.
-	 * Cette classe lance un thread initialisant la fen√™tre.
+	 * Cette classe lance un thread initialisant la fenêtre.
 	 * 
 	 * @param args
 	 * @throws DatabaseOffException 
@@ -45,7 +45,7 @@ public class Main {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						logger.debug("1 - Je vais cr√©er l'application");
+						logger.debug("1 - Je vais créer l'application");
 						new Application();
 					} catch (Exception e) {
 						e.printStackTrace();

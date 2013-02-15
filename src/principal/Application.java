@@ -175,14 +175,14 @@ public class Application extends JFrame {
 		menuBar.add(mnTemporaire);
 
 		// Menu item
-		mntmConfigurationItem = new JMenuItem("Pr√©f√©rences");
+		mntmConfigurationItem = new JMenuItem("Préférences");
 		mntmApplicationItem = new JMenuItem("Application");
 		mnTemporaire.add(mntmConfigurationItem);
 		mnTemporaire.add(mntmApplicationItem);
 	}
 
 	/**
-	 * Cette m√©thode regarde l'OS de l'utilisateur.
+	 * Cette méthode regarde l'OS de l'utilisateur.
 	 * 
 	 * @return Un booleen qui indique si l'OS est Max OS X ou non.
 	 */
@@ -191,7 +191,7 @@ public class Application extends JFrame {
 	}
 
 	/**
-	 * Cette fonction permet √† un utilisateur sous Mac OS X (Mountain Lion ou ult√©rieur) de passer en plein √©cran.
+	 * Cette fonction permet à un utilisateur sous Mac OS X (Mountain Lion ou ultérieur) de passer en plein écran.
 	 * 
 	 * @param window
 	 */

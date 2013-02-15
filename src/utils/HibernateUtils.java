@@ -65,15 +65,15 @@ public class HibernateUtils {
 				}
 
 				try {
-					logger.debug("E - Je rentre dans le deuxi√®me try");
+					logger.debug("E - Je rentre dans le deuxième try");
 					sessionFactoryLocale = configurationLocale.buildSessionFactory();
-					logger.debug("F - Je termine le deuxi√®me try");
+					logger.debug("F - Je termine le deuxième try");
 		        } catch (Throwable ex) {
 		            // Make sure you log the exception, as it might be swallowed
 		            //System.err.println("Initial SessionFactory creation failed." + ex);
 		            //logger.fatal("TATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		        	logger.fatal("EF - Erreur lecture fichier properties Locales" + ex.getMessage());
-		        	JOptionPane.showMessageDialog(null, "Connexion ferm√©e 1!");
+		        	JOptionPane.showMessageDialog(null, "Connexion fermée 1!");
 		            throw new ExceptionInInitializerError(ex);
 		        } /*catch (HibernateException e) {
 					//TODO
@@ -82,7 +82,7 @@ public class HibernateUtils {
 				}*/
 			} catch (Throwable ex) {
 				logger.fatal("B - Erreur lecture fichier properties Locales" + ex.getMessage());
-				JOptionPane.showMessageDialog(null, "Connexion ferm√©e 2!");
+				JOptionPane.showMessageDialog(null, "Connexion fermée 2!");
 				//connecteLocal = false;
 				//logger.fatal("Erreur creation de la SessionFactory" + ex.toString());
 			}
@@ -324,7 +324,7 @@ public class HibernateUtils {
 	    	 try {
 	 			sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
 	 		} catch (HibernateException ex) {
-	 			throw new RuntimeException("Probl√®me de configuration : " + ex.getMessage(), ex);
+	 			throw new RuntimeException("Problème de configuration : " + ex.getMessage(), ex);
 	 		}
 	     }
 	     return sessionFactory.openSession();
@@ -338,12 +338,12 @@ public class HibernateUtils {
 
 	private static final SessionFactory sessionFactory;
 
-	// Cr√©e une unique instance de la SessionFactory √† partir de hibernate.cfg.xml
+	// Crée une unique instance de la SessionFactory à partir de hibernate.cfg.xml
 	static {
 		try {
 			sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
 		} catch (HibernateException ex) {
-			throw new RuntimeException("Probl√®me de configuration : " + ex.getMessage(), ex);
+			throw new RuntimeException("Problème de configuration : " + ex.getMessage(), ex);
 		}
 	}
 

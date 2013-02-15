@@ -31,7 +31,7 @@ public class VoletFooterRecherche extends JPanel {
 	private static final long serialVersionUID = 1129835814490832264L;
 	
 	// 1 - Recherche Simple
-	// 2 - Recherche Avanc√©e
+	// 2 - Recherche Avancée
 	// 3 - Historique
 	private int jeViensDe = -1;
 	
@@ -95,7 +95,7 @@ public class VoletFooterRecherche extends JPanel {
 					
 					jeViensDe = 1;
 					
-					System.out.println("J'ai initialis√© la recherche simple en local");
+					System.out.println("J'ai initialisé la recherche simple en local");
 				}
 				
 				if(jeViensDe == 2) {
@@ -117,7 +117,7 @@ public class VoletFooterRecherche extends JPanel {
 					application.getcHeader().remove(contentHeaderRechercheAvancee);
 					application.getcPanel().remove(contentRechercheAvancee);
 					
-					System.out.println("Je viens de la recherche avanc√©e");
+					System.out.println("Je viens de la recherche avancée");
 					
 				}
 				else if(jeViensDe == 3) {
@@ -160,7 +160,7 @@ public class VoletFooterRecherche extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				System.out.println("Je veux la Recherche Avanc√©e");
+				System.out.println("Je veux la Recherche Avancée");
 				
 				if(jeViensDe == -1) {
 					voletHeaderRechercheSimple = application.getContentHome().getVoletHeaderRechercheSimple();
@@ -183,7 +183,7 @@ public class VoletFooterRecherche extends JPanel {
 					
 					jeViensDe = 1;
 					
-					System.out.println("J'ai chang√© la recherche simple (locale)");
+					System.out.println("J'ai changé la recherche simple (locale)");
 				}
 				
 				if(jeViensDe == 1) {
@@ -316,7 +316,7 @@ public class VoletFooterRecherche extends JPanel {
 					application.getcHeader().remove(contentHeaderRechercheAvancee);
 					application.getcPanel().remove(contentRechercheAvancee);
 					
-					System.out.println("Je viens de la recherche avanc√©e");
+					System.out.println("Je viens de la recherche avancée");
 				
 				}
 				
@@ -357,7 +357,7 @@ public class VoletFooterRecherche extends JPanel {
 		gbc_btnSimple.gridy = 0;
 		add(btnSimple, gbc_btnSimple);
 		
-		btnAvancee = new JButton("Avanc√©e");
+		btnAvancee = new JButton("Avancée");
 		btnAvancee.setSize(80, 25);
 		GridBagConstraints gbc_btnAvancee = new GridBagConstraints();
 		gbc_btnAvancee.fill = GridBagConstraints.HORIZONTAL;

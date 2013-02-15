@@ -27,7 +27,7 @@ public class VoletHeaderRechercheAvancee extends JPanel {
 		setPreferredSize(new Dimension(300, 30));
 		setLayout(null);
 		
-		JLabel lblRecherche = new JLabel("Recherche Avanc√©e");
+		JLabel lblRecherche = new JLabel("Recherche Avancée");
 		lblRecherche.setForeground(Color.WHITE);
 		lblRecherche.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRecherche.setFont(new Font("Lucida Grande", Font.ITALIC, 23));

@@ -45,12 +45,12 @@ public class DictionnairesDAO extends AbstractDAO {
 	public DictionnairesDAO(String type) {
 		if("local".equalsIgnoreCase(type)) {
 			try {
-				logger.debug("5 - Je vais r√©cup√©rer l'instance");
+				logger.debug("5 - Je vais récupérer l'instance");
 				this.session = HibernateUtils.getInstanceLocale();
 				logger.debug("6 - J'ai la session");
 			} catch(Throwable ex) {
 				logger.debug("56 - La session est foireuse");
-				JOptionPane.showMessageDialog(null, "Connexion ferm√©e !");
+				JOptionPane.showMessageDialog(null, "Connexion fermée !");
 			}
 		}
 		else if ("master".equalsIgnoreCase(type)) {

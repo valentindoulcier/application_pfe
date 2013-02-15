@@ -203,7 +203,7 @@ public class ContentHome extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				lblDescription.setText("Cliquez ici pour √©diter les liens dictionnaires");
+				lblDescription.setText("Cliquez ici pour éditer les liens dictionnaires");
 			}
 
 			@Override
@@ -263,7 +263,7 @@ public class ContentHome extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				lblDescription.setText("Cliquez ici pour acc√©der aux options");
+				lblDescription.setText("Cliquez ici pour accéder aux options");
 			}
 
 			@Override
@@ -296,7 +296,7 @@ public class ContentHome extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
-		lblApplication = new JLabel("Laboratoire Lig√©rien de Linguistique");
+		lblApplication = new JLabel("Laboratoire Ligérien de Linguistique");
 		lblApplication.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 22));
 		GridBagConstraints gbc_lblApplication = new GridBagConstraints();
 		gbc_lblApplication.gridwidth = 5;
