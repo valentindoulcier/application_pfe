@@ -125,7 +125,7 @@ public class ContentRechercheSimple extends JPanel {
 		
 		Recherche maRecherche = new Recherche();
 		
-		maRecherche.setNumRecherche(application.getMesRecherches().size());
+		maRecherche.setNumRecherche(application.getMesRecherches().size()+1);
 		
 		maRecherche.setDateRecherche(new Date());
 		

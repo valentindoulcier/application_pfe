@@ -1,6 +1,5 @@
 package utils;
 
-import java.io.FileReader;
 import java.io.InputStream;
 import java.util.Properties;
 

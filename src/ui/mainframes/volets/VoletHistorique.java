@@ -15,12 +15,9 @@ import ui.objects.HistoriqueCell;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import java.awt.Insets;
 import java.util.Vector;
+import java.awt.Insets;
 
-import javax.swing.JButton;
 
 /**
  * @author Valentin
@@ -32,6 +29,8 @@ public class VoletHistorique extends JPanel {
 	
 	private GridBagLayout gridBagLayout;
 	private GridBagConstraints gbc_panel;
+	
+	private GridBagConstraints gbc_btnNewButton_1;
 	
 	private JPanel jpanel;
 
@@ -58,12 +57,24 @@ public class VoletHistorique extends JPanel {
 		setLayout(gridBagLayout_1);
 		
 		jpanel = new JPanel();
-		jpanel.setBackground(Color.LIGHT_GRAY);
+		jpanel.setBackground(Color.ORANGE);
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 0;
 		add(jpanel, gbc_panel);
+		
+		GridBagLayout gbl_jpanel = new GridBagLayout();
+		gbl_jpanel.columnWidths = new int[]{0};
+		gbl_jpanel.rowHeights = new int[]{0};
+		gbl_jpanel.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_jpanel.rowWeights = new double[]{Double.MIN_VALUE};
+		jpanel.setLayout(gbl_jpanel);
+		
+		gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_1.gridx = 0;
+		gbc_btnNewButton_1.gridy = 0;
 		
 	}
 	
@@ -79,18 +90,9 @@ public class VoletHistorique extends JPanel {
 		for(Object recherche : application.getMesRecherches()) {
 			historiqueCell = new HistoriqueCell(application);
 			historiqueCell.setNumRecherche(((Recherche) recherche).getNumRecherche());
-			historiqueCell.getLblMots().setText(((Recherche) recherche).getMotRecherche());
-			listeRecherches.addElement(historiqueCell);
+			historiqueCell.getLblMots().setText(((Recherche) recherche).getCritereRecherche());
+			listeRecherches.add(0, historiqueCell);//addElement(historiqueCell);
 		}
-		
-		historiqueCell = new HistoriqueCell(application);
-		historiqueCell.setNumRecherche(1);
-		historiqueCell.getLblMots().setText("Valentin");
-		listeRecherches.addElement(historiqueCell);
-		
-		historiqueCell.setNumRecherche(2);
-		historiqueCell.getLblMots().setText("Pauline");
-		listeRecherches.addElement(historiqueCell);
 		
 		System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 		System.out.println("\tIl y a " + listeRecherches.size() + " éléments !!");
@@ -111,9 +113,9 @@ public class VoletHistorique extends JPanel {
 		//application.getContentHome().getVoletHistorique().add(new MotsRenderer_2(application, toto), application.getContentHome().getVoletHistorique().getGbc_panel());
 		//application.getContentHome().getVoletHistorique().setPanel(new HistoriqueRenderer(application, listeRecherches));//, application.getContentHome().getVoletHistorique().getGbc_panel());
 		
-		jpanel.removeAll();
+		//jpanel.removeAll();
 		
-		jpanel = new HistoriqueRenderer(application, listeRecherches);
+		jpanel.add(new HistoriqueRenderer(application, listeRecherches), gbc_btnNewButton_1);
 		
 		//jpanel.add(jpanel, gbc_panel);
 		

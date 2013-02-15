@@ -39,6 +39,9 @@ public class HistoriqueCell extends JPanel {
 	
 	public void initComponents() {
 		
+		//setPreferredSize(new Dimension(300, 30));
+		//setMinimumSize(new Dimension(300, 30));
+		
 		setBackground(Color.GREEN);
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{5, 20, 0, 0};
