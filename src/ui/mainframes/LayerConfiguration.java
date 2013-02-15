@@ -39,7 +39,7 @@ public class LayerConfiguration extends JPanel {
 	
 	//private static Logger logger = Logger.getLogger(LayerConfiguration.class);
 
-	Object[] options = {"Instance unique", "Mettre à jour"};
+	Object[] options = {"Instance unique", "Mettre √† jour"};
 
 	private ConfigParamSql configParamSqlLocal = new ConfigParamSql();
 	private ConfigParamSql configParamSqlMaster = new ConfigParamSql();
@@ -99,8 +99,8 @@ public class LayerConfiguration extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				int answer = JOptionPane.showOptionDialog(application,
-						"Souhaitez-vous modifier les paramêtres par défaut où utiliser ces paramêtres pour cette instance uniquement ?",
-						"Modification des paramêtres",
+						"Souhaitez-vous modifier les param√®tres par d√©faut o√π\nutiliser ces param√®tres pour cette instance uniquement ?",
+						"Modification des param√®tres",
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.WARNING_MESSAGE,
 						null,     //do not use a custom Icon
@@ -141,8 +141,8 @@ public class LayerConfiguration extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				int answer = JOptionPane.showOptionDialog(application,
-						"Souhaitez-vous modifier les paramêtres par défaut où utiliser ces paramêtres pour cette instance uniquement ?",
-						"Modification des paramêtres",
+						"Souhaitez-vous modifier les param√®tres par d√©faut o√π\nutiliser ces param√®tres pour cette instance uniquement ?",
+						"Modification des param√®tres",
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.WARNING_MESSAGE,
 						null,     //do not use a custom Icon

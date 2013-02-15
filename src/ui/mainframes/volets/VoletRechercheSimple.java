@@ -64,13 +64,13 @@ public class VoletRechercheSimple extends JPanel {
 	        public void stateChanged(ChangeEvent ce) {
 	        	if(sliderDetails.getValue() == 0)
 	        	{
-	        		lblDetails.setText("Détail : x");
+	        		lblDetails.setText("D√©tail : x");
 	        	}
 	        	else if(sliderDetails.getValue() == 50) {
-	        		lblDetails.setText("Détail : xx");
+	        		lblDetails.setText("D√©tail : xx");
 	        	}
 	        	else {
-	        		lblDetails.setText("Détail : xxx");
+	        		lblDetails.setText("D√©tail : xxx");
 	        	}
 	        }
 	    });
@@ -103,7 +103,7 @@ public class VoletRechercheSimple extends JPanel {
 		gbc_panel.gridy = 2;
 		add(listeDico, gbc_panel);
 		
-		lblDetails = new JLabel("Détail : x");
+		lblDetails = new JLabel("D√©tail : x");
 		GridBagConstraints gbc_lblDetails = new GridBagConstraints();
 		gbc_lblDetails.anchor = GridBagConstraints.WEST;
 		gbc_lblDetails.insets = new Insets(0, 0, 5, 5);
@@ -137,7 +137,7 @@ public class VoletRechercheSimple extends JPanel {
 			dico = dictionnaires.findAll();
 		}
 		else
-			JOptionPane.showMessageDialog(null, "Connexion fermée VOLET DICO 2 !");
+			JOptionPane.showMessageDialog(null, "Connexion ferm√©e VOLET DICO 2 !");
 		
 		
 		

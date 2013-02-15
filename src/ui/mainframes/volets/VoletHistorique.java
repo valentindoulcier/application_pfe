@@ -95,7 +95,7 @@ public class VoletHistorique extends JPanel {
 		}
 		
 		System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-		System.out.println("\tIl y a " + listeRecherches.size() + " éléments !!");
+		System.out.println("\tIl y a " + listeRecherches.size() + " √©l√©ments !!");
 		System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 		
 		//Vector<RSDetail_2> toto = new Vector<RSDetail_2>();

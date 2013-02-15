@@ -128,7 +128,7 @@ class TableModel extends DefaultTableModel {
 
     public void addRows(Vector<HistoriqueCell> listeRecherches) {
     	for(int i = 0; i < listeRecherches.size(); i++) {
-    		System.out.println("Element : " + i + "\n\tNumŽro : " + listeRecherches.get(i).getNumRecherche() + "\n\tNom : " + listeRecherches.get(i).getLblMots().getText());
+    		System.out.println("Element : " + i + "\n\tNumÃ©ro : " + listeRecherches.get(i).getNumRecherche() + "\n\tNom : " + listeRecherches.get(i).getLblMots().getText());
     		super.addRow(new Object[]{new Caract_Historique(listeRecherches.get(i).getNumRecherche(), listeRecherches.get(i).getLblMots().getText())});
     	}
     	/*new Caract_Historique(listeRecherches.get(i).getNumRecherche(), listeRecherches.get(i).getLblMots().getText())*/

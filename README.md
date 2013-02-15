@@ -45,11 +45,11 @@ Une application a été développée en 2009 dans son ensemble. Suite à la cett
 2011 ont été mis en place. Le but principal de ces P.F.E. était (entre autre) la refonte de la base de données. En effet, celle-ci n’était pas conçue de façon générique et n’était pas modulaire;
 il était alors impossible d’espérer une évolution (ajout d’un autre dictionnaire par exemple).
 
-Aujourd’hui, la base de donnée est optimisée, simplement aucune application n’a été développée. Elle n’est donc pas utilisée à l'heure actuelle.
+Aujourd’hui, la base de donnée est optimisée, simplement aucune application n’a été développée. Elle n’est donc pas utilisée à l’heure actuelle.
 
 #### But du projet
 
-Dans ce sens, ce P.F.E. a pour but premier de réaliser une application interagissant avec cette nouvelle base, de vérifier son intégrité et d'implémenter les fonctionnalités désirées par le L.L.L..
+Dans ce sens, ce P.F.E. a pour but premier de réaliser une application interagissant avec cette nouvelle base, de vérifier son intégrité et d’implémenter les fonctionnalités désirées par le L.L.L..
 
 La liste des fonctionnalités désirées par le L.L.L. n’est pas exhaustive. En effet, elle dépendra aussi de l’avancement et des difficultés rencontrées au cours du projet. Elle est susceptible d’être
 complétée à tout moment, son évolution sera prise en compte et le calendrier prévisionnel sera modifié dans la mesure du possible.

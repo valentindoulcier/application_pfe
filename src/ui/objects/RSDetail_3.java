@@ -98,7 +98,7 @@ public class RSDetail_3 extends JPanel {
 		add(lblMots, gbc_lblNewLabel);
 
 		
-		lblCategories = new JLabel("Catégories");
+		lblCategories = new JLabel("Cat√©gories");
 		lblCategories.setForeground(new Color(50, 205, 50));
 		GridBagConstraints gbc_lblCategories = new GridBagConstraints();
 		gbc_lblCategories.anchor = GridBagConstraints.WEST;
@@ -253,7 +253,7 @@ public class RSDetail_3 extends JPanel {
   *//*
 	public void mousePressed(MouseEvent e) {
 		setBackground(Color.BLUE);
-		System.out.println("Je suis cliqué : " + lblMot.getText());
+		System.out.println("Je suis cliqu√© : " + lblMot.getText());
 
 	}
 
