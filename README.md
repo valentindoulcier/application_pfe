@@ -1,19 +1,19 @@
 Application L.L.L.
 ==================
 
-    Projet de fin d'étude (PFE)
-    5√®me année du dipl√¥me d'ingénieur en Informatique
-    Département Informatique
+    Projet de fin d'√©tude (PFE)
+    5√®me ann√©e du dipl√¥me d'ing√©nieur en Informatique
+    D√©partement Informatique
     Polytech' Tours
 
 Installation
 ------------
 
-Pour plus d'information sur le projet, n'hésitez pas √† me contacter.
+Pour plus d'information sur le projet, n'h√©sitez pas √† me contacter.
 Je peux vous faire parvenir des documents tels que :
 
 * Description compl√®te du projet
-* Cahier de spécifications
+* Cahier de sp√©cifications
 * Manuels d'installation
 * Manuels utilisateurs
 
@@ -24,35 +24,35 @@ Le projet du L.L.L.
 
 #### Le L.L.L.
 
-Le [Laboratoire Ligérien de Linguistique](http://www.univ-tours.fr/recherche/laboratoire-ligerien-de-linguistique-equipe-de-tours-lll-tours--120115.kjsp) est un laboratoire qui traite du langage
+Le [Laboratoire Lig√©rien de Linguistique](http://www.univ-tours.fr/recherche/laboratoire-ligerien-de-linguistique-equipe-de-tours-lll-tours--120115.kjsp) est un laboratoire qui traite du langage
 et des langues dans tous ses aspects, de la conception d‚Äôenqu√™te au traitement automatique des langues et notamment dans une perspective contrastive. Le L.L.L. regroupe 28 enseignants-chercheurs,
-24 doctorants. Il est implanté sur 2 sites, Tours et Orléans.
+24 doctorants. Il est implant√© sur 2 sites, Tours et Orl√©ans.
 
-Le L.L.L. de Tours utilise une application sur la prononciation des unités lexicales en anglais contemporain qui regroupe trois dictionnaires existants.
-Cette application interagit directement avec une base de données qui regroupe les informations syntaxiques, lexicales, morphologiques, ainsi que des données de fréquence, d‚Äôusage et de variation.
-Cette base de données compte aujourd‚Äôhui environ 700 000 entrées provenant des trois dictionnaires commerciaux.
+Le L.L.L. de Tours utilise une application sur la prononciation des unit√©s lexicales en anglais contemporain qui regroupe trois dictionnaires existants.
+Cette application interagit directement avec une base de donn√©es qui regroupe les informations syntaxiques, lexicales, morphologiques, ainsi que des donn√©es de fr√©quence, d‚Äôusage et de variation.
+Cette base de donn√©es compte aujourd‚Äôhui environ 700 000 entr√©es provenant des trois dictionnaires commerciaux.
 
 #### Contexte
 
-Ce projet s‚Äôinscrit dans le cadre de la recherche linguistique effectuée par le L.L.L. de Tours. Il concerne une application utilisée par les chercheurs, application qui regroupe toutes les données
+Ce projet s‚Äôinscrit dans le cadre de la recherche linguistique effectu√©e par le L.L.L. de Tours. Il concerne une application utilis√©e par les chercheurs, application qui regroupe toutes les donn√©es
 de trois dictionnaires anglais :
 
 * The Cambridge English Pronouncing Dictionary (EPD)
 * The Longman Pronouncing Dictionary (LPD)
 * The Macquarie Dictionary (MCQ)
 
-Une application a été développée en 2009 dans son ensemble. Suite √† la cette premi√®re version d‚Äôappli- cation, deux P.F.E. réalisés respectivement par Elodie BACCONNET en 2010 et Ludovic DUPRAZ en
-2011 ont été mis en place. Le but principal de ces P.F.E. était (entre autre) la refonte de la base de données. En effet, celle-ci n‚Äôétait pas con√ßue de fa√ßon générique et n‚Äôétait pas modulaire;
-il était alors impossible d‚Äôespérer une évolution (ajout d‚Äôun autre dictionnaire par exemple).
+Une application a √©t√© d√©velopp√©e en 2009 dans son ensemble. Suite √† la cette premi√®re version d‚Äôappli- cation, deux P.F.E. r√©alis√©s respectivement par Elodie BACCONNET en 2010 et Ludovic DUPRAZ en
+2011 ont √©t√© mis en place. Le but principal de ces P.F.E. √©tait (entre autre) la refonte de la base de donn√©es. En effet, celle-ci n‚Äô√©tait pas con√ßue de fa√ßon g√©n√©rique et n‚Äô√©tait pas modulaire;
+il √©tait alors impossible d‚Äôesp√©rer une √©volution (ajout d‚Äôun autre dictionnaire par exemple).
 
-Aujourd‚Äôhui, la base de donnée est optimisée, simplement aucune application n‚Äôa été développée. Elle n‚Äôest donc pas utilisée √† l‚Äôheure actuelle.
+Aujourd‚Äôhui, la base de donn√©e est optimis√©e, simplement aucune application n‚Äôa √©t√© d√©velopp√©e. Elle n‚Äôest donc pas utilis√©e √† l'heure actuelle.
 
 #### But du projet
 
-Dans ce sens, ce P.F.E. a pour but premier de réaliser une application interagissant avec cette nouvelle base, de vérifier son intégrité et d‚Äôimplémenter les fonctionnalités désirées par le L.L.L..
+Dans ce sens, ce P.F.E. a pour but premier de r√©aliser une application interagissant avec cette nouvelle base, de v√©rifier son int√©grit√© et d'impl√©menter les fonctionnalit√©s d√©sir√©es par le L.L.L..
 
-La liste des fonctionnalités désirées par le L.L.L. n‚Äôest pas exhaustive. En effet, elle dépendra aussi de l‚Äôavancement et des difficultés rencontrées au cours du projet. Elle est susceptible d‚Äô√™tre
-complétée √† tout moment, son évolution sera prise en compte et le calendrier prévisionnel sera modifié dans la mesure du possible.
+La liste des fonctionnalit√©s d√©sir√©es par le L.L.L. n‚Äôest pas exhaustive. En effet, elle d√©pendra aussi de l‚Äôavancement et des difficult√©s rencontr√©es au cours du projet. Elle est susceptible d‚Äô√™tre
+compl√©t√©e √† tout moment, son √©volution sera prise en compte et le calendrier pr√©visionnel sera modifi√© dans la mesure du possible.
 
 Contact
 -------
@@ -62,7 +62,7 @@ Jean-Michel FOURNIER - UFR de Lettres et Langues - jean-michel.fournier@univ-tou
 
 Marjolaine MARTIN - DI - marjolaine.martin@univ-tours.fr
 
-### Encadrante pédagogique
+### Encadrante p√©dagogique
 Claudine TACQUARD - DI - claudine.tacquard@univ-tours.fr
 
 ### MOE
