@@ -43,7 +43,7 @@ public class RSDetail_2 extends JPanel {
 	private JLabel lblRegion;
 	private JLabel lblType;
 	private JLabel lblSchema;
-	private JLabel lblNewLabel;
+	private JLabel lblSyllabes;
 
 	public RSDetail_2(final Application application) {
 
@@ -83,27 +83,27 @@ public class RSDetail_2 extends JPanel {
 	
 	public void initComponents() {
 		gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{5, 20, 232, 232, 30, 30, 0, 0};
-		gridBagLayout.rowHeights = new int[]{10, 10, 10, 10, 10, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{5, 20, 120, 120, 120, 80, 30, 0, 0};
+		gridBagLayout.rowHeights = new int[]{10, 10, 10, 10, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
 		lblMots = new JLabel("Mot");
 		lblMots.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		GridBagConstraints gbc_lblMots = new GridBagConstraints();
 		gbc_lblMots.anchor = GridBagConstraints.WEST;
-		gbc_lblMots.gridwidth = 3;
+		gbc_lblMots.gridwidth = 5;
 		gbc_lblMots.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMots.gridx = 1;
 		gbc_lblMots.gridy = 0;
 		add(lblMots, gbc_lblMots);
 
 		
-		lblCategories = new JLabel("New labelez izueh eiuzh iuzehf iuzehf iuzeh iufhze iuhf iuzhfizeuh izeuh fz");
+		lblCategories = new JLabel("Catégories");
 		lblCategories.setForeground(new Color(50, 205, 50));
 		GridBagConstraints gbc_lblCategories = new GridBagConstraints();
-		gbc_lblCategories.gridwidth = 2;
+		gbc_lblCategories.gridwidth = 4;
 		gbc_lblCategories.anchor = GridBagConstraints.WEST;
 		gbc_lblCategories.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCategories.gridx = 2;
@@ -116,7 +116,7 @@ public class RSDetail_2 extends JPanel {
 		gbc_btnEditer.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_btnEditer.gridheight = 2;
 		gbc_btnEditer.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditer.gridx = 5;
+		gbc_btnEditer.gridx = 6;
 		gbc_btnEditer.gridy = 0;
 		add(btnEditer, gbc_btnEditer);
 
@@ -126,7 +126,7 @@ public class RSDetail_2 extends JPanel {
 		gbc_btnMasquer.insets = new Insets(0, 0, 5, 0);
 		gbc_btnMasquer.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_btnMasquer.gridheight = 2;
-		gbc_btnMasquer.gridx = 6;
+		gbc_btnMasquer.gridx = 7;
 		gbc_btnMasquer.gridy = 0;
 		add(btnMasquer, gbc_btnMasquer);
 		
@@ -150,17 +150,18 @@ public class RSDetail_2 extends JPanel {
 		GridBagConstraints gbc_lblType = new GridBagConstraints();
 		gbc_lblType.anchor = GridBagConstraints.WEST;
 		gbc_lblType.insets = new Insets(0, 0, 5, 5);
-		gbc_lblType.gridx = 2;
-		gbc_lblType.gridy = 3;
+		gbc_lblType.gridx = 4;
+		gbc_lblType.gridy = 2;
 		add(lblType, gbc_lblType);
 		
-		lblNewLabel = new JLabel("New label : ezf ehzf uhezf uhiezh izuhe iuzhf eizhf ezuhfei zuh ziehfizeh izfh");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel.gridwidth = 5;
-		gbc_lblNewLabel.gridx = 2;
-		gbc_lblNewLabel.gridy = 4;
-		add(lblNewLabel, gbc_lblNewLabel);
+		lblSyllabes = new JLabel("New label : ezf ehzf uhezf uhiezh izuhe iuzhf eizhf ezuhfei zuh ziehfizeh izfh");
+		GridBagConstraints gbc_lblSyllabes = new GridBagConstraints();
+		gbc_lblSyllabes.insets = new Insets(0, 0, 0, 5);
+		gbc_lblSyllabes.anchor = GridBagConstraints.WEST;
+		gbc_lblSyllabes.gridwidth = 4;
+		gbc_lblSyllabes.gridx = 2;
+		gbc_lblSyllabes.gridy = 3;
+		add(lblSyllabes, gbc_lblSyllabes);
 
 	}
 
@@ -168,10 +169,15 @@ public class RSDetail_2 extends JPanel {
 	public void setCaract(Caract_2 caract) {
 		idHeadword = caract.idHeadword;
 		lblMots.setText(caract.mot);
+		lblCategories.setText(caract.categorie);
+		lblRegion.setText(caract.region);
+		lblSchema.setText(caract.schema);
+		lblType.setText(caract.type);
+		lblSyllabes.setText(caract.syllabes);
 	}
 
 	public Caract_2 getCaract() {
-		return new Caract_2(idHeadword, lblMots.getText());
+		return new Caract_2(idHeadword, lblMots.getText(), lblCategories.getText(), lblRegion.getText(), lblSchema.getText(), lblType.getText(), lblSyllabes.getText());
 	}
 	
 	/**
@@ -248,6 +254,76 @@ public class RSDetail_2 extends JPanel {
 	 */
 	public void setBtnMasquer(JButton btnMasquer) {
 		this.btnMasquer = btnMasquer;
+	}
+
+	/**
+	 * @return the lblCategories
+	 */
+	public JLabel getLblCategories() {
+		return lblCategories;
+	}
+
+	/**
+	 * @param lblCategories the lblCategories to set
+	 */
+	public void setLblCategories(JLabel lblCategories) {
+		this.lblCategories = lblCategories;
+	}
+
+	/**
+	 * @return the lblRegion
+	 */
+	public JLabel getLblRegion() {
+		return lblRegion;
+	}
+
+	/**
+	 * @param lblRegion the lblRegion to set
+	 */
+	public void setLblRegion(JLabel lblRegion) {
+		this.lblRegion = lblRegion;
+	}
+
+	/**
+	 * @return the lblType
+	 */
+	public JLabel getLblType() {
+		return lblType;
+	}
+
+	/**
+	 * @param lblType the lblType to set
+	 */
+	public void setLblType(JLabel lblType) {
+		this.lblType = lblType;
+	}
+
+	/**
+	 * @return the lblSchema
+	 */
+	public JLabel getLblSchema() {
+		return lblSchema;
+	}
+
+	/**
+	 * @param lblSchema the lblSchema to set
+	 */
+	public void setLblSchema(JLabel lblSchema) {
+		this.lblSchema = lblSchema;
+	}
+
+	/**
+	 * @return the lblSyllabes
+	 */
+	public JLabel getLblSyllabes() {
+		return lblSyllabes;
+	}
+
+	/**
+	 * @param lblSyllabes the lblSyllabes to set
+	 */
+	public void setLblSyllabes(JLabel lblSyllabes) {
+		this.lblSyllabes = lblSyllabes;
 	}
 }
 

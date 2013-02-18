@@ -25,7 +25,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -33,7 +35,10 @@ import javax.swing.JButton;
 import org.apache.log4j.Logger;
 
 import dao.HeadwordDAO;
+import database.AvoirPourCategorieHeadword;
 import database.Headword;
+import database.ListeCategories;
+import database.Syllabes;
 
 /**
  * @author Valentin
@@ -69,7 +74,7 @@ public class ContentRechercheSimple extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				logger.debug("On lance la recherche");
 				enregistrerRecherche(application);
-				afficherRecherche(application);
+				afficherRecherche(application, application.getMesRecherches().size() - 1);
 			}
 		});
 
@@ -160,28 +165,21 @@ public class ContentRechercheSimple extends JPanel {
 		System.out.println("On a " + application.getMesRecherches().size() + " recherches !!");
 	}
 	
-	public void afficherRecherche(Application application) {
+	
+	
+	public void afficherRecherche(Application application, int numRecherche) {
 		
 		resultat.removeAll();
 		
-		ArrayList<String> dico = new ArrayList<String>();
-		int nbDictionnaires = application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().size();
-
-		for(int i = 0; i < nbDictionnaires; i++) {
-			if(application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().isSelected()) {
-				dico.add(application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().getText());
-			}
-		}
+		ArrayList<String> dico = application.getMesRecherches().get(numRecherche).getListeDictionnaire();
 		
 		expandingPanels = new ExpandingPanels(dico.size());
 		expandingPanels.clear();
 
-		HeadwordDAO headwords = new HeadwordDAO("local");
-
 		for(String dictionnaire : dico) {
 
 			System.out.println("Ici de dico " + textFieldRecherche.getText() + "    " + dictionnaire);
-			List<?> mots = headwords.findExactly(textFieldRecherche.getText(), dictionnaire);
+			
 
 			// DETAIL 1
 			if (application.getContentHome().getVoletRechercheSimple().getSliderDetails().getValue() == application.getContentHome().getVoletRechercheSimple().getSliderDetails().getMinimum()) {
@@ -189,11 +187,13 @@ public class ContentRechercheSimple extends JPanel {
 				Vector<RSDetail_1> listeMots = new Vector<RSDetail_1>();
 				RSDetail_1 rsdetail_1;
 
-				for(Object hw : mots) {
-					rsdetail_1 = new RSDetail_1(application);
-					rsdetail_1.setIdHeadword(((Headword) hw).getIdHeadword());
-					rsdetail_1.getLblMots().setText(((Headword) hw).getMot());
-					listeMots.addElement(rsdetail_1);
+				for(Object hw : application.getMesRecherches().get(numRecherche).getListeResultat().values()) {
+					if(dictionnaire.equalsIgnoreCase(((Headword) hw).getDictionnaires().getNomDictionnaire())) {
+						rsdetail_1 = new RSDetail_1(application);
+						rsdetail_1.setIdHeadword(((Headword) hw).getIdHeadword());
+						rsdetail_1.getLblMots().setText(((Headword) hw).getMot());
+						listeMots.addElement(rsdetail_1);
+					}
 				}
 				
 				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_1(application, listeMots));
@@ -205,11 +205,43 @@ public class ContentRechercheSimple extends JPanel {
 
 				RSDetail_2 rsdetail_2;
 
-				for(Object hw : mots) {
-					rsdetail_2 = new RSDetail_2(application);
-					rsdetail_2.setIdHeadword(((Headword) hw).getIdHeadword());
-					rsdetail_2.getLblMots().setText(((Headword) hw).getMot());
-					listeMots.addElement(rsdetail_2);
+				for(Object hw : application.getMesRecherches().get(numRecherche).getListeResultat().values()) {
+					if(dictionnaire.equalsIgnoreCase(((Headword) hw).getDictionnaires().getNomDictionnaire())) {
+						rsdetail_2 = new RSDetail_2(application);
+						rsdetail_2.setIdHeadword(((Headword) hw).getIdHeadword());
+						rsdetail_2.getLblMots().setText(((Headword) hw).getMot());
+						rsdetail_2.getLblCategories().setText(((Headword) hw).getMot());
+						
+						String cat = "Catégorie(s) : ";
+						
+						Set<?> test = ((Headword) hw).getAvoirPourCategorieHeadwords();
+						
+						Set<ListeCategories> test1 = new HashSet<ListeCategories>(0);
+						
+						for(Object object : test) {
+								test1.add(((AvoirPourCategorieHeadword) object).getListeCategories());
+						}
+						
+						for(Object object1 : test1) {
+							cat += ((ListeCategories) object1).getNom();
+						}
+						
+						rsdetail_2.getLblCategories().setText(cat);
+						
+						for(Object object : ((Headword) hw).getSyllabeses()) {
+						    System.out.println("Région : " + ((Syllabes) object).getRegion());
+						    System.out.println("Schéma : " + ((Syllabes) object).getSchema());
+						    System.out.println("Type : " + ((Syllabes) object).getTypePrononciation() + "\n");
+						    
+						    rsdetail_2.getLblRegion().setText("Région : " + ((Syllabes) object).getRegion());
+						    rsdetail_2.getLblSchema().setText("Schéma : " + ((Syllabes) object).getSchema());
+						    rsdetail_2.getLblType().setText("Type : " + ((Syllabes) object).getTypePrononciation());
+						    
+						    rsdetail_2.getLblSyllabes().setText("Syllabes : " + ((Syllabes) object).getSyllabe1() + "   " + ((Syllabes) object).getSyllabe2() + "   " + ((Syllabes) object).getSyllabe3() + "   " + ((Syllabes) object).getSyllabe4() + "   " + ((Syllabes) object).getSyllabe5() + "   " + ((Syllabes) object).getSyllabe6() + "   " + ((Syllabes) object).getSyllabe7() + "\t" + ((Syllabes) object).getSyllabe8() + "   " + ((Syllabes) object).getSyllabe9() + "   " + ((Syllabes) object).getSyllabe10());
+						}
+						
+						listeMots.addElement(rsdetail_2);
+					}
 				}
 
 				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_2(application, listeMots));
@@ -221,11 +253,13 @@ public class ContentRechercheSimple extends JPanel {
 
 				RSDetail_3 rsdetail_3;
 
-				for(Object hw : mots) {
-					rsdetail_3 = new RSDetail_3(application);
-					rsdetail_3.setIdHeadword(((Headword) hw).getIdHeadword());
-					rsdetail_3.getLblMots().setText(((Headword) hw).getMot());
-					listeMots.addElement(rsdetail_3);
+				for(Object hw : application.getMesRecherches().get(numRecherche).getListeResultat().values()) {
+					if(dictionnaire.equalsIgnoreCase(((Headword) hw).getDictionnaires().getNomDictionnaire())) {
+						rsdetail_3 = new RSDetail_3(application);
+						rsdetail_3.setIdHeadword(((Headword) hw).getIdHeadword());
+						rsdetail_3.getLblMots().setText(((Headword) hw).getMot());
+						listeMots.addElement(rsdetail_3);
+					}
 				}
 
 				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_3(application, listeMots));
@@ -323,6 +357,84 @@ public class ContentRechercheSimple extends JPanel {
 }
 
 
+
+/*
+	public void afficherRecherche(Application application) {
+		
+		resultat.removeAll();
+		
+		ArrayList<String> dico = new ArrayList<String>();
+		int nbDictionnaires = application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().size();
+
+		for(int i = 0; i < nbDictionnaires; i++) {
+			if(application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().isSelected()) {
+				dico.add(application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().getText());
+			}
+		}
+		
+		expandingPanels = new ExpandingPanels(dico.size());
+		expandingPanels.clear();
+
+		HeadwordDAO headwords = new HeadwordDAO("local");
+
+		for(String dictionnaire : dico) {
+
+			System.out.println("Ici de dico " + textFieldRecherche.getText() + "    " + dictionnaire);
+			List<?> mots = headwords.findExactly(textFieldRecherche.getText(), dictionnaire);
+
+			// DETAIL 1
+			if (application.getContentHome().getVoletRechercheSimple().getSliderDetails().getValue() == application.getContentHome().getVoletRechercheSimple().getSliderDetails().getMinimum()) {
+				
+				Vector<RSDetail_1> listeMots = new Vector<RSDetail_1>();
+				RSDetail_1 rsdetail_1;
+
+				for(Object hw : mots) {
+					rsdetail_1 = new RSDetail_1(application);
+					rsdetail_1.setIdHeadword(((Headword) hw).getIdHeadword());
+					rsdetail_1.getLblMots().setText(((Headword) hw).getMot());
+					listeMots.addElement(rsdetail_1);
+				}
+				
+				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_1(application, listeMots));
+			}
+			// DETAIL 2
+			else if (application.getContentHome().getVoletRechercheSimple().getSliderDetails().getValue() == (application.getContentHome().getVoletRechercheSimple().getSliderDetails().getMaximum())/2) {
+				
+				Vector<RSDetail_2> listeMots = new Vector<RSDetail_2>();
+
+				RSDetail_2 rsdetail_2;
+
+				for(Object hw : mots) {
+					rsdetail_2 = new RSDetail_2(application);
+					rsdetail_2.setIdHeadword(((Headword) hw).getIdHeadword());
+					rsdetail_2.getLblMots().setText(((Headword) hw).getMot());
+					listeMots.addElement(rsdetail_2);
+				}
+
+				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_2(application, listeMots));
+			}
+			// DETAIL 3
+			else if (application.getContentHome().getVoletRechercheSimple().getSliderDetails().getValue() == application.getContentHome().getVoletRechercheSimple().getSliderDetails().getMaximum()) {
+				
+				Vector<RSDetail_3> listeMots = new Vector<RSDetail_3>();
+
+				RSDetail_3 rsdetail_3;
+
+				for(Object hw : mots) {
+					rsdetail_3 = new RSDetail_3(application);
+					rsdetail_3.setIdHeadword(((Headword) hw).getIdHeadword());
+					rsdetail_3.getLblMots().setText(((Headword) hw).getMot());
+					listeMots.addElement(rsdetail_3);
+				}
+
+				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_3(application, listeMots));
+			}
+		}
+		
+		resultat.add(new JScrollPane(expandingPanels.getComponent()), gbc_result);
+		this.revalidate();
+	}
+*/
 
 
 
