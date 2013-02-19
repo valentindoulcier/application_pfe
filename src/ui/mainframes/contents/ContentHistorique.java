@@ -82,7 +82,8 @@ public class ContentHistorique extends JPanel {
 		
 		initComponents();
 		
-		//afficherRecherche(application, application.getMesRecherches().size() - 1);
+		if(application.getMesRecherches().size() > 0)
+			afficherRecherche(application, application.getMesRecherches().size() - 1);
 		
 		
 		sliderDetails.addChangeListener(new ChangeListener() {
@@ -349,11 +350,7 @@ public void afficherRecherche(Application application, int numRecherche) {
 						
 						rsdetail_2.getLblCategories().setText(cat);
 						
-						for(Object object : ((Headword) hw).getSyllabeses()) {
-						    System.out.println("Région : " + ((Syllabes) object).getRegion());
-						    System.out.println("Schéma : " + ((Syllabes) object).getSchema());
-						    System.out.println("Type : " + ((Syllabes) object).getTypePrononciation() + "\n");
-						    
+						for(Object object : ((Headword) hw).getSyllabeses()) {						    
 						    rsdetail_2.getLblRegion().setText("Région : " + ((Syllabes) object).getRegion());
 						    rsdetail_2.getLblSchema().setText("Schéma : " + ((Syllabes) object).getSchema());
 						    rsdetail_2.getLblType().setText("Type : " + ((Syllabes) object).getTypePrononciation());

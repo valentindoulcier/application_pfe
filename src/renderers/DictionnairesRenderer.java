@@ -127,7 +127,6 @@ class TableModelDico extends DefaultTableModel {
 
     public void addRows(Vector<DictionnairesCell> listeDictionnaires) {
     	for(int i = 0; i < listeDictionnaires.size(); i++) {
-    		System.out.println("Element : " + i + "\n\tNuméro : " + listeDictionnaires.get(i).getChckbxDictionnaires().getText() + " " + listeDictionnaires.get(i).getChckbxDictionnaires().isSelected());
     		super.addRow(new Object[]{new Caract_Dictionnaire(listeDictionnaires.get(i).getNum(), listeDictionnaires.get(i).getChckbxDictionnaires().getText(), listeDictionnaires.get(i).getChckbxDictionnaires().isSelected())});
     	}
     	/*new Caract_Historique(listeRecherches.get(i).getNumRecherche(), listeRecherches.get(i).getLblMots().getText())*/

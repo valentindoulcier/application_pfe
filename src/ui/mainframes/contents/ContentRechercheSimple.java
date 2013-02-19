@@ -136,14 +136,6 @@ public class ContentRechercheSimple extends JPanel {
 		
 		maRecherche.setMotRecherche(textFieldRecherche.getText());
 		
-		//int nbDictionnaires = application.getContentHome().getVoletRechercheSimple().getListeDicos().size();
-
-		//for(int i = 0; i < nbDictionnaires; i++) {
-		//	if(application.getContentHome().getVoletRechercheSimple().getDictionnairesRenderer().getListeItems().get(i).getChckbxDictionnaires().isSelected()) {
-		//		maRecherche.getListeDictionnaire().add(application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().getText());
-		//	}
-		//}
-		
 		for(String dico : application.getContentHome().getVoletRechercheSimple().getListeDicos()) {
 			maRecherche.getListeDictionnaire().add(dico);
 		}

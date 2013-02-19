@@ -43,12 +43,10 @@ public class DictionnairesCell extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				if (chckbxDictionnaire.isSelected()) {
-					System.out.println("JE COCHE");
 					chckbxDictionnaire.setSelected(true);
 					application.getContentHome().getVoletRechercheSimple().getListeDicos().add(num, chckbxDictionnaire.getText());
 				}
 				else {
-					System.out.println("JE DECOCHE");
 					chckbxDictionnaire.setSelected(false);
 					application.getContentHome().getVoletRechercheSimple().getListeDicos().remove(num);
 				}

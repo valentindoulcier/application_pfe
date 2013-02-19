@@ -32,7 +32,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 
 /**

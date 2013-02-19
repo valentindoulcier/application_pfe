@@ -61,8 +61,6 @@ public class VoletHistorique extends JPanel {
 	
 	public void chargerHistorique(Application application) {
 		
-		//jpanel.removeAll();
-		
 		Vector<HistoriqueCell> listeRecherches = new Vector<HistoriqueCell>();
 
 		HistoriqueCell historiqueCell;
@@ -75,12 +73,7 @@ public class VoletHistorique extends JPanel {
 			historiqueCell.getLblMots().setText(((Recherche) recherche).getMotRecherche());
 			historiqueCell.getLblDate().setText(simpleDateFormat.format(((Recherche) recherche).getDateRecherche()));
 			listeRecherches.add(0, historiqueCell);//addElement(historiqueCell);
-		}
-		
-		System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-		System.out.println("\tIl y a " + listeRecherches.size() + " éléments !!");
-		System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-		
+		}		
 		
 		JPanel historiqueRenderer = new HistoriqueRenderer(application, listeRecherches);
 		historiqueRenderer.setBackground(Color.GRAY);
