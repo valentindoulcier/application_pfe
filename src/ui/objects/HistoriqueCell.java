@@ -28,6 +28,8 @@ public class HistoriqueCell extends JPanel {
 	private int numRecherche;
 
 	private GridBagLayout gridBagLayout;
+	
+	private JLabel lblNumero;
 
 	private JLabel lblMots;
 	
@@ -46,9 +48,9 @@ public class HistoriqueCell extends JPanel {
 		
 		setBackground(Color.LIGHT_GRAY);
 		gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{5, 20, 0, 0};
+		gridBagLayout.columnWidths = new int[]{5, 20, 50, 8, 0};
 		gridBagLayout.rowHeights = new int[]{10, 10, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
@@ -60,6 +62,15 @@ public class HistoriqueCell extends JPanel {
 		gbc_lblMots.gridx = 1;
 		gbc_lblMots.gridy = 0;
 		add(lblMots, gbc_lblMots);
+		
+		lblNumero = new JLabel("Numero");
+		lblNumero.setFont(new Font("Lucida Grande", Font.ITALIC, 10));
+		GridBagConstraints gbc_lblNumero = new GridBagConstraints();
+		gbc_lblNumero.anchor = GridBagConstraints.EAST;
+		gbc_lblNumero.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNumero.gridx = 2;
+		gbc_lblNumero.gridy = 0;
+		add(lblNumero, gbc_lblNumero);
 		
 		lblDate = new JLabel("Date");
 		lblDate.setForeground(Color.GRAY);
@@ -76,6 +87,7 @@ public class HistoriqueCell extends JPanel {
 
 	public void setCaract(Caract_Historique caract) {
 		numRecherche = caract.numRecherche;
+		lblNumero.setText(String.valueOf(caract.numRecherche));
 		lblMots.setText(caract.mot);
 		lblDate.setText(caract.date);
 	}

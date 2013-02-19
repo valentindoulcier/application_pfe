@@ -120,7 +120,7 @@ public class VoletFooterRecherche extends JPanel {
 					System.out.println("Je viens de la recherche avancée");
 					
 				}
-				else if(jeViensDe == 3) {
+				else if(jeViensDe == 3) {					
 					voletHeaderRechercheSimple = new VoletHeaderRechercheSimple();
 					voletRechercheSimple = new VoletRechercheSimple(application);
 					

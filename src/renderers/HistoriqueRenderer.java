@@ -77,10 +77,14 @@ class CellEditorRenderer extends AbstractCellEditor implements TableCellRenderer
 
 	private HistoriqueCell renderer;
     private HistoriqueCell editor;
+    
+    private Application application;
  
 	public CellEditorRenderer(Application application) {
 		renderer = new HistoriqueCell(application);
 		editor = new HistoriqueCell(application);
+		
+		this.application = application;
 	}
 	
 	@Override
@@ -93,7 +97,7 @@ class CellEditorRenderer extends AbstractCellEditor implements TableCellRenderer
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         editor.setCaract((Caract_Historique) value);
     	editor.setBackground(new Color(165, 207, 255));
-    	System.out.println("Je suis : " + editor.getCaract().mot + " numéro : " + editor.getCaract().numRecherche);
+    	application.getContentHome().getVoletFooterRecherche().getContentHistorique().afficherRecherche(application, editor.getCaract().numRecherche - 1);
         return editor;
     }
 

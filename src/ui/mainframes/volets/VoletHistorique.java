@@ -72,7 +72,7 @@ public class VoletHistorique extends JPanel {
 		for(Object recherche : application.getMesRecherches()) {
 			historiqueCell = new HistoriqueCell(application);
 			historiqueCell.setNumRecherche(((Recherche) recherche).getNumRecherche());
-			historiqueCell.getLblMots().setText(((Recherche) recherche).getCritereRecherche());
+			historiqueCell.getLblMots().setText(((Recherche) recherche).getMotRecherche());
 			historiqueCell.getLblDate().setText(simpleDateFormat.format(((Recherche) recherche).getDateRecherche()));
 			listeRecherches.add(0, historiqueCell);//addElement(historiqueCell);
 		}

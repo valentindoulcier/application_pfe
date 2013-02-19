@@ -134,11 +134,9 @@ public class ContentRechercheSimple extends JPanel {
 		
 		maRecherche.setDateRecherche(new Date());
 		
-		maRecherche.setCritereRecherche(textFieldRecherche.getText());
+		maRecherche.setMotRecherche(textFieldRecherche.getText());
 		
 		int nbDictionnaires = application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().size();
-		
-		System.out.println("On bosse sur " + nbDictionnaires + " dico !!");
 
 		for(int i = 0; i < nbDictionnaires; i++) {
 			if(application.getContentHome().getVoletRechercheSimple().getMenuRenderer().getListeItems().get(i).getChckbxDictionnaires().isSelected()) {
@@ -149,20 +147,15 @@ public class ContentRechercheSimple extends JPanel {
 		HeadwordDAO headwords = new HeadwordDAO("local");
 
 		for(String dictionnaire : maRecherche.getListeDictionnaire()) {
-
-			System.out.println("Ici le dico " + dictionnaire);
 			
 			List<?> mots = headwords.findExactly(textFieldRecherche.getText(), dictionnaire);
 			
 			for(Object headword : mots) {
 				maRecherche.getListeResultat().put(((Headword) headword).getIdHeadword(), ((Headword) headword));
-				System.out.println("\tAjout du mot : " + ((Headword) headword).getIdHeadword() + " - " + ((Headword) headword).getMot());
 			}
 		}
 		
 		application.getMesRecherches().add(maRecherche);
-		
-		System.out.println("On a " + application.getMesRecherches().size() + " recherches !!");
 	}
 	
 	
