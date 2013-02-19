@@ -35,11 +35,11 @@ public class MotsRenderer_3 extends JPanel {
 	public MotsRenderer_3(Application application, Vector<RSDetail_3> listeMots) {
 		
 		if(listeMots.size() > 0) {
-			if(60*listeMots.size()+5 > 250) {
-				this.setPreferredSize(new Dimension(0, 250));
+			if(110*listeMots.size()+5 > 300) {
+				this.setPreferredSize(new Dimension(0, 300));
 			}
 			else {
-				this.setPreferredSize(new Dimension(0, 60*listeMots.size()+5));
+				this.setPreferredSize(new Dimension(0, 110*listeMots.size()+5));
 			}
 		}
 		else {
@@ -72,7 +72,7 @@ public class MotsRenderer_3 extends JPanel {
 		compModel.addRows(listeMots);
 
 		JTable table = new JTable(compModel);
-		table.setRowHeight(60);
+		table.setRowHeight(110);
 		table.setTableHeader(null);
 		CellEditorRenderer_3 cellEditorRenderer = new CellEditorRenderer_3(application);
 		table.setDefaultRenderer(Object.class, cellEditorRenderer);
@@ -139,7 +139,7 @@ class TableModel_3 extends DefaultTableModel {
 
     public void addRows(Vector<RSDetail_3> listeMots) {
     	for(int i = 0; i < listeMots.size(); i++) {
-    		super.addRow(new Object[]{new Caract_3(listeMots.get(i).getIdHeadword(), listeMots.get(i).getLblMots().getText())});
+    		super.addRow(new Object[]{new Caract_3(listeMots.get(i).getIdHeadword(), listeMots.get(i).getLblMots().getText(), listeMots.get(i).getLblCategories().getText(), listeMots.get(i).getLblRegion().getText(), listeMots.get(i).getLblSchema().getText(), listeMots.get(i).getLblType().getText(), listeMots.get(i).getLblSyllabes().getText())});
     	}
         //super.fireTableDataChanged();
     }

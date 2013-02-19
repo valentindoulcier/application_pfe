@@ -154,7 +154,7 @@ public class RSDetail_2 extends JPanel {
 		gbc_lblType.gridy = 2;
 		add(lblType, gbc_lblType);
 		
-		lblSyllabes = new JLabel("New label : ezf ehzf uhezf uhiezh izuhe iuzhf eizhf ezuhfei zuh ziehfizeh izfh");
+		lblSyllabes = new JLabel("Syllabes");
 		GridBagConstraints gbc_lblSyllabes = new GridBagConstraints();
 		gbc_lblSyllabes.insets = new Insets(0, 0, 0, 5);
 		gbc_lblSyllabes.anchor = GridBagConstraints.WEST;

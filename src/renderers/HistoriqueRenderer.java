@@ -34,8 +34,8 @@ public class HistoriqueRenderer extends JPanel {
 
 	public HistoriqueRenderer(Application application, Vector<HistoriqueCell> listeRecherches) {
 		
-		this.setMinimumSize(application.getContentHome().getVoletFooterRecherche().getVoletHistorique().getPreferredSize().getSize());
-		//this.setMinimumSize(new Dimension(300, 540));
+		//this.setMinimumSize(application.getContentHome().getVoletFooterRecherche().getVoletHistorique().getPreferredSize().getSize());
+		//this.setBackground(Color.GRAY);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
@@ -45,7 +45,6 @@ public class HistoriqueRenderer extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JScrollPane compTableScrollpane = new JScrollPane(CreateCompTable(application, listeRecherches), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		compTableScrollpane.setBackground(Color.PINK);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
@@ -57,12 +56,10 @@ public class HistoriqueRenderer extends JPanel {
 
 		compModel = new TableModel();
 
-		System.out.println("TAILLE 1 : " + listeRecherches.size());
-
 		compModel.addRows(listeRecherches);
 
 		JTable table = new JTable(compModel);
-		table.setRowHeight(30);
+		table.setRowHeight(45);
 		table.setTableHeader(null);
 		CellEditorRenderer cellEditorRenderer = new CellEditorRenderer(application);
 		table.setDefaultRenderer(Object.class, cellEditorRenderer);
@@ -95,8 +92,8 @@ class CellEditorRenderer extends AbstractCellEditor implements TableCellRenderer
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         editor.setCaract((Caract_Historique) value);
-    	editor.setBackground(new Color(204, 255, 229));
-    	System.out.println("Je suis : " + editor.getCaract().mot);
+    	editor.setBackground(new Color(165, 207, 255));
+    	System.out.println("Je suis : " + editor.getCaract().mot + " numéro : " + editor.getCaract().numRecherche);
         return editor;
     }
 
@@ -129,7 +126,7 @@ class TableModel extends DefaultTableModel {
     public void addRows(Vector<HistoriqueCell> listeRecherches) {
     	for(int i = 0; i < listeRecherches.size(); i++) {
     		System.out.println("Element : " + i + "\n\tNuméro : " + listeRecherches.get(i).getNumRecherche() + "\n\tNom : " + listeRecherches.get(i).getLblMots().getText());
-    		super.addRow(new Object[]{new Caract_Historique(listeRecherches.get(i).getNumRecherche(), listeRecherches.get(i).getLblMots().getText())});
+    		super.addRow(new Object[]{new Caract_Historique(listeRecherches.get(i).getNumRecherche(), listeRecherches.get(i).getLblMots().getText(), listeRecherches.get(i).getLblDate().getText())});
     	}
     	/*new Caract_Historique(listeRecherches.get(i).getNumRecherche(), listeRecherches.get(i).getLblMots().getText())*/
         //super.fireTableDataChanged();

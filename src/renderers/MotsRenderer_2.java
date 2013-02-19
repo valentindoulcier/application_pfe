@@ -35,11 +35,11 @@ public class MotsRenderer_2 extends JPanel {
 	public MotsRenderer_2(Application application, Vector<RSDetail_2> listeMots) {
 		
 		if(listeMots.size() > 0) {
-			if(110*listeMots.size()+5 > 300) {
+			if(90*listeMots.size()+5 > 300) {
 				this.setPreferredSize(new Dimension(0, 300));
 			}
 			else {
-				this.setPreferredSize(new Dimension(0, 110*listeMots.size()+5));
+				this.setPreferredSize(new Dimension(0, 90*listeMots.size()+5));
 			}
 		}
 		else {
@@ -70,7 +70,7 @@ public class MotsRenderer_2 extends JPanel {
 		compModel.addRows(listeMots);
 
 		JTable table = new JTable(compModel);
-		table.setRowHeight(110);
+		table.setRowHeight(90);
 		table.setTableHeader(null);
 		CellEditorRenderer_2 cellEditorRenderer = new CellEditorRenderer_2(application);
 		table.setDefaultRenderer(Object.class, cellEditorRenderer);

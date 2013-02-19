@@ -224,6 +224,7 @@ public class ContentRechercheSimple extends JPanel {
 						
 						for(Object object1 : test1) {
 							cat += ((ListeCategories) object1).getNom();
+							cat += "          ";
 						}
 						
 						rsdetail_2.getLblCategories().setText(cat);
