@@ -81,7 +81,8 @@ public class ContentHistorique extends JPanel {
 	public ContentHistorique(final Application application) {
 		
 		initComponents();
-		afficherRecherche(application, application.getMesRecherches().size() - 1);
+		
+		//afficherRecherche(application, application.getMesRecherches().size() - 1);
 		
 		
 		sliderDetails.addChangeListener(new ChangeListener() {

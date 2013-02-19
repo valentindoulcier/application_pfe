@@ -17,18 +17,23 @@ import principal.Application;
 import dao.DictionnairesDAO;
 import database.Dictionnaires;
 
-import renderers.MenuRenderer;
-import ui.objects.RSMenuListe;
+import renderers.DictionnairesRenderer;
+import ui.objects.DictionnairesCell;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
+import javax.swing.JList;
+import javax.swing.JComboBox;
 
 /**
  * @author Valentin
@@ -45,12 +50,29 @@ public class VoletRechercheSimple extends JPanel {
 	private JLabel lblDictionnaires;
 
 	private JPanel listeDico;
-
-	private MenuRenderer menuRenderer;
 	
 	private JLabel lblDetails;
 	
 	private JSlider sliderDetails;
+	private JRadioButton rdbtnNewRadioButton_1;
+	
+	private ArrayList<String> listeDicos;
+	private JComboBox comboBox;
+	private JSpinner spinner;
+
+	/**
+	 * @return the listeDicos
+	 */
+	public ArrayList<String> getListeDicos() {
+		return listeDicos;
+	}
+
+	/**
+	 * @param listeDicos the listeDicos to set
+	 */
+	public void setListeDicos(ArrayList<String> listeDicos) {
+		this.listeDicos = listeDicos;
+	}
 
 	/**
 	 * Create the panel.
@@ -58,7 +80,7 @@ public class VoletRechercheSimple extends JPanel {
 	 */
 	public VoletRechercheSimple(Application application) {
 
-		initComponents();
+		initComponents(application);
 		
 		sliderDetails.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
@@ -76,15 +98,17 @@ public class VoletRechercheSimple extends JPanel {
 	    });
 	}
 
-	public void initComponents() {
+	public void initComponents(Application application) {
 		setBackground(Color.LIGHT_GRAY);
 		setPreferredSize(new Dimension(300, 540));
 		
+		listeDicos = new ArrayList<String>();
+		
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 260, 20, 0};
-		gridBagLayout.rowHeights = new int[]{20, 20, 100, 20, 20, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowHeights = new int[]{20, 20, 100, 20, 20, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
 		lblDictionnaires = new JLabel("Dictionnaires");
@@ -95,7 +119,7 @@ public class VoletRechercheSimple extends JPanel {
 		gbc_lblDictionnaires.gridy = 1;
 		add(lblDictionnaires, gbc_lblDictionnaires);
 
-		listeDico = listeDico();
+		listeDico = listeDico(application);
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
@@ -123,10 +147,32 @@ public class VoletRechercheSimple extends JPanel {
 		gbc_sliderDetail.gridx = 1;
 		gbc_sliderDetail.gridy = 5;
 		add(sliderDetails, gbc_sliderDetail);
+		
+		comboBox = new JComboBox();
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridy = 6;
+		add(comboBox, gbc_comboBox);
+		
+		rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
+		GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
+		gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnNewRadioButton_1.gridx = 1;
+		gbc_rdbtnNewRadioButton_1.gridy = 7;
+		add(rdbtnNewRadioButton_1, gbc_rdbtnNewRadioButton_1);
+		
+		spinner = new JSpinner();
+		GridBagConstraints gbc_spinner = new GridBagConstraints();
+		gbc_spinner.insets = new Insets(0, 0, 0, 5);
+		gbc_spinner.gridx = 1;
+		gbc_spinner.gridy = 8;
+		add(spinner, gbc_spinner);
 
 	}
 
-	public JPanel listeDico() {
+	public JPanel listeDico(Application application) {
 
 		logger.debug("4 - Chargement des dictionnaires");
 		DictionnairesDAO dictionnaires = new DictionnairesDAO("local");
@@ -139,25 +185,21 @@ public class VoletRechercheSimple extends JPanel {
 		else
 			JOptionPane.showMessageDialog(null, "Connexion fermée VOLET DICO 2 !");
 		
-		
-		
-		
 
-		Vector<RSMenuListe> listeDictionnaires = new Vector<RSMenuListe>();
+		Vector<DictionnairesCell> listeDictionnaires = new Vector<DictionnairesCell>();
 
-		RSMenuListe rsmenuListe;
+		DictionnairesCell dictionnairesCell;
 
 		if(dico != null){
 			for(Object l : dico) {
-				rsmenuListe = new RSMenuListe();
-				rsmenuListe.getChckbxDictionnaires().setText(((Dictionnaires) l).getNomDictionnaire().toUpperCase());
-				listeDictionnaires.addElement(rsmenuListe);
+				listeDicos.add(((Dictionnaires) l).getIdDictionnaire() - 1, ((Dictionnaires) l).getNomDictionnaire().toUpperCase());
+				dictionnairesCell = new DictionnairesCell(application);
+				dictionnairesCell.getChckbxDictionnaires().setText(((Dictionnaires) l).getNomDictionnaire().toUpperCase());
+				listeDictionnaires.addElement(dictionnairesCell);
 			}
 		}
 
-		menuRenderer = new MenuRenderer(listeDictionnaires);
-
-		return menuRenderer;
+		return new DictionnairesRenderer(application, listeDictionnaires);
 	}
 
 	/**
@@ -200,20 +242,6 @@ public class VoletRechercheSimple extends JPanel {
 	 */
 	public void setListeDico(JPanel listeDico) {
 		this.listeDico = listeDico;
-	}
-
-	/**
-	 * @return the menuRenderer
-	 */
-	public MenuRenderer getMenuRenderer() {
-		return menuRenderer;
-	}
-
-	/**
-	 * @param menuRenderer the menuRenderer to set
-	 */
-	public void setMenuRenderer(MenuRenderer menuRenderer) {
-		this.menuRenderer = menuRenderer;
 	}
 
 	/**
