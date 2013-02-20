@@ -72,8 +72,6 @@ public class VoletFooterRecherche extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				System.out.println("Je veux la Recherche Simple");
-				
 				if(jeViensDe == -1) {
 					voletHeaderRechercheSimple = application.getContentHome().getVoletHeaderRechercheSimple();
 					voletRechercheSimple = application.getContentHome().getVoletRechercheSimple();
@@ -94,8 +92,6 @@ public class VoletFooterRecherche extends JPanel {
 					application.getcPanel().add(contentRechercheSimple, "contentRechercheSimple");
 					
 					jeViensDe = 1;
-					
-					System.out.println("J'ai initialisé la recherche simple en local");
 				}
 				
 				if(jeViensDe == 2) {
@@ -117,8 +113,6 @@ public class VoletFooterRecherche extends JPanel {
 					application.getcHeader().remove(contentHeaderRechercheAvancee);
 					application.getcPanel().remove(contentRechercheAvancee);
 					
-					System.out.println("Je viens de la recherche avancée");
-					
 				}
 				else if(jeViensDe == 3) {					
 					voletHeaderRechercheSimple = new VoletHeaderRechercheSimple();
@@ -139,8 +133,6 @@ public class VoletFooterRecherche extends JPanel {
 					application.getcHeader().remove(contentHeaderHistorique);
 					application.getcPanel().remove(contentHistorique);
 					
-					System.out.println("Je viens de l'historique");
-					
 				}
 				
 				application.getVoletHeader().show(application.getvHeader(), "voletHeaderRechercheSimple");
@@ -150,7 +142,6 @@ public class VoletFooterRecherche extends JPanel {
 				application.getContentPanel().show(application.getcPanel(), "contentRechercheSimple");
 				
 				jeViensDe = 1;
-				System.out.println("------------------------");
 			}
 			
 		});
@@ -159,8 +150,6 @@ public class VoletFooterRecherche extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				System.out.println("Je veux la Recherche Avancée");
 				
 				if(jeViensDe == -1) {
 					voletHeaderRechercheSimple = application.getContentHome().getVoletHeaderRechercheSimple();
@@ -182,8 +171,6 @@ public class VoletFooterRecherche extends JPanel {
 					application.getcPanel().add(contentRechercheSimple, "contentRechercheSimple");
 					
 					jeViensDe = 1;
-					
-					System.out.println("J'ai changé la recherche simple (locale)");
 				}
 				
 				if(jeViensDe == 1) {
@@ -204,8 +191,6 @@ public class VoletFooterRecherche extends JPanel {
 					
 					application.getcHeader().remove(contentHeaderRechercheSimple);
 					application.getcPanel().remove(contentRechercheSimple);
-					
-					System.out.println("Je viens de la recherche simple");
 					
 				}
 				else if(jeViensDe == 3) {
@@ -227,8 +212,6 @@ public class VoletFooterRecherche extends JPanel {
 					application.getcHeader().remove(contentHeaderHistorique);
 					application.getcPanel().remove(contentHistorique);
 					
-					System.out.println("Je viens de l'historique");
-					
 				}
 				
 				application.getVoletHeader().show(application.getvHeader(), "voletHeaderRechercheAvancee");
@@ -238,8 +221,6 @@ public class VoletFooterRecherche extends JPanel {
 				application.getContentPanel().show(application.getcPanel(), "contentRechercheAvancee");
 				
 				jeViensDe = 2;
-				
-				System.out.println("-------------------------");
 			}
 			
 		});
@@ -248,8 +229,6 @@ public class VoletFooterRecherche extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				System.out.println("Je veux l'historique");
 				
 				if(jeViensDe == -1) {
 					voletHeaderRechercheSimple = application.getContentHome().getVoletHeaderRechercheSimple();
@@ -271,8 +250,6 @@ public class VoletFooterRecherche extends JPanel {
 					application.getcPanel().add(contentRechercheSimple, "contentRechercheSimple");
 					
 					jeViensDe = 1;
-					
-					System.out.println("Initialisation de la Recherche simple locale");
 				}
 				
 				if(jeViensDe == 1) {
@@ -294,8 +271,6 @@ public class VoletFooterRecherche extends JPanel {
 					application.getcHeader().remove(contentHeaderRechercheSimple);
 					application.getcPanel().remove(contentRechercheSimple);
 					
-					System.out.println("Je viens de la Recherche simple");
-					
 				}
 				else if(jeViensDe == 2) {
 					voletHeaderHistorique = new VoletHeaderHistorique();
@@ -315,8 +290,6 @@ public class VoletFooterRecherche extends JPanel {
 				
 					application.getcHeader().remove(contentHeaderRechercheAvancee);
 					application.getcPanel().remove(contentRechercheAvancee);
-					
-					System.out.println("Je viens de la recherche avancée");
 				
 				}
 				
@@ -329,7 +302,6 @@ public class VoletFooterRecherche extends JPanel {
 				application.getContentPanel().show(application.getcPanel(), "contentHistorique");
 				
 				jeViensDe = 3;
-				System.out.println("--------------------------------");
 			}
 			
 		});

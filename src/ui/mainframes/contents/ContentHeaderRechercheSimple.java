@@ -13,6 +13,8 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
 import principal.Application;
 
 /**
@@ -22,6 +24,8 @@ import principal.Application;
 public class ContentHeaderRechercheSimple extends JPanel {
 
 	private static final long serialVersionUID = 5428423567932680960L;
+
+	private static Logger logger = Logger.getLogger(ContentHeaderRechercheSimple.class);
 
 	private static boolean ouvert = false;
 
@@ -85,7 +89,7 @@ public class ContentHeaderRechercheSimple extends JPanel {
 					application.getcPanel().remove(application.getContentHome().getVoletFooterRecherche().getContentRechercheSimple());
 				}
 				else {
-					System.out.println("Problème ligne 80 ContentHeaderRechercheSimple");
+					logger.error("Problème ligne 80 ContentHeaderRechercheSimple");
 				}
 			}
 		});

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Vector;
 
@@ -73,6 +74,7 @@ public class ContentRechercheSimple extends JPanel {
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				logger.debug("On lance la recherche");
+				
 				enregistrerRecherche(application);
 				afficherRecherche(application, application.getMesRecherches().size() - 1);
 			}
@@ -136,8 +138,8 @@ public class ContentRechercheSimple extends JPanel {
 		
 		maRecherche.setMotRecherche(textFieldRecherche.getText());
 		
-		for(String dico : application.getContentHome().getVoletRechercheSimple().getListeDicos()) {
-			maRecherche.getListeDictionnaire().add(dico);
+		for(Entry<Integer, String> entry : application.getContentHome().getVoletRechercheSimple().getListeDicos().entrySet()) {
+		    maRecherche.getListeDictionnaire().add(entry.getValue());
 		}
 		
 		HeadwordDAO headwords = new HeadwordDAO("local");
@@ -166,8 +168,6 @@ public class ContentRechercheSimple extends JPanel {
 		expandingPanels.clear();
 
 		for(String dictionnaire : dico) {
-
-			System.out.println("Ici de dico " + textFieldRecherche.getText() + "    " + dictionnaire);
 			
 
 			// DETAIL 1
@@ -218,11 +218,7 @@ public class ContentRechercheSimple extends JPanel {
 						
 						rsdetail_2.getLblCategories().setText(cat);
 						
-						for(Object object : ((Headword) hw).getSyllabeses()) {
-						    System.out.println("Région : " + ((Syllabes) object).getRegion());
-						    System.out.println("Schéma : " + ((Syllabes) object).getSchema());
-						    System.out.println("Type : " + ((Syllabes) object).getTypePrononciation() + "\n");
-						    
+						for(Object object : ((Headword) hw).getSyllabeses()) {						    
 						    rsdetail_2.getLblRegion().setText("Région : " + ((Syllabes) object).getRegion());
 						    rsdetail_2.getLblSchema().setText("Schéma : " + ((Syllabes) object).getSchema());
 						    rsdetail_2.getLblType().setText("Type : " + ((Syllabes) object).getTypePrononciation());
@@ -368,8 +364,6 @@ public class ContentRechercheSimple extends JPanel {
 		HeadwordDAO headwords = new HeadwordDAO("local");
 
 		for(String dictionnaire : dico) {
-
-			System.out.println("Ici de dico " + textFieldRecherche.getText() + "    " + dictionnaire);
 			List<?> mots = headwords.findExactly(textFieldRecherche.getText(), dictionnaire);
 
 			// DETAIL 1

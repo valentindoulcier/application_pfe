@@ -96,7 +96,6 @@ public class RSDetail_1 extends JPanel {
 				
 				//layerApplication.getCardLayoutContent().show(layerApplication.getPanelContent(), "AppliContentEditionMot");
 				//layerApplication.getAppliContentEditionMot().getVolet_1().getTextField().setText(String.valueOf(idHeadword));
-				//System.out.println("Je suis : " + idHeadword);
 			}
 		});
 

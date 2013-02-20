@@ -44,7 +44,7 @@ public class DictionnairesCell extends JPanel {
 				// TODO Auto-generated method stub
 				if (chckbxDictionnaire.isSelected()) {
 					chckbxDictionnaire.setSelected(true);
-					application.getContentHome().getVoletRechercheSimple().getListeDicos().add(num, chckbxDictionnaire.getText());
+					application.getContentHome().getVoletRechercheSimple().getListeDicos().put(num, chckbxDictionnaire.getText());
 				}
 				else {
 					chckbxDictionnaire.setSelected(false);
@@ -83,25 +83,6 @@ public class DictionnairesCell extends JPanel {
 	public void setChckbxDictionnaires(JCheckBox chckbxDictionnaire) {
 		this.chckbxDictionnaire = chckbxDictionnaire;
 	}
-
-	/**
-	 * @param arg0
-	 */
-	/*
-	public void mousePressed(MouseEvent arg0) {
-		
-		if (chckbxDictionnaire.isSelected()) {
-			System.out.println("JE DECOCHE");
-			chckbxDictionnaire.setSelected(false);
-		}
-		else {
-			System.out.println("JE COCHE");
-			chckbxDictionnaire.setSelected(true);
-		}
-		//this.revalidate();
-	}
-	*/
-	
 	
 	public void setCaract(Caract_Dictionnaire caract) {
 		num = caract.num;

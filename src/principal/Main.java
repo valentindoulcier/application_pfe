@@ -68,14 +68,14 @@ public class Main {
 
 			//ListeStatutsDAO test = new ListeStatutsDAO("local");
 			//ListeStatuts tempo = test.findTheStatut(3);
-			//System.out.println(tempo.getStatut() + "  " + tempo.getIdStatut());
+			//logger.info(tempo.getStatut() + "  " + tempo.getIdStatut());
 			//test.create(new ListeStatuts(maDate.format(date)));
 
 			//HeadwordDAO test = new HeadwordDAO("local");
 			//List<?> tempo = test.findExactly("house", "mcq");
 
 			//for(Object l : tempo) {
-			//	System.out.println("*" + ((Headword) l).getDictionnaires().getNomDictionnaire() + "* *" + ((Headword) l).getMot() + "*");
+			//	logger.info("*" + ((Headword) l).getDictionnaires().getNomDictionnaire() + "* *" + ((Headword) l).getMot() + "*");
 			//}
 
 
@@ -86,7 +86,7 @@ public class Main {
 			//List list = test.findAll();
 
 			//for(Object l : list) {
-			//	System.out.println("*" + ((ListeStatuts) l).getIdStatut() + "* *" + ((ListeStatuts) l).getStatut() + "*");
+			//	logger.info("*" + ((ListeStatuts) l).getIdStatut() + "* *" + ((ListeStatuts) l).getStatut() + "*");
 			//}
 
 
@@ -104,16 +104,16 @@ public class Main {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
 		catch(ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException: " + e.getMessage());
+			logger.fatal("ClassNotFoundException: " + e.getMessage());
 		}
 		catch(InstantiationException e) {
-			System.out.println("InstantiationException: " + e.getMessage());
+			logger.fatal("InstantiationException: " + e.getMessage());
 		}
 		catch(IllegalAccessException e) {
-			System.out.println("IllegalAccessException: " + e.getMessage());
+			logger.fatal("IllegalAccessException: " + e.getMessage());
 		}
 		catch(UnsupportedLookAndFeelException e) {
-			System.out.println("UnsupportedLookAndFeelException: " + e.getMessage());
+			logger.fatal("UnsupportedLookAndFeelException: " + e.getMessage());
 		}
 	}
 

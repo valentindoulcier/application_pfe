@@ -67,8 +67,6 @@ public class MotsRenderer_3 extends JPanel {
 
 		compModel = new TableModel_3();
 
-		System.out.println("TAILLE 1 : " + listeMots.size());
-
 		compModel.addRows(listeMots);
 
 		JTable table = new JTable(compModel);

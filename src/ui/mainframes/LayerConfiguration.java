@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JOptionPane;
 
-//import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -37,7 +37,7 @@ public class LayerConfiguration extends JPanel {
 
 	private static final long serialVersionUID = -1316049476783153299L;
 	
-	//private static Logger logger = Logger.getLogger(LayerConfiguration.class);
+	private static Logger logger = Logger.getLogger(LayerConfiguration.class);
 
 	Object[] options = {"Instance unique", "Mettre à jour"};
 
@@ -120,7 +120,7 @@ public class LayerConfiguration extends JPanel {
 						HibernateUtils.deconnectionLocale();
 						HibernateUtils.getInstanceLocale();
 					} catch (IOException e1) {
-						System.out.println("Listener Valider Local : " + e1.getMessage());
+						logger.fatal("Listener Valider Local : " + e1.getMessage());
 					}
 				}
 				
@@ -162,7 +162,7 @@ public class LayerConfiguration extends JPanel {
 						HibernateUtils.deconnectionMaster();
 						HibernateUtils.getInstanceMaster();
 					} catch (IOException e1) {
-						System.out.println("Listener Valider Master : " + e1.getMessage());
+						logger.fatal("Listener Valider Master : " + e1.getMessage());
 					}
 				}
 				

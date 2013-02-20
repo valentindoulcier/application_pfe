@@ -24,15 +24,12 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.JRadioButton;
-import javax.swing.JSpinner;
-import javax.swing.JComboBox;
 
 /**
  * @author Valentin
@@ -53,26 +50,11 @@ public class VoletRechercheSimple extends JPanel {
 	private JLabel lblDetails;
 	
 	private JSlider sliderDetails;
-	private JRadioButton rdbtnNewRadioButton_1;
 	
-	private ArrayList<String> listeDicos;
-	private JComboBox comboBox;
-	private JSpinner spinner;
+	private HashMap<Integer, String> listeDicos;
 
-	/**
-	 * @return the listeDicos
-	 */
-	public ArrayList<String> getListeDicos() {
-		return listeDicos;
-	}
 
-	/**
-	 * @param listeDicos the listeDicos to set
-	 */
-	public void setListeDicos(ArrayList<String> listeDicos) {
-		this.listeDicos = listeDicos;
-	}
-
+	
 	/**
 	 * Create the panel.
 	 * @param application 
@@ -101,7 +83,7 @@ public class VoletRechercheSimple extends JPanel {
 		setBackground(Color.LIGHT_GRAY);
 		setPreferredSize(new Dimension(300, 540));
 		
-		listeDicos = new ArrayList<String>();
+		listeDicos = new HashMap<Integer, String>();
 		
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 260, 20, 0};
@@ -146,28 +128,6 @@ public class VoletRechercheSimple extends JPanel {
 		gbc_sliderDetail.gridx = 1;
 		gbc_sliderDetail.gridy = 5;
 		add(sliderDetails, gbc_sliderDetail);
-		
-		comboBox = new JComboBox();
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 1;
-		gbc_comboBox.gridy = 6;
-		add(comboBox, gbc_comboBox);
-		
-		rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
-		GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
-		gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnNewRadioButton_1.gridx = 1;
-		gbc_rdbtnNewRadioButton_1.gridy = 7;
-		add(rdbtnNewRadioButton_1, gbc_rdbtnNewRadioButton_1);
-		
-		spinner = new JSpinner();
-		GridBagConstraints gbc_spinner = new GridBagConstraints();
-		gbc_spinner.insets = new Insets(0, 0, 0, 5);
-		gbc_spinner.gridx = 1;
-		gbc_spinner.gridy = 8;
-		add(spinner, gbc_spinner);
 
 	}
 
@@ -191,9 +151,10 @@ public class VoletRechercheSimple extends JPanel {
 
 		if(dico != null){
 			for(Object l : dico) {
-				listeDicos.add(((Dictionnaires) l).getIdDictionnaire() - 1, ((Dictionnaires) l).getNomDictionnaire().toUpperCase());
+				listeDicos.put(((Dictionnaires) l).getIdDictionnaire() - 1, ((Dictionnaires) l).getNomDictionnaire().toUpperCase());
 				dictionnairesCell = new DictionnairesCell(application);
 				dictionnairesCell.getChckbxDictionnaires().setText(((Dictionnaires) l).getNomDictionnaire().toUpperCase());
+				dictionnairesCell.setNum(((Dictionnaires) l).getIdDictionnaire() - 1);
 				listeDictionnaires.addElement(dictionnairesCell);
 			}
 		}
@@ -269,6 +230,20 @@ public class VoletRechercheSimple extends JPanel {
 	 */
 	public void setSliderDetails(JSlider sliderDetails) {
 		this.sliderDetails = sliderDetails;
+	}
+
+	/**
+	 * @return the listeDicos
+	 */
+	public HashMap<Integer, String> getListeDicos() {
+		return listeDicos;
+	}
+
+	/**
+	 * @param listeDicos the listeDicos to set
+	 */
+	public void setListeDicos(HashMap<Integer, String> listeDicos) {
+		this.listeDicos = listeDicos;
 	}
 
 }

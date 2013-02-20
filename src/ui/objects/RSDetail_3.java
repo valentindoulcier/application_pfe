@@ -65,7 +65,6 @@ public class RSDetail_3 extends JPanel {
 				
 				//layerApplication.getCardLayoutContent().show(layerApplication.getPanelContent(), "AppliContentEditionMot");
 				//layerApplication.getAppliContentEditionMot().getVolet_1().getTextField().setText(String.valueOf(idHeadword));
-				//System.out.println("Je suis : " + idHeadword);
 			}
 		});
 		
@@ -368,7 +367,6 @@ public class RSDetail_2 extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Je marche !!");
 
 			}
 		});
