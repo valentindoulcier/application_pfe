@@ -1,10 +1,11 @@
 package dao;
 import database.*;
 
+// Generated 29 mars 2013 17:35:31 by Hibernate Tools 3.4.0.CR1
+
 import java.util.List;
 
 import javax.swing.JOptionPane;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,7 +14,7 @@ import utils.HibernateUtils;
 
 /**
  * Home object for domain model class Dictionnaires.
- * @see .Dictionnaires
+ * @see dao.Dictionnaires
  * @author Hibernate Tools
  */
 @SuppressWarnings("unused")
@@ -22,20 +23,6 @@ public class DictionnairesDAO extends AbstractDAO {
 	public static String NOM_TABLE="Dictionnaires";
 
 	private Session session;
-	/**
-	 * @return the session
-	 */
-	public Session getSession() {
-		return session;
-	}
-
-	/**
-	 * @param session the session to set
-	 */
-	public void setSession(Session session) {
-		this.session = session;
-	}
-
 	private Transaction tx;
 	
 	private static Logger logger = Logger.getLogger(DictionnairesDAO.class);	

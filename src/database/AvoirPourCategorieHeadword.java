@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -18,6 +18,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "avoir_pour_categorie_headword", catalog = "bddictionnairique")
 public class AvoirPourCategorieHeadword implements java.io.Serializable {
+
+	private static final long serialVersionUID = -7727863060311010859L;
 
 	private AvoirPourCategorieHeadwordId id;
 	private ListeCategories listeCategories;

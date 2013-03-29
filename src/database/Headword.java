@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,52 +22,80 @@ import javax.persistence.Table;
 @Table(name = "headword", catalog = "bddictionnairique")
 public class Headword implements java.io.Serializable {
 
+	private static final long serialVersionUID = -135948731384536684L;
+
 	private Integer idHeadword;
+	private Notes notes;
 	private Dictionnaires dictionnaires;
-	private LiensDict liensDict;
 	private String mot;
 	private String var1;
 	private String var2;
 	private String var3;
 	private String var4;
 	private String var5;
+	private Integer flagLien;
+	private Integer flagAutre;
 	private String note;
-	private Set syllabeses = new HashSet(0);
-	private Set noteses = new HashSet(0);
-	private Set avoirPourCategorieHeadwords = new HashSet(0);
-	private Set senses = new HashSet(0);
-	private Set flexionses = new HashSet(0);
-	private Set etymoMcqs = new HashSet(0);
-	private Set composeses = new HashSet(0);
+	private Set<Syllabes> syllabeses = new HashSet<Syllabes>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiques = new HashSet<DecompositionMorphologique>(0);
+	private Set<Lexique> lexiquesForHeadwordIdMotReferent1 = new HashSet<Lexique>(0);
+	private Set<Lexique> lexiquesForHeadwordIdMotReferent2 = new HashSet<Lexique>(0);
+	private Set<Lexique> lexiquesForHeadwordIdMotEtudie = new HashSet<Lexique>(0);
+	private Set<Flexions> flexionses = new HashSet<Flexions>(0);
+	private Set<DecompositionGraphique> decompositionGraphiques = new HashSet<DecompositionGraphique>(0);
+	private Set<ListeUsages> listeUsageses = new HashSet<ListeUsages>(0);
+	private Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords = new HashSet<AvoirPourCategorieHeadword>(0);
+	private Set<Frequence> frequences = new HashSet<Frequence>(0);
+	private Set<Sens> senses = new HashSet<Sens>(0);
+	private Set<Composes> composeses = new HashSet<Composes>(0);
+	private Set<EtymoMcq> etymoMcqs = new HashSet<EtymoMcq>(0);
 
 	public Headword() {
 	}
 
-	public Headword(Dictionnaires dictionnaires) {
+	public Headword(Notes notes, Dictionnaires dictionnaires) {
+		this.notes = notes;
 		this.dictionnaires = dictionnaires;
 	}
 
-	public Headword(Dictionnaires dictionnaires, LiensDict liensDict,
-			String mot, String var1, String var2, String var3, String var4,
-			String var5, String note, Set syllabeses, Set noteses,
-			Set avoirPourCategorieHeadwords, Set senses, Set flexionses,
-			Set etymoMcqs, Set composeses) {
+	public Headword(Notes notes, Dictionnaires dictionnaires, String mot,
+			String var1, String var2, String var3, String var4, String var5,
+			Integer flagLien, Integer flagAutre, String note,
+			Set<Syllabes> syllabeses,
+			Set<DecompositionMorphologique> decompositionMorphologiques,
+			Set<Lexique> lexiquesForHeadwordIdMotReferent1,
+			Set<Lexique> lexiquesForHeadwordIdMotReferent2,
+			Set<Lexique> lexiquesForHeadwordIdMotEtudie,
+			Set<Flexions> flexionses,
+			Set<DecompositionGraphique> decompositionGraphiques,
+			Set<ListeUsages> listeUsageses,
+			Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords,
+			Set<Frequence> frequences, Set<Sens> senses,
+			Set<Composes> composeses, Set<EtymoMcq> etymoMcqs) {
+		this.notes = notes;
 		this.dictionnaires = dictionnaires;
-		this.liensDict = liensDict;
 		this.mot = mot;
 		this.var1 = var1;
 		this.var2 = var2;
 		this.var3 = var3;
 		this.var4 = var4;
 		this.var5 = var5;
+		this.flagLien = flagLien;
+		this.flagAutre = flagAutre;
 		this.note = note;
 		this.syllabeses = syllabeses;
-		this.noteses = noteses;
-		this.avoirPourCategorieHeadwords = avoirPourCategorieHeadwords;
-		this.senses = senses;
+		this.decompositionMorphologiques = decompositionMorphologiques;
+		this.lexiquesForHeadwordIdMotReferent1 = lexiquesForHeadwordIdMotReferent1;
+		this.lexiquesForHeadwordIdMotReferent2 = lexiquesForHeadwordIdMotReferent2;
+		this.lexiquesForHeadwordIdMotEtudie = lexiquesForHeadwordIdMotEtudie;
 		this.flexionses = flexionses;
-		this.etymoMcqs = etymoMcqs;
+		this.decompositionGraphiques = decompositionGraphiques;
+		this.listeUsageses = listeUsageses;
+		this.avoirPourCategorieHeadwords = avoirPourCategorieHeadwords;
+		this.frequences = frequences;
+		this.senses = senses;
 		this.composeses = composeses;
+		this.etymoMcqs = etymoMcqs;
 	}
 
 	@Id
@@ -82,6 +110,16 @@ public class Headword implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "notes_id_notes", nullable = false)
+	public Notes getNotes() {
+		return this.notes;
+	}
+
+	public void setNotes(Notes notes) {
+		this.notes = notes;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_dictionnaire", nullable = false)
 	public Dictionnaires getDictionnaires() {
 		return this.dictionnaires;
@@ -89,16 +127,6 @@ public class Headword implements java.io.Serializable {
 
 	public void setDictionnaires(Dictionnaires dictionnaires) {
 		this.dictionnaires = dictionnaires;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_lien_dict")
-	public LiensDict getLiensDict() {
-		return this.liensDict;
-	}
-
-	public void setLiensDict(LiensDict liensDict) {
-		this.liensDict = liensDict;
 	}
 
 	@Column(name = "mot", length = 100)
@@ -155,6 +183,24 @@ public class Headword implements java.io.Serializable {
 		this.var5 = var5;
 	}
 
+	@Column(name = "flag_lien")
+	public Integer getFlagLien() {
+		return this.flagLien;
+	}
+
+	public void setFlagLien(Integer flagLien) {
+		this.flagLien = flagLien;
+	}
+
+	@Column(name = "flag_autre")
+	public Integer getFlagAutre() {
+		return this.flagAutre;
+	}
+
+	public void setFlagAutre(Integer flagAutre) {
+		this.flagAutre = flagAutre;
+	}
+
 	@Column(name = "note", length = 65535)
 	public String getNote() {
 		return this.note;
@@ -165,66 +211,126 @@ public class Headword implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
-	public Set getSyllabeses() {
+	public Set<Syllabes> getSyllabeses() {
 		return this.syllabeses;
 	}
 
-	public void setSyllabeses(Set syllabeses) {
+	public void setSyllabeses(Set<Syllabes> syllabeses) {
 		this.syllabeses = syllabeses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
-	public Set getNoteses() {
-		return this.noteses;
+	public Set<DecompositionMorphologique> getDecompositionMorphologiques() {
+		return this.decompositionMorphologiques;
 	}
 
-	public void setNoteses(Set noteses) {
-		this.noteses = noteses;
+	public void setDecompositionMorphologiques(
+			Set<DecompositionMorphologique> decompositionMorphologiques) {
+		this.decompositionMorphologiques = decompositionMorphologiques;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headwordByHeadwordIdMotReferent1")
+	public Set<Lexique> getLexiquesForHeadwordIdMotReferent1() {
+		return this.lexiquesForHeadwordIdMotReferent1;
+	}
+
+	public void setLexiquesForHeadwordIdMotReferent1(
+			Set<Lexique> lexiquesForHeadwordIdMotReferent1) {
+		this.lexiquesForHeadwordIdMotReferent1 = lexiquesForHeadwordIdMotReferent1;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headwordByHeadwordIdMotReferent2")
+	public Set<Lexique> getLexiquesForHeadwordIdMotReferent2() {
+		return this.lexiquesForHeadwordIdMotReferent2;
+	}
+
+	public void setLexiquesForHeadwordIdMotReferent2(
+			Set<Lexique> lexiquesForHeadwordIdMotReferent2) {
+		this.lexiquesForHeadwordIdMotReferent2 = lexiquesForHeadwordIdMotReferent2;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headwordByHeadwordIdMotEtudie")
+	public Set<Lexique> getLexiquesForHeadwordIdMotEtudie() {
+		return this.lexiquesForHeadwordIdMotEtudie;
+	}
+
+	public void setLexiquesForHeadwordIdMotEtudie(
+			Set<Lexique> lexiquesForHeadwordIdMotEtudie) {
+		this.lexiquesForHeadwordIdMotEtudie = lexiquesForHeadwordIdMotEtudie;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
-	public Set getAvoirPourCategorieHeadwords() {
-		return this.avoirPourCategorieHeadwords;
-	}
-
-	public void setAvoirPourCategorieHeadwords(Set avoirPourCategorieHeadwords) {
-		this.avoirPourCategorieHeadwords = avoirPourCategorieHeadwords;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
-	public Set getSenses() {
-		return this.senses;
-	}
-
-	public void setSenses(Set senses) {
-		this.senses = senses;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
-	public Set getFlexionses() {
+	public Set<Flexions> getFlexionses() {
 		return this.flexionses;
 	}
 
-	public void setFlexionses(Set flexionses) {
+	public void setFlexionses(Set<Flexions> flexionses) {
 		this.flexionses = flexionses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
-	public Set getEtymoMcqs() {
-		return this.etymoMcqs;
+	public Set<DecompositionGraphique> getDecompositionGraphiques() {
+		return this.decompositionGraphiques;
 	}
 
-	public void setEtymoMcqs(Set etymoMcqs) {
-		this.etymoMcqs = etymoMcqs;
+	public void setDecompositionGraphiques(
+			Set<DecompositionGraphique> decompositionGraphiques) {
+		this.decompositionGraphiques = decompositionGraphiques;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
-	public Set getComposeses() {
+	public Set<ListeUsages> getListeUsageses() {
+		return this.listeUsageses;
+	}
+
+	public void setListeUsageses(Set<ListeUsages> listeUsageses) {
+		this.listeUsageses = listeUsageses;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	public Set<AvoirPourCategorieHeadword> getAvoirPourCategorieHeadwords() {
+		return this.avoirPourCategorieHeadwords;
+	}
+
+	public void setAvoirPourCategorieHeadwords(
+			Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords) {
+		this.avoirPourCategorieHeadwords = avoirPourCategorieHeadwords;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	public Set<Frequence> getFrequences() {
+		return this.frequences;
+	}
+
+	public void setFrequences(Set<Frequence> frequences) {
+		this.frequences = frequences;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	public Set<Sens> getSenses() {
+		return this.senses;
+	}
+
+	public void setSenses(Set<Sens> senses) {
+		this.senses = senses;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	public Set<Composes> getComposeses() {
 		return this.composeses;
 	}
 
-	public void setComposeses(Set composeses) {
+	public void setComposeses(Set<Composes> composeses) {
 		this.composeses = composeses;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	public Set<EtymoMcq> getEtymoMcqs() {
+		return this.etymoMcqs;
+	}
+
+	public void setEtymoMcqs(Set<EtymoMcq> etymoMcqs) {
+		this.etymoMcqs = etymoMcqs;
 	}
 
 }

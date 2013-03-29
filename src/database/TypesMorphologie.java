@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,46 +20,47 @@ import javax.persistence.Table;
 @Table(name = "types_morphologie", catalog = "bddictionnairique")
 public class TypesMorphologie implements java.io.Serializable {
 
-	private static final long serialVersionUID = 8792704918655934233L;
+	private static final long serialVersionUID = 1496609387956741841L;
 
 	private Integer idTypeMorph;
 	private String typeMorph;
-	private Set labellisationMorphologiquesForM1 = new HashSet(0);
-	private Set labellisationMorphologiquesForM2 = new HashSet(0);
-	private Set labellisationMorphologiquesForM3 = new HashSet(0);
-	private Set labellisationMorphologiquesForM4 = new HashSet(0);
-	private Set labellisationMorphologiquesForM5 = new HashSet(0);
-	private Set labellisationMorphologiquesForM6 = new HashSet(0);
-	private Set labellisationMorphologiquesForM7 = new HashSet(0);
-	private Set labellisationMorphologiquesForM8 = new HashSet(0);
-	private Set labellisationMorphologiquesForM9 = new HashSet(0);
-	private Set labellisationMorphologiquesForM10 = new HashSet(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph1 = new HashSet<DecompositionMorphologique>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph2 = new HashSet<DecompositionMorphologique>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph3 = new HashSet<DecompositionMorphologique>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph4 = new HashSet<DecompositionMorphologique>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph5 = new HashSet<DecompositionMorphologique>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph6 = new HashSet<DecompositionMorphologique>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph7 = new HashSet<DecompositionMorphologique>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph8 = new HashSet<DecompositionMorphologique>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph9 = new HashSet<DecompositionMorphologique>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph10 = new HashSet<DecompositionMorphologique>(0);
 
 	public TypesMorphologie() {
 	}
 
-	public TypesMorphologie(String typeMorph,
-			Set labellisationMorphologiquesForM6,
-			Set labellisationMorphologiquesForM10,
-			Set labellisationMorphologiquesForM5,
-			Set labellisationMorphologiquesForM4,
-			Set labellisationMorphologiquesForM3,
-			Set labellisationMorphologiquesForM9,
-			Set labellisationMorphologiquesForM8,
-			Set labellisationMorphologiquesForM7,
-			Set labellisationMorphologiquesForM2,
-			Set labellisationMorphologiquesForM1) {
+	public TypesMorphologie(
+			String typeMorph,
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph1,
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph2,
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph3,
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph4,
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph5,
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph6,
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph7,
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph8,
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph9,
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph10) {
 		this.typeMorph = typeMorph;
-		this.labellisationMorphologiquesForM6 = labellisationMorphologiquesForM6;
-		this.labellisationMorphologiquesForM10 = labellisationMorphologiquesForM10;
-		this.labellisationMorphologiquesForM5 = labellisationMorphologiquesForM5;
-		this.labellisationMorphologiquesForM4 = labellisationMorphologiquesForM4;
-		this.labellisationMorphologiquesForM3 = labellisationMorphologiquesForM3;
-		this.labellisationMorphologiquesForM9 = labellisationMorphologiquesForM9;
-		this.labellisationMorphologiquesForM8 = labellisationMorphologiquesForM8;
-		this.labellisationMorphologiquesForM7 = labellisationMorphologiquesForM7;
-		this.labellisationMorphologiquesForM2 = labellisationMorphologiquesForM2;
-		this.labellisationMorphologiquesForM1 = labellisationMorphologiquesForM1;
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph1 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph1;
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph2 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph2;
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph3 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph3;
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph4 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph4;
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph5 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph5;
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph6 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph6;
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph7 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph7;
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph8 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph8;
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph9 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph9;
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph10 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph10;
 	}
 
 	@Id
@@ -82,104 +83,104 @@ public class TypesMorphologie implements java.io.Serializable {
 		this.typeMorph = typeMorph;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByM6")
-	public Set getLabellisationMorphologiquesForM6() {
-		return this.labellisationMorphologiquesForM6;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByTypesMorphologieIdTypeMorph3")
+	public Set<DecompositionMorphologique> getDecompositionMorphologiquesForTypesMorphologieIdTypeMorph3() {
+		return this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph3;
 	}
 
-	public void setLabellisationMorphologiquesForM6(
-			Set labellisationMorphologiquesForM6) {
-		this.labellisationMorphologiquesForM6 = labellisationMorphologiquesForM6;
+	public void setDecompositionMorphologiquesForTypesMorphologieIdTypeMorph3(
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph3) {
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph3 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph3;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByM10")
-	public Set getLabellisationMorphologiquesForM10() {
-		return this.labellisationMorphologiquesForM10;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByTypesMorphologieIdTypeMorph2")
+	public Set<DecompositionMorphologique> getDecompositionMorphologiquesForTypesMorphologieIdTypeMorph2() {
+		return this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph2;
 	}
 
-	public void setLabellisationMorphologiquesForM10(
-			Set labellisationMorphologiquesForM10) {
-		this.labellisationMorphologiquesForM10 = labellisationMorphologiquesForM10;
+	public void setDecompositionMorphologiquesForTypesMorphologieIdTypeMorph2(
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph2) {
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph2 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph2;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByM5")
-	public Set getLabellisationMorphologiquesForM5() {
-		return this.labellisationMorphologiquesForM5;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByTypesMorphologieIdTypeMorph1")
+	public Set<DecompositionMorphologique> getDecompositionMorphologiquesForTypesMorphologieIdTypeMorph1() {
+		return this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph1;
 	}
 
-	public void setLabellisationMorphologiquesForM5(
-			Set labellisationMorphologiquesForM5) {
-		this.labellisationMorphologiquesForM5 = labellisationMorphologiquesForM5;
+	public void setDecompositionMorphologiquesForTypesMorphologieIdTypeMorph1(
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph1) {
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph1 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph1;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByM4")
-	public Set getLabellisationMorphologiquesForM4() {
-		return this.labellisationMorphologiquesForM4;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByTypesMorphologieIdTypeMorph7")
+	public Set<DecompositionMorphologique> getDecompositionMorphologiquesForTypesMorphologieIdTypeMorph7() {
+		return this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph7;
 	}
 
-	public void setLabellisationMorphologiquesForM4(
-			Set labellisationMorphologiquesForM4) {
-		this.labellisationMorphologiquesForM4 = labellisationMorphologiquesForM4;
+	public void setDecompositionMorphologiquesForTypesMorphologieIdTypeMorph7(
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph7) {
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph7 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph7;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByM3")
-	public Set getLabellisationMorphologiquesForM3() {
-		return this.labellisationMorphologiquesForM3;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByTypesMorphologieIdTypeMorph10")
+	public Set<DecompositionMorphologique> getDecompositionMorphologiquesForTypesMorphologieIdTypeMorph10() {
+		return this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph10;
 	}
 
-	public void setLabellisationMorphologiquesForM3(
-			Set labellisationMorphologiquesForM3) {
-		this.labellisationMorphologiquesForM3 = labellisationMorphologiquesForM3;
+	public void setDecompositionMorphologiquesForTypesMorphologieIdTypeMorph10(
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph10) {
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph10 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph10;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByM9")
-	public Set getLabellisationMorphologiquesForM9() {
-		return this.labellisationMorphologiquesForM9;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByTypesMorphologieIdTypeMorph8")
+	public Set<DecompositionMorphologique> getDecompositionMorphologiquesForTypesMorphologieIdTypeMorph8() {
+		return this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph8;
 	}
 
-	public void setLabellisationMorphologiquesForM9(
-			Set labellisationMorphologiquesForM9) {
-		this.labellisationMorphologiquesForM9 = labellisationMorphologiquesForM9;
+	public void setDecompositionMorphologiquesForTypesMorphologieIdTypeMorph8(
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph8) {
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph8 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph8;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByM8")
-	public Set getLabellisationMorphologiquesForM8() {
-		return this.labellisationMorphologiquesForM8;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByTypesMorphologieIdTypeMorph6")
+	public Set<DecompositionMorphologique> getDecompositionMorphologiquesForTypesMorphologieIdTypeMorph6() {
+		return this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph6;
 	}
 
-	public void setLabellisationMorphologiquesForM8(
-			Set labellisationMorphologiquesForM8) {
-		this.labellisationMorphologiquesForM8 = labellisationMorphologiquesForM8;
+	public void setDecompositionMorphologiquesForTypesMorphologieIdTypeMorph6(
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph6) {
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph6 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph6;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByM7")
-	public Set getLabellisationMorphologiquesForM7() {
-		return this.labellisationMorphologiquesForM7;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByTypesMorphologieIdTypeMorph9")
+	public Set<DecompositionMorphologique> getDecompositionMorphologiquesForTypesMorphologieIdTypeMorph9() {
+		return this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph9;
 	}
 
-	public void setLabellisationMorphologiquesForM7(
-			Set labellisationMorphologiquesForM7) {
-		this.labellisationMorphologiquesForM7 = labellisationMorphologiquesForM7;
+	public void setDecompositionMorphologiquesForTypesMorphologieIdTypeMorph9(
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph9) {
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph9 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph9;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByM2")
-	public Set getLabellisationMorphologiquesForM2() {
-		return this.labellisationMorphologiquesForM2;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByTypesMorphologieIdTypeMorph5")
+	public Set<DecompositionMorphologique> getDecompositionMorphologiquesForTypesMorphologieIdTypeMorph5() {
+		return this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph5;
 	}
 
-	public void setLabellisationMorphologiquesForM2(
-			Set labellisationMorphologiquesForM2) {
-		this.labellisationMorphologiquesForM2 = labellisationMorphologiquesForM2;
+	public void setDecompositionMorphologiquesForTypesMorphologieIdTypeMorph5(
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph5) {
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph5 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph5;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByM1")
-	public Set getLabellisationMorphologiquesForM1() {
-		return this.labellisationMorphologiquesForM1;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesMorphologieByTypesMorphologieIdTypeMorph4")
+	public Set<DecompositionMorphologique> getDecompositionMorphologiquesForTypesMorphologieIdTypeMorph4() {
+		return this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph4;
 	}
 
-	public void setLabellisationMorphologiquesForM1(
-			Set labellisationMorphologiquesForM1) {
-		this.labellisationMorphologiquesForM1 = labellisationMorphologiquesForM1;
+	public void setDecompositionMorphologiquesForTypesMorphologieIdTypeMorph4(
+			Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph4) {
+		this.decompositionMorphologiquesForTypesMorphologieIdTypeMorph4 = decompositionMorphologiquesForTypesMorphologieIdTypeMorph4;
 	}
 
 }

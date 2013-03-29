@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,8 +19,20 @@ import javax.persistence.Table;
 @Table(name = "decomposition_morphologique", catalog = "bddictionnairique")
 public class DecompositionMorphologique implements java.io.Serializable {
 
+	private static final long serialVersionUID = 5713094479186742895L;
+
 	private Integer idMorph;
-	private LiensDict liensDict;
+	private Headword headword;
+	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph1;
+	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph2;
+	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph3;
+	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph4;
+	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph5;
+	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph6;
+	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph7;
+	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph8;
+	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph9;
+	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph10;
 	private String m1;
 	private String m2;
 	private String m3;
@@ -36,14 +48,56 @@ public class DecompositionMorphologique implements java.io.Serializable {
 	public DecompositionMorphologique() {
 	}
 
-	public DecompositionMorphologique(LiensDict liensDict) {
-		this.liensDict = liensDict;
+	public DecompositionMorphologique(
+			Headword headword,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph1,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph2,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph3,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph4,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph5,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph6,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph7,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph8,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph9,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph10) {
+		this.headword = headword;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph1 = typesMorphologieByTypesMorphologieIdTypeMorph1;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph2 = typesMorphologieByTypesMorphologieIdTypeMorph2;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph3 = typesMorphologieByTypesMorphologieIdTypeMorph3;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph4 = typesMorphologieByTypesMorphologieIdTypeMorph4;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph5 = typesMorphologieByTypesMorphologieIdTypeMorph5;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph6 = typesMorphologieByTypesMorphologieIdTypeMorph6;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph7 = typesMorphologieByTypesMorphologieIdTypeMorph7;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph8 = typesMorphologieByTypesMorphologieIdTypeMorph8;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph9 = typesMorphologieByTypesMorphologieIdTypeMorph9;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph10 = typesMorphologieByTypesMorphologieIdTypeMorph10;
 	}
 
-	public DecompositionMorphologique(LiensDict liensDict, String m1,
-			String m2, String m3, String m4, String m5, String m6, String m7,
-			String m8, String m9, String m10, String note) {
-		this.liensDict = liensDict;
+	public DecompositionMorphologique(
+			Headword headword,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph1,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph2,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph3,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph4,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph5,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph6,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph7,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph8,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph9,
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph10,
+			String m1, String m2, String m3, String m4, String m5, String m6,
+			String m7, String m8, String m9, String m10, String note) {
+		this.headword = headword;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph1 = typesMorphologieByTypesMorphologieIdTypeMorph1;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph2 = typesMorphologieByTypesMorphologieIdTypeMorph2;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph3 = typesMorphologieByTypesMorphologieIdTypeMorph3;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph4 = typesMorphologieByTypesMorphologieIdTypeMorph4;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph5 = typesMorphologieByTypesMorphologieIdTypeMorph5;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph6 = typesMorphologieByTypesMorphologieIdTypeMorph6;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph7 = typesMorphologieByTypesMorphologieIdTypeMorph7;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph8 = typesMorphologieByTypesMorphologieIdTypeMorph8;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph9 = typesMorphologieByTypesMorphologieIdTypeMorph9;
+		this.typesMorphologieByTypesMorphologieIdTypeMorph10 = typesMorphologieByTypesMorphologieIdTypeMorph10;
 		this.m1 = m1;
 		this.m2 = m2;
 		this.m3 = m3;
@@ -69,13 +123,123 @@ public class DecompositionMorphologique implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_lien_dict", nullable = false)
-	public LiensDict getLiensDict() {
-		return this.liensDict;
+	@JoinColumn(name = "types_morphologie_id_type_morph1", nullable = false)
+	public TypesMorphologie getTypesMorphologieByTypesMorphologieIdTypeMorph1() {
+		return this.typesMorphologieByTypesMorphologieIdTypeMorph1;
 	}
 
-	public void setLiensDict(LiensDict liensDict) {
-		this.liensDict = liensDict;
+	public void setTypesMorphologieByTypesMorphologieIdTypeMorph1(
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph1) {
+		this.typesMorphologieByTypesMorphologieIdTypeMorph1 = typesMorphologieByTypesMorphologieIdTypeMorph1;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "headword_id_headword", nullable = false)
+	public Headword getHeadword() {
+		return this.headword;
+	}
+
+	public void setHeadword(Headword headword) {
+		this.headword = headword;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "types_morphologie_id_type_morph5", nullable = false)
+	public TypesMorphologie getTypesMorphologieByTypesMorphologieIdTypeMorph5() {
+		return this.typesMorphologieByTypesMorphologieIdTypeMorph5;
+	}
+
+	public void setTypesMorphologieByTypesMorphologieIdTypeMorph5(
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph5) {
+		this.typesMorphologieByTypesMorphologieIdTypeMorph5 = typesMorphologieByTypesMorphologieIdTypeMorph5;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "types_morphologie_id_type_morph7", nullable = false)
+	public TypesMorphologie getTypesMorphologieByTypesMorphologieIdTypeMorph7() {
+		return this.typesMorphologieByTypesMorphologieIdTypeMorph7;
+	}
+
+	public void setTypesMorphologieByTypesMorphologieIdTypeMorph7(
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph7) {
+		this.typesMorphologieByTypesMorphologieIdTypeMorph7 = typesMorphologieByTypesMorphologieIdTypeMorph7;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "types_morphologie_id_type_morph4", nullable = false)
+	public TypesMorphologie getTypesMorphologieByTypesMorphologieIdTypeMorph4() {
+		return this.typesMorphologieByTypesMorphologieIdTypeMorph4;
+	}
+
+	public void setTypesMorphologieByTypesMorphologieIdTypeMorph4(
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph4) {
+		this.typesMorphologieByTypesMorphologieIdTypeMorph4 = typesMorphologieByTypesMorphologieIdTypeMorph4;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "types_morphologie_id_type_morph6", nullable = false)
+	public TypesMorphologie getTypesMorphologieByTypesMorphologieIdTypeMorph6() {
+		return this.typesMorphologieByTypesMorphologieIdTypeMorph6;
+	}
+
+	public void setTypesMorphologieByTypesMorphologieIdTypeMorph6(
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph6) {
+		this.typesMorphologieByTypesMorphologieIdTypeMorph6 = typesMorphologieByTypesMorphologieIdTypeMorph6;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "types_morphologie_id_type_morph9", nullable = false)
+	public TypesMorphologie getTypesMorphologieByTypesMorphologieIdTypeMorph9() {
+		return this.typesMorphologieByTypesMorphologieIdTypeMorph9;
+	}
+
+	public void setTypesMorphologieByTypesMorphologieIdTypeMorph9(
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph9) {
+		this.typesMorphologieByTypesMorphologieIdTypeMorph9 = typesMorphologieByTypesMorphologieIdTypeMorph9;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "types_morphologie_id_type_morph10", nullable = false)
+	public TypesMorphologie getTypesMorphologieByTypesMorphologieIdTypeMorph10() {
+		return this.typesMorphologieByTypesMorphologieIdTypeMorph10;
+	}
+
+	public void setTypesMorphologieByTypesMorphologieIdTypeMorph10(
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph10) {
+		this.typesMorphologieByTypesMorphologieIdTypeMorph10 = typesMorphologieByTypesMorphologieIdTypeMorph10;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "types_morphologie_id_type_morph3", nullable = false)
+	public TypesMorphologie getTypesMorphologieByTypesMorphologieIdTypeMorph3() {
+		return this.typesMorphologieByTypesMorphologieIdTypeMorph3;
+	}
+
+	public void setTypesMorphologieByTypesMorphologieIdTypeMorph3(
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph3) {
+		this.typesMorphologieByTypesMorphologieIdTypeMorph3 = typesMorphologieByTypesMorphologieIdTypeMorph3;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "types_morphologie_id_type_morph8", nullable = false)
+	public TypesMorphologie getTypesMorphologieByTypesMorphologieIdTypeMorph8() {
+		return this.typesMorphologieByTypesMorphologieIdTypeMorph8;
+	}
+
+	public void setTypesMorphologieByTypesMorphologieIdTypeMorph8(
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph8) {
+		this.typesMorphologieByTypesMorphologieIdTypeMorph8 = typesMorphologieByTypesMorphologieIdTypeMorph8;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "types_morphologie_id_type_morph2", nullable = false)
+	public TypesMorphologie getTypesMorphologieByTypesMorphologieIdTypeMorph2() {
+		return this.typesMorphologieByTypesMorphologieIdTypeMorph2;
+	}
+
+	public void setTypesMorphologieByTypesMorphologieIdTypeMorph2(
+			TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph2) {
+		this.typesMorphologieByTypesMorphologieIdTypeMorph2 = typesMorphologieByTypesMorphologieIdTypeMorph2;
 	}
 
 	@Column(name = "m1", length = 15)

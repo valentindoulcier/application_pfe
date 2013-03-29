@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,10 +19,11 @@ import javax.persistence.Table;
 @Table(name = "syllabes", catalog = "bddictionnairique")
 public class Syllabes implements java.io.Serializable {
 
+	private static final long serialVersionUID = 3606104368450571717L;
+
 	private Integer idSyllabe;
 	private Headword headword;
 	private Flexions flexions;
-	private Dictionnaires dictionnaires;
 	private Integer ordre;
 	private String region;
 	private String schema;
@@ -45,20 +46,20 @@ public class Syllabes implements java.io.Serializable {
 	public Syllabes() {
 	}
 
-	public Syllabes(Dictionnaires dictionnaires) {
-		this.dictionnaires = dictionnaires;
-	}
-
-	public Syllabes(Headword headword, Flexions flexions,
-			Dictionnaires dictionnaires, Integer ordre, String region,
-			String schema, Integer nbSyllabes, String typePrononciation,
-			String syllabe1, String syllabe2, String syllabe3, String syllabe4,
-			String syllabe5, String syllabe6, String syllabe7, String syllabe8,
-			String syllabe9, String syllabe10, String note,
-			String schemaPhonologique, String catdefMot) {
+	public Syllabes(Headword headword, Flexions flexions) {
 		this.headword = headword;
 		this.flexions = flexions;
-		this.dictionnaires = dictionnaires;
+	}
+
+	public Syllabes(Headword headword, Flexions flexions, Integer ordre,
+			String region, String schema, Integer nbSyllabes,
+			String typePrononciation, String syllabe1, String syllabe2,
+			String syllabe3, String syllabe4, String syllabe5, String syllabe6,
+			String syllabe7, String syllabe8, String syllabe9,
+			String syllabe10, String note, String schemaPhonologique,
+			String catdefMot) {
+		this.headword = headword;
+		this.flexions = flexions;
 		this.ordre = ordre;
 		this.region = region;
 		this.schema = schema;
@@ -91,7 +92,7 @@ public class Syllabes implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_headword")
+	@JoinColumn(name = "id_headword", nullable = false)
 	public Headword getHeadword() {
 		return this.headword;
 	}
@@ -101,23 +102,13 @@ public class Syllabes implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_flexion")
+	@JoinColumn(name = "id_flexion", nullable = false)
 	public Flexions getFlexions() {
 		return this.flexions;
 	}
 
 	public void setFlexions(Flexions flexions) {
 		this.flexions = flexions;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_dictionnaire", nullable = false)
-	public Dictionnaires getDictionnaires() {
-		return this.dictionnaires;
-	}
-
-	public void setDictionnaires(Dictionnaires dictionnaires) {
-		this.dictionnaires = dictionnaires;
 	}
 
 	@Column(name = "ordre")

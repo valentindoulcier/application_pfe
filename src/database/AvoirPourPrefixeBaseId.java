@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class AvoirPourPrefixeBaseId implements java.io.Serializable {
+
+	private static final long serialVersionUID = -4473378457165262256L;
 
 	private int idCategorie;
 	private int idMorphPrefsuffbase;

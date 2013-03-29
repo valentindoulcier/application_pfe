@@ -1,23 +1,22 @@
 package dao;
 import database.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+// Generated 29 mars 2013 17:35:31 by Hibernate Tools 3.4.0.CR1
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import utils.HibernateUtils;
 
 /**
  * Home object for domain model class ListeStatuts.
- * @see .ListeStatuts
+ * @see dao.ListeStatuts
  * @author Hibernate Tools
  */
 @SuppressWarnings("unused")

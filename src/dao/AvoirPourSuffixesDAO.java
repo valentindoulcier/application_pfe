@@ -1,6 +1,8 @@
 package dao;
 import database.*;
 
+// Generated 29 mars 2013 17:35:31 by Hibernate Tools 3.4.0.CR1
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -11,7 +13,7 @@ import utils.HibernateUtils;
 
 /**
  * Home object for domain model class AvoirPourSuffixes.
- * @see .AvoirPourSuffixes
+ * @see dao.AvoirPourSuffixes
  * @author Hibernate Tools
  */
 @SuppressWarnings("unused")
@@ -77,6 +79,4 @@ public class AvoirPourSuffixesDAO extends AbstractDAO{
     public List<?> findAll() throws DataAccessLayerException{
         return super.findAll(session, AvoirPourSuffixes.class);
     }
-
-
 }

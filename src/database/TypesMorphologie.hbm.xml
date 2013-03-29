@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 29 mars 2013 17:34:43 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="database.TypesMorphologie" table="types_morphologie" catalog="bddictionnairique">
         <id name="idTypeMorph" type="java.lang.Integer">
@@ -11,65 +11,65 @@
         <property name="typeMorph" type="string">
             <column name="type_morph" length="50" />
         </property>
-        <set name="labellisationMorphologiquesForM6" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+        <set name="decompositionMorphologiquesForTypesMorphologieIdTypeMorph3" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="m6" />
+                <column name="types_morphologie_id_type_morph3" not-null="true" />
             </key>
-            <one-to-many class="database.LabellisationMorphologique" />
+            <one-to-many class="database.DecompositionMorphologique" />
         </set>
-        <set name="labellisationMorphologiquesForM10" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+        <set name="decompositionMorphologiquesForTypesMorphologieIdTypeMorph2" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="m10" />
+                <column name="types_morphologie_id_type_morph2" not-null="true" />
             </key>
-            <one-to-many class="database.LabellisationMorphologique" />
+            <one-to-many class="database.DecompositionMorphologique" />
         </set>
-        <set name="labellisationMorphologiquesForM5" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+        <set name="decompositionMorphologiquesForTypesMorphologieIdTypeMorph1" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="m5" />
+                <column name="types_morphologie_id_type_morph1" not-null="true" />
             </key>
-            <one-to-many class="database.LabellisationMorphologique" />
+            <one-to-many class="database.DecompositionMorphologique" />
         </set>
-        <set name="labellisationMorphologiquesForM4" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+        <set name="decompositionMorphologiquesForTypesMorphologieIdTypeMorph7" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="m4" />
+                <column name="types_morphologie_id_type_morph7" not-null="true" />
             </key>
-            <one-to-many class="database.LabellisationMorphologique" />
+            <one-to-many class="database.DecompositionMorphologique" />
         </set>
-        <set name="labellisationMorphologiquesForM3" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+        <set name="decompositionMorphologiquesForTypesMorphologieIdTypeMorph10" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="m3" />
+                <column name="types_morphologie_id_type_morph10" not-null="true" />
             </key>
-            <one-to-many class="database.LabellisationMorphologique" />
+            <one-to-many class="database.DecompositionMorphologique" />
         </set>
-        <set name="labellisationMorphologiquesForM9" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+        <set name="decompositionMorphologiquesForTypesMorphologieIdTypeMorph8" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="m9" />
+                <column name="types_morphologie_id_type_morph8" not-null="true" />
             </key>
-            <one-to-many class="database.LabellisationMorphologique" />
+            <one-to-many class="database.DecompositionMorphologique" />
         </set>
-        <set name="labellisationMorphologiquesForM8" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+        <set name="decompositionMorphologiquesForTypesMorphologieIdTypeMorph6" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="m8" />
+                <column name="types_morphologie_id_type_morph6" not-null="true" />
             </key>
-            <one-to-many class="database.LabellisationMorphologique" />
+            <one-to-many class="database.DecompositionMorphologique" />
         </set>
-        <set name="labellisationMorphologiquesForM7" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+        <set name="decompositionMorphologiquesForTypesMorphologieIdTypeMorph9" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="m7" />
+                <column name="types_morphologie_id_type_morph9" not-null="true" />
             </key>
-            <one-to-many class="database.LabellisationMorphologique" />
+            <one-to-many class="database.DecompositionMorphologique" />
         </set>
-        <set name="labellisationMorphologiquesForM2" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+        <set name="decompositionMorphologiquesForTypesMorphologieIdTypeMorph5" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="m2" />
+                <column name="types_morphologie_id_type_morph5" not-null="true" />
             </key>
-            <one-to-many class="database.LabellisationMorphologique" />
+            <one-to-many class="database.DecompositionMorphologique" />
         </set>
-        <set name="labellisationMorphologiquesForM1" table="labellisation_morphologique" inverse="true" lazy="true" fetch="select">
+        <set name="decompositionMorphologiquesForTypesMorphologieIdTypeMorph4" table="decomposition_morphologique" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="m1" />
+                <column name="types_morphologie_id_type_morph4" not-null="true" />
             </key>
-            <one-to-many class="database.LabellisationMorphologique" />
+            <one-to-many class="database.DecompositionMorphologique" />
         </set>
     </class>
 </hibernate-mapping>

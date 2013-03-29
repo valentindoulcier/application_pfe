@@ -1,6 +1,8 @@
 package dao;
 import database.*;
 
+// Generated 29 mars 2013 17:35:31 by Hibernate Tools 3.4.0.CR1
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -11,13 +13,13 @@ import utils.HibernateUtils;
 
 /**
  * Home object for domain model class AvoirPourCategorieHeadword.
- * @see .AvoirPourCategorieHeadword
+ * @see dao.AvoirPourCategorieHeadword
  * @author Hibernate Tools
  */
 @SuppressWarnings("unused")
 public class AvoirPourCategorieHeadwordDAO extends AbstractDAO {
-	
-	public static String NOM_TABLE="AvoirPourCategorieHeadword";
+
+public static String NOM_TABLE="AvoirPourCategorieHeadword";
 	
 	private Session session;
 	private Transaction tx;

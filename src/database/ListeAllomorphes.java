@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +18,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "liste_allomorphes", catalog = "bddictionnairique")
 public class ListeAllomorphes implements java.io.Serializable {
+
+	private static final long serialVersionUID = 9134739062059415125L;
 
 	private Integer idAllo;
 	private ListeMorphemesPrefsuffbase listeMorphemesPrefsuffbase;

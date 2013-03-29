@@ -5,7 +5,11 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
+ * @version 1.0
+ * 
+ * Ici, on gère les exceptions générées par hibernate.
+ * (Non implémenté)
  *
  */
 public class DatabaseOffException extends IOException {

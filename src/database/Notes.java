@@ -1,15 +1,16 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,20 +20,18 @@ import javax.persistence.Table;
 @Table(name = "notes", catalog = "bddictionnairique")
 public class Notes implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1678223507937655110L;
+
 	private Integer idNotes;
-	private Headword headword;
 	private String texte;
+	private Set<Headword> headwords = new HashSet<Headword>(0);
 
 	public Notes() {
 	}
 
-	public Notes(Headword headword) {
-		this.headword = headword;
-	}
-
-	public Notes(Headword headword, String texte) {
-		this.headword = headword;
+	public Notes(String texte, Set<Headword> headwords) {
 		this.texte = texte;
+		this.headwords = headwords;
 	}
 
 	@Id
@@ -46,16 +45,6 @@ public class Notes implements java.io.Serializable {
 		this.idNotes = idNotes;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_headword", nullable = false)
-	public Headword getHeadword() {
-		return this.headword;
-	}
-
-	public void setHeadword(Headword headword) {
-		this.headword = headword;
-	}
-
 	@Column(name = "texte", length = 65535)
 	public String getTexte() {
 		return this.texte;
@@ -63,6 +52,15 @@ public class Notes implements java.io.Serializable {
 
 	public void setTexte(String texte) {
 		this.texte = texte;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "notes")
+	public Set<Headword> getHeadwords() {
+		return this.headwords;
+	}
+
+	public void setHeadwords(Set<Headword> headwords) {
+		this.headwords = headwords;
 	}
 
 }

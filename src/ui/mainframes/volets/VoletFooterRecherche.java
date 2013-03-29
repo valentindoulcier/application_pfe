@@ -38,8 +38,7 @@ public class VoletFooterRecherche extends JPanel {
 	private JButton btnSimple;
 	private JButton btnAvancee;
 	private JButton btnHistorique;
-	
-	
+
 	private VoletHeaderRechercheSimple voletHeaderRechercheSimple;
 	private VoletRechercheSimple voletRechercheSimple;
 	

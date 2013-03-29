@@ -14,7 +14,11 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
+ * @version 1.0
+ * 
+ * Cet objet est un singleton, et est utilisé lors de l'appelle à une fonction DAO.
+ * Son but est de récupérer la connexion, en la créant si besoin.
  *
  */
 public class HibernateUtils {

@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,20 +20,23 @@ import javax.persistence.Table;
 @Table(name = "liste_morphemes_prefsuffbase", catalog = "bddictionnairique")
 public class ListeMorphemesPrefsuffbase implements java.io.Serializable {
 
+	private static final long serialVersionUID = -8844945747281717240L;
+
 	private Integer idMorphPrefsuffbase;
 	private String type;
 	private String origine;
 	private String contenu;
-	private Set avoirPourSuffixeses = new HashSet(0);
-	private Set avoirPourPrefixeBases = new HashSet(0);
-	private Set listeAllomorpheses = new HashSet(0);
+	private Set<AvoirPourSuffixes> avoirPourSuffixeses = new HashSet<AvoirPourSuffixes>(0);
+	private Set<AvoirPourPrefixeBase> avoirPourPrefixeBases = new HashSet<AvoirPourPrefixeBase>(0);
+	private Set<ListeAllomorphes> listeAllomorpheses = new HashSet<ListeAllomorphes>(0);
 
 	public ListeMorphemesPrefsuffbase() {
 	}
 
 	public ListeMorphemesPrefsuffbase(String type, String origine,
-			String contenu, Set avoirPourSuffixeses, Set avoirPourPrefixeBases,
-			Set listeAllomorpheses) {
+			String contenu, Set<AvoirPourSuffixes> avoirPourSuffixeses,
+			Set<AvoirPourPrefixeBase> avoirPourPrefixeBases,
+			Set<ListeAllomorphes> listeAllomorpheses) {
 		this.type = type;
 		this.origine = origine;
 		this.contenu = contenu;
@@ -81,29 +84,31 @@ public class ListeMorphemesPrefsuffbase implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listeMorphemesPrefsuffbase")
-	public Set getAvoirPourSuffixeses() {
+	public Set<AvoirPourSuffixes> getAvoirPourSuffixeses() {
 		return this.avoirPourSuffixeses;
 	}
 
-	public void setAvoirPourSuffixeses(Set avoirPourSuffixeses) {
+	public void setAvoirPourSuffixeses(
+			Set<AvoirPourSuffixes> avoirPourSuffixeses) {
 		this.avoirPourSuffixeses = avoirPourSuffixeses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listeMorphemesPrefsuffbase")
-	public Set getAvoirPourPrefixeBases() {
+	public Set<AvoirPourPrefixeBase> getAvoirPourPrefixeBases() {
 		return this.avoirPourPrefixeBases;
 	}
 
-	public void setAvoirPourPrefixeBases(Set avoirPourPrefixeBases) {
+	public void setAvoirPourPrefixeBases(
+			Set<AvoirPourPrefixeBase> avoirPourPrefixeBases) {
 		this.avoirPourPrefixeBases = avoirPourPrefixeBases;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listeMorphemesPrefsuffbase")
-	public Set getListeAllomorpheses() {
+	public Set<ListeAllomorphes> getListeAllomorpheses() {
 		return this.listeAllomorpheses;
 	}
 
-	public void setListeAllomorpheses(Set listeAllomorpheses) {
+	public void setListeAllomorpheses(Set<ListeAllomorphes> listeAllomorpheses) {
 		this.listeAllomorpheses = listeAllomorpheses;
 	}
 

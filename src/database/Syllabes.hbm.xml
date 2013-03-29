@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 29 mars 2013 17:34:43 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="database.Syllabes" table="syllabes" catalog="bddictionnairique">
         <id name="idSyllabe" type="java.lang.Integer">
@@ -9,13 +9,10 @@
             <generator class="identity" />
         </id>
         <many-to-one name="headword" class="database.Headword" fetch="select">
-            <column name="id_headword" />
+            <column name="id_headword" not-null="true" />
         </many-to-one>
         <many-to-one name="flexions" class="database.Flexions" fetch="select">
-            <column name="id_flexion" />
-        </many-to-one>
-        <many-to-one name="dictionnaires" class="database.Dictionnaires" fetch="select">
-            <column name="id_dictionnaire" not-null="true" />
+            <column name="id_flexion" not-null="true" />
         </many-to-one>
         <property name="ordre" type="java.lang.Integer">
             <column name="ordre" />

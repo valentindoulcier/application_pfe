@@ -1,6 +1,8 @@
 package dao;
 import database.*;
 
+// Generated 29 mars 2013 17:35:31 by Hibernate Tools 3.4.0.CR1
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,10 +11,9 @@ import org.hibernate.Transaction;
 
 import utils.HibernateUtils;
 
-
 /**
  * Home object for domain model class ListeTypesLexicaux.
- * @see .ListeTypesLexicaux
+ * @see dao.ListeTypesLexicaux
  * @author Hibernate Tools
  */
 @SuppressWarnings("unused")

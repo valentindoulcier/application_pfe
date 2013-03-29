@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,14 +20,16 @@ import javax.persistence.Table;
 @Table(name = "types_construction", catalog = "bddictionnairique")
 public class TypesConstruction implements java.io.Serializable {
 
+	private static final long serialVersionUID = 8421308829522670230L;
+
 	private Integer idConstruction;
 	private String nom;
-	private Set lexiques = new HashSet(0);
+	private Set<Lexique> lexiques = new HashSet<Lexique>(0);
 
 	public TypesConstruction() {
 	}
 
-	public TypesConstruction(String nom, Set lexiques) {
+	public TypesConstruction(String nom, Set<Lexique> lexiques) {
 		this.nom = nom;
 		this.lexiques = lexiques;
 	}
@@ -53,11 +55,11 @@ public class TypesConstruction implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typesConstruction")
-	public Set getLexiques() {
+	public Set<Lexique> getLexiques() {
 		return this.lexiques;
 	}
 
-	public void setLexiques(Set lexiques) {
+	public void setLexiques(Set<Lexique> lexiques) {
 		this.lexiques = lexiques;
 	}
 

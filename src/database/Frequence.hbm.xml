@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 29 mars 2013 17:34:43 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="database.Frequence" table="frequence" catalog="bddictionnairique">
         <id name="idFreq" type="java.lang.Integer">
             <column name="id_freq" />
             <generator class="identity" />
         </id>
-        <many-to-one name="sourceFrequence" class="database.SourceFrequence" fetch="select">
-            <column name="id_source_freq" not-null="true" />
-        </many-to-one>
-        <many-to-one name="liensDict" class="database.LiensDict" fetch="select">
-            <column name="id_lien_dict" not-null="true" />
+        <many-to-one name="headword" class="database.Headword" fetch="select">
+            <column name="headword_id_headword" not-null="true" />
         </many-to-one>
         <property name="frequence" type="java.lang.Double">
             <column name="frequence" precision="22" scale="0" />
+        </property>
+        <property name="source" type="string">
+            <column name="source" length="50" />
         </property>
         <property name="note" type="string">
             <column name="note" length="65535" />

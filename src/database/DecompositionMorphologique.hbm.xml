@@ -1,15 +1,45 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 29 mars 2013 17:34:43 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="database.DecompositionMorphologique" table="decomposition_morphologique" catalog="bddictionnairique">
         <id name="idMorph" type="java.lang.Integer">
             <column name="id_morph" />
             <generator class="identity" />
         </id>
-        <many-to-one name="liensDict" class="database.LiensDict" fetch="select">
-            <column name="id_lien_dict" not-null="true" />
+        <many-to-one name="typesMorphologieByTypesMorphologieIdTypeMorph1" class="database.TypesMorphologie" fetch="select">
+            <column name="types_morphologie_id_type_morph1" not-null="true" />
+        </many-to-one>
+        <many-to-one name="headword" class="database.Headword" fetch="select">
+            <column name="headword_id_headword" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typesMorphologieByTypesMorphologieIdTypeMorph5" class="database.TypesMorphologie" fetch="select">
+            <column name="types_morphologie_id_type_morph5" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typesMorphologieByTypesMorphologieIdTypeMorph7" class="database.TypesMorphologie" fetch="select">
+            <column name="types_morphologie_id_type_morph7" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typesMorphologieByTypesMorphologieIdTypeMorph4" class="database.TypesMorphologie" fetch="select">
+            <column name="types_morphologie_id_type_morph4" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typesMorphologieByTypesMorphologieIdTypeMorph6" class="database.TypesMorphologie" fetch="select">
+            <column name="types_morphologie_id_type_morph6" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typesMorphologieByTypesMorphologieIdTypeMorph9" class="database.TypesMorphologie" fetch="select">
+            <column name="types_morphologie_id_type_morph9" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typesMorphologieByTypesMorphologieIdTypeMorph10" class="database.TypesMorphologie" fetch="select">
+            <column name="types_morphologie_id_type_morph10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typesMorphologieByTypesMorphologieIdTypeMorph3" class="database.TypesMorphologie" fetch="select">
+            <column name="types_morphologie_id_type_morph3" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typesMorphologieByTypesMorphologieIdTypeMorph8" class="database.TypesMorphologie" fetch="select">
+            <column name="types_morphologie_id_type_morph8" not-null="true" />
+        </many-to-one>
+        <many-to-one name="typesMorphologieByTypesMorphologieIdTypeMorph2" class="database.TypesMorphologie" fetch="select">
+            <column name="types_morphologie_id_type_morph2" not-null="true" />
         </many-to-one>
         <property name="m1" type="string">
             <column name="m1" length="15" />

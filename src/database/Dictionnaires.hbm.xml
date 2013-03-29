@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 29 mars 2013 17:34:43 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="database.Dictionnaires" table="dictionnaires" catalog="bddictionnairique">
         <id name="idDictionnaire" type="java.lang.Integer">
@@ -11,23 +11,11 @@
         <property name="nomDictionnaire" type="string">
             <column name="nom_dictionnaire" length="20" />
         </property>
-        <set name="syllabeses" table="syllabes" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_dictionnaire" not-null="true" />
-            </key>
-            <one-to-many class="database.Syllabes" />
-        </set>
         <set name="headwords" table="headword" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_dictionnaire" not-null="true" />
             </key>
             <one-to-many class="database.Headword" />
-        </set>
-        <set name="flexionses" table="flexions" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_dictionnaire" not-null="true" />
-            </key>
-            <one-to-many class="database.Flexions" />
         </set>
     </class>
 </hibernate-mapping>

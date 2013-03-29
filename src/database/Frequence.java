@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,25 +19,26 @@ import javax.persistence.Table;
 @Table(name = "frequence", catalog = "bddictionnairique")
 public class Frequence implements java.io.Serializable {
 
+	private static final long serialVersionUID = -8489033299676188871L;
+
 	private Integer idFreq;
-	private SourceFrequence sourceFrequence;
-	private LiensDict liensDict;
+	private Headword headword;
 	private Double frequence;
+	private String source;
 	private String note;
 
 	public Frequence() {
 	}
 
-	public Frequence(SourceFrequence sourceFrequence, LiensDict liensDict) {
-		this.sourceFrequence = sourceFrequence;
-		this.liensDict = liensDict;
+	public Frequence(Headword headword) {
+		this.headword = headword;
 	}
 
-	public Frequence(SourceFrequence sourceFrequence, LiensDict liensDict,
-			Double frequence, String note) {
-		this.sourceFrequence = sourceFrequence;
-		this.liensDict = liensDict;
+	public Frequence(Headword headword, Double frequence, String source,
+			String note) {
+		this.headword = headword;
 		this.frequence = frequence;
+		this.source = source;
 		this.note = note;
 	}
 
@@ -53,23 +54,13 @@ public class Frequence implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_source_freq", nullable = false)
-	public SourceFrequence getSourceFrequence() {
-		return this.sourceFrequence;
+	@JoinColumn(name = "headword_id_headword", nullable = false)
+	public Headword getHeadword() {
+		return this.headword;
 	}
 
-	public void setSourceFrequence(SourceFrequence sourceFrequence) {
-		this.sourceFrequence = sourceFrequence;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_lien_dict", nullable = false)
-	public LiensDict getLiensDict() {
-		return this.liensDict;
-	}
-
-	public void setLiensDict(LiensDict liensDict) {
-		this.liensDict = liensDict;
+	public void setHeadword(Headword headword) {
+		this.headword = headword;
 	}
 
 	@Column(name = "frequence", precision = 22, scale = 0)
@@ -79,6 +70,15 @@ public class Frequence implements java.io.Serializable {
 
 	public void setFrequence(Double frequence) {
 		this.frequence = frequence;
+	}
+
+	@Column(name = "source", length = 50)
+	public String getSource() {
+		return this.source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
 	}
 
 	@Column(name = "note", length = 65535)

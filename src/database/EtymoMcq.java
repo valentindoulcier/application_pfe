@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +18,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "etymo_mcq", catalog = "bddictionnairique")
 public class EtymoMcq implements java.io.Serializable {
+
+	private static final long serialVersionUID = 8904784610832059396L;
 
 	private Integer idEtymo;
 	private Headword headword;

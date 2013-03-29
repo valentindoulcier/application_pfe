@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,26 +20,28 @@ import javax.persistence.Table;
 @Table(name = "liste_categories", catalog = "bddictionnairique")
 public class ListeCategories implements java.io.Serializable {
 
+	private static final long serialVersionUID = 4128585333586017236L;
+
 	private Integer idCategorie;
 	private String nom;
-	private Set avoirPourSuffixesesForIdCategorieArrivee = new HashSet(0);
-	private Set avoirPourCategorieHeadwords = new HashSet(0);
-	private Set avoirPourSuffixesesForIdCategorieDepart = new HashSet(0);
-	private Set avoirPourPrefixeBases = new HashSet(0);
+	private Set<AvoirPourSuffixes> avoirPourSuffixesesForIdCategorieArrivee = new HashSet<AvoirPourSuffixes>(0);
+	private Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords = new HashSet<AvoirPourCategorieHeadword>(0);
+	private Set<AvoirPourPrefixeBase> avoirPourPrefixeBases = new HashSet<AvoirPourPrefixeBase>(0);
+	private Set<AvoirPourSuffixes> avoirPourSuffixesesForIdCategorieDepart = new HashSet<AvoirPourSuffixes>(0);
 
 	public ListeCategories() {
 	}
 
 	public ListeCategories(String nom,
-			Set avoirPourSuffixesesForIdCategorieArrivee,
-			Set avoirPourCategorieHeadwords,
-			Set avoirPourSuffixesesForIdCategorieDepart,
-			Set avoirPourPrefixeBases) {
+			Set<AvoirPourSuffixes> avoirPourSuffixesesForIdCategorieArrivee,
+			Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords,
+			Set<AvoirPourPrefixeBase> avoirPourPrefixeBases,
+			Set<AvoirPourSuffixes> avoirPourSuffixesesForIdCategorieDepart) {
 		this.nom = nom;
 		this.avoirPourSuffixesesForIdCategorieArrivee = avoirPourSuffixesesForIdCategorieArrivee;
 		this.avoirPourCategorieHeadwords = avoirPourCategorieHeadwords;
-		this.avoirPourSuffixesesForIdCategorieDepart = avoirPourSuffixesesForIdCategorieDepart;
 		this.avoirPourPrefixeBases = avoirPourPrefixeBases;
+		this.avoirPourSuffixesesForIdCategorieDepart = avoirPourSuffixesesForIdCategorieDepart;
 	}
 
 	@Id
@@ -63,41 +65,43 @@ public class ListeCategories implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listeCategoriesByIdCategorieArrivee")
-	public Set getAvoirPourSuffixesesForIdCategorieArrivee() {
+	public Set<AvoirPourSuffixes> getAvoirPourSuffixesesForIdCategorieArrivee() {
 		return this.avoirPourSuffixesesForIdCategorieArrivee;
 	}
 
 	public void setAvoirPourSuffixesesForIdCategorieArrivee(
-			Set avoirPourSuffixesesForIdCategorieArrivee) {
+			Set<AvoirPourSuffixes> avoirPourSuffixesesForIdCategorieArrivee) {
 		this.avoirPourSuffixesesForIdCategorieArrivee = avoirPourSuffixesesForIdCategorieArrivee;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listeCategories")
-	public Set getAvoirPourCategorieHeadwords() {
+	public Set<AvoirPourCategorieHeadword> getAvoirPourCategorieHeadwords() {
 		return this.avoirPourCategorieHeadwords;
 	}
 
-	public void setAvoirPourCategorieHeadwords(Set avoirPourCategorieHeadwords) {
+	public void setAvoirPourCategorieHeadwords(
+			Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords) {
 		this.avoirPourCategorieHeadwords = avoirPourCategorieHeadwords;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listeCategories")
+	public Set<AvoirPourPrefixeBase> getAvoirPourPrefixeBases() {
+		return this.avoirPourPrefixeBases;
+	}
+
+	public void setAvoirPourPrefixeBases(
+			Set<AvoirPourPrefixeBase> avoirPourPrefixeBases) {
+		this.avoirPourPrefixeBases = avoirPourPrefixeBases;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listeCategoriesByIdCategorieDepart")
-	public Set getAvoirPourSuffixesesForIdCategorieDepart() {
+	public Set<AvoirPourSuffixes> getAvoirPourSuffixesesForIdCategorieDepart() {
 		return this.avoirPourSuffixesesForIdCategorieDepart;
 	}
 
 	public void setAvoirPourSuffixesesForIdCategorieDepart(
-			Set avoirPourSuffixesesForIdCategorieDepart) {
+			Set<AvoirPourSuffixes> avoirPourSuffixesesForIdCategorieDepart) {
 		this.avoirPourSuffixesesForIdCategorieDepart = avoirPourSuffixesesForIdCategorieDepart;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listeCategories")
-	public Set getAvoirPourPrefixeBases() {
-		return this.avoirPourPrefixeBases;
-	}
-
-	public void setAvoirPourPrefixeBases(Set avoirPourPrefixeBases) {
-		this.avoirPourPrefixeBases = avoirPourPrefixeBases;
 	}
 
 }

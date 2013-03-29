@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,8 +19,10 @@ import javax.persistence.Table;
 @Table(name = "decomposition_graphique", catalog = "bddictionnairique")
 public class DecompositionGraphique implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1903079606551207615L;
+
 	private Integer idDecompGraph;
-	private LiensDict liensDict;
+	private Headword headword;
 	private String syllabe1;
 	private String syllabe2;
 	private String syllabe3;
@@ -37,15 +39,15 @@ public class DecompositionGraphique implements java.io.Serializable {
 	public DecompositionGraphique() {
 	}
 
-	public DecompositionGraphique(LiensDict liensDict) {
-		this.liensDict = liensDict;
+	public DecompositionGraphique(Headword headword) {
+		this.headword = headword;
 	}
 
-	public DecompositionGraphique(LiensDict liensDict, String syllabe1,
+	public DecompositionGraphique(Headword headword, String syllabe1,
 			String syllabe2, String syllabe3, String syllabe4, String syllabe5,
 			String syllabe6, String syllabe7, String syllabe8, String syllabe9,
 			String syllabe10, Integer nbSyllabes, String note) {
-		this.liensDict = liensDict;
+		this.headword = headword;
 		this.syllabe1 = syllabe1;
 		this.syllabe2 = syllabe2;
 		this.syllabe3 = syllabe3;
@@ -72,13 +74,13 @@ public class DecompositionGraphique implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_lien_dict", nullable = false)
-	public LiensDict getLiensDict() {
-		return this.liensDict;
+	@JoinColumn(name = "headword_id_headword", nullable = false)
+	public Headword getHeadword() {
+		return this.headword;
 	}
 
-	public void setLiensDict(LiensDict liensDict) {
-		this.liensDict = liensDict;
+	public void setHeadword(Headword headword) {
+		this.headword = headword;
 	}
 
 	@Column(name = "syllabe1", length = 20)

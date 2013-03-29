@@ -1,16 +1,15 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,16 +19,24 @@ import javax.persistence.Table;
 @Table(name = "liste_usages", catalog = "bddictionnairique")
 public class ListeUsages implements java.io.Serializable {
 
+	private static final long serialVersionUID = -8216398577721972697L;
+
 	private Integer idUsage;
+	private Headword headword;
 	private String usage;
-	private Set usageLiens = new HashSet(0);
+	private String note;
 
 	public ListeUsages() {
 	}
 
-	public ListeUsages(String usage, Set usageLiens) {
+	public ListeUsages(Headword headword) {
+		this.headword = headword;
+	}
+
+	public ListeUsages(Headword headword, String usage, String note) {
+		this.headword = headword;
 		this.usage = usage;
-		this.usageLiens = usageLiens;
+		this.note = note;
 	}
 
 	@Id
@@ -43,6 +50,16 @@ public class ListeUsages implements java.io.Serializable {
 		this.idUsage = idUsage;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "headword_id_headword", nullable = false)
+	public Headword getHeadword() {
+		return this.headword;
+	}
+
+	public void setHeadword(Headword headword) {
+		this.headword = headword;
+	}
+
 	@Column(name = "usage", length = 15)
 	public String getUsage() {
 		return this.usage;
@@ -52,13 +69,13 @@ public class ListeUsages implements java.io.Serializable {
 		this.usage = usage;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listeUsages")
-	public Set getUsageLiens() {
-		return this.usageLiens;
+	@Column(name = "note", length = 65535)
+	public String getNote() {
+		return this.note;
 	}
 
-	public void setUsageLiens(Set usageLiens) {
-		this.usageLiens = usageLiens;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 }

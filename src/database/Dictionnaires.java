@@ -1,8 +1,7 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
-import java.awt.event.MouseEvent;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -21,21 +20,18 @@ import javax.persistence.Table;
 @Table(name = "dictionnaires", catalog = "bddictionnairique")
 public class Dictionnaires implements java.io.Serializable {
 
+	private static final long serialVersionUID = 7875412124961823995L;
+
 	private Integer idDictionnaire;
 	private String nomDictionnaire;
-	private Set syllabeses = new HashSet(0);
-	private Set headwords = new HashSet(0);
-	private Set flexionses = new HashSet(0);
+	private Set<Headword> headwords = new HashSet<Headword>(0);
 
 	public Dictionnaires() {
 	}
 
-	public Dictionnaires(String nomDictionnaire, Set syllabeses, Set headwords,
-			Set flexionses) {
+	public Dictionnaires(String nomDictionnaire, Set<Headword> headwords) {
 		this.nomDictionnaire = nomDictionnaire;
-		this.syllabeses = syllabeses;
 		this.headwords = headwords;
-		this.flexionses = flexionses;
 	}
 
 	@Id
@@ -59,29 +55,12 @@ public class Dictionnaires implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dictionnaires")
-	public Set getSyllabeses() {
-		return this.syllabeses;
-	}
-
-	public void setSyllabeses(Set syllabeses) {
-		this.syllabeses = syllabeses;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dictionnaires")
-	public Set getHeadwords() {
+	public Set<Headword> getHeadwords() {
 		return this.headwords;
 	}
 
-	public void setHeadwords(Set headwords) {
+	public void setHeadwords(Set<Headword> headwords) {
 		this.headwords = headwords;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dictionnaires")
-	public Set getFlexionses() {
-		return this.flexionses;
-	}
-
-	public void setFlexionses(Set flexionses) {
-		this.flexionses = flexionses;
-	}
 }

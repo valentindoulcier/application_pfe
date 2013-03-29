@@ -1,18 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 29 mars 2013 17:34:43 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="database.Notes" table="notes" catalog="bddictionnairique">
         <id name="idNotes" type="java.lang.Integer">
             <column name="id_notes" />
             <generator class="identity" />
         </id>
-        <many-to-one name="headword" class="database.Headword" fetch="select">
-            <column name="id_headword" not-null="true" />
-        </many-to-one>
         <property name="texte" type="string">
             <column name="texte" length="65535" />
         </property>
+        <set name="headwords" table="headword" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="notes_id_notes" not-null="true" />
+            </key>
+            <one-to-many class="database.Headword" />
+        </set>
     </class>
 </hibernate-mapping>

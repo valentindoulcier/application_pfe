@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 29 mars 2013 17:34:43 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="database.Lexique" table="lexique" catalog="bddictionnairique">
         <id name="idLienLex" type="java.lang.Integer">
             <column name="id_lien_lex" />
             <generator class="identity" />
         </id>
-        <many-to-one name="liensDictByIdLienDictMotEtudie" class="database.LiensDict" fetch="select">
-            <column name="id_lien_dict_mot_etudie" not-null="true" />
+        <many-to-one name="headwordByHeadwordIdMotEtudie" class="database.Headword" fetch="select">
+            <column name="headword_id_mot_etudie" not-null="true" />
         </many-to-one>
-        <many-to-one name="liensDictByIdLienDictMotReferent1" class="database.LiensDict" fetch="select">
-            <column name="id_lien_dict_mot_referent1" not-null="true" />
-        </many-to-one>
-        <many-to-one name="liensDictByIdLienDictMotReferent2" class="database.LiensDict" fetch="select">
-            <column name="id_lien_dict_mot_referent2" not-null="true" />
+        <many-to-one name="headwordByHeadwordIdMotReferent2" class="database.Headword" fetch="select">
+            <column name="headword_id_mot_referent_2" not-null="true" />
         </many-to-one>
         <many-to-one name="typesConstruction" class="database.TypesConstruction" fetch="select">
             <column name="id_construction" not-null="true" />
+        </many-to-one>
+        <many-to-one name="headwordByHeadwordIdMotReferent1" class="database.Headword" fetch="select">
+            <column name="headword_id_mot_referent_1" not-null="true" />
         </many-to-one>
         <many-to-one name="listeTypesLexicaux" class="database.ListeTypesLexicaux" fetch="select">
             <column name="id_type_lexical" not-null="true" />

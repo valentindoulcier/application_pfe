@@ -1,6 +1,6 @@
 package database;
 
-// Generated 25 janv. 2013 00:04:50 by Hibernate Tools 3.4.0.CR1
+// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,24 +22,22 @@ import javax.persistence.Table;
 @Table(name = "flexions", catalog = "bddictionnairique")
 public class Flexions implements java.io.Serializable {
 
+	private static final long serialVersionUID = 5039661337175167212L;
+
 	private Integer idFlexion;
 	private Headword headword;
-	private Dictionnaires dictionnaires;
 	private String mot;
-	private Set syllabeses = new HashSet(0);
+	private Set<Syllabes> syllabeses = new HashSet<Syllabes>(0);
 
 	public Flexions() {
 	}
 
-	public Flexions(Headword headword, Dictionnaires dictionnaires) {
+	public Flexions(Headword headword) {
 		this.headword = headword;
-		this.dictionnaires = dictionnaires;
 	}
 
-	public Flexions(Headword headword, Dictionnaires dictionnaires, String mot,
-			Set syllabeses) {
+	public Flexions(Headword headword, String mot, Set<Syllabes> syllabeses) {
 		this.headword = headword;
-		this.dictionnaires = dictionnaires;
 		this.mot = mot;
 		this.syllabeses = syllabeses;
 	}
@@ -65,16 +63,6 @@ public class Flexions implements java.io.Serializable {
 		this.headword = headword;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_dictionnaire", nullable = false)
-	public Dictionnaires getDictionnaires() {
-		return this.dictionnaires;
-	}
-
-	public void setDictionnaires(Dictionnaires dictionnaires) {
-		this.dictionnaires = dictionnaires;
-	}
-
 	@Column(name = "mot", length = 100)
 	public String getMot() {
 		return this.mot;
@@ -85,11 +73,11 @@ public class Flexions implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "flexions")
-	public Set getSyllabeses() {
+	public Set<Syllabes> getSyllabeses() {
 		return this.syllabeses;
 	}
 
-	public void setSyllabeses(Set syllabeses) {
+	public void setSyllabeses(Set<Syllabes> syllabeses) {
 		this.syllabeses = syllabeses;
 	}
 
