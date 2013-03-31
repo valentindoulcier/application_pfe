@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
     <!--
@@ -9,30 +8,30 @@
         <property name="hibernate.search.autoregister_listeners">false</property>
     -->
         
-        <mapping resource="ListeStatuts.hbm.xml" />
-        <mapping resource="AvoirPourCategorieHeadword.hbm.xml" />
-        <mapping resource="Lexique.hbm.xml" />
-        <mapping resource="ListeTypesLexicaux.hbm.xml" />
-        <mapping resource="Utilisateurs.hbm.xml" />
-        <mapping resource="DecompositionMorphologique.hbm.xml" />
-        <mapping resource="Flexions.hbm.xml" />
-        <mapping resource="Dictionnaires.hbm.xml" />
-        <mapping resource="Frequence.hbm.xml" />
-        <mapping resource="AvoirPourSuffixes.hbm.xml" />
-        <mapping resource="EtymoMcq.hbm.xml" />
-        <mapping resource="Notes.hbm.xml" />
-        <mapping resource="ListeUsages.hbm.xml" />
-        <mapping resource="Headword.hbm.xml" />
-        <mapping resource="ListeMorphemesPrefsuffbase.hbm.xml" />
-        <mapping resource="DecompositionGraphique.hbm.xml" />
-        <mapping resource="ListeCategories.hbm.xml" />
-        <mapping resource="Composes.hbm.xml" />
-        <mapping resource="TypesMorphologie.hbm.xml" />
-        <mapping resource="Syllabes.hbm.xml" />
-        <mapping resource="ListeAllomorphes.hbm.xml" />
-        <mapping resource="AvoirPourPrefixeBase.hbm.xml" />
-        <mapping resource="TypesConstruction.hbm.xml" />
-        <mapping resource="Sens.hbm.xml" />
+        <mapping resource="database/ListeStatuts.hbm.xml" />
+        <mapping resource="database/AvoirPourCategorieHeadword.hbm.xml" />
+        <mapping resource="database/Lexique.hbm.xml" />
+        <mapping resource="database/ListeTypesLexicaux.hbm.xml" />
+        <mapping resource="database/Utilisateurs.hbm.xml" />
+        <mapping resource="database/DecompositionMorphologique.hbm.xml" />
+        <mapping resource="database/Flexions.hbm.xml" />
+        <mapping resource="database/Dictionnaires.hbm.xml" />
+        <mapping resource="database/Frequence.hbm.xml" />
+        <mapping resource="database/AvoirPourSuffixes.hbm.xml" />
+        <mapping resource="database/EtymoMcq.hbm.xml" />
+        <mapping resource="database/Notes.hbm.xml" />
+        <mapping resource="database/ListeUsages.hbm.xml" />
+        <mapping resource="database/Headword.hbm.xml" />
+        <mapping resource="database/ListeMorphemesPrefsuffbase.hbm.xml" />
+        <mapping resource="database/DecompositionGraphique.hbm.xml" />
+        <mapping resource="database/ListeCategories.hbm.xml" />
+        <mapping resource="database/Composes.hbm.xml" />
+        <mapping resource="database/TypesMorphologie.hbm.xml" />
+        <mapping resource="database/Syllabes.hbm.xml" />
+        <mapping resource="database/ListeAllomorphes.hbm.xml" />
+        <mapping resource="database/AvoirPourPrefixeBase.hbm.xml" />
+        <mapping resource="database/TypesConstruction.hbm.xml" />
+        <mapping resource="database/Sens.hbm.xml" />
         
     </session-factory>
 </hibernate-configuration>

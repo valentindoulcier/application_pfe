@@ -97,4 +97,18 @@ public class DictionnairesDAO extends AbstractDAO {
     public List<?> findAll() throws DataAccessLayerException{
         return super.findAll(session, Dictionnaires.class);
     }
+
+	/**
+	 * @return the session
+	 */
+	public Session getSession() {
+		return session;
+	}
+
+	/**
+	 * @param session the session to set
+	 */
+	public void setSession(Session session) {
+		this.session = session;
+	}
 }

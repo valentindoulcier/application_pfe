@@ -18,9 +18,10 @@ import java.util.ArrayList;
 
 import javax.swing.JSplitPane;
 
-import ui.mainframes.contents.ContentFooterHome;
-import ui.mainframes.contents.ContentHeaderHome;
-import ui.mainframes.contents.ContentHome;
+import principal.ui.contents.ContentFooterHome;
+import principal.ui.contents.ContentHeaderHome;
+import principal.ui.contents.ContentHome;
+
 
 /**
  * @author Valentin
