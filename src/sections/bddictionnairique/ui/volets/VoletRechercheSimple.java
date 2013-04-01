@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.GridBagLayout;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import principal.Application;
 
@@ -39,7 +39,7 @@ public class VoletRechercheSimple extends JPanel {
 
 	private static final long serialVersionUID = -7929534743664074552L;
 
-	private static Logger logger = Logger.getLogger(VoletRechercheSimple.class);
+	//private static Logger logger = Logger.getLogger(VoletRechercheSimple.class);
 
 	private GridBagLayout gridBagLayout;
 
@@ -133,7 +133,7 @@ public class VoletRechercheSimple extends JPanel {
 
 	public JPanel listeDico(Application application) {
 
-		logger.debug("4 - Chargement des dictionnaires");
+		//logger.debug("4 - Chargement des dictionnaires");
 		DictionnairesDAO dictionnaires = new DictionnairesDAO("local");
 		List<?> dico = null;
 		

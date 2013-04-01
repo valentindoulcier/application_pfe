@@ -32,11 +32,11 @@ public class DictionnairesDAO extends AbstractDAO {
 	public DictionnairesDAO(String type) {
 		if("local".equalsIgnoreCase(type)) {
 			try {
-				logger.debug("5 - Je vais récupérer l'instance");
+				//logger.debug("5 - Je vais récupérer l'instance");
 				this.session = HibernateUtils.getInstanceLocale();
-				logger.debug("6 - J'ai la session");
+				//logger.debug("6 - J'ai la session");
 			} catch(Throwable ex) {
-				logger.debug("56 - La session est foireuse");
+				//logger.debug("56 - La session est foireuse");
 				JOptionPane.showMessageDialog(null, "Connexion fermée !");
 			}
 		}
@@ -44,13 +44,13 @@ public class DictionnairesDAO extends AbstractDAO {
 			this.session = HibernateUtils.getInstanceMaster();
 		}
 
-		logger.debug("7 - Je vais tester la session");
+		//logger.debug("7 - Je vais tester la session");
 		if(session != null) {
-			logger.debug("8 - La session n'est pas nulle - beginTransaction");
+			//logger.debug("8 - La session n'est pas nulle - beginTransaction");
 			tx = session.beginTransaction();
 		}
 		else {
-			logger.debug("9 - La session est nulle");
+			//logger.debug("9 - La session est nulle");
 			JOptionPane.showMessageDialog(null, "Transaction !");
 		}
     }

@@ -43,7 +43,7 @@ public class VoletHistorique extends JPanel {
 	
 	public void initComponents(Application application) {
 		setPreferredSize(new Dimension(300, 540));
-		//setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		
 		GridBagLayout gridBagLayout_1 = new GridBagLayout();
 		gridBagLayout_1.columnWidths = new int[]{0, 0};
