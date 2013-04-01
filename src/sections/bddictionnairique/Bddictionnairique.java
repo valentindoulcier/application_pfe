@@ -32,23 +32,27 @@ public class Bddictionnairique implements Serializable {
 	private static Bddictionnairique instance = null;
 
 	// Recherche
-	private static VoletFooterRecherche voletFooterRecherche = null;
-	private static VoletFooterEdition voletFooterEdition = null;
-			
-	private static VoletHeaderRechercheSimple voletHeaderRechercheSimple = null;
-	private static VoletRechercheSimple voletRechercheSimple = null;
-			
+	
+	// Volet
 	private static VoletHeaderEdition voletHeaderEdition = null;
 	private static VoletEdition voletEdition = null;
+	private static VoletFooterEdition voletFooterEdition = null;
+
+	private static VoletFooterRecherche voletFooterRecherche = null;
+
+	private static VoletHeaderRechercheSimple voletHeaderRechercheSimple = null;
+	private static VoletRechercheSimple voletRechercheSimple = null;
+
+	// Content
+	private static ContentHeaderEdition contentHeaderEdition = null;
+	private static ContentEdition contentEdition = null;
+	private static ContentFooterEdition contentFooterEdition = null;
 
 	private static ContentFooterRecherche contentFooterRecherche = null;
-	private static ContentFooterEdition contentFooterEdition = null;
-			
+
 	private static ContentHeaderRechercheSimple contentHeaderRechercheSimple = null;
 	private static ContentRechercheSimple contentRechercheSimple = null;
 			
-	private static ContentHeaderEdition contentHeaderEdition = null;
-	private static ContentEdition contentEdition = null;
 	
 	// Application
 	private static Application application = null;
@@ -64,23 +68,7 @@ public class Bddictionnairique implements Serializable {
 				
 				Bddictionnairique.application = application;
 				
-				Bddictionnairique.voletFooterRecherche = new VoletFooterRecherche(application);
-				Bddictionnairique.voletFooterEdition = new VoletFooterEdition(application);
-
-				Bddictionnairique.voletHeaderRechercheSimple = new VoletHeaderRechercheSimple();
-				Bddictionnairique.voletRechercheSimple = new VoletRechercheSimple(application);
-
-				Bddictionnairique.voletHeaderEdition = new VoletHeaderEdition();
-				Bddictionnairique.voletEdition = new VoletEdition(application);
 				
-				Bddictionnairique.contentFooterRecherche = new ContentFooterRecherche(application);
-				Bddictionnairique.contentFooterEdition = new ContentFooterEdition(application);
-
-				Bddictionnairique.contentHeaderRechercheSimple = new ContentHeaderRechercheSimple(application);
-				Bddictionnairique.contentRechercheSimple = new ContentRechercheSimple(application);
-
-				Bddictionnairique.contentHeaderEdition = new ContentHeaderEdition(application);
-				Bddictionnairique.contentEdition = new ContentEdition(application);
 			}
 		}
 		return instance;
@@ -88,6 +76,23 @@ public class Bddictionnairique implements Serializable {
 
 
 	public void chargerBddictionnairique() {
+		Bddictionnairique.voletFooterRecherche = new VoletFooterRecherche(application);
+		Bddictionnairique.voletFooterEdition = new VoletFooterEdition(application);
+
+		Bddictionnairique.voletHeaderRechercheSimple = new VoletHeaderRechercheSimple();
+		Bddictionnairique.voletRechercheSimple = new VoletRechercheSimple(application);
+
+		Bddictionnairique.voletHeaderEdition = new VoletHeaderEdition();
+		Bddictionnairique.voletEdition = new VoletEdition(application);
+		
+		Bddictionnairique.contentFooterRecherche = new ContentFooterRecherche();
+		Bddictionnairique.contentFooterEdition = new ContentFooterEdition();
+
+		Bddictionnairique.contentHeaderRechercheSimple = new ContentHeaderRechercheSimple(application);
+		Bddictionnairique.contentRechercheSimple = new ContentRechercheSimple(application);
+
+		Bddictionnairique.contentHeaderEdition = new ContentHeaderEdition(application);
+		Bddictionnairique.contentEdition = new ContentEdition();
 		// Volets
 		Bddictionnairique.application.getvHeader().add(voletHeaderEdition, "voletHeaderEdition");
 		Bddictionnairique.application.getvPanel().add(voletEdition, "voletEdition");
@@ -169,11 +174,19 @@ public class Bddictionnairique implements Serializable {
 			Bddictionnairique.application.getcPanel().remove(getVoletFooterRecherche().getContentHistorique());
 		}
 	}
+	
+	public void fermerCurrentOnglet() {
+		;
+	}
+	
+	public void titi() {
+		;
+	}
 
 	/**
 	 * @return the voletFooterRecherche
 	 */
-	public static VoletFooterRecherche getVoletFooterRecherche() {
+	public VoletFooterRecherche getVoletFooterRecherche() {
 		return voletFooterRecherche;
 	}
 
@@ -188,7 +201,7 @@ public class Bddictionnairique implements Serializable {
 	/**
 	 * @return the voletFooterEdition
 	 */
-	public static VoletFooterEdition getVoletFooterEdition() {
+	public VoletFooterEdition getVoletFooterEdition() {
 		return voletFooterEdition;
 	}
 
@@ -202,7 +215,7 @@ public class Bddictionnairique implements Serializable {
 	/**
 	 * @return the voletHeaderRechercheSimple
 	 */
-	public static VoletHeaderRechercheSimple getVoletHeaderRechercheSimple() {
+	public VoletHeaderRechercheSimple getVoletHeaderRechercheSimple() {
 		return voletHeaderRechercheSimple;
 	}
 
@@ -232,7 +245,7 @@ public class Bddictionnairique implements Serializable {
 	/**
 	 * @return the voletHeaderEdition
 	 */
-	public static VoletHeaderEdition getVoletHeaderEdition() {
+	public VoletHeaderEdition getVoletHeaderEdition() {
 		return voletHeaderEdition;
 	}
 
@@ -246,7 +259,7 @@ public class Bddictionnairique implements Serializable {
 	/**
 	 * @return the voletEdition
 	 */
-	public static VoletEdition getVoletEdition() {
+	public VoletEdition getVoletEdition() {
 		return voletEdition;
 	}
 
@@ -260,7 +273,7 @@ public class Bddictionnairique implements Serializable {
 	/**
 	 * @return the contentFooterRecherche
 	 */
-	public static ContentFooterRecherche getContentFooterRecherche() {
+	public ContentFooterRecherche getContentFooterRecherche() {
 		return contentFooterRecherche;
 	}
 
@@ -275,7 +288,7 @@ public class Bddictionnairique implements Serializable {
 	/**
 	 * @return the contentFooterEdition
 	 */
-	public static ContentFooterEdition getContentFooterEdition() {
+	public ContentFooterEdition getContentFooterEdition() {
 		return contentFooterEdition;
 	}
 
@@ -290,7 +303,7 @@ public class Bddictionnairique implements Serializable {
 	/**
 	 * @return the contentHeaderRechercheSimple
 	 */
-	public static ContentHeaderRechercheSimple getContentHeaderRechercheSimple() {
+	public ContentHeaderRechercheSimple getContentHeaderRechercheSimple() {
 		return contentHeaderRechercheSimple;
 	}
 
@@ -305,7 +318,7 @@ public class Bddictionnairique implements Serializable {
 	/**
 	 * @return the contentRechercheSimple
 	 */
-	public static ContentRechercheSimple getContentRechercheSimple() {
+	public ContentRechercheSimple getContentRechercheSimple() {
 		return contentRechercheSimple;
 	}
 
@@ -320,7 +333,7 @@ public class Bddictionnairique implements Serializable {
 	/**
 	 * @return the contentHeaderEdition
 	 */
-	public static ContentHeaderEdition getContentHeaderEdition() {
+	public ContentHeaderEdition getContentHeaderEdition() {
 		return contentHeaderEdition;
 	}
 
@@ -335,7 +348,7 @@ public class Bddictionnairique implements Serializable {
 	/**
 	 * @return the contentEdition
 	 */
-	public static ContentEdition getContentEdition() {
+	public ContentEdition getContentEdition() {
 		return contentEdition;
 	}
 

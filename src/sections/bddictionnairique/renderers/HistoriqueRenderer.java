@@ -19,6 +19,7 @@ import javax.swing.table.TableCellRenderer;
 
 import principal.Application;
 
+import sections.bddictionnairique.Bddictionnairique;
 import sections.bddictionnairique.objects.*;
 
 /**
@@ -97,7 +98,7 @@ class CellEditorRenderer extends AbstractCellEditor implements TableCellRenderer
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         editor.setCaract((Caract_Historique) value);
     	editor.setBackground(new Color(165, 207, 255));
-    	application.getContentHome().getVoletFooterRecherche().getContentHistorique().afficherRecherche(application, editor.getCaract().numRecherche - 1);
+    	Bddictionnairique.getInstance(application).getVoletFooterRecherche().getContentHistorique().afficherRecherche(application, editor.getCaract().numRecherche - 1);
         return editor;
     }
 

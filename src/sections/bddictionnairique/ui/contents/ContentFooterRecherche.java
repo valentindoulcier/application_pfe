@@ -7,10 +7,8 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import principal.Application;
-
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
  *
  */
 public class ContentFooterRecherche extends JPanel {
@@ -20,7 +18,13 @@ public class ContentFooterRecherche extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ContentFooterRecherche(final Application application) {
+	public ContentFooterRecherche() {
+		
+		initComponents();
+		
+	}
+	
+	public void initComponents() {
 		setBackground(Color.GRAY);
 	}
 

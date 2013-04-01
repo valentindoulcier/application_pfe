@@ -7,10 +7,8 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import principal.Application;
-
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
  *
  */
 public class ContentFooterEdition extends JPanel {
@@ -21,7 +19,13 @@ public class ContentFooterEdition extends JPanel {
 	 * Create the panel.
 	 * @param application 
 	 */
-	public ContentFooterEdition(Application application) {
+	public ContentFooterEdition() {
+		
+		initComponents();
+
+	}
+	
+	public void initComponents() {
 		setBackground(Color.GRAY);
 	}
 

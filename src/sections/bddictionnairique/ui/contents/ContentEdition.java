@@ -5,10 +5,8 @@ package sections.bddictionnairique.ui.contents;
 
 import javax.swing.JPanel;
 
-import principal.Application;
-
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
  *
  */
 public class ContentEdition extends JPanel {
@@ -19,8 +17,14 @@ public class ContentEdition extends JPanel {
 	 * Create the panel.
 	 * @param application 
 	 */
-	public ContentEdition(Application application) {
+	public ContentEdition() {
 
+		initComponents();
+		
+	}
+	
+	public void initComponents() {
+		;
 	}
 
 }

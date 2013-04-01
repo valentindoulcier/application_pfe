@@ -20,7 +20,7 @@ import java.util.Vector;
 
 
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
  *
  */
 public class VoletHistorique extends JPanel {

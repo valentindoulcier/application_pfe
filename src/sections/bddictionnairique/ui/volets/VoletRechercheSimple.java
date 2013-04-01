@@ -32,7 +32,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
  *
  */
 public class VoletRechercheSimple extends JPanel {

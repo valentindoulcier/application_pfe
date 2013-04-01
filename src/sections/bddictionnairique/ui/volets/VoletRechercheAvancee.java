@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import principal.Application;
 
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
  *
  */
 public class VoletRechercheAvancee extends JPanel {

@@ -43,7 +43,7 @@ import database.ListeCategories;
 import database.Syllabes;
 
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
  *
  */
 public class ContentRechercheSimple extends JPanel {

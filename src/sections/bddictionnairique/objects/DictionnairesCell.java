@@ -39,15 +39,15 @@ public class DictionnairesCell extends JPanel {
 		initComponents();
 		
 		chckbxDictionnaire.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				if (chckbxDictionnaire.isSelected()) {
+					System.out.println("JE SELECT");
 					chckbxDictionnaire.setSelected(true);
 					Bddictionnairique.getInstance(application).getVoletRechercheSimple().getListeDicos().put(num, chckbxDictionnaire.getText());
 				}
 				else {
+					System.out.println("JE DE SELECT");
 					chckbxDictionnaire.setSelected(false);
 					Bddictionnairique.getInstance(application).getVoletRechercheSimple().getListeDicos().remove(num);
 				}

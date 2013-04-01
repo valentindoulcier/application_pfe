@@ -13,9 +13,10 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import principal.Application;
+import sections.bddictionnairique.Bddictionnairique;
 
 /**
  * @author Valentin DOULCIER
@@ -25,7 +26,7 @@ public class ContentHeaderRechercheSimple extends JPanel {
 
 	private static final long serialVersionUID = 5428423567932680960L;
 
-	private static Logger logger = Logger.getLogger(ContentHeaderRechercheSimple.class);
+	//private static Logger logger = Logger.getLogger(ContentHeaderRechercheSimple.class);
 
 	private static boolean ouvert = false;
 	
@@ -47,14 +48,13 @@ public class ContentHeaderRechercheSimple extends JPanel {
 		btnHome.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				logger.error("Problème ligne 80 ContentHeaderRechercheSimple");
+				Bddictionnairique.getInstance(application).dechargerBddictionnairique();
 			}
 		});
 
 		btnVolets.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				if(ouvert) {
 					application.OuvrirVolet();
 					btnVolets.setText("FERMER");

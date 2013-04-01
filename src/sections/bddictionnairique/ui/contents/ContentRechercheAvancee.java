@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import principal.Application;
 
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
  *
  */
 public class ContentRechercheAvancee extends JPanel {
@@ -21,6 +21,12 @@ public class ContentRechercheAvancee extends JPanel {
 	 */
 	public ContentRechercheAvancee(Application application) {
 
+		initComponents();
+		
+	}
+	
+	public void initComponents() {
+		;
 	}
 
 }

@@ -76,17 +76,17 @@ public class VoletFooterRecherche extends JPanel {
 					voletHeaderRechercheSimple = Bddictionnairique.getInstance(application).getVoletHeaderRechercheSimple();
 					voletRechercheSimple = Bddictionnairique.getInstance(application).getVoletRechercheSimple();
 					
-					application.getvHeader().remove(application.getContentHome().getVoletHeaderRechercheSimple());
-					application.getvPanel().remove(application.getContentHome().getVoletRechercheSimple());
+					application.getvHeader().remove(Bddictionnairique.getInstance(application).getVoletHeaderRechercheSimple());
+					application.getvPanel().remove(Bddictionnairique.getInstance(application).getVoletRechercheSimple());
 					
 					application.getvHeader().add(voletHeaderRechercheSimple, "voletHeaderRechercheSimple");
 					application.getvPanel().add(voletRechercheSimple, "voletRechercheSimple");
 
-					contentHeaderRechercheSimple = application.getContentHome().getContentHeaderRechercheSimple();
-					contentRechercheSimple = application.getContentHome().getContentRechercheSimple();
+					contentHeaderRechercheSimple = Bddictionnairique.getInstance(application).getContentHeaderRechercheSimple();
+					contentRechercheSimple = Bddictionnairique.getInstance(application).getContentRechercheSimple();
 					
-					application.getcHeader().remove(application.getContentHome().getContentHeaderRechercheSimple());
-					application.getcPanel().remove(application.getContentHome().getContentRechercheSimple());
+					application.getcHeader().remove(Bddictionnairique.getInstance(application).getContentHeaderRechercheSimple());
+					application.getcPanel().remove(Bddictionnairique.getInstance(application).getContentRechercheSimple());
 
 					application.getcHeader().add(contentHeaderRechercheSimple, "contentHeaderRechercheSimple");
 					application.getcPanel().add(contentRechercheSimple, "contentRechercheSimple");
@@ -152,20 +152,20 @@ public class VoletFooterRecherche extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if(jeViensDe == -1) {
-					voletHeaderRechercheSimple = application.getContentHome().getVoletHeaderRechercheSimple();
-					voletRechercheSimple = application.getContentHome().getVoletRechercheSimple();
+					voletHeaderRechercheSimple = Bddictionnairique.getInstance(application).getVoletHeaderRechercheSimple();
+					voletRechercheSimple = Bddictionnairique.getInstance(application).getVoletRechercheSimple();
 					
-					application.getvHeader().remove(application.getContentHome().getVoletHeaderRechercheSimple());
-					application.getvPanel().remove(application.getContentHome().getVoletRechercheSimple());
+					application.getvHeader().remove(Bddictionnairique.getInstance(application).getVoletHeaderRechercheSimple());
+					application.getvPanel().remove(Bddictionnairique.getInstance(application).getVoletRechercheSimple());
 					
 					application.getvHeader().add(voletHeaderRechercheSimple, "voletHeaderRechercheSimple");
 					application.getvPanel().add(voletRechercheSimple, "voletRechercheSimple");
 
-					contentHeaderRechercheSimple = application.getContentHome().getContentHeaderRechercheSimple();
-					contentRechercheSimple = application.getContentHome().getContentRechercheSimple();
+					contentHeaderRechercheSimple = Bddictionnairique.getInstance(application).getContentHeaderRechercheSimple();
+					contentRechercheSimple = Bddictionnairique.getInstance(application).getContentRechercheSimple();
 					
-					application.getcHeader().remove(application.getContentHome().getContentHeaderRechercheSimple());
-					application.getcPanel().remove(application.getContentHome().getContentRechercheSimple());
+					application.getcHeader().remove(Bddictionnairique.getInstance(application).getContentHeaderRechercheSimple());
+					application.getcPanel().remove(Bddictionnairique.getInstance(application).getContentRechercheSimple());
 
 					application.getcHeader().add(contentHeaderRechercheSimple, "contentHeaderRechercheSimple");
 					application.getcPanel().add(contentRechercheSimple, "contentRechercheSimple");
@@ -231,20 +231,20 @@ public class VoletFooterRecherche extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if(jeViensDe == -1) {
-					voletHeaderRechercheSimple = application.getContentHome().getVoletHeaderRechercheSimple();
-					voletRechercheSimple = application.getContentHome().getVoletRechercheSimple();
+					voletHeaderRechercheSimple = Bddictionnairique.getInstance(application).getVoletHeaderRechercheSimple();
+					voletRechercheSimple = Bddictionnairique.getInstance(application).getVoletRechercheSimple();
 					
-					application.getvHeader().remove(application.getContentHome().getVoletHeaderRechercheSimple());
-					application.getvPanel().remove(application.getContentHome().getVoletRechercheSimple());
+					application.getvHeader().remove(Bddictionnairique.getInstance(application).getVoletHeaderRechercheSimple());
+					application.getvPanel().remove(Bddictionnairique.getInstance(application).getVoletRechercheSimple());
 					
 					application.getvHeader().add(voletHeaderRechercheSimple, "voletHeaderRechercheSimple");
 					application.getvPanel().add(voletRechercheSimple, "voletRechercheSimple");
 
-					contentHeaderRechercheSimple = application.getContentHome().getContentHeaderRechercheSimple();
-					contentRechercheSimple = application.getContentHome().getContentRechercheSimple();
+					contentHeaderRechercheSimple = Bddictionnairique.getInstance(application).getContentHeaderRechercheSimple();
+					contentRechercheSimple = Bddictionnairique.getInstance(application).getContentRechercheSimple();
 					
-					application.getcHeader().remove(application.getContentHome().getContentHeaderRechercheSimple());
-					application.getcPanel().remove(application.getContentHome().getContentRechercheSimple());
+					application.getcHeader().remove(Bddictionnairique.getInstance(application).getContentHeaderRechercheSimple());
+					application.getcPanel().remove(Bddictionnairique.getInstance(application).getContentRechercheSimple());
 
 					application.getcHeader().add(contentHeaderRechercheSimple, "contentHeaderRechercheSimple");
 					application.getcPanel().add(contentRechercheSimple, "contentRechercheSimple");

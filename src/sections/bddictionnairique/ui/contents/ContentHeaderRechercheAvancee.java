@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import principal.Application;
+import sections.bddictionnairique.Bddictionnairique;
 
 /**
  * @author Valentin DOULCIER
@@ -44,14 +45,13 @@ public class ContentHeaderRechercheAvancee extends JPanel {
 		btnHome.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				;
+				Bddictionnairique.getInstance(application).dechargerBddictionnairique();
 			}
 		});
 		
 		btnVolet.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				if(ouvert) {
 					application.OuvrirVolet();
 					btnVolet.setText("FERMER");
