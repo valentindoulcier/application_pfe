@@ -17,18 +17,18 @@ import utils.HibernateUtils;
  * @author Hibernate Tools
  */
 @SuppressWarnings("unused")
-public class UtilisateursDAO extends AbstractDAO {
+public class UtilisateurDAO extends AbstractDAO {
 
-	public static String NOM_TABLE="Utilisateurs";
+	public static String NOM_TABLE="Utilisateur";
 
 	private Session session;
 	private Transaction tx;
 	
-	private static Logger logger = Logger.getLogger(UtilisateursDAO.class);
+	private static Logger logger = Logger.getLogger(UtilisateurDAO.class);
 	
-	public UtilisateursDAO() {}
+	public UtilisateurDAO() {}
 	
-	public UtilisateursDAO(String type) {
+	public UtilisateurDAO(String type) {
 		if("local".equalsIgnoreCase(type)) {
 			this.session = HibernateUtils.getInstanceLocale();
 		}
@@ -40,19 +40,19 @@ public class UtilisateursDAO extends AbstractDAO {
 
     /**
      * Insert a new Event into the database.
-     * @param utilisateurs
+     * @param utilisateur
      */
-    public void create(Utilisateurs utilisateurs) throws DataAccessLayerException {
-        super.saveOrUpdate(session, utilisateurs);
+    public void create(Utilisateur utilisateur) throws DataAccessLayerException {
+        super.saveOrUpdate(session, utilisateur);
     }
 
 
     /**
      * Delete a detached Event from the database.
-     * @param utilisateurs
+     * @param utilisateur
      */
-    public void delete(Utilisateurs utilisateurs) throws DataAccessLayerException {
-        super.delete(session, utilisateurs);
+    public void delete(Utilisateur utilisateur) throws DataAccessLayerException {
+        super.delete(session, utilisateur);
     }
 
     /**
@@ -60,8 +60,8 @@ public class UtilisateursDAO extends AbstractDAO {
      * @param id
      * @return
      */
-    public Utilisateurs find(Long id) throws DataAccessLayerException {
-        return (Utilisateurs) super.find(session, Utilisateurs.class, id);
+    public Utilisateur find(Long id) throws DataAccessLayerException {
+        return (Utilisateur) super.find(session, Utilisateur.class, id);
     }
 
     /**
@@ -69,8 +69,8 @@ public class UtilisateursDAO extends AbstractDAO {
      *
      * @param event
      */
-    public void update(Utilisateurs utilisateurs) throws DataAccessLayerException {
-        super.saveOrUpdate(session, utilisateurs);
+    public void update(Utilisateur utilisateur) throws DataAccessLayerException {
+        super.saveOrUpdate(session, utilisateur);
     }
 
     /**
@@ -78,6 +78,6 @@ public class UtilisateursDAO extends AbstractDAO {
      * @return
      */
     public List<?> findAll() throws DataAccessLayerException{
-        return super.findAll(session, Utilisateurs.class);
+        return super.findAll(session, Utilisateur.class);
     }
 }

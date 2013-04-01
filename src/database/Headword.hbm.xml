@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 29 mars 2013 17:34:43 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="database.Headword" table="headword" catalog="bddictionnairique">
         <id name="idHeadword" type="java.lang.Integer">
             <column name="id_headword" />
             <generator class="identity" />
         </id>
-        <many-to-one name="notes" class="database.Notes" fetch="select">
-            <column name="notes_id_notes" not-null="true" />
+        <many-to-one name="note" class="database.Note" fetch="select">
+            <column name="id_note" />
         </many-to-one>
         <many-to-one name="dictionnaires" class="database.Dictionnaires" fetch="select">
             <column name="id_dictionnaire" not-null="true" />
@@ -37,9 +37,6 @@
         </property>
         <property name="flagAutre" type="java.lang.Integer">
             <column name="flag_autre" />
-        </property>
-        <property name="note" type="string">
-            <column name="note" length="65535" />
         </property>
         <set name="syllabeses" table="syllabes" inverse="true" lazy="true" fetch="select">
             <key>

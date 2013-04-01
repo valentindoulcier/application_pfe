@@ -1,6 +1,6 @@
 package database;
 
-// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
+// Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -35,8 +35,7 @@ public class TypesMorphologie implements java.io.Serializable {
 	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph9 = new HashSet<DecompositionMorphologique>(0);
 	private Set<DecompositionMorphologique> decompositionMorphologiquesForTypesMorphologieIdTypeMorph10 = new HashSet<DecompositionMorphologique>(0);
 
-	public TypesMorphologie() {
-	}
+	public TypesMorphologie() {}
 
 	public TypesMorphologie(
 			String typeMorph,

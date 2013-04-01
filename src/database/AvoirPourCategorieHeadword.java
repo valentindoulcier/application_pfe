@@ -1,6 +1,6 @@
 package database;
 
-// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
+// Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;

@@ -1,6 +1,6 @@
 package database;
 
-// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
+// Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,9 +18,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "decomposition_morphologique", catalog = "bddictionnairique")
 public class DecompositionMorphologique implements java.io.Serializable {
-
+	
 	private static final long serialVersionUID = 5713094479186742895L;
-
+	
 	private Integer idMorph;
 	private Headword headword;
 	private TypesMorphologie typesMorphologieByTypesMorphologieIdTypeMorph1;

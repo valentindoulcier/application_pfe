@@ -12,14 +12,14 @@
         <mapping resource="database/AvoirPourCategorieHeadword.hbm.xml" />
         <mapping resource="database/Lexique.hbm.xml" />
         <mapping resource="database/ListeTypesLexicaux.hbm.xml" />
-        <mapping resource="database/Utilisateurs.hbm.xml" />
+        <mapping resource="database/Utilisateur.hbm.xml" />
         <mapping resource="database/DecompositionMorphologique.hbm.xml" />
         <mapping resource="database/Flexions.hbm.xml" />
         <mapping resource="database/Dictionnaires.hbm.xml" />
         <mapping resource="database/Frequence.hbm.xml" />
         <mapping resource="database/AvoirPourSuffixes.hbm.xml" />
         <mapping resource="database/EtymoMcq.hbm.xml" />
-        <mapping resource="database/Notes.hbm.xml" />
+        <mapping resource="database/Note.hbm.xml" />
         <mapping resource="database/ListeUsages.hbm.xml" />
         <mapping resource="database/Headword.hbm.xml" />
         <mapping resource="database/ListeMorphemesPrefsuffbase.hbm.xml" />

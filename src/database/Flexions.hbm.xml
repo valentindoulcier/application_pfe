@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 29 mars 2013 17:34:43 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="database.Flexions" table="flexions" catalog="bddictionnairique">
         <id name="idFlexion" type="java.lang.Integer">
@@ -16,7 +16,7 @@
         </property>
         <set name="syllabeses" table="syllabes" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="id_flexion" not-null="true" />
+                <column name="id_flexion" />
             </key>
             <one-to-many class="database.Syllabes" />
         </set>

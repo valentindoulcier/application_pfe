@@ -1,4 +1,4 @@
-package sections.bddictionnairique.components;
+/*package sections.bddictionnairique.components;
 
 import ui.mainframes.*;
 
@@ -7,10 +7,10 @@ import java.awt.GridBagLayout;
 import javax.swing.JTabbedPane;
 import java.awt.GridBagConstraints;
 
-/**
+*//**
  * @author Valentin
  *
- */
+ *//*
 public class AppliContentEditionMot extends JPanel {
 
 	private static final long serialVersionUID = 910554020450742573L;
@@ -19,25 +19,25 @@ public class AppliContentEditionMot extends JPanel {
 	
 	private AppliContentEditionMotVolet_1 volet_1 = new AppliContentEditionMotVolet_1();
 
-	/**
+	*//**
 	 * @return the volet_1
-	 */
+	 *//*
 	public AppliContentEditionMotVolet_1 getVolet_1() {
 		return volet_1;
 	}
 
 
-	/**
+	*//**
 	 * @param volet_1 the volet_1 to set
-	 */
+	 *//*
 	public void setVolet_1(AppliContentEditionMotVolet_1 volet_1) {
 		this.volet_1 = volet_1;
 	}
 
 
-	/**
+	*//**
 	 * Create the panel.
-	 */
+	 *//*
 	public AppliContentEditionMot() {
 		initComponents();
 	}
@@ -67,3 +67,4 @@ public class AppliContentEditionMot extends JPanel {
 	}
 
 }
+*/

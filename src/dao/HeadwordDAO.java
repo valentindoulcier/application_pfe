@@ -90,7 +90,6 @@ public class HeadwordDAO extends AbstractDAO {
     			.add(Restrictions.like("mot", mot))
     			.createCriteria("dictionnaires", "dico")
     			.add(Restrictions.eq("dico.nomDictionnaire", dictionnaire));
-
     	
     	return criteria.list();
 	}

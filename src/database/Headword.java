@@ -1,6 +1,6 @@
 package database;
 
-// Generated 29 mars 2013 17:34:42 by Hibernate Tools 3.4.0.CR1
+// Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,10 +22,10 @@ import javax.persistence.Table;
 @Table(name = "headword", catalog = "bddictionnairique")
 public class Headword implements java.io.Serializable {
 
-	private static final long serialVersionUID = -135948731384536684L;
+	private static final long serialVersionUID = 8305910393200751305L;
 
 	private Integer idHeadword;
-	private Notes notes;
+	private Note note;
 	private Dictionnaires dictionnaires;
 	private String mot;
 	private String var1;
@@ -35,16 +35,21 @@ public class Headword implements java.io.Serializable {
 	private String var5;
 	private Integer flagLien;
 	private Integer flagAutre;
-	private String note;
 	private Set<Syllabes> syllabeses = new HashSet<Syllabes>(0);
-	private Set<DecompositionMorphologique> decompositionMorphologiques = new HashSet<DecompositionMorphologique>(0);
-	private Set<Lexique> lexiquesForHeadwordIdMotReferent1 = new HashSet<Lexique>(0);
-	private Set<Lexique> lexiquesForHeadwordIdMotReferent2 = new HashSet<Lexique>(0);
-	private Set<Lexique> lexiquesForHeadwordIdMotEtudie = new HashSet<Lexique>(0);
+	private Set<DecompositionMorphologique> decompositionMorphologiques = new HashSet<DecompositionMorphologique>(
+			0);
+	private Set<Lexique> lexiquesForHeadwordIdMotReferent1 = new HashSet<Lexique>(
+			0);
+	private Set<Lexique> lexiquesForHeadwordIdMotReferent2 = new HashSet<Lexique>(
+			0);
+	private Set<Lexique> lexiquesForHeadwordIdMotEtudie = new HashSet<Lexique>(
+			0);
 	private Set<Flexions> flexionses = new HashSet<Flexions>(0);
-	private Set<DecompositionGraphique> decompositionGraphiques = new HashSet<DecompositionGraphique>(0);
+	private Set<DecompositionGraphique> decompositionGraphiques = new HashSet<DecompositionGraphique>(
+			0);
 	private Set<ListeUsages> listeUsageses = new HashSet<ListeUsages>(0);
-	private Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords = new HashSet<AvoirPourCategorieHeadword>(0);
+	private Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords = new HashSet<AvoirPourCategorieHeadword>(
+			0);
 	private Set<Frequence> frequences = new HashSet<Frequence>(0);
 	private Set<Sens> senses = new HashSet<Sens>(0);
 	private Set<Composes> composeses = new HashSet<Composes>(0);
@@ -53,15 +58,13 @@ public class Headword implements java.io.Serializable {
 	public Headword() {
 	}
 
-	public Headword(Notes notes, Dictionnaires dictionnaires) {
-		this.notes = notes;
+	public Headword(Dictionnaires dictionnaires) {
 		this.dictionnaires = dictionnaires;
 	}
 
-	public Headword(Notes notes, Dictionnaires dictionnaires, String mot,
+	public Headword(Note note, Dictionnaires dictionnaires, String mot,
 			String var1, String var2, String var3, String var4, String var5,
-			Integer flagLien, Integer flagAutre, String note,
-			Set<Syllabes> syllabeses,
+			Integer flagLien, Integer flagAutre, Set<Syllabes> syllabeses,
 			Set<DecompositionMorphologique> decompositionMorphologiques,
 			Set<Lexique> lexiquesForHeadwordIdMotReferent1,
 			Set<Lexique> lexiquesForHeadwordIdMotReferent2,
@@ -72,7 +75,7 @@ public class Headword implements java.io.Serializable {
 			Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords,
 			Set<Frequence> frequences, Set<Sens> senses,
 			Set<Composes> composeses, Set<EtymoMcq> etymoMcqs) {
-		this.notes = notes;
+		this.note = note;
 		this.dictionnaires = dictionnaires;
 		this.mot = mot;
 		this.var1 = var1;
@@ -82,7 +85,6 @@ public class Headword implements java.io.Serializable {
 		this.var5 = var5;
 		this.flagLien = flagLien;
 		this.flagAutre = flagAutre;
-		this.note = note;
 		this.syllabeses = syllabeses;
 		this.decompositionMorphologiques = decompositionMorphologiques;
 		this.lexiquesForHeadwordIdMotReferent1 = lexiquesForHeadwordIdMotReferent1;
@@ -110,13 +112,13 @@ public class Headword implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "notes_id_notes", nullable = false)
-	public Notes getNotes() {
-		return this.notes;
+	@JoinColumn(name = "id_note")
+	public Note getNote() {
+		return this.note;
 	}
 
-	public void setNotes(Notes notes) {
-		this.notes = notes;
+	public void setNote(Note note) {
+		this.note = note;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -199,15 +201,6 @@ public class Headword implements java.io.Serializable {
 
 	public void setFlagAutre(Integer flagAutre) {
 		this.flagAutre = flagAutre;
-	}
-
-	@Column(name = "note", length = 65535)
-	public String getNote() {
-		return this.note;
-	}
-
-	public void setNote(String note) {
-		this.note = note;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")

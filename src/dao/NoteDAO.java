@@ -12,23 +12,23 @@ import org.hibernate.Transaction;
 import utils.HibernateUtils;
 
 /**
- * Home object for domain model class Notes.
- * @see dao.Notes
+ * Home object for domain model class Note.
+ * @see dao.Note
  * @author Hibernate Tools
  */
 @SuppressWarnings("unused")
-public class NotesDAO extends AbstractDAO {
+public class NoteDAO extends AbstractDAO {
 
-	public static String NOM_TABLE="Notes";
+	public static String NOM_TABLE="Note";
 
 	private Session session;
 	private Transaction tx;
 	
-	private static Logger logger = Logger.getLogger(NotesDAO.class);
+	private static Logger logger = Logger.getLogger(NoteDAO.class);
 	
-	public NotesDAO() {}
+	public NoteDAO() {}
 	
-	public NotesDAO(String type) {
+	public NoteDAO(String type) {
 		if("local".equalsIgnoreCase(type)) {
 			this.session = HibernateUtils.getInstanceLocale();
 		}
@@ -40,19 +40,19 @@ public class NotesDAO extends AbstractDAO {
 
     /**
      * Insert a new Event into the database.
-     * @param notes
+     * @param note
      */
-    public void create(Notes notes) throws DataAccessLayerException {
-        super.saveOrUpdate(session, notes);
+    public void create(Note note) throws DataAccessLayerException {
+        super.saveOrUpdate(session, note);
     }
 
 
     /**
      * Delete a detached Event from the database.
-     * @param notes
+     * @param note
      */
-    public void delete(Notes notes) throws DataAccessLayerException {
-        super.delete(session, notes);
+    public void delete(Note note) throws DataAccessLayerException {
+        super.delete(session, note);
     }
 
     /**
@@ -60,8 +60,8 @@ public class NotesDAO extends AbstractDAO {
      * @param id
      * @return
      */
-    public Notes find(Long id) throws DataAccessLayerException {
-        return (Notes) super.find(session, Notes.class, id);
+    public Note find(Long id) throws DataAccessLayerException {
+        return (Note) super.find(session, Note.class, id);
     }
 
     /**
@@ -69,8 +69,8 @@ public class NotesDAO extends AbstractDAO {
      *
      * @param event
      */
-    public void update(Notes notes) throws DataAccessLayerException {
-        super.saveOrUpdate(session, notes);
+    public void update(Note note) throws DataAccessLayerException {
+        super.saveOrUpdate(session, note);
     }
 
     /**
@@ -78,6 +78,6 @@ public class NotesDAO extends AbstractDAO {
      * @return
      */
     public List<?> findAll() throws DataAccessLayerException{
-        return super.findAll(session, Notes.class);
+        return super.findAll(session, Note.class);
     }
 }
