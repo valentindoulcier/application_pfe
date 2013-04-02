@@ -13,6 +13,9 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+
+import principal.Application;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,20 +46,14 @@ public class Login extends JPanel {
 	
 	private JButton btnValider;
 	
-	public Login() {
+	public Login(final Application application) {
 		
 		initComponents();
 		
 		btnAnnuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				textFieldEmail.setText("Yoo");
-				if(lblinfoMessage.isVisible() == true) {
-					lblinfoMessage.setVisible(false);
-					textFieldEmail.setText("TYYY");
-				}
-				else
-					lblinfoMessage.setVisible(true);
+				application.getContentHome().getPanelLogin().setVisible(false);
 			}
 		});
 		

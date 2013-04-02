@@ -35,8 +35,12 @@ public class ContentFooterHome extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				if(application.getContentHome().getPanelLogin().isVisible()) {
+					application.getContentHome().getPanelLogin().setVisible(false);
+				}
+				else {
+					application.getContentHome().getPanelLogin().setVisible(true);
+				}				
 			}
 		});
 		

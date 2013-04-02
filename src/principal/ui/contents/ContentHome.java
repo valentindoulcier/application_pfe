@@ -4,6 +4,7 @@
 package principal.ui.contents;
 
 import principal.Application;
+import principal.objects.Login;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -21,6 +22,7 @@ import javax.swing.JButton;
 import sections.bddictionnairique.Bddictionnairique;
 
 import sections.options.Options;
+import javax.swing.JLayeredPane;
 
 
 /**
@@ -31,12 +33,20 @@ public class ContentHome extends JPanel {
 
 	private static final long serialVersionUID = 8023381629976468353L;
 
+	private JLayeredPane layeredPane;
+
+	private JPanel panelApplication;
+
+	private Login panelLogin;
+
 	private JLabel lblApplication;
 
 	private JLabel lblDescription;
 
 	private JButton btnRecherche;
+
 	private JButton btnOptions;
+
 
 
 	/**
@@ -46,7 +56,7 @@ public class ContentHome extends JPanel {
 
 		setBackground(Color.LIGHT_GRAY);
 
-		initComponents();
+		initComponents(application);
 
 
 		btnRecherche.addMouseListener(new MouseListener() {
@@ -117,32 +127,93 @@ public class ContentHome extends JPanel {
 		});
 	}
 
-	public void initComponents() {
+	public void initComponents(final Application application) {
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{20, 0, 120, 30, 120, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{20, 56, 45, 30, 10, 100, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{20, 0, 120, 30, 120, 0, 20, 0};
+		gridBagLayout.rowHeights = new int[]{150, 50, 100, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
-		lblApplication = new JLabel("Laboratoire Ligérien de Linguistique");
-		lblApplication.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 22));
-		GridBagConstraints gbc_lblApplication = new GridBagConstraints();
-		gbc_lblApplication.gridwidth = 3;
-		gbc_lblApplication.insets = new Insets(0, 0, 5, 5);
-		gbc_lblApplication.gridx = 2;
-		gbc_lblApplication.gridy = 1;
-		add(lblApplication, gbc_lblApplication);
+		
+		
+		
+		
+		
+		
+		
 
-		lblDescription = new JLabel("");
-		lblDescription.setFont(new Font("Lucida Grande", Font.ITALIC, 12));
+		layeredPane = new JLayeredPane();
+		GridBagConstraints gbc_layeredPane = new GridBagConstraints();
+		gbc_layeredPane.gridwidth = 7;
+		gbc_layeredPane.insets = new Insets(0, 0, 5, 0);
+		gbc_layeredPane.fill = GridBagConstraints.BOTH;
+		gbc_layeredPane.gridx = 0;
+		gbc_layeredPane.gridy = 0;
+		add(layeredPane, gbc_layeredPane);
+
+		GridBagLayout gbl_layeredPane = new GridBagLayout();
+		gbl_layeredPane.columnWidths = new int[]{680, 0};
+		gbl_layeredPane.rowHeights = new int[]{0, 200, 0};
+		gbl_layeredPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_layeredPane.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		layeredPane.setLayout(gbl_layeredPane);
+
+
+		panelLogin = new Login(application);
+		panelLogin.setVisible(false);
+		panelLogin.setBackground(Color.GREEN);
+		GridBagConstraints gbc_panelLogin = new GridBagConstraints();
+		gbc_panelLogin.anchor = GridBagConstraints.NORTH;
+		gbc_panelLogin.gridheight = 2;
+		gbc_panelLogin.insets = new Insets(0, 0, 5, 0);
+		gbc_panelLogin.gridx = 0;
+		gbc_panelLogin.gridy = 0;
+		layeredPane.add(panelLogin, gbc_panelLogin);
+
+
+		panelApplication = new JPanel();
+		panelApplication.setBackground(Color.LIGHT_GRAY);
+		GridBagConstraints gbc_panelApplication = new GridBagConstraints();
+		gbc_panelApplication.gridheight = 2;
+		gbc_panelApplication.insets = new Insets(0, 0, 5, 0);
+		gbc_panelApplication.fill = GridBagConstraints.BOTH;
+		gbc_panelApplication.gridx = 0;
+		gbc_panelApplication.gridy = 0;
+		layeredPane.add(panelApplication, gbc_panelApplication);
+
+
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{20, 0, 20, 0};
+		gbl_panel.rowHeights = new int[]{30, 0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		panelApplication.setLayout(gbl_panel);
+
+		lblApplication = new JLabel("Laboratoire Ligérien de Linguistique");
+		GridBagConstraints gbc_lblApplication = new GridBagConstraints();
+		gbc_lblApplication.insets = new Insets(0, 0, 5, 5);
+		gbc_lblApplication.gridx = 1;
+		gbc_lblApplication.gridy = 1;
+		panelApplication.add(lblApplication, gbc_lblApplication);
+		lblApplication.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 22));
+
+		lblDescription = new JLabel("zefzefezf");
 		GridBagConstraints gbc_lblDescription = new GridBagConstraints();
-		gbc_lblDescription.gridwidth = 3;
 		gbc_lblDescription.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDescription.gridx = 2;
+		gbc_lblDescription.gridx = 1;
 		gbc_lblDescription.gridy = 3;
-		add(lblDescription, gbc_lblDescription);
+		panelApplication.add(lblDescription, gbc_lblDescription);
+		lblDescription.setFont(new Font("Lucida Grande", Font.ITALIC, 12));
+
+
+
+
+
+
+
+
 
 		btnRecherche = new JButton("Recherche");
 		btnRecherche.setPreferredSize(new Dimension(120, 100));
@@ -150,7 +221,7 @@ public class ContentHome extends JPanel {
 		gbc_btnRecherche.fill = GridBagConstraints.BOTH;
 		gbc_btnRecherche.insets = new Insets(0, 0, 5, 5);
 		gbc_btnRecherche.gridx = 2;
-		gbc_btnRecherche.gridy = 5;
+		gbc_btnRecherche.gridy = 2;
 		add(btnRecherche, gbc_btnRecherche);
 
 		btnOptions = new JButton("Options");
@@ -159,8 +230,50 @@ public class ContentHome extends JPanel {
 		gbc_btnOptions.fill = GridBagConstraints.BOTH;
 		gbc_btnOptions.insets = new Insets(0, 0, 5, 5);
 		gbc_btnOptions.gridx = 4;
-		gbc_btnOptions.gridy = 5;
+		gbc_btnOptions.gridy = 2;
 		add(btnOptions, gbc_btnOptions);
+	}
+
+	/**
+	 * @return the layeredPane
+	 */
+	public JLayeredPane getLayeredPane() {
+		return layeredPane;
+	}
+
+	/**
+	 * @param layeredPane the layeredPane to set
+	 */
+	public void setLayeredPane(JLayeredPane layeredPane) {
+		this.layeredPane = layeredPane;
+	}
+
+	/**
+	 * @return the panelApplication
+	 */
+	public JPanel getPanelApplication() {
+		return panelApplication;
+	}
+
+	/**
+	 * @param panelApplication the panelApplication to set
+	 */
+	public void setPanelApplication(JPanel panelApplication) {
+		this.panelApplication = panelApplication;
+	}
+
+	/**
+	 * @return the panelLogin
+	 */
+	public Login getPanelLogin() {
+		return panelLogin;
+	}
+
+	/**
+	 * @param panelLogin the panelLogin to set
+	 */
+	public void setPanelLogin(Login panelLogin) {
+		this.panelLogin = panelLogin;
 	}
 
 	/**
