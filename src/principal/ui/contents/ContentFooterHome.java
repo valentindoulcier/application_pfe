@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import administration.Administration;
+
 /**
  * @author Valentin DOULCIER
  *
@@ -32,15 +34,9 @@ public class ContentFooterHome extends JPanel {
 		initComponents();
 		
 		btnAdministration.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(application.getContentHome().getPanelLogin().isVisible()) {
-					application.getContentHome().getPanelLogin().masquerLogin();
-				}
-				else {
-					application.getContentHome().getPanelLogin().afficherLogin();
-				}				
+				Administration.getInstance(application).chargerLogin();
 			}
 		});
 		

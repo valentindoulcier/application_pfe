@@ -14,7 +14,19 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import utils.MD5Password;
+import dao.UtilisateurDAO;
+
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+
+import principal.Application;
+
+import administration.Administration;
 
 /**
  * @author Valentin DOULCIER
@@ -41,10 +53,36 @@ public class ContentLogin extends JPanel {
 	private JButton btnAnnuler;
 	
 	private JButton btnValider;
+	private JPanel panel;
 
-	public ContentLogin() {
+	public ContentLogin(final Application application) {
 		
 		initComponents();
+		
+		btnAnnuler.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Administration.getInstance(application).dechargerLogin();
+			}
+		});
+		
+		btnValider.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblinfoMessage.setVisible(false);
+				
+				try {
+					if(verifierUser()) {
+						Administration.getInstance(application).chargerAdministration();
+					}
+					else {
+						// BLOQUER INTRUSION INFRUCTUEUSE
+					}
+				} catch (NoSuchAlgorithmException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 	}
 	
@@ -52,76 +90,137 @@ public class ContentLogin extends JPanel {
 		setBackground(Color.LIGHT_GRAY);
 		
 		gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{30, 40, 0, 50, 0, 0, 30, 0};
-		gridBagLayout.rowHeights = new int[]{20, 20, 40, 30, 0, 10, 0, 15, 0, 15, 15, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{30, 450, 30, 0};
+		gridBagLayout.rowHeights = new int[]{20, 195, 15, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		lblTitre = new JLabel("Connexion");
-		lblTitre.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 20));
+		panel = new JPanel();
+		panel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 1;
+		gbc_panel.gridy = 1;
+		add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0, 0, 40, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{10, 0, 40, 0, 10, 0, 15, 0, 10, 0};
+		gbl_panel.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
+		
+		lblTitre = new JLabel("Accès Administration");
 		GridBagConstraints gbc_lblTitre = new GridBagConstraints();
-		gbc_lblTitre.gridwidth = 5;
+		gbc_lblTitre.gridwidth = 4;
 		gbc_lblTitre.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTitre.gridx = 1;
-		gbc_lblTitre.gridy = 2;
-		add(lblTitre, gbc_lblTitre);
+		gbc_lblTitre.gridy = 1;
+		panel.add(lblTitre, gbc_lblTitre);
+		lblTitre.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 20));
 		
 		lblinfoMessage = new JLabel("");
-		lblinfoMessage.setVisible(false);
 		GridBagConstraints gbc_lblinfoMessage = new GridBagConstraints();
 		gbc_lblinfoMessage.gridwidth = 4;
 		gbc_lblinfoMessage.insets = new Insets(0, 0, 5, 5);
-		gbc_lblinfoMessage.gridx = 2;
-		gbc_lblinfoMessage.gridy = 3;
-		add(lblinfoMessage, gbc_lblinfoMessage);
+		gbc_lblinfoMessage.gridx = 1;
+		gbc_lblinfoMessage.gridy = 2;
+		panel.add(lblinfoMessage, gbc_lblinfoMessage);
+		lblinfoMessage.setVisible(false);
 		
-		lblEmail = new JLabel("Email");
+		lblEmail = new JLabel("Login");
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
 		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEmail.gridx = 2;
-		gbc_lblEmail.gridy = 4;
-		add(lblEmail, gbc_lblEmail);
+		gbc_lblEmail.gridx = 1;
+		gbc_lblEmail.gridy = 3;
+		panel.add(lblEmail, gbc_lblEmail);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setToolTipText("");
 		GridBagConstraints gbc_textFieldEmail = new GridBagConstraints();
+		gbc_textFieldEmail.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldEmail.gridwidth = 2;
 		gbc_textFieldEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_textFieldEmail.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldEmail.gridx = 4;
-		gbc_textFieldEmail.gridy = 4;
-		add(textFieldEmail, gbc_textFieldEmail);
+		gbc_textFieldEmail.gridx = 3;
+		gbc_textFieldEmail.gridy = 3;
+		panel.add(textFieldEmail, gbc_textFieldEmail);
+		textFieldEmail.setToolTipText("");
 		textFieldEmail.setColumns(10);
 		
 		lblPassword = new JLabel("Password");
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPassword.gridx = 2;
-		gbc_lblPassword.gridy = 6;
-		add(lblPassword, gbc_lblPassword);
+		gbc_lblPassword.gridx = 1;
+		gbc_lblPassword.gridy = 5;
+		panel.add(lblPassword, gbc_lblPassword);
 		
 		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.gridwidth = 2;
-		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_passwordField.gridx = 4;
-		gbc_passwordField.gridy = 6;
-		add(passwordField, gbc_passwordField);
+		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordField.gridx = 3;
+		gbc_passwordField.gridy = 5;
+		panel.add(passwordField, gbc_passwordField);
 		
 		btnAnnuler = new JButton("Annuler");
 		GridBagConstraints gbc_btnAnnuler = new GridBagConstraints();
+		gbc_btnAnnuler.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnAnnuler.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAnnuler.gridx = 4;
-		gbc_btnAnnuler.gridy = 8;
-		add(btnAnnuler, gbc_btnAnnuler);
+		gbc_btnAnnuler.gridx = 3;
+		gbc_btnAnnuler.gridy = 7;
+		panel.add(btnAnnuler, gbc_btnAnnuler);
 		
 		btnValider = new JButton("Valider");
 		GridBagConstraints gbc_btnValider = new GridBagConstraints();
 		gbc_btnValider.insets = new Insets(0, 0, 5, 5);
-		gbc_btnValider.gridx = 5;
-		gbc_btnValider.gridy = 8;
-		add(btnValider, gbc_btnValider);
+		gbc_btnValider.gridx = 4;
+		gbc_btnValider.gridy = 7;
+		panel.add(btnValider, gbc_btnValider);
+	}
+	
+	public void reinitialiserLogin() {
+		lblinfoMessage.setText("");
+		
+		lblinfoMessage.setVisible(false);
+		
+		textFieldEmail.setText("");
+		
+		passwordField.setText("");
+	}
+	
+	
+	public boolean verifierUser() throws NoSuchAlgorithmException {		
+		Administration.setUser(new UtilisateurDAO("local").findExactly(textFieldEmail.getText()));
+		
+		if(Administration.getUser() != null) {
+			if(MD5Password.testPassword(String.valueOf(passwordField.getPassword()), Administration.getUser().getPassword())) {
+				System.out.println("Mot de passe valide");
+				if(Administration.getUser().isAdmin()) {					
+					reinitialiserLogin();
+					
+					return true;
+				}
+				else {
+					lblinfoMessage.setText("ATTENTION : Vous n'avez pas les droits d'admin");
+					lblinfoMessage.setForeground(Color.RED);
+					lblinfoMessage.setVisible(true);
+					
+					return false;
+				}
+			}
+			else {
+				lblinfoMessage.setText("WARNING : Wrong Password !!");
+				lblinfoMessage.setForeground(Color.RED);
+				lblinfoMessage.setVisible(true);
+				
+				return false;
+			}
+		}
+		lblinfoMessage.setText("ERREUR : Authentification impossible");
+		lblinfoMessage.setForeground(Color.RED);
+		lblinfoMessage.setVisible(true);
+		
+		return false;
 	}
 }
