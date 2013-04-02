@@ -8,17 +8,23 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
+import dao.UtilisateurDAO;
+import database.Utilisateur;
+
 import principal.Application;
+import utils.MD5Password;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * @author Valentin DOULCIER
@@ -53,22 +59,31 @@ public class Login extends JPanel {
 		btnAnnuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				application.getContentHome().getPanelLogin().setVisible(false);
+				masquerLogin();
 			}
 		});
 		
 		btnValider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Vérifier param's
+				lblinfoMessage.setVisible(false);
+				
+				try {
+					verifierUser();
+				} catch (NoSuchAlgorithmException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 	}
 	
 	public void initComponents() {
+		this.setMinimumSize(new Dimension(450, 230));
+		this.setPreferredSize(new Dimension(450, 230));
+		
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{30, 40, 0, 50, 0, 0, 30, 0};
-		gridBagLayout.rowHeights = new int[]{30, 40, 0, 0, 0, 0, 0, 0, 30, 0};
+		gridBagLayout.rowHeights = new int[]{20, 40, 30, 0, 10, 0, 15, 0, 15, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -82,9 +97,8 @@ public class Login extends JPanel {
 		gbc_lblTitre.gridy = 1;
 		add(lblTitre, gbc_lblTitre);
 		
-		lblinfoMessage = new JLabel("Authentification impossible : vérifiez vos paramètres");
+		lblinfoMessage = new JLabel("");
 		lblinfoMessage.setVisible(false);
-		lblinfoMessage.setForeground(Color.RED);
 		GridBagConstraints gbc_lblinfoMessage = new GridBagConstraints();
 		gbc_lblinfoMessage.gridwidth = 4;
 		gbc_lblinfoMessage.insets = new Insets(0, 0, 5, 5);
@@ -139,6 +153,62 @@ public class Login extends JPanel {
 		gbc_btnValider.gridx = 5;
 		gbc_btnValider.gridy = 7;
 		add(btnValider, gbc_btnValider);
+	}
+	
+	public void afficherLogin() {
+		this.setVisible(true);
+		
+		textFieldEmail.setText("valentin.doulcier@gmail.com");
+		
+		passwordField.setText("valentin");
+	}
+	
+	public void masquerLogin() {
+		this.setVisible(false);
+		
+		lblinfoMessage.setVisible(false);
+		
+		textFieldEmail.setText("");
+		
+		passwordField.setText("");
+	}
+	
+	
+	public boolean verifierUser() throws NoSuchAlgorithmException {		
+		Utilisateur user = new UtilisateurDAO("local").findExactly(textFieldEmail.getText());
+		
+		if(user != null) {
+			if(MD5Password.testPassword(String.valueOf(passwordField.getPassword()), user.getPassword())) {
+				System.out.println("Mot de passe valide");
+				if(user.isAdmin()) {
+					lblinfoMessage.setText("WAHOUU : Good job !!");
+					lblinfoMessage.setForeground(Color.BLUE);
+					lblinfoMessage.setVisible(true);
+					
+					return true;
+				}
+				else {
+					lblinfoMessage.setText("ATTENTION : Vous n'avez pas les droits d'admin");
+					lblinfoMessage.setForeground(Color.RED);
+					lblinfoMessage.setVisible(true);
+					
+					return false;
+				}
+			}
+			else {
+				lblinfoMessage.setText("WARNING : Wrong Password !!");
+				lblinfoMessage.setForeground(Color.RED);
+				lblinfoMessage.setVisible(true);
+				
+				return false;
+			}
+		}
+		
+		lblinfoMessage.setText("ERREUR : Authentification impossible");
+		lblinfoMessage.setForeground(Color.RED);
+		lblinfoMessage.setVisible(true);
+		
+		return false;
 	}
 
 }
