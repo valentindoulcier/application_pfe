@@ -48,7 +48,8 @@ public class HibernateUtils {
 
 	public static Session getInstanceLocale() {
 		connecteLocal = true;
-		if (sessionFactoryLocale == null) { // Premier appel
+		if (sessionFactoryLocale == null) {// Premier appel
+			logger.info("Création de l'instance de la SESSION LOCALE - EN COURS");
 			try {
 				Configuration configurationLocale = new Configuration();
 				configurationLocale.configure("hibernateLocal.cfg.xml");
@@ -61,14 +62,14 @@ public class HibernateUtils {
 					configurationLocale.addProperties(propertiesLocales);
 				} catch (Exception e) {
 					connecteLocal = false;
-					logger.fatal("Erreur lecture fichier properties Locales : " + e.toString());
+					logger.error("Lecture du fichier de propriétés - KO - " + e.toString());
 				}
 
 				try {
 					sessionFactoryLocale = configurationLocale.buildSessionFactory();
 		        } catch (Throwable ex) {
 		            // Make sure you log the exception, as it might be swallowed
-		        	logger.fatal("Erreur lecture fichier properties Locales : " + ex.getMessage());
+		        	logger.error("Création de la Session Factory - KO - " + ex.getMessage());
 		        	JOptionPane.showMessageDialog(null, "Connexion fermée 1!");
 		            throw new ExceptionInInitializerError(ex);
 		        } /*catch (HibernateException e) {
@@ -77,17 +78,19 @@ public class HibernateUtils {
 					//throw new DataAccessLayerException(e);
 				}*/
 			} catch (Throwable ex) {
-				logger.fatal("Erreur lecture fichier properties Locales : " + ex.getMessage());
+				logger.error("Configuration de la Connexion - KO - " + ex.getMessage());
 				JOptionPane.showMessageDialog(null, "Connexion fermée 2!");
 				//connecteLocal = false;
 			}
 		}
+		
 		Session test = null;
 		
 		try {
 			test = sessionFactoryLocale.openSession();
+			logger.info("Ouverture de la Session Locale - OK");
 		} catch(HibernateException e) {
-			logger.fatal("Erreur ouverture de session");
+			logger.error("Ouverture de la Session Locale - KO");
 			JOptionPane.showMessageDialog(null, "Session");
 		}
 		

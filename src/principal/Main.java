@@ -33,19 +33,23 @@ public class Main {
 
 
 		if("appli".equalsIgnoreCase(jeTravailleSur))
-		{
-			logger.debug("msg de debogage");
-			logger.info("msg d'information");
-			logger.warn("msg d'avertissement");
-			logger.error("msg d'erreur");
-			logger.fatal("msg d'erreur fatale");
+		{			
+			logger.debug("Test Debogage");
+			logger.info("Test Information");
+			logger.warn("Test Warning");
+			logger.error("Test Erreur");
+			logger.fatal("Test Fatal\n");
+			
+			logger.info("***************************************************");
+			logger.info("**                  Application                  **");
+			logger.info("***************************************************\n");
 
 			useScreenMenuBar();
 
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						logger.debug("1 - Je vais créer l'application");
+						logger.debug("Création de l'application, instanciation OK");
 						new Application();
 					} catch (Exception e) {
 						e.printStackTrace();
