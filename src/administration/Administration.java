@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import database.Utilisateur;
 
+import administration.objects.Fichier;
 import administration.ui.contents.ContentHeaderLogin;
 import administration.ui.contents.ContentLogin;
 import administration.ui.contents.ContentFooterLogin;

@@ -111,7 +111,7 @@ public class ContentLogin extends JPanel {
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		lblTitre = new JLabel("Accès Administration");
+		lblTitre = new JLabel("Accès Administrateur");
 		GridBagConstraints gbc_lblTitre = new GridBagConstraints();
 		gbc_lblTitre.gridwidth = 4;
 		gbc_lblTitre.insets = new Insets(0, 0, 5, 5);

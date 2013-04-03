@@ -13,7 +13,7 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 import administration.Administration;
-import administration.Fichier;
+import administration.objects.Fichier;
 
 import principal.Application;
 import sections.parseurXML.objects.HistoriqueCell;

@@ -1,19 +1,18 @@
-/*package sections.bddictionnairique.components;
+package sections.bddictionnairique.components;
 
-import ui.mainframes.*;
 
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JTabbedPane;
 import java.awt.GridBagConstraints;
 
-*//**
+/**
  * @author Valentin
  *
- *//*
+ */
 public class AppliContentEditionMot extends JPanel {
 
-	private static final long serialVersionUID = 910554020450742573L;
+	/*private static final long serialVersionUID = 910554020450742573L;
 	
 	private JTabbedPane tabbedPaneEdition;
 	
@@ -34,17 +33,17 @@ public class AppliContentEditionMot extends JPanel {
 		this.volet_1 = volet_1;
 	}
 
-
-	*//**
+*/
+	/**
 	 * Create the panel.
-	 *//*
+	 */
 	public AppliContentEditionMot() {
 		initComponents();
 	}
 	
 	
 	public void initComponents() {
-		GridBagLayout gridBagLayout = new GridBagLayout();
+		/*GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
@@ -63,8 +62,7 @@ public class AppliContentEditionMot extends JPanel {
 		tabbedPaneEdition.add("Volet 3", volet_1);
 		tabbedPaneEdition.add("Volet 4", volet_1);
 		
-		add(tabbedPaneEdition, gbc_tabbedPaneEdition);
+		add(tabbedPaneEdition, gbc_tabbedPaneEdition);*/
 	}
 
 }
-*/

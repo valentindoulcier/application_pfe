@@ -1,4 +1,4 @@
-package administration;
+package administration.objects;
 
 import java.io.File;
 import java.text.DecimalFormat;

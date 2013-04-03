@@ -14,7 +14,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import administration.Administration;
-import administration.Fichier;
+import administration.objects.Fichier;
 
 import java.awt.FileDialog;
 import java.awt.event.ActionListener;
@@ -116,7 +116,7 @@ public class ContentParseur extends JPanel {
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{30, 117, 40, 117, 30, 0};
 		gridBagLayout.rowHeights = new int[]{30, 29, 0, 0, 30, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
