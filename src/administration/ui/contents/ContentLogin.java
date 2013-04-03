@@ -223,4 +223,116 @@ public class ContentLogin extends JPanel {
 		
 		return false;
 	}
+
+	/**
+	 * @return the lblTitre
+	 */
+	public JLabel getLblTitre() {
+		return lblTitre;
+	}
+
+	/**
+	 * @param lblTitre the lblTitre to set
+	 */
+	public void setLblTitre(JLabel lblTitre) {
+		this.lblTitre = lblTitre;
+	}
+
+	/**
+	 * @return the lblinfoMessage
+	 */
+	public JLabel getLblinfoMessage() {
+		return lblinfoMessage;
+	}
+
+	/**
+	 * @param lblinfoMessage the lblinfoMessage to set
+	 */
+	public void setLblinfoMessage(JLabel lblinfoMessage) {
+		this.lblinfoMessage = lblinfoMessage;
+	}
+
+	/**
+	 * @return the lblEmail
+	 */
+	public JLabel getLblEmail() {
+		return lblEmail;
+	}
+
+	/**
+	 * @param lblEmail the lblEmail to set
+	 */
+	public void setLblEmail(JLabel lblEmail) {
+		this.lblEmail = lblEmail;
+	}
+
+	/**
+	 * @return the textFieldEmail
+	 */
+	public JTextField getTextFieldEmail() {
+		return textFieldEmail;
+	}
+
+	/**
+	 * @param textFieldEmail the textFieldEmail to set
+	 */
+	public void setTextFieldEmail(JTextField textFieldEmail) {
+		this.textFieldEmail = textFieldEmail;
+	}
+
+	/**
+	 * @return the lblPassword
+	 */
+	public JLabel getLblPassword() {
+		return lblPassword;
+	}
+
+	/**
+	 * @param lblPassword the lblPassword to set
+	 */
+	public void setLblPassword(JLabel lblPassword) {
+		this.lblPassword = lblPassword;
+	}
+
+	/**
+	 * @return the passwordField
+	 */
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	/**
+	 * @param passwordField the passwordField to set
+	 */
+	public void setPasswordField(JPasswordField passwordField) {
+		this.passwordField = passwordField;
+	}
+
+	/**
+	 * @return the btnAnnuler
+	 */
+	public JButton getBtnAnnuler() {
+		return btnAnnuler;
+	}
+
+	/**
+	 * @param btnAnnuler the btnAnnuler to set
+	 */
+	public void setBtnAnnuler(JButton btnAnnuler) {
+		this.btnAnnuler = btnAnnuler;
+	}
+
+	/**
+	 * @return the btnValider
+	 */
+	public JButton getBtnValider() {
+		return btnValider;
+	}
+
+	/**
+	 * @param btnValider the btnValider to set
+	 */
+	public void setBtnValider(JButton btnValider) {
+		this.btnValider = btnValider;
+	}
 }

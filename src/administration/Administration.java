@@ -4,6 +4,7 @@
 package administration;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import database.Utilisateur;
 
@@ -26,6 +27,8 @@ public class Administration implements Serializable {
 	private static final long serialVersionUID = -8346438792703635327L;
 	
 	private static Administration instance = null;
+	
+	private static ArrayList<Fichier> mesFichiers;
 	
 	private static Utilisateur user = null;
 	
@@ -52,6 +55,8 @@ public class Administration implements Serializable {
 				Administration.instance = new Administration();
 
 				Administration.application = application;
+				
+				setMesFichiers(new ArrayList<Fichier>());
 			}
 		}
 		return instance;
@@ -61,6 +66,11 @@ public class Administration implements Serializable {
 		contentHeaderLogin = new ContentHeaderLogin();
 		contentLogin = new ContentLogin(application);
 		contentFooterLogin = new ContentFooterLogin();
+		
+		// TEMPO
+		contentLogin.getTextFieldEmail().setText("valentin.doulcier");
+		contentLogin.getPasswordField().setText("azerty");
+		// FIN TEMPO
 		
 		Administration.application.getcHeader().add(contentHeaderLogin, "contentHeaderLogin");
 		Administration.application.getcPanel().add(contentLogin, "contentLogin");
@@ -105,6 +115,21 @@ public class Administration implements Serializable {
 		Administration.application.getcHeader().remove(contentHeaderAdministration);
 		Administration.application.getcPanel().remove(contentAdministration);
 		Administration.application.getcFooter().remove(contentFooterAdministration);
+	}
+
+	
+	/**
+	 * @return the mesFichiers
+	 */
+	public static ArrayList<Fichier> getMesFichiers() {
+		return mesFichiers;
+	}
+
+	/**
+	 * @param mesFichiers the mesFichiers to set
+	 */
+	public static void setMesFichiers(ArrayList<Fichier> mesFichiers) {
+		Administration.mesFichiers = mesFichiers;
 	}
 
 	/**

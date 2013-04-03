@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sections.options.ui.contents;
+package sections.parseurXML.ui.contents;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -14,16 +14,16 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import principal.Application;
-import sections.options.Options;
+import sections.parseurXML.ParseurXML;
 
 /**
  * @author Valentin DOULCIER
  *
  */
-public class ContentHeaderOptions extends JPanel {
+public class ContentHeaderHistorique extends JPanel {
 
-	private static final long serialVersionUID = 892303700119402290L;
-	
+	private static final long serialVersionUID = 4317613445205581498L;
+
 	private static boolean ouvert = false;
 	
 	private GridBagLayout gridBagLayout;
@@ -32,34 +32,35 @@ public class ContentHeaderOptions extends JPanel {
 	
 	private JButton btnHome;
 	
-	private JButton btnVolet;
+	private JButton btnFermer;
 
 	/**
 	 * Create the panel.
 	 * @param application 
 	 */
-	public ContentHeaderOptions(final Application application) {
+	public ContentHeaderHistorique(final Application application) {
 		
 		initComponents();
 		
 		btnHome.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Options.getInstance(application).dechargerOptions();
+				ParseurXML.getInstance(application).dechargerParseurXML();
 			}
 		});
 		
-		btnVolet.addActionListener(new ActionListener() {
+		btnFermer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(ouvert) {
 					application.OuvrirVolet();
-					btnVolet.setText("FERMER");
+					btnFermer.setText("FERMER");
 					ouvert = false;
 				}
 				else {
 					application.FermerVolet();
-					btnVolet.setText("OUVRIR");
+					btnFermer.setText("OUVRIR");
 					ouvert = true;
 				}
 			}
@@ -83,11 +84,11 @@ public class ContentHeaderOptions extends JPanel {
 		gbc_horizontalBox.gridy = 0;
 		add(horizontalBox, gbc_horizontalBox);
 		
-		btnHome = new JButton("HOME");
+		btnHome = new JButton("ADMINISTRATION");
 		horizontalBox.add(btnHome);
 		
-		btnVolet = new JButton("FERMER");
-		horizontalBox.add(btnVolet);
+		btnFermer = new JButton("FERMER");
+		horizontalBox.add(btnFermer);
 	}
 
 }

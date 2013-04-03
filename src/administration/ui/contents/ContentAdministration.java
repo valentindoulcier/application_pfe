@@ -1,6 +1,7 @@
 package administration.ui.contents;
 
 import principal.Application;
+import sections.parseurXML.ParseurXML;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -14,10 +15,6 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-
-import sections.bddictionnairique.Bddictionnairique;
-
-import sections.options.Options;
 
 
 /**
@@ -50,13 +47,13 @@ public class ContentAdministration extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Bddictionnairique.getInstance(application).chargerBddictionnairique();
+				ParseurXML.getInstance(application).chargerParseurXML();
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				lblDescription.setText("Cliquez ici pour parser de nouveaux dictionnaires");
+				lblDescription.setText("Cliquez ici pour parser des dictionnaires");
 			}
 
 			@Override
@@ -84,7 +81,7 @@ public class ContentAdministration extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Options.getInstance(application).chargerOptions();
+				//Options.getInstance(application).chargerOptions();
 			}
 
 			@Override
