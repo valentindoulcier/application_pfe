@@ -10,28 +10,19 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import database.AvoirPourCategorieHeadword;
 import database.Headword;
-import database.ListeCategories;
-import database.Syllabes;
 
 import principal.Application;
 import principal.Recherche;
 import sections.bddictionnairique.objects.ExpandingPanels;
-import sections.bddictionnairique.objects.RSDetail_1;
-import sections.bddictionnairique.objects.RSDetail_2;
-import sections.bddictionnairique.objects.RSDetail_3;
-import sections.bddictionnairique.renderers.MotsRenderer_1;
-import sections.bddictionnairique.renderers.MotsRenderer_2;
-import sections.bddictionnairique.renderers.MotsRenderer_3;
+import sections.bddictionnairique.objects.MotsCell;
+import sections.bddictionnairique.renderers.MotsRenderer;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Vector;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -91,7 +82,9 @@ public class ContentHistorique extends JPanel {
 		sliderDetails.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				afficherRecherche(application, numRechercheEnCours);
+				if(application.getMesRecherches().size() > 0) {
+					afficherRecherche(application, numRechercheEnCours);
+				}
 				lblDetail.setText("");
 				if(sliderDetails.getValue() == 0)
 				{
@@ -302,86 +295,18 @@ public class ContentHistorique extends JPanel {
 
 		for(String dictionnaire : dico) {			
 
-			// DETAIL 1
-			if (sliderDetails.getValue() == sliderDetails.getMinimum()) {
+			Vector<MotsCell> listeMots = new Vector<MotsCell>();
+			MotsCell motsCell;
 
-				Vector<RSDetail_1> listeMots = new Vector<RSDetail_1>();
-				RSDetail_1 rsdetail_1;
-
-				for(Object hw : application.getMesRecherches().get(numRecherche).getListeResultat().values()) {
-					if(dictionnaire.equalsIgnoreCase(((Headword) hw).getDictionnaires().getNomDictionnaire())) {
-						rsdetail_1 = new RSDetail_1(application);
-						rsdetail_1.setIdHeadword(((Headword) hw).getIdHeadword());
-						rsdetail_1.getLblMots().setText(((Headword) hw).getMot());
-						listeMots.addElement(rsdetail_1);
-					}
+			for(Object hw : application.getMesRecherches().get(numRecherche).getListeResultat().values()) {
+				if(dictionnaire.equalsIgnoreCase(((Headword) hw).getDictionnaires().getNomDictionnaire())) {
+					motsCell = new MotsCell(application);
+					motsCell.setHeadword(((Headword) hw));
+					listeMots.addElement(motsCell);
 				}
-
-				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_1(application, listeMots));
 			}
-			// DETAIL 2
-			else if (sliderDetails.getValue() == (sliderDetails.getMaximum())/2) {
 
-				Vector<RSDetail_2> listeMots = new Vector<RSDetail_2>();
-
-				RSDetail_2 rsdetail_2;
-
-				for(Object hw : application.getMesRecherches().get(numRecherche).getListeResultat().values()) {
-					if(dictionnaire.equalsIgnoreCase(((Headword) hw).getDictionnaires().getNomDictionnaire())) {
-						rsdetail_2 = new RSDetail_2(application);
-						rsdetail_2.setIdHeadword(((Headword) hw).getIdHeadword());
-						rsdetail_2.getLblMots().setText(((Headword) hw).getMot());
-						rsdetail_2.getLblCategories().setText(((Headword) hw).getMot());
-
-						String cat = "Catégorie(s) : ";
-
-						Set<?> test = ((Headword) hw).getAvoirPourCategorieHeadwords();
-
-						Set<ListeCategories> test1 = new HashSet<ListeCategories>(0);
-
-						for(Object object : test) {
-							test1.add(((AvoirPourCategorieHeadword) object).getListeCategories());
-						}
-
-						for(Object object1 : test1) {
-							cat += ((ListeCategories) object1).getNom();
-							cat += "          ";
-						}
-
-						rsdetail_2.getLblCategories().setText(cat);
-
-						for(Object object : ((Headword) hw).getSyllabeses()) {						    
-							rsdetail_2.getLblRegion().setText("Région : " + ((Syllabes) object).getRegion());
-							rsdetail_2.getLblSchema().setText("Schéma : " + ((Syllabes) object).getSchema());
-							rsdetail_2.getLblType().setText("Type : " + ((Syllabes) object).getTypePrononciation());
-
-							rsdetail_2.getLblSyllabes().setText("Syllabes : " + ((Syllabes) object).getSyllabe1() + "   " + ((Syllabes) object).getSyllabe2() + "   " + ((Syllabes) object).getSyllabe3() + "   " + ((Syllabes) object).getSyllabe4() + "   " + ((Syllabes) object).getSyllabe5() + "   " + ((Syllabes) object).getSyllabe6() + "   " + ((Syllabes) object).getSyllabe7() + "\t" + ((Syllabes) object).getSyllabe8() + "   " + ((Syllabes) object).getSyllabe9() + "   " + ((Syllabes) object).getSyllabe10());
-						}
-
-						listeMots.addElement(rsdetail_2);
-					}
-				}
-
-				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_2(application, listeMots));
-			}
-			// DETAIL 3
-			else if (sliderDetails.getValue() == sliderDetails.getMaximum()) {
-
-				Vector<RSDetail_3> listeMots = new Vector<RSDetail_3>();
-
-				RSDetail_3 rsdetail_3;
-
-				for(Object hw : application.getMesRecherches().get(numRecherche).getListeResultat().values()) {
-					if(dictionnaire.equalsIgnoreCase(((Headword) hw).getDictionnaires().getNomDictionnaire())) {
-						rsdetail_3 = new RSDetail_3(application);
-						rsdetail_3.setIdHeadword(((Headword) hw).getIdHeadword());
-						rsdetail_3.getLblMots().setText(((Headword) hw).getMot());
-						listeMots.addElement(rsdetail_3);
-					}
-				}
-
-				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_3(application, listeMots));
-			}
+			this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer(application, listeMots));
 		}
 
 		resultat.add(new JScrollPane(expandingPanels.getComponent()), gbc_result);

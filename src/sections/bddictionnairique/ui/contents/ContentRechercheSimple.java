@@ -3,44 +3,36 @@
  */
 package sections.bddictionnairique.ui.contents;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import principal.Application;
 import principal.Recherche;
 import sections.bddictionnairique.Bddictionnairique;
 import sections.bddictionnairique.objects.ExpandingPanels;
-import sections.bddictionnairique.objects.RSDetail_1;
-import sections.bddictionnairique.objects.RSDetail_2;
-import sections.bddictionnairique.objects.RSDetail_3;
-import sections.bddictionnairique.renderers.MotsRenderer_1;
-import sections.bddictionnairique.renderers.MotsRenderer_2;
-import sections.bddictionnairique.renderers.MotsRenderer_3;
+import sections.bddictionnairique.objects.MotsCell;
+import sections.bddictionnairique.renderers.MotsRenderer;
 
-import java.awt.GridBagLayout;
-import javax.swing.JTextField;
 
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import org.apache.log4j.Logger;
 
 import dao.HeadwordDAO;
-import database.AvoirPourCategorieHeadword;
 import database.Headword;
-import database.ListeCategories;
-import database.Syllabes;
 
 /**
  * @author Valentin DOULCIER
@@ -75,6 +67,7 @@ public class ContentRechercheSimple extends JPanel {
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				logger.debug("On lance la recherche");
+				Bddictionnairique.getInstance(application).getVoletRechercheSimple().setPremiereRechercheFaite(true);
 				
 				enregistrerRecherche(application);
 				afficherRecherche(application, application.getMesRecherches().size() - 1);
@@ -171,7 +164,24 @@ public class ContentRechercheSimple extends JPanel {
 		for(String dictionnaire : dico) {
 			
 
-			// DETAIL 1
+			Vector<MotsCell> listeMots = new Vector<MotsCell>();
+			MotsCell motsCell;
+
+			for(Object hw : application.getMesRecherches().get(numRecherche).getListeResultat().values()) {
+				if(dictionnaire.equalsIgnoreCase(((Headword) hw).getDictionnaires().getNomDictionnaire())) {
+					motsCell = new MotsCell(application);
+					motsCell.setHeadword(((Headword) hw));
+					listeMots.addElement(motsCell);
+				}
+			}
+			
+			this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer(application, listeMots));
+			
+			
+			
+			
+			
+			/*// DETAIL 1
 			if (Bddictionnairique.getInstance(application).getVoletRechercheSimple().getSliderDetails().getValue() == Bddictionnairique.getInstance(application).getVoletRechercheSimple().getSliderDetails().getMinimum()) {
 				
 				Vector<RSDetail_1> listeMots = new Vector<RSDetail_1>();
@@ -180,8 +190,7 @@ public class ContentRechercheSimple extends JPanel {
 				for(Object hw : application.getMesRecherches().get(numRecherche).getListeResultat().values()) {
 					if(dictionnaire.equalsIgnoreCase(((Headword) hw).getDictionnaires().getNomDictionnaire())) {
 						rsdetail_1 = new RSDetail_1(application);
-						rsdetail_1.setIdHeadword(((Headword) hw).getIdHeadword());
-						rsdetail_1.getLblMots().setText(((Headword) hw).getMot());
+						rsdetail_1.setHeadword(((Headword) hw));
 						listeMots.addElement(rsdetail_1);
 					}
 				}
@@ -198,7 +207,7 @@ public class ContentRechercheSimple extends JPanel {
 				for(Object hw : application.getMesRecherches().get(numRecherche).getListeResultat().values()) {
 					if(dictionnaire.equalsIgnoreCase(((Headword) hw).getDictionnaires().getNomDictionnaire())) {
 						rsdetail_2 = new RSDetail_2(application);
-						rsdetail_2.setIdHeadword(((Headword) hw).getIdHeadword());
+						rsdetail_2.setHeadword(((Headword) hw));
 						rsdetail_2.getLblMots().setText(((Headword) hw).getMot());
 						rsdetail_2.getLblCategories().setText(((Headword) hw).getMot());
 						
@@ -232,6 +241,7 @@ public class ContentRechercheSimple extends JPanel {
 				}
 
 				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_2(application, listeMots));
+				
 			}
 			// DETAIL 3
 			else if (Bddictionnairique.getInstance(application).getVoletRechercheSimple().getSliderDetails().getValue() == Bddictionnairique.getInstance(application).getVoletRechercheSimple().getSliderDetails().getMaximum()) {
@@ -250,7 +260,7 @@ public class ContentRechercheSimple extends JPanel {
 				}
 
 				this.expandingPanels.addVolet(dictionnaire.toUpperCase(), listeMots.size(), new MotsRenderer_3(application, listeMots));
-			}
+			}*/
 		}
 		
 		resultat.add(new JScrollPane(expandingPanels.getComponent()), gbc_result);

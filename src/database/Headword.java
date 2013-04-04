@@ -36,20 +36,14 @@ public class Headword implements java.io.Serializable {
 	private Integer flagLien;
 	private Integer flagAutre;
 	private Set<Syllabes> syllabeses = new HashSet<Syllabes>(0);
-	private Set<DecompositionMorphologique> decompositionMorphologiques = new HashSet<DecompositionMorphologique>(
-			0);
-	private Set<Lexique> lexiquesForHeadwordIdMotReferent1 = new HashSet<Lexique>(
-			0);
-	private Set<Lexique> lexiquesForHeadwordIdMotReferent2 = new HashSet<Lexique>(
-			0);
-	private Set<Lexique> lexiquesForHeadwordIdMotEtudie = new HashSet<Lexique>(
-			0);
+	private Set<DecompositionMorphologique> decompositionMorphologiques = new HashSet<DecompositionMorphologique>(0);
+	private Set<Lexique> lexiquesForHeadwordIdMotReferent1 = new HashSet<Lexique>(0);
+	private Set<Lexique> lexiquesForHeadwordIdMotReferent2 = new HashSet<Lexique>(0);
+	private Set<Lexique> lexiquesForHeadwordIdMotEtudie = new HashSet<Lexique>(0);
 	private Set<Flexions> flexionses = new HashSet<Flexions>(0);
-	private Set<DecompositionGraphique> decompositionGraphiques = new HashSet<DecompositionGraphique>(
-			0);
+	private Set<DecompositionGraphique> decompositionGraphiques = new HashSet<DecompositionGraphique>(0);
 	private Set<ListeUsages> listeUsageses = new HashSet<ListeUsages>(0);
-	private Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords = new HashSet<AvoirPourCategorieHeadword>(
-			0);
+	private Set<AvoirPourCategorieHeadword> avoirPourCategorieHeadwords = new HashSet<AvoirPourCategorieHeadword>(0);
 	private Set<Frequence> frequences = new HashSet<Frequence>(0);
 	private Set<Sens> senses = new HashSet<Sens>(0);
 	private Set<Composes> composeses = new HashSet<Composes>(0);

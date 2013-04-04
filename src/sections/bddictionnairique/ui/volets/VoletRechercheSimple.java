@@ -17,6 +17,7 @@ import principal.Application;
 import dao.DictionnairesDAO;
 import database.Dictionnaires;
 
+import sections.bddictionnairique.Bddictionnairique;
 import sections.bddictionnairique.objects.DictionnairesCell;
 import sections.bddictionnairique.renderers.DictionnairesRenderer;
 
@@ -53,18 +54,20 @@ public class VoletRechercheSimple extends JPanel {
 	
 	private HashMap<Integer, String> listeDicos;
 
-
+	private boolean premiereRechercheFaite;
 	
 	/**
 	 * Create the panel.
 	 * @param application 
 	 */
-	public VoletRechercheSimple(Application application) {
+	public VoletRechercheSimple(final Application application) {
 
 		initComponents(application);
 		
 		sliderDetails.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
+        		if(premiereRechercheFaite)
+        			Bddictionnairique.getInstance(application).getContentRechercheSimple().afficherRecherche(application, application.getMesRecherches().size() - 1);
 	        	if(sliderDetails.getValue() == 0)
 	        	{
 	        		lblDetails.setText("Détail : x");
@@ -82,6 +85,8 @@ public class VoletRechercheSimple extends JPanel {
 	public void initComponents(Application application) {
 		setBackground(Color.LIGHT_GRAY);
 		setPreferredSize(new Dimension(300, 540));
+		
+		premiereRechercheFaite = false;
 		
 		listeDicos = new HashMap<Integer, String>();
 		
@@ -244,6 +249,20 @@ public class VoletRechercheSimple extends JPanel {
 	 */
 	public void setListeDicos(HashMap<Integer, String> listeDicos) {
 		this.listeDicos = listeDicos;
+	}
+
+	/**
+	 * @return the premiereRechercheFaite
+	 */
+	public boolean isPremiereRechercheFaite() {
+		return premiereRechercheFaite;
+	}
+
+	/**
+	 * @param premiereRechercheFaite the premiereRechercheFaite to set
+	 */
+	public void setPremiereRechercheFaite(boolean premiereRechercheFaite) {
+		this.premiereRechercheFaite = premiereRechercheFaite;
 	}
 
 }
