@@ -265,7 +265,7 @@ public class Bddictionnairique implements Serializable {
 
 			Bddictionnairique.contentHeaderEdition = new ContentHeaderEdition(application);
 			Bddictionnairique.contentEdition = new ContentEdition();
-			Bddictionnairique.contentFooterEdition = new ContentFooterEdition();
+			Bddictionnairique.contentFooterEdition = new ContentFooterEdition(application);
 
 			Bddictionnairique.application.getcHeader().add(contentHeaderEdition, "contentHeaderEdition");
 			Bddictionnairique.application.getcPanel().add(contentEdition, "contentEdition");
@@ -281,6 +281,57 @@ public class Bddictionnairique implements Serializable {
 			jeViensDe = 4;
 			
 			logger.warn("Onglet Edition OUVERT");
+		}
+	}
+	
+	public void afficherOnglet(int numero) {
+		if(numero == 1) {
+			Bddictionnairique.application.getVoletHeader().show(application.getvHeader(), "voletHeaderRechercheSimple");
+			Bddictionnairique.application.getVoletPanel().show(application.getvPanel(), "voletRechercheSimple");
+			
+			Bddictionnairique.application.getContentHeader().show(application.getcHeader(), "contentHeaderRechercheSimple");
+			Bddictionnairique.application.getContentPanel().show(application.getcPanel(), "contentRechercheSimple");
+			
+			jeViensDe = 1;
+			
+			logger.warn("Onglet Recherche Simple AFFICHE");
+
+		}
+		else if(numero == 2) {
+			Bddictionnairique.application.getVoletHeader().show(application.getvHeader(), "voletHeaderRechercheAvancee");
+			Bddictionnairique.application.getVoletPanel().show(application.getvPanel(), "voletRechercheAvancee");
+			
+			Bddictionnairique.application.getContentHeader().show(application.getcHeader(), "contentHeaderRechercheAvancee");
+			Bddictionnairique.application.getContentPanel().show(application.getcPanel(), "contentRechercheAvancee");
+			
+			jeViensDe = 2;
+
+			logger.warn("Onglet Recherche Avancee AFFICHE");
+			
+		}
+		else if(numero == 3) {
+			Bddictionnairique.application.getVoletHeader().show(application.getvHeader(), "voletHeaderHistorique");
+			Bddictionnairique.application.getVoletPanel().show(application.getvPanel(), "voletHistorique");
+			
+			Bddictionnairique.application.getContentHeader().show(application.getcHeader(), "contentHeaderHistorique");
+			Bddictionnairique.application.getContentPanel().show(application.getcPanel(), "contentHistorique");
+			
+			jeViensDe = 3;
+			
+			logger.warn("Onglet Historique AFFICHE");
+
+		}
+		else if(numero == 4) {			
+			Bddictionnairique.application.getVoletHeader().show(application.getvHeader(), "voletHeaderEdition");
+			Bddictionnairique.application.getVoletPanel().show(application.getvPanel(), "voletEdition");
+			
+			Bddictionnairique.application.getContentHeader().show(application.getcHeader(), "contentHeaderEdition");
+			Bddictionnairique.application.getContentPanel().show(application.getcPanel(), "contentEdition");
+			Bddictionnairique.application.getContentFooter().show(application.getcFooter(), "contentFooterEdition");
+			
+			jeViensDe = 4;
+			
+			logger.warn("Onglet Edition AFFICHE");
 		}
 	}
 

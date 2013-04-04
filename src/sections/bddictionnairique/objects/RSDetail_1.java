@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import principal.Application;
 
+import sections.bddictionnairique.Bddictionnairique;
 import sections.bddictionnairique.renderers.Caract_1;
 
 import java.awt.Font;
@@ -83,20 +84,11 @@ public class RSDetail_1 extends JPanel {
 
 
 		btnEditer.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				application.getVoletHeader().show(application.getvHeader(), "voletHeaderEdition");
-				application.getVoletPanel().show(application.getvPanel(), "voletEdition");
-				application.getVoletFooter().show(application.getvFooter(), "voletFooterEdition");
 				
-				application.getContentHeader().show(application.getcHeader(), "contentHeaderEdition");
-				application.getContentPanel().show(application.getcPanel(), "contentEdition");
-				application.getContentFooter().show(application.getcFooter(), "contentFooterEdition");
-				
-				
-				//layerApplication.getCardLayoutContent().show(layerApplication.getPanelContent(), "AppliContentEditionMot");
-				//layerApplication.getAppliContentEditionMot().getVolet_1().getTextField().setText(String.valueOf(idHeadword));
+				Bddictionnairique.getInstance(application).ouvrirOnglet(4);
+				//Bddictionnairique.getInstance(application).getContentEdition().setHeadword(headword);
 			}
 		});
 
