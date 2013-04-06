@@ -6,8 +6,10 @@ import database.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import utils.HibernateUtils;
 
@@ -80,4 +82,11 @@ public class NoteDAO extends AbstractDAO {
     public List<?> findAll() throws DataAccessLayerException{
         return super.findAll(session, Note.class);
     }
+    
+    public Note findExactly(int id) {
+    	Criteria criteria = session.createCriteria(Note.class)
+    			.add(Restrictions.like("idNote", id));
+    	
+    	return (Note) criteria.uniqueResult();
+	}
 }

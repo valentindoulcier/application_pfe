@@ -45,7 +45,14 @@ public class Main {
 			logger.info("***************************************************\n");
 
 			useScreenMenuBar();
+			
+			//HeadwordDAO headwordDAO = new HeadwordDAO("local");
+			
+			//headwordDAO.create(new Headword(new NoteDAO("local").findExactly(3), new DictionnairesDAO("local").findExactly(1), "VAL", "", "", "", "", "", 0, 1));
 
+			//List<?> toto = headwordDAO.findAll();
+						
+			
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {

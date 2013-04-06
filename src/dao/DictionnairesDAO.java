@@ -7,8 +7,10 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import utils.HibernateUtils;
 
@@ -97,6 +99,13 @@ public class DictionnairesDAO extends AbstractDAO {
     public List<?> findAll() throws DataAccessLayerException{
         return super.findAll(session, Dictionnaires.class);
     }
+    
+    public Dictionnaires findExactly(int id) {
+    	Criteria criteria = session.createCriteria(Dictionnaires.class)
+    			.add(Restrictions.like("idDictionnaire", id));
+    	
+    	return (Dictionnaires) criteria.uniqueResult();
+	}
 
 	/**
 	 * @return the session

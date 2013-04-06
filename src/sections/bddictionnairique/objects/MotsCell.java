@@ -14,9 +14,7 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-import database.AvoirPourCategorieHeadword;
 import database.Headword;
-import database.ListeCategories;
 
 import principal.Application;
 
@@ -25,13 +23,11 @@ import sections.bddictionnairique.renderers.Caract_Mots;
 
 import java.awt.Font;
 import java.awt.Color;
-import java.util.HashSet;
-import java.util.Set;
 
 //import org.apache.log4j.Logger;
 
 /**
- * @author Valentin
+ * @author Valentin DOULCIER
  *
  */
 
