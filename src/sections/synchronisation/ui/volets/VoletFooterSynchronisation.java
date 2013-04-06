@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sections.options.ui.volets;
+package sections.synchronisation.ui.volets;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,14 +12,14 @@ import javax.swing.JPanel;
  * @author Valentin DOULCIER
  *
  */
-public class VoletFooterOptions extends JPanel {
+public class VoletFooterSynchronisation extends JPanel {
 
-	private static final long serialVersionUID = 4283262447681658276L;
+	private static final long serialVersionUID = 8980949469341459934L;
 
 	/**
 	 * Create the panel.
 	 */
-	public VoletFooterOptions() {
+	public VoletFooterSynchronisation() {
 		
 		initComponents();
 

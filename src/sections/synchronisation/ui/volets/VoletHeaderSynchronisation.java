@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sections.options.ui.volets;
+package sections.synchronisation.ui.volets;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,19 +15,19 @@ import javax.swing.SwingConstants;
  * @author Valentin DOULCIER
  *
  */
-public class VoletHeaderOptions extends JPanel {
+public class VoletHeaderSynchronisation extends JPanel {
 
-	private static final long serialVersionUID = 4813679165580993748L;
-	
+	private static final long serialVersionUID = 6539635801326834821L;
+
 	private JLabel lblRecherche;
 
 	/**
 	 * Create the panel.
 	 */
-	public VoletHeaderOptions() {
+	public VoletHeaderSynchronisation() {
 		
 		initComponents();
-
+		
 	}
 	
 	public void initComponents() {
@@ -35,7 +35,7 @@ public class VoletHeaderOptions extends JPanel {
 		setPreferredSize(new Dimension(300, 30));
 		setLayout(null);
 		
-		lblRecherche = new JLabel("Options");
+		lblRecherche = new JLabel("Synchronisation");
 		lblRecherche.setForeground(Color.WHITE);
 		lblRecherche.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRecherche.setFont(new Font("Lucida Grande", Font.ITALIC, 23));

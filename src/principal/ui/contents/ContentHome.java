@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import sections.bddictionnairique.Bddictionnairique;
 
 import sections.options.Options;
+import sections.synchronisation.Synchronisation;
 
 
 /**
@@ -80,7 +81,7 @@ public class ContentHome extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Synchronisation.getInstance(application).chargerSynchronisation();
 			}
 		});
 		
