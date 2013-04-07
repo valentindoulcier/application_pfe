@@ -104,7 +104,6 @@ public class Synchronisation implements Serializable {
 	}
 
 
-
 	public void resetDatabase() {  
 		String ligne;
 		StringBuffer sb = new StringBuffer();
@@ -121,11 +120,11 @@ public class Synchronisation implements Serializable {
 			String[] requete = sb.toString().split(";");
 
 			for(int i = 0; i<requete.length; i++) {
-				if(!requete[i].trim().equals("")) {
+				//if(!requete[i].trim().equals("")) {
 					System.out.println("Je demande l'exécution");
 					synchroDAO.executerRequete(requete[i]);
 					System.out.println("Au suivant !!");
-				}
+				//}
 			}
 		}
 		catch(Exception e) {

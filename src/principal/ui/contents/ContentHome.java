@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import dao.SynchronisationDAO;
+
 import sections.bddictionnairique.Bddictionnairique;
 
 import sections.options.Options;
@@ -47,8 +49,6 @@ public class ContentHome extends JPanel {
 	 * Create the panel.
 	 */
 	public ContentHome(final Application application) {
-
-		setBackground(Color.LIGHT_GRAY);
 
 		initComponents();
 
@@ -90,7 +90,9 @@ public class ContentHome extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				//if(new SynchronisationDAO("local").isGoodDatabase()) {
 				Bddictionnairique.getInstance(application).chargerBddictionnairique();
+				//}
 			}
 
 			@Override
@@ -156,6 +158,8 @@ public class ContentHome extends JPanel {
 
 	public void initComponents() {
 
+		setBackground(Color.LIGHT_GRAY);
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 0, 120, 30, 120, 30, 120, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{20, 56, 45, 30, 10, 100, 0, 0, 0};
@@ -216,6 +220,7 @@ public class ContentHome extends JPanel {
 		add(btnOptions, gbc_btnOptions);
 	}
 
+	
 	/**
 	 * @return the lblApplication
 	 */

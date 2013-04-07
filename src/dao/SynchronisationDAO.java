@@ -29,12 +29,6 @@ import utils.HibernateUtils;
 @SuppressWarnings("unused")
 public class SynchronisationDAO {
 
-	ArrayList<String> listeTablesReferences;
-	String schemaReference;
-	
-	ArrayList<String> listeTablesDatabase;
-	String schemaDatabase;
-
 	private Session session;
 	private Transaction tx;
 
@@ -53,61 +47,79 @@ public class SynchronisationDAO {
 	}
 	
 	public boolean isGoodSchema() {
-		return schemaDatabase.equals(schemaReference);
+		return getSchemaDatabase().equals(getSchemaReference());
 	}
 
 	public boolean isGoodDatabase() {
-		return CollectionUtils.disjunction(listeTablesReferences, listeTablesDatabase).isEmpty();
-	}
-
-	public void chargerListeTablesDatabase() {
-
-		listeTablesDatabase = new ArrayList<String>();
-		schemaDatabase = "";
-
-		List<?> schemas = session.createSQLQuery("SELECT TABLE_SCHEMA FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE()").list();
-		
-		for(Object schema : schemas) {
-			if("".equalsIgnoreCase(schemaDatabase)) {
-				schemaDatabase = (String) schema;
-				break;
-			}
+		if(isGoodSchema()) {
+			return CollectionUtils.disjunction(getTablesDatabase(), getTablesReference()).isEmpty();
 		}
+		else {
+			return false;
+		}
+	}
+	
+	public ArrayList<String> getTablesDatabase() {
+		ArrayList<String> listeTablesDatabase = new ArrayList<String>();
 		
 		List<?> tables = session.createSQLQuery("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE();").list();
 
 		for(Object table : tables) {
 			listeTablesDatabase.add((String) table);
 		}
+		
+		return listeTablesDatabase;
 	}
-
-
-	public void chargerListeTablesReference() {
-
-		listeTablesReferences = new ArrayList<String>();
-		schemaReference = "";
-
+	
+	public ArrayList<String> getTablesReference() {
+		ArrayList<String> listeTablesReferences = new ArrayList<String>();
+		
 		SAXReader reader =  new SAXReader();
 		reader.setEncoding("UTF-8");
 
 		Document doc;
 		try {
 			doc = reader.read(new File("src/hibernateLocal.reveng.xml"));
-			
 			Element root = doc.getRootElement();
-
 			for (Iterator<?> i = root.elementIterator(); i.hasNext(); ) {
 				Element itemObject = (Element) i.next();
 				if (itemObject.getName().equals("table-filter")) {
-					if("".equalsIgnoreCase(schemaReference)) {
-						schemaReference = itemObject.attribute("match-catalog").getText();
-					}
 					listeTablesReferences.add(itemObject.attribute("match-name").getText());
 				}
 			}
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
+		
+		return listeTablesReferences;
+	}
+	
+	public String getSchemaDatabase() {
+		List<?> schemas = session.createSQLQuery("SELECT TABLE_SCHEMA FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE()").list();
+		for(Object schema : schemas) {
+			return (String) schema;
+		}
+		return null;
+	}
+	
+	public String getSchemaReference() {
+		SAXReader reader =  new SAXReader();
+		reader.setEncoding("UTF-8");
+
+		Document doc;
+		try {
+			doc = reader.read(new File("src/hibernateLocal.reveng.xml"));
+			Element root = doc.getRootElement();
+			for (Iterator<?> i = root.elementIterator(); i.hasNext();) {
+				Element itemObject = (Element) i.next();
+				if (itemObject.getName().equals("table-filter")) {
+					return itemObject.attribute("match-catalog").getText();
+				}
+			}
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public void executerRequete(String requete) {

@@ -1,24 +1,8 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+DROP TABLE IF EXISTS dictionnaires;
 
-DROP SCHEMA IF EXISTS `bddictionnairique` ;
-CREATE SCHEMA IF NOT EXISTS `bddictionnairique` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `bddictionnairique` ;
+CREATE TABLE IF NOT EXISTS dictionnaires (id_dictionnaire INT(11) NOT NULL AUTO_INCREMENT, nom_dictionnaire VARCHAR(20) NULL DEFAULT NULL, PRIMARY KEY (id_dictionnaire), INDEX id_dictionnaire (id_dictionnaire ASC)) ENGINE = InnoDB AUTO_INCREMENT = 4 DEFAULT CHARACTER SET = utf8;
 
-DROP TABLE IF EXISTS `bddictionnairique`.`dictionnaires` ;
-
-CREATE  TABLE IF NOT EXISTS `bddictionnairique`.`dictionnaires` (
-  `id_dictionnaire` INT(11) NOT NULL AUTO_INCREMENT ,
-  `nom_dictionnaire` VARCHAR(20) NULL DEFAULT NULL ,
-  PRIMARY KEY (`id_dictionnaire`) ,
-  INDEX `id_dictionnaire` (`id_dictionnaire` ASC) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 4
-DEFAULT CHARACTER SET = utf8;
-
-
-DROP TABLE IF EXISTS `bddictionnairique`.`note` ;
+DROP TABLE IF EXISTS `bddictionnairique`.`note`;
 
 CREATE  TABLE IF NOT EXISTS `bddictionnairique`.`note` (
   `id_note` INT(11) NOT NULL AUTO_INCREMENT ,
@@ -542,10 +526,3 @@ CREATE  TABLE IF NOT EXISTS `bddictionnairique`.`Utilisateur` (
   PRIMARY KEY (`id_utilisateur`) ,
   UNIQUE INDEX `login_UNIQUE` (`login` ASC) )
 ENGINE = InnoDB;
-
-USE `bddictionnairique` ;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
