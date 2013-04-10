@@ -2,6 +2,7 @@ package administration.ui.contents;
 
 import principal.Application;
 import sections.parseurXML.ParseurXML;
+import sections.updateBDD.UpdateBDD;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -109,7 +110,7 @@ public class ContentAdministration extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+				UpdateBDD.getInstance(application).chargerSynchronisation();
 			}
 		});
 		

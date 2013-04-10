@@ -131,13 +131,8 @@ public class Synchronisation implements Serializable {
 			System.out.println("LOLILOULOL");
 		}
 
-	}  
-
-
-
-
-
-
+	}
+	
 
 	/**
 	 * @return the voletHeaderSynchronisation

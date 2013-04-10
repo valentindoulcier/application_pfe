@@ -35,7 +35,7 @@ public class VoletHeaderUpdate extends JPanel {
 		setPreferredSize(new Dimension(300, 30));
 		setLayout(null);
 		
-		lblRecherche = new JLabel("Historique");
+		lblRecherche = new JLabel("Update BDD");
 		lblRecherche.setForeground(Color.WHITE);
 		lblRecherche.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRecherche.setFont(new Font("Lucida Grande", Font.ITALIC, 23));

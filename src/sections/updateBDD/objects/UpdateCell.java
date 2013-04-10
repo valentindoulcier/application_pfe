@@ -3,17 +3,15 @@ package sections.updateBDD.objects;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Color;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import principal.Application;
 
-import sections.parseurXML.renderers.Caract_Historique;
 import sections.updateBDD.renderers.Caract_Update;
 
-import java.awt.Font;
-import java.awt.Color;
 
 //import org.apache.log4j.Logger;
 
@@ -25,16 +23,11 @@ import java.awt.Color;
 public class UpdateCell extends JPanel {
 
 	private static final long serialVersionUID = 8933677136466352896L;
-	
-	private int numRecherche;
 
 	private GridBagLayout gridBagLayout;
 	
-	private JLabel lblNumero;
-
-	private JLabel lblFichier;
-	
-	private JLabel lblDate;
+	private String nomTable;
+	private JLabel lblNomtable;
 
 	public UpdateCell(final Application application) {
 
@@ -43,76 +36,35 @@ public class UpdateCell extends JPanel {
 	}
 	
 	public void initComponents() {
-		
-		//setPreferredSize(new Dimension(300, 30));
-		//setMinimumSize(new Dimension(300, 30));
-		
 		setBackground(Color.LIGHT_GRAY);
+		
 		gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{5, 20, 50, 8, 0};
-		gridBagLayout.rowHeights = new int[]{10, 10, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{5, 20, 8, 0};
+		gridBagLayout.rowHeights = new int[]{10, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-
-		lblFichier = new JLabel("Fichier");
-		lblFichier.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		GridBagConstraints gbc_lblFichier = new GridBagConstraints();
-		gbc_lblFichier.anchor = GridBagConstraints.SOUTHWEST;
-		gbc_lblFichier.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFichier.gridx = 1;
-		gbc_lblFichier.gridy = 0;
-		add(lblFichier, gbc_lblFichier);
 		
-		lblNumero = new JLabel("Numero");
-		lblNumero.setFont(new Font("Lucida Grande", Font.ITALIC, 10));
-		GridBagConstraints gbc_lblNumero = new GridBagConstraints();
-		gbc_lblNumero.anchor = GridBagConstraints.EAST;
-		gbc_lblNumero.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNumero.gridx = 2;
-		gbc_lblNumero.gridy = 0;
-		add(lblNumero, gbc_lblNumero);
-		
-		lblDate = new JLabel("Date");
-		lblDate.setForeground(Color.GRAY);
-		lblDate.setFont(new Font("Lucida Grande", Font.ITALIC, 12));
-		GridBagConstraints gbc_lblDate = new GridBagConstraints();
-		gbc_lblDate.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblDate.insets = new Insets(0, 0, 0, 5);
-		gbc_lblDate.gridx = 1;
-		gbc_lblDate.gridy = 1;
-		add(lblDate, gbc_lblDate);
-
+		lblNomtable = new JLabel("");
+		GridBagConstraints gbc_lblNomtable = new GridBagConstraints();
+		gbc_lblNomtable.anchor = GridBagConstraints.WEST;
+		gbc_lblNomtable.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNomtable.gridx = 1;
+		gbc_lblNomtable.gridy = 0;
+		add(lblNomtable, gbc_lblNomtable);
 	}
 
 
 	public void setCaract(Caract_Update value) {
-		numRecherche = value.numRecherche;
-		lblNumero.setText(String.valueOf(value.numRecherche));
-		lblFichier.setText(value.fichier);
-		lblDate.setText(value.date);
+		nomTable = value.nomTable;
+		lblNomtable.setText(nomTable);
 	}
 
 	public Caract_Update getCaract() {
-		return new Caract_Update(numRecherche, lblFichier.getText(), lblDate.getText());
+		return new Caract_Update(nomTable);
 	}
 	
-	/**
-	 * @return the idHeadword
-	 */
-	public int getNumRecherche() {
-		return numRecherche;
-	}
-
-
-	/**
-	 * @param idHeadword the idHeadword to set
-	 */
-	public void setNumRecherche(int numRecherche) {
-		this.numRecherche = numRecherche;
-	}
 	
-
 	/**
 	 * @return the gridBagLayout
 	 */
@@ -128,30 +80,30 @@ public class UpdateCell extends JPanel {
 	}
 
 	/**
-	 * @return the lblFichier
+	 * @return the nomTable
 	 */
-	public JLabel getLblFichier() {
-		return lblFichier;
+	public String getNomTable() {
+		return nomTable;
 	}
 
 	/**
-	 * @param lblFichier the lblFichier to set
+	 * @param nomTable the nomTable to set
 	 */
-	public void setLblFichier(JLabel lblFichier) {
-		this.lblFichier = lblFichier;
+	public void setNomTable(String nomTable) {
+		this.nomTable = nomTable;
 	}
 
 	/**
-	 * @return the lblDate
+	 * @return the lblNomtable
 	 */
-	public JLabel getLblDate() {
-		return lblDate;
+	public JLabel getLblNomtable() {
+		return lblNomtable;
 	}
 
 	/**
-	 * @param lblDate the lblDate to set
+	 * @param lblNomtable the lblNomtable to set
 	 */
-	public void setLblDate(JLabel lblDate) {
-		this.lblDate = lblDate;
+	public void setLblNomtable(JLabel lblNomtable) {
+		this.lblNomtable = lblNomtable;
 	}
 }

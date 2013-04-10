@@ -19,8 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
-import dao.SynchronisationDAO;
-
 import sections.bddictionnairique.Bddictionnairique;
 
 import sections.options.Options;
@@ -43,13 +41,13 @@ public class ContentHome extends JPanel {
 	private JButton btnOptions;
 	private JButton btnSynchronisation;
 	private JLabel lblLogo;
-
+	
 
 	/**
 	 * Create the panel.
 	 */
 	public ContentHome(final Application application) {
-
+		
 		initComponents();
 
 		btnSynchronisation.addMouseListener(new MouseListener() {

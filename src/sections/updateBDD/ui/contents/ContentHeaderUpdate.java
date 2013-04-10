@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import principal.Application;
-import sections.parseurXML.ParseurXML;
+import sections.updateBDD.UpdateBDD;
 
 /**
  * @author Valentin DOULCIER
@@ -43,10 +43,9 @@ public class ContentHeaderUpdate extends JPanel {
 		initComponents();
 		
 		btnHome.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ParseurXML.getInstance(application).dechargerParseurXML();
+				UpdateBDD.getInstance(application).dechargerSynchronisation();
 			}
 		});
 		

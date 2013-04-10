@@ -30,7 +30,6 @@ public class UpdateRenderer extends JPanel {
 
 	private TableModel compModel = null;
 
-
 	public UpdateRenderer(Application application, Vector<UpdateCell> listeFichiers) {
 		
 		//this.setMinimumSize(application.getContentHome().getVoletFooterRecherche().getVoletHistorique().getPreferredSize().getSize());
@@ -77,7 +76,8 @@ class CellEditorRenderer extends AbstractCellEditor implements TableCellRenderer
 	private UpdateCell renderer;
     private UpdateCell editor;
     
-    private Application application;
+    @SuppressWarnings("unused")
+	private Application application;
  
 	public CellEditorRenderer(Application application) {
 		renderer = new UpdateCell(application);
@@ -128,7 +128,7 @@ class TableModel extends DefaultTableModel {
 
     public void addRows(Vector<UpdateCell> listeFichiers) {
     	for(int i = 0; i < listeFichiers.size(); i++) {
-    		super.addRow(new Object[]{new Caract_Update(listeFichiers.get(i).getNumRecherche(), listeFichiers.get(i).getLblFichier().getText(), listeFichiers.get(i).getLblDate().getText())});
+    		super.addRow(new Object[]{new Caract_Update(listeFichiers.get(i).getNomTable())});
     	}
     }
 }

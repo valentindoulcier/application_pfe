@@ -76,10 +76,12 @@ public class SynchronisationDAO {
 		
 		SAXReader reader =  new SAXReader();
 		reader.setEncoding("UTF-8");
-
+		
 		Document doc;
 		try {
-			doc = reader.read(new File("src/hibernateLocal.reveng.xml"));
+			File f = new File("src/hibernateLocal.reveng.xml");
+			System.out.println(f.getAbsolutePath());
+			doc = reader.read(f);
 			Element root = doc.getRootElement();
 			for (Iterator<?> i = root.elementIterator(); i.hasNext(); ) {
 				Element itemObject = (Element) i.next();
@@ -90,7 +92,7 @@ public class SynchronisationDAO {
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
-		
+
 		return listeTablesReferences;
 	}
 	
@@ -125,9 +127,7 @@ public class SynchronisationDAO {
 	public void executerRequete(String requete) {
 		System.out.println("\tJe vais exécuter une requête suivante !!");
 		System.out.println("\t\t\t" + requete);
-		session.createSQLQuery(requete);
+		session.createSQLQuery(requete).executeUpdate();
 		System.out.println("\tC'est fait :)");
 	}
-
-
 }

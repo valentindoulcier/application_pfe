@@ -7,17 +7,21 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.text.SimpleDateFormat;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.JPanel;
 
-import administration.Administration;
-import administration.objects.Fichier;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
 import principal.Application;
-import sections.parseurXML.objects.HistoriqueCell;
-import sections.parseurXML.renderers.HistoriqueRenderer;
+import sections.updateBDD.objects.UpdateCell;
+import sections.updateBDD.renderers.UpdateRenderer;
 
 
 /**
@@ -61,25 +65,45 @@ public class VoletUpdate extends JPanel {
 
 	public void chargerHistorique(Application application) {
 
-		Vector<HistoriqueCell> listeFichiers = new Vector<HistoriqueCell>();
+		Vector<UpdateCell> listeFichiers = new Vector<UpdateCell>();
+		ArrayList<String> tables = getTablesReference();
 
-		HistoriqueCell historiqueCell;
+		UpdateCell updateCell;
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy ~ HH:mm:ss");
-
-		for(Object fichier : Administration.getMesFichiers()) {
-			historiqueCell = new HistoriqueCell(application);
-			historiqueCell.setNumRecherche(((Fichier) fichier).getNumero());
-			historiqueCell.getLblFichier().setText(((Fichier) fichier).getNom());
-			historiqueCell.getLblDate().setText(simpleDateFormat.format(((Fichier) fichier).getDateParsing()));
-			listeFichiers.add(0, historiqueCell);//addElement(historiqueCell);
+		for(String table : tables) {
+			updateCell = new UpdateCell(application);
+			updateCell.setNomTable(table);
+			listeFichiers.add(0, updateCell);//addElement(historiqueCell);
 		}		
 
-		JPanel historiqueRenderer = new HistoriqueRenderer(application, listeFichiers);
+		JPanel historiqueRenderer = new UpdateRenderer(application, listeFichiers);
 		historiqueRenderer.setBackground(Color.GRAY);
 		add(historiqueRenderer, gbc_panel);
 
 		revalidate();
+	}
+	
+	public ArrayList<String> getTablesReference() {
+		ArrayList<String> listeTablesReferences = new ArrayList<String>();
+		
+		SAXReader reader =  new SAXReader();
+		reader.setEncoding("UTF-8");
+
+		Document doc;
+		try {
+			doc = reader.read(new File("src/hibernateLocal.reveng.xml"));
+			Element root = doc.getRootElement();
+			for (Iterator<?> i = root.elementIterator(); i.hasNext(); ) {
+				Element itemObject = (Element) i.next();
+				if (itemObject.getName().equals("table-filter")) {
+					listeTablesReferences.add(itemObject.attribute("match-name").getText());
+				}
+			}
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		
+		return listeTablesReferences;
 	}
 
 	public GridBagLayout getGridBagLayout() {

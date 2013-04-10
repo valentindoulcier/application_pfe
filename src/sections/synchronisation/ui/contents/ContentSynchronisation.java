@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 
 import javax.swing.JButton;
 
+import dao.UtilisateurDAO;
+import database.Utilisateur;
+
 import principal.Application;
 
 import sections.synchronisation.Synchronisation;
@@ -37,6 +40,9 @@ public class ContentSynchronisation extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Synchronisation.getInstance(application).resetDatabase();
+				new UtilisateurDAO("local").create(new Utilisateur("Administrateur", "Admin", "dc647eb65e6711e155375218212b3964", true));				
+				new UtilisateurDAO("local").create(new Utilisateur("Valentin DOULCIER", "valentin.doulcier", "ab4f63f9ac65152575886860dde480a1", true));
+				new UtilisateurDAO("local").create(new Utilisateur("Adrien BATAILLE", "adrien.bataille", "ab4f63f9ac65152575886860dde480a1", false));
 			}
 		});
 
