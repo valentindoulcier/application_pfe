@@ -79,6 +79,7 @@ public class ContentHome extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
+				application.dechargerApplication();
 				Synchronisation.getInstance(application).chargerSynchronisation();
 			}
 		});
@@ -89,6 +90,7 @@ public class ContentHome extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				//if(new SynchronisationDAO("local").isGoodDatabase()) {
+				application.dechargerApplication();
 				Bddictionnairique.getInstance(application).chargerBddictionnairique();
 				//}
 			}
@@ -124,6 +126,7 @@ public class ContentHome extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				application.dechargerApplication();
 				Options.getInstance(application).chargerOptions();
 			}
 

@@ -75,6 +75,40 @@ public class Application extends JFrame {
 		initMenu();
 		initComponents();		
 	}
+	
+	public void revalidate() {
+		vHeader.revalidate();
+		vPanel.revalidate();
+		vFooter.revalidate();
+		
+		cHeader.revalidate();
+		cPanel.revalidate();
+		cFooter.revalidate();
+	}
+	
+	public void chargerApplicationHome() {
+		contentHeaderHome = new ContentHeaderHome(this);
+		contentHome = new ContentHome(this);
+		contentFooterHome = new ContentFooterHome(this);
+		
+		cHeader.add(contentHeaderHome, "ContentHeaderHome");
+		cPanel.add(contentHome, "ContentHome");
+		cFooter.add(contentFooterHome, "ContentFooterHome");
+		
+		revalidate();
+	}
+	
+	public void dechargerApplication() {
+		vHeader.removeAll();
+		vPanel.removeAll();
+		vFooter.removeAll();
+		
+		cHeader.removeAll();
+		cPanel.removeAll();
+		cFooter.removeAll();
+		
+		revalidate();
+	}
 
 	public void initComponents() {
 		this.setTitle("Application L.L.L.");
@@ -135,13 +169,7 @@ public class Application extends JFrame {
 		content.add(cPanel, BorderLayout.CENTER);
 		content.add(cFooter, BorderLayout.SOUTH);
 
-		contentHeaderHome = new ContentHeaderHome(this);
-		contentHome = new ContentHome(this);
-		contentFooterHome = new ContentFooterHome(this);
-
-		cHeader.add(contentHeaderHome, "ContentHeaderHome");
-		cPanel.add(contentHome, "ContentHome");
-		cFooter.add(contentFooterHome, "ContentFooterHome");
+		chargerApplicationHome();
 
 		// SplitPane
 		splitPane = new JSplitPane();

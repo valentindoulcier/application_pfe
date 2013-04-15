@@ -41,7 +41,12 @@ public class ContentHeaderAdministration extends JPanel {
 		btnDeconnexion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Administration.getInstance(application).dechargerAdministration();
+				//Administration.getInstance(application).dechargerAdministration();
+				application.dechargerApplication();
+				System.out.println("done");
+				application.chargerApplicationHome();
+				System.out.println("done");
+				
 			}
 		});
 

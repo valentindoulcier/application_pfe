@@ -5,6 +5,8 @@ package sections.parseurXML;
 
 import java.io.Serializable;
 
+import administration.Administration;
+
 import principal.Application;
 import sections.parseurXML.ui.contents.ContentFooterParseur;
 import sections.parseurXML.ui.contents.ContentHeaderHistorique;
@@ -70,12 +72,13 @@ public class ParseurXML implements Serializable {
 
 
 	public void chargerParseurXML() {
+		application.dechargerApplication();
+		
 		ParseurXML.voletFooterParseur = new VoletFooterParseur(application);
 		ParseurXML.application.getvFooter().add(voletFooterParseur, "voletFooterParseur");
 
 		ParseurXML.contentFooterParseur = new ContentFooterParseur(application);
 		ParseurXML.application.getcFooter().add(contentFooterParseur, "contentFooterParseur");
-
 
 		ParseurXML.application.getVoletFooter().show(application.getvFooter(), "voletFooterParseur");
 		ParseurXML.application.getContentFooter().show(application.getcFooter(), "contentFooterParseur");
@@ -87,16 +90,11 @@ public class ParseurXML implements Serializable {
 	}
 
 	public void dechargerParseurXML() {
-		ParseurXML.application.getContentHeader().show(application.getcHeader(), "contentHeaderAdministration");
-		ParseurXML.application.getContentPanel().show(application.getcPanel(), "contentAdministration");
-		ParseurXML.application.getContentFooter().show(application.getcFooter(), "contentFooterAdministration");
+		Administration.getInstance(application).chargerApplicationAdministration();
 
 		ParseurXML.application.FermerVolet();
-
-		ParseurXML.application.getcFooter().remove(contentFooterParseur);
-		ParseurXML.application.getvFooter().remove(voletFooterParseur);
-
-		fermerCurrentOnglet();
+		
+		System.out.println("Application déchargée");		
 	}
 
 	public void fermerCurrentOnglet() {
@@ -116,6 +114,7 @@ public class ParseurXML implements Serializable {
 			ParseurXML.application.getcPanel().remove(contentHistorique);
 
 		}
+		ParseurXML.application.revalidate();
 	}
 
 	public void ouvrirOnglet(int jeVaisSur) {
@@ -163,6 +162,7 @@ public class ParseurXML implements Serializable {
 			jeViensDe = 2;
 
 		}
+		ParseurXML.application.revalidate();
 	}
 
 	/**

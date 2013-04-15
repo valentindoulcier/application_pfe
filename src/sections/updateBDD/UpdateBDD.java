@@ -11,6 +11,8 @@ import sections.updateBDD.ui.volets.VoletHeaderUpdate;
 import sections.updateBDD.ui.volets.VoletUpdate;
 import java.io.Serializable;
 
+import administration.Administration;
+
 /**
  * @author Valentin DOULCIER
  *
@@ -82,19 +84,11 @@ public class UpdateBDD implements Serializable {
 	}
 
 	public void dechargerSynchronisation() {
-		UpdateBDD.application.getContentHeader().show(application.getcHeader(), "contentHeaderAdministration");
-		UpdateBDD.application.getContentPanel().show(application.getcPanel(), "contentAdministration");
-		UpdateBDD.application.getContentFooter().show(application.getcFooter(), "contentFooterAdministration");
-
+		Administration.getInstance(application).chargerApplicationAdministration();
+		
 		UpdateBDD.application.FermerVolet();
-
-		UpdateBDD.application.getcHeader().remove(getContentHeaderUpdate());
-		UpdateBDD.application.getcPanel().remove(getContentUpdate());
-		UpdateBDD.application.getcFooter().remove(getContentFooterUpdate());
-
-		UpdateBDD.application.getvHeader().remove(getVoletHeaderUpdate());
-		UpdateBDD.application.getvPanel().remove(getVoletUpdate());
-		UpdateBDD.application.getvFooter().remove(getVoletFooterUpdate());
+		
+		System.out.println("Application déchargée");
 	}
 
 	/**

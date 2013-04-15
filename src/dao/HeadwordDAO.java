@@ -80,12 +80,14 @@ public class HeadwordDAO extends AbstractDAO {
      * Finds all Events in the database.
      * @return
      */
-    public List<?> findAll() throws DataAccessLayerException{
-        return super.findAll(session, Headword.class);
+    @SuppressWarnings("unchecked")
+	public List<Headword> findAll() throws DataAccessLayerException{
+        return (List<Headword>) super.findAll(session, Headword.class);
     }
     
 
-	public List<?> findExactly(String mot, String dictionnaire) {
+	@SuppressWarnings("unchecked")
+	public List<Headword> findExactly(String mot, String dictionnaire) {
     	Criteria criteria = session.createCriteria(Headword.class)
     			.add(Restrictions.like("mot", mot))
     			.createCriteria("dictionnaires", "dico")

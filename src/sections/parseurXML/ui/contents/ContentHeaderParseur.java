@@ -13,6 +13,8 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import administration.Administration;
+
 import principal.Application;
 import sections.parseurXML.ParseurXML;
 
@@ -49,6 +51,8 @@ public class ContentHeaderParseur extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				ParseurXML.getInstance(application).dechargerParseurXML();
+				application.dechargerApplication();
+				Administration.getInstance(application).chargerApplicationAdministration();
 			}
 		});
 

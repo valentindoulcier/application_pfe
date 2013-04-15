@@ -21,6 +21,7 @@ import sections.bddictionnairique.ui.contents.ContentRechercheAvancee;
 import sections.bddictionnairique.ui.contents.ContentRechercheSimple;
 
 import sections.bddictionnairique.ui.volets.VoletEdition;
+import sections.bddictionnairique.ui.volets.VoletFooterEdition;
 import sections.bddictionnairique.ui.volets.VoletFooterRecherche;
 import sections.bddictionnairique.ui.volets.VoletHeaderEdition;
 import sections.bddictionnairique.ui.volets.VoletHeaderHistorique;
@@ -52,6 +53,7 @@ public class Bddictionnairique implements Serializable {
 	// Volet
 	private static VoletHeaderEdition voletHeaderEdition = null;
 	private static VoletEdition voletEdition = null;
+	private static VoletFooterEdition voletFooterEdition = null;
 
 	private static VoletFooterRecherche voletFooterRecherche = null;
 
@@ -125,16 +127,11 @@ public class Bddictionnairique implements Serializable {
 	}
 
 	public void dechargerBddictionnairique() {
-		Bddictionnairique.application.getContentHeader().show(application.getcHeader(), "ContentHeaderHome");
-		Bddictionnairique.application.getContentPanel().show(application.getcPanel(), "ContentHome");
-		Bddictionnairique.application.getContentFooter().show(application.getcFooter(), "ContentFooterHome");
+		application.dechargerApplication();
+		application.chargerApplicationHome();
 
 		Bddictionnairique.application.FermerVolet();
-
-		Bddictionnairique.application.getcFooter().remove(contentFooterRecherche);
-		Bddictionnairique.application.getvFooter().remove(voletFooterRecherche);
-
-		fermerCurrentOnglet();
+		Bddictionnairique.application.revalidate();
 
 		logger.warn("Application déchargée");
 	}
@@ -173,6 +170,7 @@ public class Bddictionnairique implements Serializable {
 		else if(jeViensDe == 4) {
 			Bddictionnairique.application.getvHeader().remove(voletHeaderEdition);
 			Bddictionnairique.application.getvPanel().remove(voletEdition);
+			Bddictionnairique.application.getvFooter().remove(voletFooterEdition);
 
 			Bddictionnairique.application.getcHeader().remove(contentHeaderEdition);
 			Bddictionnairique.application.getcPanel().remove(contentEdition);
@@ -180,6 +178,7 @@ public class Bddictionnairique implements Serializable {
 			
 			logger.warn("Onglet Edition FERME");
 		}
+		Bddictionnairique.application.revalidate();
 	}
 
 	public void ouvrirOnglet(int jeVaisSur) {
@@ -258,14 +257,15 @@ public class Bddictionnairique implements Serializable {
 		else if(jeVaisSur == 4) {
 			Bddictionnairique.voletHeaderEdition = new VoletHeaderEdition();
 			Bddictionnairique.voletEdition = new VoletEdition(application);
+			Bddictionnairique.voletFooterEdition = new VoletFooterEdition(application);
 
 			Bddictionnairique.application.getvHeader().add(voletHeaderEdition, "voletHeaderEdition");
 			Bddictionnairique.application.getvPanel().add(voletEdition, "voletEdition");
-			
+			Bddictionnairique.application.getvFooter().add(voletFooterEdition, "voletFooterEdition");
 
 			Bddictionnairique.contentHeaderEdition = new ContentHeaderEdition(application);
 			Bddictionnairique.contentEdition = new ContentEdition();
-			Bddictionnairique.contentFooterEdition = new ContentFooterEdition(application);
+			Bddictionnairique.contentFooterEdition = new ContentFooterEdition();
 
 			Bddictionnairique.application.getcHeader().add(contentHeaderEdition, "contentHeaderEdition");
 			Bddictionnairique.application.getcPanel().add(contentEdition, "contentEdition");
@@ -273,6 +273,7 @@ public class Bddictionnairique implements Serializable {
 			
 			Bddictionnairique.application.getVoletHeader().show(application.getvHeader(), "voletHeaderEdition");
 			Bddictionnairique.application.getVoletPanel().show(application.getvPanel(), "voletEdition");
+			Bddictionnairique.application.getVoletFooter().show(application.getvFooter(), "voletFooterEdition");
 			
 			Bddictionnairique.application.getContentHeader().show(application.getcHeader(), "contentHeaderEdition");
 			Bddictionnairique.application.getContentPanel().show(application.getcPanel(), "contentEdition");
@@ -282,6 +283,7 @@ public class Bddictionnairique implements Serializable {
 			
 			logger.warn("Onglet Edition OUVERT");
 		}
+		Bddictionnairique.application.revalidate();
 	}
 	
 	public void afficherOnglet(int numero) {
@@ -324,6 +326,7 @@ public class Bddictionnairique implements Serializable {
 		else if(numero == 4) {			
 			Bddictionnairique.application.getVoletHeader().show(application.getvHeader(), "voletHeaderEdition");
 			Bddictionnairique.application.getVoletPanel().show(application.getvPanel(), "voletEdition");
+			Bddictionnairique.application.getVoletFooter().show(application.getvFooter(), "voletFooterEdition");
 			
 			Bddictionnairique.application.getContentHeader().show(application.getcHeader(), "contentHeaderEdition");
 			Bddictionnairique.application.getContentPanel().show(application.getcPanel(), "contentEdition");
@@ -333,6 +336,7 @@ public class Bddictionnairique implements Serializable {
 			
 			logger.warn("Onglet Edition AFFICHE");
 		}
+		Bddictionnairique.application.revalidate();
 	}
 
 	/**

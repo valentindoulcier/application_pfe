@@ -63,6 +63,8 @@ public class ContentLogin extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Administration.getInstance(application).dechargerLogin();
+				application.dechargerApplication();
+				application.chargerApplicationHome();
 			}
 		});
 		
@@ -72,8 +74,8 @@ public class ContentLogin extends JPanel {
 				lblinfoMessage.setVisible(false);
 				
 				try {
-					if(verifierUser()) {
-						Administration.getInstance(application).chargerAdministration();
+					if(verifierUser(application)) {
+						Administration.getInstance(application).chargerApplicationAdministration();
 					}
 					else {
 						// BLOQUER INTRUSION INFRUCTUEUSE
@@ -190,7 +192,7 @@ public class ContentLogin extends JPanel {
 	}
 	
 	
-	public boolean verifierUser() throws NoSuchAlgorithmException {		
+	public boolean verifierUser(final Application application) throws NoSuchAlgorithmException {		
 		Administration.setUser(new UtilisateurDAO("local").findExactly(textFieldEmail.getText()));
 		
 		if(Administration.getUser() != null) {
@@ -198,7 +200,7 @@ public class ContentLogin extends JPanel {
 				System.out.println("Mot de passe valide");
 				if(Administration.getUser().isAdmin()) {					
 					reinitialiserLogin();
-					
+					Administration.getInstance(application).dechargerLogin();
 					return true;
 				}
 				else {

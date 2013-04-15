@@ -49,6 +49,8 @@ public class ContentHeaderRechercheSimple extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Bddictionnairique.getInstance(application).dechargerBddictionnairique();
+				application.dechargerApplication();
+				application.chargerApplicationHome();
 			}
 		});
 

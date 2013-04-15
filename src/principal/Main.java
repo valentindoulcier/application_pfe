@@ -1,13 +1,13 @@
 package principal;
 
-import utils.*;
-
 import java.awt.EventQueue;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.apache.log4j.Logger;
+
+import utils.DatabaseOffException;
 
 
 /**
@@ -50,8 +50,21 @@ public class Main {
 			
 			//headwordDAO.create(new Headword(new NoteDAO("local").findExactly(3), new DictionnairesDAO("local").findExactly(1), "VAL", "", "", "", "", "", 0, 1));
 
-			//List<?> toto = headwordDAO.findAll();
-						
+			//List<Headword> toto = (List<Headword>) headwordDAO.findAll();
+			/*
+			if(toto.get(0).getDictionnaires() != null) {
+				System.out.println("DICO 1 : *" + toto.get(0).getDictionnaires().getIdDictionnaire() + "*");
+				System.out.println("DICO 1 : *" + toto.get(0).getDictionnaires().getNomDictionnaire() + "*");
+			}
+			if(toto.get(0).getNote() != null) {
+				System.out.println("DICO 1 : *" + toto.get(0).getNote().getIdNote() + "*");
+				System.out.println("DICO 1 : *" + toto.get(0).getNote().getTexte() + "*");
+			}
+			if(toto.get(0).getSyllabeses() != null) {
+				System.out.println("DICO 1 : *" + toto.get(0).getSyllabeses().iterator().next().getRegion().toString() + "*");
+				System.out.println("DICO 1 : *" + toto.get(0).getSyllabeses().iterator().next().getSchema().toString() + "*");
+			}
+			*/		
 			
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {

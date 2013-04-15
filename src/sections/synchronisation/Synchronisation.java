@@ -1,20 +1,17 @@
 package sections.synchronisation;
 
-import principal.Application;
-
-import sections.synchronisation.ui.contents.ContentFooterSynchronisation;
-import sections.synchronisation.ui.contents.ContentHeaderSynchronisation;
-import sections.synchronisation.ui.contents.ContentSynchronisation;
-
-import sections.synchronisation.ui.volets.VoletFooterSynchronisation;
-import sections.synchronisation.ui.volets.VoletHeaderSynchronisation;
-import sections.synchronisation.ui.volets.VoletSynchronisation;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.Serializable;
 
+import principal.Application;
+import sections.synchronisation.ui.contents.ContentFooterSynchronisation;
+import sections.synchronisation.ui.contents.ContentHeaderSynchronisation;
+import sections.synchronisation.ui.contents.ContentSynchronisation;
+import sections.synchronisation.ui.volets.VoletFooterSynchronisation;
+import sections.synchronisation.ui.volets.VoletHeaderSynchronisation;
+import sections.synchronisation.ui.volets.VoletSynchronisation;
 import dao.SynchronisationDAO;
 
 
@@ -85,22 +82,17 @@ public class Synchronisation implements Serializable {
 
 		//
 		Synchronisation.application.OuvrirVolet();
+		Synchronisation.application.revalidate();
 	}
 
 	public void dechargerSynchronisation() {
-		Synchronisation.application.getContentHeader().show(application.getcHeader(), "ContentHeaderHome");
-		Synchronisation.application.getContentPanel().show(application.getcPanel(), "ContentHome");
-		Synchronisation.application.getContentFooter().show(application.getcFooter(), "ContentFooterHome");
+		application.dechargerApplication();
+		application.chargerApplicationHome();
 
-		Synchronisation.application.FermerVolet();
-
-		Synchronisation.application.getcHeader().remove(getContentHeaderSynchronisation());
-		Synchronisation.application.getcPanel().remove(getContentSynchronisation());
-		Synchronisation.application.getcFooter().remove(getContentFooterSynchronisation());
-
-		Synchronisation.application.getvHeader().remove(getVoletHeaderSynchronisation());
-		Synchronisation.application.getvPanel().remove(getVoletSynchronisation());
-		Synchronisation.application.getvFooter().remove(getVoletFooterSynchronisation());
+		Synchronisation.application.FermerVolet();		
+		Synchronisation.application.revalidate();
+		
+		System.out.println("Application déchargée");
 	}
 
 

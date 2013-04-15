@@ -48,7 +48,7 @@ public class VoletUpdate extends JPanel {
 
 	public void initComponents(Application application) {
 		setPreferredSize(new Dimension(300, 540));
-		//setBackground(Color.GRAY);
+		setBackground(Color.GRAY);
 
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};

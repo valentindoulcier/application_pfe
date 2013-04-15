@@ -80,20 +80,17 @@ public class Administration implements Serializable {
 		Administration.application.getContentHeader().show(application.getcHeader(), "contentHeaderLogin");
 		Administration.application.getContentPanel().show(application.getcPanel(), "contentLogin");
 		Administration.application.getContentFooter().show(application.getcFooter(), "contentFooterLogin");
+		
+		Administration.application.revalidate();
 	}
 	
 	public void dechargerLogin() {
-		Administration.application.getContentHeader().show(application.getcHeader(), "ContentHeaderHome");
-		Administration.application.getContentPanel().show(application.getcPanel(), "ContentHome");
-		Administration.application.getContentFooter().show(application.getcFooter(), "ContentFooterHome");
-		
-		Administration.application.getcHeader().remove(contentHeaderLogin);
-		Administration.application.getcPanel().remove(contentLogin);
-		Administration.application.getcFooter().remove(contentFooterLogin);
+		application.dechargerApplication();
+		application.chargerApplicationHome();
 	}
 	
-	public void chargerAdministration() {
-		dechargerLogin();
+	public void chargerApplicationAdministration() {
+		application.dechargerApplication();
 		
 		contentHeaderAdministration = new ContentHeaderAdministration(application);
 		contentAdministration = new ContentAdministration(application);
@@ -106,16 +103,13 @@ public class Administration implements Serializable {
 		Administration.application.getContentHeader().show(application.getcHeader(), "contentHeaderAdministration");
 		Administration.application.getContentPanel().show(application.getcPanel(), "contentAdministration");
 		Administration.application.getContentFooter().show(application.getcFooter(), "contentFooterAdministration");
+		
+		Administration.application.revalidate();
 	}
 	
 	public void dechargerAdministration() {
-		Administration.application.getContentHeader().show(application.getcHeader(), "ContentHeaderHome");
-		Administration.application.getContentPanel().show(application.getcPanel(), "ContentHome");
-		Administration.application.getContentFooter().show(application.getcFooter(), "ContentFooterHome");
-		
-		Administration.application.getcHeader().remove(contentHeaderAdministration);
-		Administration.application.getcPanel().remove(contentAdministration);
-		Administration.application.getcFooter().remove(contentFooterAdministration);
+		application.dechargerApplication();
+		application.chargerApplicationHome();
 	}
 
 	

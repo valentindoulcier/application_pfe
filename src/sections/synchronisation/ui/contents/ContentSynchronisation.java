@@ -6,16 +6,15 @@ package sections.synchronisation.ui.contents;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import javax.swing.JButton;
-
+import principal.Application;
+import sections.synchronisation.Synchronisation;
 import dao.UtilisateurDAO;
 import database.Utilisateur;
 
-import principal.Application;
 
-import sections.synchronisation.Synchronisation;
 
 /**
  * @author Valentin DOULCIER
@@ -65,12 +64,11 @@ public class ContentSynchronisation extends JPanel {
 		else {
 			System.out.println("CA NE MATCH PAS LE SCHEMA !!");
 		}
-		*/
+		 */
 	}
 
 	public void initComponents() {
 		btnReset = new JButton("RESET");
 		add(btnReset);
 	}
-
 }

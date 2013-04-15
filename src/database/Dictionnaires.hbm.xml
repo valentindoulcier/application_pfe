@@ -1,21 +1,22 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
-    <class name="database.Dictionnaires" table="dictionnaires" catalog="bddictionnairique">
-        <id name="idDictionnaire" type="java.lang.Integer">
-            <column name="id_dictionnaire" />
-            <generator class="identity" />
-        </id>
-        <property name="nomDictionnaire" type="string">
-            <column name="nom_dictionnaire" length="20" />
-        </property>
-        <set name="headwords" table="headword" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_dictionnaire" not-null="true" />
-            </key>
-            <one-to-many class="database.Headword" />
-        </set>
-    </class>
+<hibernate-mapping default-lazy="false">
+ <class catalog="bddictionnairique" name="database.Dictionnaires" table="dictionnaires">
+  <id name="idDictionnaire" type="java.lang.Integer">
+   <column name="id_dictionnaire"/>
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="nomDictionnaire" type="string">
+   <column length="20" name="nom_dictionnaire"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="headwords"
+   sort="unsorted" table="headword">
+   <key>
+    <column name="id_dictionnaire" not-null="true"/>
+   </key>
+   <one-to-many class="database.Headword"/>
+  </set>
+ </class>
 </hibernate-mapping>

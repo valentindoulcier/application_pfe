@@ -46,6 +46,8 @@ public class ContentHeaderSynchronisation extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Synchronisation.getInstance(application).dechargerSynchronisation();
+				application.dechargerApplication();
+				application.chargerApplicationHome();
 			}
 		});
 		

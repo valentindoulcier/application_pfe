@@ -36,6 +36,7 @@ public class ContentFooterHome extends JPanel {
 		btnAdministration.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				application.dechargerApplication();
 				Administration.getInstance(application).chargerLogin();
 			}
 		});

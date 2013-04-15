@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
+import database.AvoirPourCategorieHeadword;
 import database.Headword;
 
 import principal.Application;
@@ -23,6 +24,7 @@ import sections.bddictionnairique.renderers.Caract_Mots;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.util.Set;
 
 //import org.apache.log4j.Logger;
 
@@ -66,7 +68,8 @@ public class MotsCell extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Bddictionnairique.getInstance(application).ouvrirOnglet(4);
-				//Bddictionnairique.getInstance(application).getContentEdition().setHeadword(headword);
+				Bddictionnairique.getInstance(application).getContentEdition().setHeadword(headword);
+				Bddictionnairique.getInstance(application).getContentEdition().chargerData();
 			}
 		});
 		
@@ -237,38 +240,26 @@ public class MotsCell extends JPanel {
     }
 	
 	public void chargerMot() {
-		lblMots.setText(headword.getMot());
+		// Mot
+		lblMots.setText(headword.getMot());	
 		
-		//lblDatacategories.setText(headword.getAvoirPourCategorieHeadwords().iterator().next().getListeCategories().getNom());
-		
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		
-		if (headword.getAvoirPourCategorieHeadwords() == null) System.out.println("1 - AVOIR POUR CATE EST NULL");
-		if (headword.getNote() == null) System.out.println("2 - NOTE EST NULL");
-		if (headword.getDictionnaires() == null) System.out.println("3 - DICO EST NULL");
-		/*
-		Set test = headword.getAvoirPourCategorieHeadwords();
-		System.out.println("\tTAILLE test : " + test.size());
-
-		String tempo = "";
-		//String cat = "";
-		for(Object object : test) {
-				tempo += ((AvoirPourCategorieHeadword) object).getListeCategories().getNom();
-				System.out.println("TEMPO : " + ((AvoirPourCategorieHeadword) object).getListeCategories().getNom());
+		// Catégorie
+		Set<AvoirPourCategorieHeadword> listAvoirPourCategorieHeadword = headword.getAvoirPourCategorieHeadwords();
+		String categories = "";
+		for(AvoirPourCategorieHeadword avoirPourCategorieHeadword : listAvoirPourCategorieHeadword) {
+			categories += avoirPourCategorieHeadword.getListeCategories().getNom();
+			categories += " ";
 		}
-		*/
-		/*
-		for(Object object1 : test1) {
-			System.out.println(((ListeCategories) object1).getNom());
-			cat += ((ListeCategories) object1).getNom();
-			cat += ", ";
-		}
+		lblDatacategories.setText(categories);
 		
-		lblDatacategories.setText(cat);*/
+		// Région
 		
-		//System.out.println("\tNOTE : " + headword.getNote().getTexte());
 		
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		// Schéma
+		
+		// Type
+		
+		// Syllabes
 		
 	}
 	
@@ -291,7 +282,7 @@ public class MotsCell extends JPanel {
 	}
 	
 	public void afficher_3() {
-		lblMots.setVisible(true);
+		afficher_2();
 	}
 
 	/**

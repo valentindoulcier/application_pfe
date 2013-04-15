@@ -140,10 +140,10 @@ public class ContentRechercheSimple extends JPanel {
 
 		for(String dictionnaire : maRecherche.getListeDictionnaire()) {
 			
-			List<?> mots = headwords.findExactly(textFieldRecherche.getText(), dictionnaire);
+			List<Headword> mots = headwords.findExactly(textFieldRecherche.getText(), dictionnaire);
 			
-			for(Object headword : mots) {
-				maRecherche.getListeResultat().put(((Headword) headword).getIdHeadword(), ((Headword) headword));
+			for(Headword headword : mots) {
+				maRecherche.getListeResultat().put(headword.getIdHeadword(), headword);
 			}
 		}
 		
