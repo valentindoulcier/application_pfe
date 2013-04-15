@@ -64,7 +64,7 @@ public class Main {
 				System.out.println("DICO 1 : *" + toto.get(0).getSyllabeses().iterator().next().getRegion().toString() + "*");
 				System.out.println("DICO 1 : *" + toto.get(0).getSyllabeses().iterator().next().getSchema().toString() + "*");
 			}
-			*/		
+			*/
 			
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {

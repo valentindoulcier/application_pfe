@@ -89,8 +89,9 @@ public class Synchronisation implements Serializable {
 		application.dechargerApplication();
 		application.chargerApplicationHome();
 
-		Synchronisation.application.FermerVolet();		
-		Synchronisation.application.revalidate();
+		Synchronisation.application.FermerVolet();
+		
+		Synchronisation.instance = null;
 		
 		System.out.println("Application déchargée");
 	}
