@@ -3,11 +3,6 @@
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-    <!--
-        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-        <property name="hibernate.search.autoregister_listeners">false</property>
-    -->
-        
         <mapping resource="database/ListeStatuts.hbm.xml" />
         <mapping resource="database/AvoirPourCategorieHeadword.hbm.xml" />
         <mapping resource="database/Lexique.hbm.xml" />
@@ -32,6 +27,5 @@
         <mapping resource="database/AvoirPourPrefixeBase.hbm.xml" />
         <mapping resource="database/TypesConstruction.hbm.xml" />
         <mapping resource="database/Sens.hbm.xml" />
-        
     </session-factory>
 </hibernate-configuration>

@@ -2,53 +2,30 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-	<session-factory>
-	<!-- 
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://appart.dyndns-wiki.com:110/bddictionnairique</property>
-		<property name="hibernate.connection.username">admin</property>
-		<property name="hibernate.connection.password" />
-
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="hibernate.connection.pool_size">10</property>
-		<property name="hibernate.show_sql">true</property>
-		<property name="hibernate.format_sql">true</property>
-	-->
-	
-		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
-  		<property name="hibernate.c3p0.acquire_increment">5</property>
-  		<property name="hibernate.c3p0.idle_test_period">10</property> <!-- seconds -->
-  		<property name="hibernate.c3p0.max_size">100</property> <!-- Taille maximale du pool -->
-  		<property name="hibernate.c3p0.min_size">10</property> <!-- Taille minimale du pool -->
-  		<property name="hibernate.c3p0.timeout">10</property> <!-- seconds / 0 =jamais-->
-  		<property name="hibernate.c3p0.max_statements">0</property> <!-- Taille du cache de statements de C3P0. 0 = désactive le cache -->
-		
-		<mapping resource="database/AvoirPourCategorieHeadword.hbm.xml" />
-        <mapping resource="database/LiensDict.hbm.xml" />
+	<session-factory>		
+		<mapping resource="database/ListeStatuts.hbm.xml" />
+        <mapping resource="database/AvoirPourCategorieHeadword.hbm.xml" />
         <mapping resource="database/Lexique.hbm.xml" />
         <mapping resource="database/ListeTypesLexicaux.hbm.xml" />
-        <mapping resource="database/Frequence.hbm.xml" />
-        <mapping resource="database/EtymoMcq.hbm.xml" />
-        <mapping resource="database/Headword.hbm.xml" />
-        <mapping resource="database/ListeUsages.hbm.xml" />
-        <mapping resource="database/ListeMorphemesPrefsuffbase.hbm.xml" />
-        <mapping resource="database/Composes.hbm.xml" />
-        <mapping resource="database/ListeCategories.hbm.xml" />
-        <mapping resource="database/TypesMorphologie.hbm.xml" />
-        <mapping resource="database/ListeAllomorphes.hbm.xml" />
-        <mapping resource="database/Sens.hbm.xml" />
-        <mapping resource="database/SourceFrequence.hbm.xml" />
-        <mapping resource="database/ListeStatuts.hbm.xml" />
+        <mapping resource="database/Utilisateur.hbm.xml" />
         <mapping resource="database/DecompositionMorphologique.hbm.xml" />
         <mapping resource="database/Flexions.hbm.xml" />
-        <mapping resource="database/UsageLien.hbm.xml" />
         <mapping resource="database/Dictionnaires.hbm.xml" />
+        <mapping resource="database/Frequence.hbm.xml" />
         <mapping resource="database/AvoirPourSuffixes.hbm.xml" />
-        <mapping resource="database/Notes.hbm.xml" />
+        <mapping resource="database/EtymoMcq.hbm.xml" />
+        <mapping resource="database/Note.hbm.xml" />
+        <mapping resource="database/ListeUsages.hbm.xml" />
+        <mapping resource="database/Headword.hbm.xml" />
+        <mapping resource="database/ListeMorphemesPrefsuffbase.hbm.xml" />
         <mapping resource="database/DecompositionGraphique.hbm.xml" />
+        <mapping resource="database/ListeCategories.hbm.xml" />
+        <mapping resource="database/Composes.hbm.xml" />
+        <mapping resource="database/TypesMorphologie.hbm.xml" />
         <mapping resource="database/Syllabes.hbm.xml" />
+        <mapping resource="database/ListeAllomorphes.hbm.xml" />
         <mapping resource="database/AvoirPourPrefixeBase.hbm.xml" />
         <mapping resource="database/TypesConstruction.hbm.xml" />
-        <mapping resource="database/LabellisationMorphologique.hbm.xml" />
+        <mapping resource="database/Sens.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

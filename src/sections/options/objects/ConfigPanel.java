@@ -325,11 +325,21 @@ public class ConfigPanel extends JPanel {
 	public void initValue() {
 
 		disableData();
-
-		textFieldDriver.setText(ConnexionTemporaire.getInstance().getLocalDriver());
-		textFieldAdresse.setText(ConnexionTemporaire.getInstance().getLocalAdresse());
-		textFieldUtilisateur.setText(ConnexionTemporaire.getInstance().getLocalUtilisateur());
-		passwordField.setText(ConnexionTemporaire.getInstance().getLocalPassword());
+		if("local".equalsIgnoreCase(source)) {
+			textFieldDriver.setText(ConnexionTemporaire.getInstance().getLocalDriver());
+			textFieldAdresse.setText(ConnexionTemporaire.getInstance().getLocalAdresse());
+			textFieldUtilisateur.setText(ConnexionTemporaire.getInstance().getLocalUtilisateur());
+			passwordField.setText(ConnexionTemporaire.getInstance().getLocalPassword());
+		}
+		else if("master".equalsIgnoreCase(source)) {
+			textFieldDriver.setText(ConnexionTemporaire.getInstance().getMasterDriver());
+			textFieldAdresse.setText(ConnexionTemporaire.getInstance().getMasterAdresse());
+			textFieldUtilisateur.setText(ConnexionTemporaire.getInstance().getMasterUtilisateur());
+			passwordField.setText(ConnexionTemporaire.getInstance().getMasterPassword());
+		}
+		else {
+			logger.error("Source non connue");
+		}
 
 		textFieldDriver.setCaretPosition(0);
 		textFieldAdresse.setCaretPosition(0);

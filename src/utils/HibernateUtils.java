@@ -47,13 +47,11 @@ public class HibernateUtils {
 
 
 	public static Session getInstanceLocale() {
-		connecteLocal = true;
+		setConnecteLocal(true);
 		if (sessionFactoryLocale == null) {// Premier appel
-			logger.info("Création de l'instance de la SESSION LOCALE - EN COURS");
 			try {
 				Configuration configurationLocale = new Configuration();
 				configurationLocale.configure("hibernateLocal.cfg.xml");
-
 				try {
 					InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernateLocal.properties");
 					Properties propertiesLocales = new Properties();
@@ -61,7 +59,7 @@ public class HibernateUtils {
 					//propertiesLocales.load(new FileReader("./hibernateLocal.properties"));
 					configurationLocale.addProperties(propertiesLocales);
 				} catch (Exception e) {
-					connecteLocal = false;
+					setConnecteLocal(false);
 					logger.error("Lecture du fichier de propriétés - KO - " + e.toString());
 				}
 
@@ -131,12 +129,10 @@ public class HibernateUtils {
 		setConnecteMaster(true);
 		if (sessionFactoryMaster == null) { // Premier appel
 			try {
-
 				Configuration configurationMaster = new Configuration();
 				configurationMaster.configure("hibernateMaster.cfg.xml");
-
 				try {
-					InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/hibernateMaster.properties");
+					InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernateMaster.properties");
 					Properties propertiesMaster = new Properties();
 					propertiesMaster.load(is);
 					//propertiesMaster.load(new FileReader("src/hibernateMaster.properties"));
@@ -157,7 +153,17 @@ public class HibernateUtils {
 				setConnecteMaster(false);
 			}
 		}
-		return sessionFactoryMaster.openSession();
+		Session test = null;
+		
+		try {
+			test = sessionFactoryMaster.openSession();
+			logger.info("Ouverture de la Session MASTER - OK");
+		} catch(HibernateException e) {
+			logger.error("Ouverture de la Session MASTER - KO");
+			JOptionPane.showMessageDialog(null, "Session");
+		}
+		
+		return test;
 	}
 
 	public static Session changeInstanceMaster(Properties properties) {
