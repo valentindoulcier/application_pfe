@@ -167,7 +167,7 @@ public class ContentAdministration extends JPanel {
 		gbc_lblApplication.gridy = 1;
 		add(lblApplication, gbc_lblApplication);
 
-		lblLogo = new JLabel(new ImageIcon("src/administration/images/logo.png"));
+		lblLogo = new JLabel(new ImageIcon(this.getClass().getResource("/administration/images/logo.png")));
 		GridBagConstraints gbc_lblLogo = new GridBagConstraints();
 		gbc_lblLogo.insets = new Insets(0, 0, 5, 5);
 		gbc_lblLogo.gridx = 4;

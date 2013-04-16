@@ -3,24 +3,22 @@
  */
 package principal.ui.contents;
 
-import principal.Application;
-
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.Color;
-import java.awt.Font;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JButton;
 
+import principal.Application;
 import sections.bddictionnairique.Bddictionnairique;
-
 import sections.options.Options;
 import sections.synchronisation.Synchronisation;
 
@@ -177,7 +175,7 @@ public class ContentHome extends JPanel {
 		gbc_lblApplication.gridy = 1;
 		add(lblApplication, gbc_lblApplication);
 		
-		lblLogo = new JLabel(new ImageIcon("src/principal/images/logo.png"));
+		lblLogo = new JLabel(new ImageIcon(this.getClass().getResource("/principal/images/logo.png")));
 		lblLogo.setMaximumSize(new Dimension(120, 120));
 		GridBagConstraints gbc_lblLogo = new GridBagConstraints();
 		gbc_lblLogo.insets = new Insets(0, 0, 5, 5);

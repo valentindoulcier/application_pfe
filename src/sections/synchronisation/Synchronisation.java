@@ -1,8 +1,7 @@
 package sections.synchronisation;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 
 import principal.Application;
@@ -102,8 +101,12 @@ public class Synchronisation implements Serializable {
 		StringBuffer sb = new StringBuffer();
 		SynchronisationDAO synchroDAO = new SynchronisationDAO("local");
 
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File("src/sections/synchronisation/scripts/structure.sql")));
+		try {		
+			//InputStream styleFile = this.getClass().getResourceAsStream("scripts/structure.sql");
+		    BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("scripts/structure.sql")));
+			
+			
+			//BufferedReader br = new BufferedReader(new FileReader(Synchronisation.class.getResource("src/structure.sql").getPath()));
 
 			while((ligne = br.readLine()) != null) {
 				sb.append(ligne);
