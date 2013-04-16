@@ -19,6 +19,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.mapping.PersistentClass;
 
+import sections.synchronisation.Synchronisation;
 import utils.HibernateUtils;
 
 /**

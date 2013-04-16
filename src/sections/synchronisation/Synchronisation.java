@@ -89,35 +89,35 @@ public class Synchronisation implements Serializable {
 		application.chargerApplicationHome();
 
 		Synchronisation.application.FermerVolet();
-		
+
 		Synchronisation.instance = null;
-		
+
 		System.out.println("Application déchargée");
 	}
 
 
-	public boolean resetDatabase() {  
+	public boolean resetDatabase() {
 		String ligne;
 		StringBuffer sb = new StringBuffer();
 		SynchronisationDAO synchroDAO = new SynchronisationDAO("local");
 
-		try {		
+		try {
 			//InputStream styleFile = this.getClass().getResourceAsStream("scripts/structure.sql");
-		    BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("scripts/structure.sql")));
-			
-			
+			BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("scripts/structure.sql")));
+
+
 			//BufferedReader br = new BufferedReader(new FileReader(Synchronisation.class.getResource("src/structure.sql").getPath()));
 
 			while((ligne = br.readLine()) != null) {
 				sb.append(ligne);
 			}
 			br.close();
-			
+
 			String[] requete = sb.toString().split(";");
 
 			for(int i = 0; i<requete.length; i++) {
 				//if(!requete[i].trim().equals("")) {
-					synchroDAO.executerRequete(requete[i]);
+				synchroDAO.executerRequete(requete[i]);
 				//}
 			}
 		}
@@ -127,7 +127,7 @@ public class Synchronisation implements Serializable {
 		}
 		return true;
 	}
-	
+
 
 	/**
 	 * @return the voletHeaderSynchronisation

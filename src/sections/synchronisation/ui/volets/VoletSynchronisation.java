@@ -287,4 +287,172 @@ public class VoletSynchronisation extends JPanel {
 		panelReset.add(lblResetdescriptionrow_1, gbc_lblResetdescriptionrow_1);
 	}
 
+	/**
+	 * @return the panelPull
+	 */
+	public JPanel getPanelPull() {
+		return panelPull;
+	}
+
+	/**
+	 * @param panelPull the panelPull to set
+	 */
+	public void setPanelPull(JPanel panelPull) {
+		this.panelPull = panelPull;
+	}
+
+	/**
+	 * @return the panelPush
+	 */
+	public JPanel getPanelPush() {
+		return panelPush;
+	}
+
+	/**
+	 * @param panelPush the panelPush to set
+	 */
+	public void setPanelPush(JPanel panelPush) {
+		this.panelPush = panelPush;
+	}
+
+	/**
+	 * @return the panelReset
+	 */
+	public JPanel getPanelReset() {
+		return panelReset;
+	}
+
+	/**
+	 * @param panelReset the panelReset to set
+	 */
+	public void setPanelReset(JPanel panelReset) {
+		this.panelReset = panelReset;
+	}
+
+	/**
+	 * @return the lblPulltitre
+	 */
+	public JLabel getLblPulltitre() {
+		return lblPulltitre;
+	}
+
+	/**
+	 * @param lblPulltitre the lblPulltitre to set
+	 */
+	public void setLblPulltitre(JLabel lblPulltitre) {
+		this.lblPulltitre = lblPulltitre;
+	}
+
+	/**
+	 * @return the lblPushtitre
+	 */
+	public JLabel getLblPushtitre() {
+		return lblPushtitre;
+	}
+
+	/**
+	 * @param lblPushtitre the lblPushtitre to set
+	 */
+	public void setLblPushtitre(JLabel lblPushtitre) {
+		this.lblPushtitre = lblPushtitre;
+	}
+
+	/**
+	 * @return the lblResettitre
+	 */
+	public JLabel getLblResettitre() {
+		return lblResettitre;
+	}
+
+	/**
+	 * @param lblResettitre the lblResettitre to set
+	 */
+	public void setLblResettitre(JLabel lblResettitre) {
+		this.lblResettitre = lblResettitre;
+	}
+
+	/**
+	 * @return the lblPulldescriptionrow
+	 */
+	public JLabel getLblPulldescriptionrow() {
+		return lblPulldescriptionrow;
+	}
+
+	/**
+	 * @param lblPulldescriptionrow the lblPulldescriptionrow to set
+	 */
+	public void setLblPulldescriptionrow(JLabel lblPulldescriptionrow) {
+		this.lblPulldescriptionrow = lblPulldescriptionrow;
+	}
+
+	/**
+	 * @return the lblPulldescriptionrow_1
+	 */
+	public JLabel getLblPulldescriptionrow_1() {
+		return lblPulldescriptionrow_1;
+	}
+
+	/**
+	 * @param lblPulldescriptionrow_1 the lblPulldescriptionrow_1 to set
+	 */
+	public void setLblPulldescriptionrow_1(JLabel lblPulldescriptionrow_1) {
+		this.lblPulldescriptionrow_1 = lblPulldescriptionrow_1;
+	}
+
+	/**
+	 * @return the lblPushdescriptionrow
+	 */
+	public JLabel getLblPushdescriptionrow() {
+		return lblPushdescriptionrow;
+	}
+
+	/**
+	 * @param lblPushdescriptionrow the lblPushdescriptionrow to set
+	 */
+	public void setLblPushdescriptionrow(JLabel lblPushdescriptionrow) {
+		this.lblPushdescriptionrow = lblPushdescriptionrow;
+	}
+
+	/**
+	 * @return the lblPushdescriptionrow_1
+	 */
+	public JLabel getLblPushdescriptionrow_1() {
+		return lblPushdescriptionrow_1;
+	}
+
+	/**
+	 * @param lblPushdescriptionrow_1 the lblPushdescriptionrow_1 to set
+	 */
+	public void setLblPushdescriptionrow_1(JLabel lblPushdescriptionrow_1) {
+		this.lblPushdescriptionrow_1 = lblPushdescriptionrow_1;
+	}
+
+	/**
+	 * @return the lblResetdescriptionrow
+	 */
+	public JLabel getLblResetdescriptionrow() {
+		return lblResetdescriptionrow;
+	}
+
+	/**
+	 * @param lblResetdescriptionrow the lblResetdescriptionrow to set
+	 */
+	public void setLblResetdescriptionrow(JLabel lblResetdescriptionrow) {
+		this.lblResetdescriptionrow = lblResetdescriptionrow;
+	}
+
+	/**
+	 * @return the lblResetdescriptionrow_1
+	 */
+	public JLabel getLblResetdescriptionrow_1() {
+		return lblResetdescriptionrow_1;
+	}
+
+	/**
+	 * @param lblResetdescriptionrow_1 the lblResetdescriptionrow_1 to set
+	 */
+	public void setLblResetdescriptionrow_1(JLabel lblResetdescriptionrow_1) {
+		this.lblResetdescriptionrow_1 = lblResetdescriptionrow_1;
+	}
+
 }
