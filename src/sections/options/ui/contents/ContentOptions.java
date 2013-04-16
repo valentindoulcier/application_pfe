@@ -7,6 +7,8 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
+import principal.Application;
+
 import sections.options.objects.ConfigPanel;
 import sections.options.objects.SqlPanel;
 
@@ -27,18 +29,18 @@ public class ContentOptions extends JPanel {
 	 * Create the panel.
 	 * @param application 
 	 */
-	public ContentOptions() {
+	public ContentOptions(final Application application) {
 
-		initComponents();
+		initComponents(application);
 		
 	}
 	
-	public void initComponents() {
+	public void initComponents(Application application) {
 		cardLayout = new CardLayout(0, 0);
 		
 		this.setLayout(cardLayout);
 		
-		configPanel = new ConfigPanel();
+		configPanel = new ConfigPanel(application);
 		sqlPanel = new SqlPanel();
 		
 		this.add(configPanel, "configPanel");

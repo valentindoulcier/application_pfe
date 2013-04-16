@@ -143,7 +143,6 @@ public class VoletOptions extends JPanel {
 		
 		
 		sqlPanel = new JPanel();
-		logger.fatal("TEST TEST" + Options.getInstance(application).getSource());
 		if("master".equalsIgnoreCase(Options.getInstance(application).getSource())) {
 			sqlPanel.setVisible(true);
 		}

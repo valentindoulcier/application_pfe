@@ -59,7 +59,7 @@ public class Options implements Serializable {
 				Options.voletFooterOptions = new VoletFooterOptions();
 
 				Options.contentHeaderOptions = new ContentHeaderOptions(application);
-				Options.contentOptions = new ContentOptions();
+				Options.contentOptions = new ContentOptions(application);
 				Options.contentFooterOptions = new ContentFooterOptions();
 			}
 		}
@@ -78,7 +78,7 @@ public class Options implements Serializable {
 				Options.voletFooterOptions = new VoletFooterOptions();
 
 				Options.contentHeaderOptions = new ContentHeaderOptions(application);
-				Options.contentOptions = new ContentOptions();
+				Options.contentOptions = new ContentOptions(application);
 				Options.contentFooterOptions = new ContentFooterOptions();
 			}
 		}
