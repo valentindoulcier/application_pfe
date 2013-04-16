@@ -125,9 +125,6 @@ public class SynchronisationDAO {
 	}
 	
 	public void executerRequete(String requete) {
-		System.out.println("\tJe vais exécuter une requête suivante !!");
-		System.out.println("\t\t\t" + requete);
 		session.createSQLQuery(requete).executeUpdate();
-		System.out.println("\tC'est fait :)");
 	}
 }

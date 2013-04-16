@@ -51,32 +51,7 @@ public class VoletSynchronisation extends JPanel {
 		panelPull.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				panelPull.setBackground(new Color(204, 153, 255));
 				panelPull.setBorder(new LineBorder(new Color(178, 102, 255), 3, true));
 				
@@ -86,39 +61,28 @@ public class VoletSynchronisation extends JPanel {
 				panelReset.setBackground(new Color(255, 153, 153));
 				panelReset.setBorder(new LineBorder(new Color(255, 102, 102), 2, true));
 				
+				// Chargement du panel Pull
 				Synchronisation.getContentSynchronisation().getCardLayout().show(Synchronisation.getContentSynchronisation(), "pullPanel");
 			}
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			
 		});
 		
 		panelPush.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				panelPull.setBackground(new Color(238, 238, 238));
 				panelPull.setBorder(new LineBorder(new Color(204, 153, 255), 2, true));
 				
@@ -128,39 +92,28 @@ public class VoletSynchronisation extends JPanel {
 				panelReset.setBackground(new Color(255, 153, 153));
 				panelReset.setBorder(new LineBorder(new Color(255, 102, 102), 2, true));
 				
+				// Chargement du panel Push
 				Synchronisation.getContentSynchronisation().getCardLayout().show(Synchronisation.getContentSynchronisation(), "pushPanel");
 			}
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			
 		});
 		
 		panelReset.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				panelPull.setBackground(new Color(238, 238, 238));
 				panelPull.setBorder(new LineBorder(new Color(204, 153, 255), 2, true));
 				
@@ -170,8 +123,22 @@ public class VoletSynchronisation extends JPanel {
 				panelReset.setBackground(new Color(255, 102, 102));
 				panelReset.setBorder(new LineBorder(Color.RED, 3, true));
 
+				// Chargement du panel Reset
 				Synchronisation.getContentSynchronisation().getCardLayout().show(Synchronisation.getContentSynchronisation(), "resetPanel");
 			}
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			
 		});
 
 	}
@@ -268,7 +235,6 @@ public class VoletSynchronisation extends JPanel {
 		
 		lblPushdescriptionrow_1 = new JLabel("base de données principale");
 		GridBagConstraints gbc_lblPushdescriptionrow_1 = new GridBagConstraints();
-		gbc_lblPushdescriptionrow_1.gridheight = 2;
 		gbc_lblPushdescriptionrow_1.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblPushdescriptionrow_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPushdescriptionrow_1.gridx = 1;

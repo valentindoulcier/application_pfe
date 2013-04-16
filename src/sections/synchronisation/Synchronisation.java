@@ -97,7 +97,7 @@ public class Synchronisation implements Serializable {
 	}
 
 
-	public void resetDatabase() {  
+	public boolean resetDatabase() {  
 		String ligne;
 		StringBuffer sb = new StringBuffer();
 		SynchronisationDAO synchroDAO = new SynchronisationDAO("local");
@@ -114,16 +114,15 @@ public class Synchronisation implements Serializable {
 
 			for(int i = 0; i<requete.length; i++) {
 				//if(!requete[i].trim().equals("")) {
-					System.out.println("Je demande l'exécution");
 					synchroDAO.executerRequete(requete[i]);
-					System.out.println("Au suivant !!");
 				//}
 			}
 		}
 		catch(Exception e) {
-			System.out.println("LOLILOULOL");
+			System.out.println("Erreur dans le reset");
+			return false;
 		}
-
+		return true;
 	}
 	
 
