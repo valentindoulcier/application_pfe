@@ -49,37 +49,30 @@ public class ContentHome extends JPanel {
 		initComponents();
 
 		btnSynchronisation.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				lblDescription.setText("");
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				lblDescription.setText("Cliquez ici pour synchroniser votre base de données");
-			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				application.dechargerApplication();
 				Synchronisation.getInstance(application).chargerSynchronisation();
 			}
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				lblDescription.setText("");
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				lblDescription.setText("Cliquez ici pour synchroniser votre base de données");
+			}
+			
 		});
 		
 		
@@ -95,27 +88,19 @@ public class ContentHome extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				lblDescription.setText("Cliquez ici pour effectuer une nouvelle recherche");
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				lblDescription.setText("");
 			}
 
 			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void mousePressed(MouseEvent arg0) {}
 
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void mouseReleased(MouseEvent arg0) {}
 
 		});
 
@@ -125,32 +110,25 @@ public class ContentHome extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				application.dechargerApplication();
+				Options.getInstance(application, "local");
 				Options.getInstance(application).chargerOptions();
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				lblDescription.setText("Cliquez ici pour accéder aux options");
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				lblDescription.setText("");
 			}
 
 			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void mousePressed(MouseEvent arg0) {}
 
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void mouseReleased(MouseEvent arg0) {}
 
 		});
 	}

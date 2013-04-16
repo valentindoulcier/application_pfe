@@ -45,6 +45,7 @@ public class ContentHeaderOptions extends JPanel {
 		btnHome.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				application.dechargerApplication();
 				Options.getInstance(application).dechargerOptions();
 			}
 		});

@@ -13,8 +13,6 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import administration.Administration;
-
 import principal.Application;
 import sections.updateBDD.UpdateBDD;
 
@@ -47,9 +45,8 @@ public class ContentHeaderUpdate extends JPanel {
 		btnHome.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				UpdateBDD.getInstance(application).dechargerSynchronisation();
 				application.dechargerApplication();
-				Administration.getInstance(application).chargerApplicationAdministration();
+				UpdateBDD.getInstance(application).dechargerSynchronisation();
 			}
 		});
 		

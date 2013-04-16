@@ -3,17 +3,18 @@
  */
 package sections.options;
 
-import principal.Application;
-
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+
+import principal.Application;
 import sections.options.ui.contents.ContentFooterOptions;
 import sections.options.ui.contents.ContentHeaderOptions;
 import sections.options.ui.contents.ContentOptions;
-
 import sections.options.ui.volets.VoletFooterOptions;
 import sections.options.ui.volets.VoletHeaderOptions;
 import sections.options.ui.volets.VoletOptions;
+import administration.Administration;
 
 /**
  * @author Valentin DOULCIER
@@ -22,8 +23,12 @@ import sections.options.ui.volets.VoletOptions;
 public class Options implements Serializable {
 
 	private static final long serialVersionUID = 7666561320641678776L;
+	
+	private static Logger logger = Logger.getLogger(Options.class);
 
 	private static Options instance = null;
+	
+	private static String source;
 
 	// Options
 	private static VoletHeaderOptions voletHeaderOptions = null;
@@ -40,7 +45,27 @@ public class Options implements Serializable {
 	private Options() {
 		;
 	}
+	
+	public static Options getInstance(Application application, String source) {
+		Options.source = source;
+		if (instance == null) {
+			synchronized(Options.class) {
+				Options.instance = new Options();
 
+				Options.application = application;
+
+				Options.voletHeaderOptions = new VoletHeaderOptions();
+				Options.voletOptions = new VoletOptions(application);
+				Options.voletFooterOptions = new VoletFooterOptions();
+
+				Options.contentHeaderOptions = new ContentHeaderOptions(application);
+				Options.contentOptions = new ContentOptions();
+				Options.contentFooterOptions = new ContentFooterOptions();
+			}
+		}
+		return instance;
+	}
+	
 	public static Options getInstance(Application application) {
 		if (instance == null) {
 			synchronized(Options.class) {
@@ -49,7 +74,7 @@ public class Options implements Serializable {
 				Options.application = application;
 
 				Options.voletHeaderOptions = new VoletHeaderOptions();
-				Options.voletOptions = new VoletOptions();
+				Options.voletOptions = new VoletOptions(application);
 				Options.voletFooterOptions = new VoletFooterOptions();
 
 				Options.contentHeaderOptions = new ContentHeaderOptions(application);
@@ -85,19 +110,30 @@ public class Options implements Serializable {
 	}
 
 	public void dechargerOptions() {
-		Options.application.getContentHeader().show(application.getcHeader(), "ContentHeaderHome");
-		Options.application.getContentPanel().show(application.getcPanel(), "ContentHome");
-		Options.application.getContentFooter().show(application.getcFooter(), "ContentFooterHome");
+		
+		if("local".equalsIgnoreCase(source)) {
+			application.dechargerApplication();
+			application.chargerApplicationHome();
 
-		Options.application.FermerVolet();
+			Options.application.FermerVolet();
 
-		Options.application.getcHeader().remove(getContentHeaderOptions());
-		Options.application.getcPanel().remove(getContentOptions());
-		Options.application.getcFooter().remove(getContentFooterOptions());
+			Options.instance = null;
 
-		Options.application.getvHeader().remove(getVoletHeaderOptions());
-		Options.application.getvPanel().remove(getVoletOptions());
-		Options.application.getvFooter().remove(getVoletFooterOptions());
+			System.out.println("Application déchargée");
+		}
+		else if ("master".equalsIgnoreCase(source)) {
+			Administration.getInstance(application).chargerApplicationAdministration();
+			
+			Options.application.FermerVolet();
+
+			Options.instance = null;
+
+			System.out.println("Application déchargée");
+		}
+		else {
+			logger.error("Erreur de déchargement : source inconnue");
+		}
+		source = "";
 	}
 
 	/**
@@ -184,5 +220,19 @@ public class Options implements Serializable {
 	public static void setContentFooterOptions(
 			ContentFooterOptions contentFooterOptions) {
 		Options.contentFooterOptions = contentFooterOptions;
+	}
+
+	/**
+	 * @return the source
+	 */
+	public String getSource() {
+		return source;
+	}
+
+	/**
+	 * @param source the source to set
+	 */
+	public void setSource(String source) {
+		Options.source = source;
 	}
 }

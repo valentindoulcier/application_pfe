@@ -1,6 +1,7 @@
 package administration.ui.contents;
 
 import principal.Application;
+import sections.options.Options;
 import sections.parseurXML.ParseurXML;
 import sections.updateBDD.UpdateBDD;
 
@@ -56,27 +57,19 @@ public class ContentAdministration extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				lblDescription.setText("Cliquez ici pour parser des dictionnaires");
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				lblDescription.setText("");
 			}
 
 			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void mousePressed(MouseEvent arg0) {}
 
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void mouseReleased(MouseEvent arg0) {}
 
 		});
 
@@ -84,32 +77,23 @@ public class ContentAdministration extends JPanel {
 		btnUpdateBdd.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void mouseReleased(MouseEvent e) {}
 			
 			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void mousePressed(MouseEvent e) {}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				lblDescription.setText("");
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 				lblDescription.setText("Cliquez ici mettre à jour la BDD Master");
 			}
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				UpdateBDD.getInstance(application).chargerSynchronisation();
 			}
 		});
@@ -119,32 +103,26 @@ public class ContentAdministration extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//Options.getInstance(application).chargerOptions();
+				application.dechargerApplication();
+				Options.getInstance(application, "master");
+				Options.getInstance(application).chargerOptions();
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				lblDescription.setText("Cliquez ici pour accéder aux options");
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				lblDescription.setText("");
 			}
 
 			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void mousePressed(MouseEvent arg0) {}
 
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void mouseReleased(MouseEvent arg0) {}
 
 		});
 	}

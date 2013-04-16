@@ -23,7 +23,7 @@ public class ContentSynchronisation extends JPanel {
 
 	private static final long serialVersionUID = -5468061806376610050L;
 	
-	private CardLayout cardLayout = new CardLayout(0, 0);
+	private CardLayout cardLayout;
 	
 	private AccueilPanel accueilPanel;
 	private PullPanel pullPanel;
@@ -61,6 +61,8 @@ public class ContentSynchronisation extends JPanel {
 	}
 
 	public void initComponents(Application application) {
+		cardLayout = new CardLayout(0, 0);
+		
 		this.setLayout(cardLayout);
 		
 		accueilPanel = new AccueilPanel();

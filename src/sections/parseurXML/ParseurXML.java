@@ -51,7 +51,6 @@ public class ParseurXML implements Serializable {
 	private static ContentHistorique contentHistorique = null;
 
 
-
 	// Application
 	private static Application application = null;
 
@@ -60,7 +59,7 @@ public class ParseurXML implements Serializable {
 	}
 
 	public static ParseurXML getInstance(Application application) {
-		if (instance == null) { 	
+		if (instance == null) {
 			synchronized(ParseurXML.class) {
 				ParseurXML.instance = new ParseurXML();
 
