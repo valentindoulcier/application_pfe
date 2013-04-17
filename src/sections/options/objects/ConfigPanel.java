@@ -145,6 +145,8 @@ public class ConfigPanel extends JPanel {
 				disableData();
 				
 				btnUpdate.setText("Update");
+				
+				afficherInfos();
 			}
 		});
 		
@@ -456,5 +458,19 @@ public class ConfigPanel extends JPanel {
 		chckbxSesouvenir.setEnabled(false);
 		btnValider.setEnabled(false);
 	}
-
+	
+	
+	public void afficherInfos() {
+		System.out.println("\n\n-----------------------------");
+		System.out.println("\tL - Driver : *" + ConnexionTemporaire.getInstance().getLocalDriver() + "*");
+		System.out.println("\tL - Adresse : *" + ConnexionTemporaire.getInstance().getLocalAdresse() + "*");
+		System.out.println("\tL - User : *" + ConnexionTemporaire.getInstance().getLocalUtilisateur() + "*");
+		System.out.println("\tL - Pass : *" + ConnexionTemporaire.getInstance().getLocalPassword() + "*");
+		System.out.println();
+		System.out.println("\tM - Driver : *" + ConnexionTemporaire.getInstance().getMasterDriver() + "*");
+		System.out.println("\tM - Adresse : *" + ConnexionTemporaire.getInstance().getMasterAdresse() + "*");
+		System.out.println("\tM - User : *" + ConnexionTemporaire.getInstance().getMasterUtilisateur() + "*");
+		System.out.println("\tM - Pass : *" + ConnexionTemporaire.getInstance().getMasterPassword() + "*");
+		System.out.println("-----------------------------\n\n");
+	}
 }
