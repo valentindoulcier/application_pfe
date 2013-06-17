@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="bddictionnairique" match-name="Utilisateur"/>
+  <table-filter match-catalog="bddictionnairique" match-name="avoir_pour_categorie_headword"/>
+  <table-filter match-catalog="bddictionnairique" match-name="avoir_pour_prefixe_base"/>
+  <table-filter match-catalog="bddictionnairique" match-name="avoir_pour_suffixes"/>
+  <table-filter match-catalog="bddictionnairique" match-name="composes"/>
+  <table-filter match-catalog="bddictionnairique" match-name="decomposition_graphique"/>
+  <table-filter match-catalog="bddictionnairique" match-name="decomposition_morphologique"/>
+  <table-filter match-catalog="bddictionnairique" match-name="dictionnaires"/>
+  <table-filter match-catalog="bddictionnairique" match-name="etymo_mcq"/>
+  <table-filter match-catalog="bddictionnairique" match-name="flexions"/>
+  <table-filter match-catalog="bddictionnairique" match-name="frequence"/>
+  <table-filter match-catalog="bddictionnairique" match-name="headword"/>
+  <table-filter match-catalog="bddictionnairique" match-name="lexique"/>
+  <table-filter match-catalog="bddictionnairique" match-name="liste_allomorphes"/>
+  <table-filter match-catalog="bddictionnairique" match-name="liste_categories"/>
+  <table-filter match-catalog="bddictionnairique" match-name="liste_morphemes_prefsuffbase"/>
+  <table-filter match-catalog="bddictionnairique" match-name="liste_statuts"/>
+  <table-filter match-catalog="bddictionnairique" match-name="liste_types_lexicaux"/>
+  <table-filter match-catalog="bddictionnairique" match-name="liste_usages"/>
+  <table-filter match-catalog="bddictionnairique" match-name="note"/>
+  <table-filter match-catalog="bddictionnairique" match-name="sens"/>
+  <table-filter match-catalog="bddictionnairique" match-name="syllabes"/>
+  <table-filter match-catalog="bddictionnairique" match-name="types_construction"/>
+  <table-filter match-catalog="bddictionnairique" match-name="types_morphologie"/>
+</hibernate-reverse-engineering>

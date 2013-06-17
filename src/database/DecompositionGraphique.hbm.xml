@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.DecompositionGraphique" table="decomposition_graphique" catalog="bddictionnairique">
+        <id name="idDecompGraph" type="java.lang.Integer">
+            <column name="id_decomp_graph" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="headword" class="database.Headword" fetch="select">
+            <column name="headword_id_headword" not-null="true" />
+        </many-to-one>
+        <property name="syllabe1" type="string">
+            <column name="syllabe1" length="20" />
+        </property>
+        <property name="syllabe2" type="string">
+            <column name="syllabe2" length="20" />
+        </property>
+        <property name="syllabe3" type="string">
+            <column name="syllabe3" length="20" />
+        </property>
+        <property name="syllabe4" type="string">
+            <column name="syllabe4" length="20" />
+        </property>
+        <property name="syllabe5" type="string">
+            <column name="syllabe5" length="20" />
+        </property>
+        <property name="syllabe6" type="string">
+            <column name="syllabe6" length="20" />
+        </property>
+        <property name="syllabe7" type="string">
+            <column name="syllabe7" length="20" />
+        </property>
+        <property name="syllabe8" type="string">
+            <column name="syllabe8" length="20" />
+        </property>
+        <property name="syllabe9" type="string">
+            <column name="syllabe9" length="20" />
+        </property>
+        <property name="syllabe10" type="string">
+            <column name="syllabe10" length="20" />
+        </property>
+        <property name="nbSyllabes" type="java.lang.Integer">
+            <column name="nb_syllabes" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

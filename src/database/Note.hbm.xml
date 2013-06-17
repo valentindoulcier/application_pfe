@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping default-lazy="false">
+ <class catalog="bddictionnairique" name="database.Note" table="note">
+  <id name="idNote" type="java.lang.Integer">
+   <column name="id_note"/>
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="texte" type="string">
+   <column length="65535" name="texte"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="headwords"
+   sort="unsorted" table="headword">
+   <key>
+    <column name="id_note"/>
+   </key>
+   <one-to-many class="database.Headword"/>
+  </set>
+ </class>
+</hibernate-mapping>

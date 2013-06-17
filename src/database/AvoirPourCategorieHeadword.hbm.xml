@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping default-lazy="false">
+ <class catalog="bddictionnairique"
+  name="database.AvoirPourCategorieHeadword" table="avoir_pour_categorie_headword">
+  <composite-id class="database.AvoirPourCategorieHeadwordId"
+   mapped="false" name="id" unsaved-value="undefined">
+   <key-property name="idHeadword" type="int">
+    <column name="id_headword"/>
+   </key-property>
+   <key-property name="idListeCategories" type="int">
+    <column name="id_liste_categories"/>
+   </key-property>
+  </composite-id>
+  <many-to-one class="database.ListeCategories" fetch="select"
+   insert="false" name="listeCategories" update="false">
+   <column name="id_liste_categories" not-null="true"/>
+  </many-to-one>
+  <many-to-one class="database.Headword" fetch="select" insert="false"
+   name="headword" update="false">
+   <column name="id_headword" not-null="true"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="ordre" type="java.lang.Integer">
+   <column name="ordre"/>
+  </property>
+ </class>
+</hibernate-mapping>
