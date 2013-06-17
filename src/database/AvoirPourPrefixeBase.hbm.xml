@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.AvoirPourPrefixeBase" table="avoir_pour_prefixe_base" catalog="bddictionnairique">
+        <composite-id name="id" class="database.AvoirPourPrefixeBaseId">
+            <key-property name="idCategorie" type="int">
+                <column name="id_categorie" />
+            </key-property>
+            <key-property name="idMorphPrefsuffbase" type="int">
+                <column name="id_morph_prefsuffbase" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="listeMorphemesPrefsuffbase" class="database.ListeMorphemesPrefsuffbase" update="false" insert="false" fetch="select">
+            <column name="id_morph_prefsuffbase" not-null="true" />
+        </many-to-one>
+        <many-to-one name="listeCategories" class="database.ListeCategories" update="false" insert="false" fetch="select">
+            <column name="id_categorie" not-null="true" />
+        </many-to-one>
+        <property name="type" type="string">
+            <column name="type" length="15" />
+        </property>
+    </class>
+</hibernate-mapping>

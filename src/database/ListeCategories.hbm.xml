@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.ListeCategories" table="liste_categories" catalog="bddictionnairique">
+        <id name="idCategorie" type="java.lang.Integer">
+            <column name="id_categorie" />
+            <generator class="identity" />
+        </id>
+        <property name="nom" type="string">
+            <column name="nom" length="50" />
+        </property>
+        <set name="avoirPourSuffixesesForIdCategorieArrivee" table="avoir_pour_suffixes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_categorie_arrivee" not-null="true" />
+            </key>
+            <one-to-many class="database.AvoirPourSuffixes" />
+        </set>
+        <set name="avoirPourCategorieHeadwords" table="avoir_pour_categorie_headword" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_liste_categories" not-null="true" />
+            </key>
+            <one-to-many class="database.AvoirPourCategorieHeadword" />
+        </set>
+        <set name="avoirPourPrefixeBases" table="avoir_pour_prefixe_base" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_categorie" not-null="true" />
+            </key>
+            <one-to-many class="database.AvoirPourPrefixeBase" />
+        </set>
+        <set name="avoirPourSuffixesesForIdCategorieDepart" table="avoir_pour_suffixes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_categorie_depart" not-null="true" />
+            </key>
+            <one-to-many class="database.AvoirPourSuffixes" />
+        </set>
+    </class>
+</hibernate-mapping>

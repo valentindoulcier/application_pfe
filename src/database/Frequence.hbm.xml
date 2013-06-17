@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.Frequence" table="frequence" catalog="bddictionnairique">
+        <id name="idFreq" type="java.lang.Integer">
+            <column name="id_freq" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="headword" class="database.Headword" fetch="select">
+            <column name="headword_id_headword" not-null="true" />
+        </many-to-one>
+        <property name="frequence" type="java.lang.Double">
+            <column name="frequence" precision="22" scale="0" />
+        </property>
+        <property name="source" type="string">
+            <column name="source" length="50" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

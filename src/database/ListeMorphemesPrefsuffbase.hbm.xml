@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.ListeMorphemesPrefsuffbase" table="liste_morphemes_prefsuffbase" catalog="bddictionnairique">
+        <id name="idMorphPrefsuffbase" type="java.lang.Integer">
+            <column name="id_morph_prefsuffbase" />
+            <generator class="identity" />
+        </id>
+        <property name="type" type="string">
+            <column name="type" length="15" />
+        </property>
+        <property name="origine" type="string">
+            <column name="origine" length="25" />
+        </property>
+        <property name="contenu" type="string">
+            <column name="contenu" length="50" />
+        </property>
+        <set name="avoirPourSuffixeses" table="avoir_pour_suffixes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_morph_prefsuffbase" not-null="true" />
+            </key>
+            <one-to-many class="database.AvoirPourSuffixes" />
+        </set>
+        <set name="avoirPourPrefixeBases" table="avoir_pour_prefixe_base" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_morph_prefsuffbase" not-null="true" />
+            </key>
+            <one-to-many class="database.AvoirPourPrefixeBase" />
+        </set>
+        <set name="listeAllomorpheses" table="liste_allomorphes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_morph_prefsuffbase" />
+            </key>
+            <one-to-many class="database.ListeAllomorphes" />
+        </set>
+    </class>
+</hibernate-mapping>

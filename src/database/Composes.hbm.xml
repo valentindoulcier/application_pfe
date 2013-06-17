@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="database.Composes" table="composes" catalog="bddictionnairique">
+        <id name="idCompose" type="java.lang.Integer">
+            <column name="id_compose" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="headword" class="database.Headword" fetch="select">
+            <column name="id_headword" not-null="true" />
+        </many-to-one>
+        <property name="texte" type="string">
+            <column name="texte" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 avr. 2013 22:44:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping default-lazy="false">
+ <class catalog="bddictionnairique" name="database.Headword" table="headword">
+  <id name="idHeadword" type="java.lang.Integer">
+   <column name="id_headword"/>
+   <generator class="identity"/>
+  </id>
+  <many-to-one class="database.Note" fetch="select" name="note">
+   <column name="id_note"/>
+  </many-to-one>
+  <many-to-one class="database.Dictionnaires" fetch="select" name="dictionnaires">
+   <column name="id_dictionnaire" not-null="true"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="mot" type="string">
+   <column length="100" name="mot"/>
+  </property>
+  <property generated="never" lazy="false" name="var1" type="string">
+   <column length="100" name="var1"/>
+  </property>
+  <property generated="never" lazy="false" name="var2" type="string">
+   <column length="100" name="var2"/>
+  </property>
+  <property generated="never" lazy="false" name="var3" type="string">
+   <column length="100" name="var3"/>
+  </property>
+  <property generated="never" lazy="false" name="var4" type="string">
+   <column length="100" name="var4"/>
+  </property>
+  <property generated="never" lazy="false" name="var5" type="string">
+   <column length="100" name="var5"/>
+  </property>
+  <property generated="never" lazy="false" name="flagLien" type="java.lang.Integer">
+   <column name="flag_lien"/>
+  </property>
+  <property generated="never" lazy="false" name="flagAutre" type="java.lang.Integer">
+   <column name="flag_autre"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="false" name="syllabeses"
+   sort="unsorted" table="syllabes">
+   <key>
+    <column name="id_headword" not-null="true"/>
+   </key>
+   <one-to-many class="database.Syllabes"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true"
+   name="decompositionMorphologiques" sort="unsorted" table="decomposition_morphologique">
+   <key>
+    <column name="headword_id_headword" not-null="true"/>
+   </key>
+   <one-to-many class="database.DecompositionMorphologique"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true"
+   name="lexiquesForHeadwordIdMotReferent1" sort="unsorted" table="lexique">
+   <key>
+    <column name="headword_id_mot_referent_1" not-null="true"/>
+   </key>
+   <one-to-many class="database.Lexique"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true"
+   name="lexiquesForHeadwordIdMotReferent2" sort="unsorted" table="lexique">
+   <key>
+    <column name="headword_id_mot_referent_2" not-null="true"/>
+   </key>
+   <one-to-many class="database.Lexique"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true"
+   name="lexiquesForHeadwordIdMotEtudie" sort="unsorted" table="lexique">
+   <key>
+    <column name="headword_id_mot_etudie" not-null="true"/>
+   </key>
+   <one-to-many class="database.Lexique"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true" name="flexionses"
+   sort="unsorted" table="flexions">
+   <key>
+    <column name="id_headword" not-null="true"/>
+   </key>
+   <one-to-many class="database.Flexions"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true"
+   name="decompositionGraphiques" sort="unsorted" table="decomposition_graphique">
+   <key>
+    <column name="headword_id_headword" not-null="true"/>
+   </key>
+   <one-to-many class="database.DecompositionGraphique"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true" name="listeUsageses"
+   sort="unsorted" table="liste_usages">
+   <key>
+    <column name="headword_id_headword" not-null="true"/>
+   </key>
+   <one-to-many class="database.ListeUsages"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true"
+   name="avoirPourCategorieHeadwords" sort="unsorted" table="avoir_pour_categorie_headword">
+   <key>
+    <column name="id_headword" not-null="true"/>
+   </key>
+   <one-to-many class="database.AvoirPourCategorieHeadword"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true" name="frequences"
+   sort="unsorted" table="frequence">
+   <key>
+    <column name="headword_id_headword" not-null="true"/>
+   </key>
+   <one-to-many class="database.Frequence"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true" name="senses"
+   sort="unsorted" table="sens">
+   <key>
+    <column name="id_headword" not-null="true"/>
+   </key>
+   <one-to-many class="database.Sens"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true" name="composeses"
+   sort="unsorted" table="composes">
+   <key>
+    <column name="id_headword" not-null="true"/>
+   </key>
+   <one-to-many class="database.Composes"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true" name="etymoMcqs"
+   sort="unsorted" table="etymo_mcq">
+   <key>
+    <column name="id_headword" not-null="true"/>
+   </key>
+   <one-to-many class="database.EtymoMcq"/>
+  </set>
+ </class>
+</hibernate-mapping>
