@@ -38,6 +38,9 @@
   <property generated="never" lazy="false" name="flagAutre" type="java.lang.Integer">
    <column name="flag_autre"/>
   </property>
+  <property name="idMetaHeadword" type="java.lang.Integer">
+    <column name="id_meta_headword" />
+  </property>
   <set fetch="select" inverse="true" lazy="false" name="syllabeses"
    sort="unsorted" table="syllabes">
    <key>

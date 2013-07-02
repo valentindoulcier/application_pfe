@@ -35,6 +35,7 @@ public class Headword implements java.io.Serializable {
 	private String var5;
 	private Integer flagLien;
 	private Integer flagAutre;
+	private Integer idMetaHeadword;
 	private Set<Syllabes> syllabeses = new HashSet<Syllabes>(0);
 	private Set<DecompositionMorphologique> decompositionMorphologiques = new HashSet<DecompositionMorphologique>(0);
 	private Set<Lexique> lexiquesForHeadwordIdMotReferent1 = new HashSet<Lexique>(0);
@@ -58,7 +59,8 @@ public class Headword implements java.io.Serializable {
 
 	public Headword(Note note, Dictionnaires dictionnaires, String mot,
 			String var1, String var2, String var3, String var4, String var5,
-			Integer flagLien, Integer flagAutre, Set<Syllabes> syllabeses,
+			Integer flagLien, Integer flagAutre, Integer idMetaHeadword,
+			Set<Syllabes> syllabeses,
 			Set<DecompositionMorphologique> decompositionMorphologiques,
 			Set<Lexique> lexiquesForHeadwordIdMotReferent1,
 			Set<Lexique> lexiquesForHeadwordIdMotReferent2,
@@ -79,6 +81,7 @@ public class Headword implements java.io.Serializable {
 		this.var5 = var5;
 		this.flagLien = flagLien;
 		this.flagAutre = flagAutre;
+		this.idMetaHeadword = idMetaHeadword;
 		this.syllabeses = syllabeses;
 		this.decompositionMorphologiques = decompositionMorphologiques;
 		this.lexiquesForHeadwordIdMotReferent1 = lexiquesForHeadwordIdMotReferent1;
@@ -195,6 +198,15 @@ public class Headword implements java.io.Serializable {
 
 	public void setFlagAutre(Integer flagAutre) {
 		this.flagAutre = flagAutre;
+	}
+
+	@Column(name = "id_meta_headword")
+	public Integer getIdMetaHeadword() {
+		return this.idMetaHeadword;
+	}
+
+	public void setIdMetaHeadword(Integer idMetaHeadword) {
+		this.idMetaHeadword = idMetaHeadword;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
