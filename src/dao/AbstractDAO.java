@@ -100,11 +100,11 @@ public class AbstractDAO {
 	protected List<?> findAll(Session session, Class<?> clazz) {
 		List<?> objects = null;
 		try {
-			this.tx = session.beginTransaction();
+//			this.tx = session.beginTransaction();
 			
 			Query query = session.createQuery("from " + clazz.getName());
 			objects = query.list();
-			tx.commit();
+//			tx.commit();
 		} catch (HibernateException e) {
 			logger.fatal("TESSST");
 			handleException(e);
