@@ -136,6 +136,13 @@ public class ContentParseur extends JPanel {
 			}
 		});
 
+		btnLauncher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("lecture fichier : " + nomDeFichierDictionnaire);
+				TraitementDictionnaire td = new TraitementDictionnaire(
+						nomDeFichierDictionnaire, nomDeFichierDescripteur);
+			}
+		});
 
 		// gere le clignotement du cadre autour des info fichier, en cas d'erreurs
 		taskPerformer = new ActionListener() {
@@ -269,6 +276,4 @@ public class ContentParseur extends JPanel {
 
 		this.revalidate();
 	}
-
-
 }
