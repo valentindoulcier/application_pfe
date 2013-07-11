@@ -70,21 +70,24 @@ public class FichierDictionnaire {
 		Noeud noeud;
 		String nom;
 		String valeur;
+		boolean dernier;
 	
 		//avance d'un noeud
-		chercherProchainNoeud();
+		dernier = chercherProchainNoeud();
 		
 		nom = noeudCourant.toString();
 		valeur = noeudCourant.getNodeName();
 		
-		noeud = new Noeud(nom, valeur, numeroNoeudCourant);
+		
+		noeud = new Noeud(nom, valeur, numeroNoeudCourant, dernier);
 		return noeud;
 	}
 	
 	// version avec pile
-	private void chercherProchainNoeud(){
+	private boolean chercherProchainNoeud(){
 		NodeList liste;
 		int tailleListe;
+		boolean dernier;
 		if(!pile.empty()){
 			noeudCourant = pile.pop();
 			numeroNoeudCourant++;
@@ -92,14 +95,19 @@ public class FichierDictionnaire {
 			if(noeudCourant.getChildNodes() != null){
 				liste = noeudCourant.getChildNodes();
 				tailleListe = liste.getLength();
-				System.out.println("tailleListe : "+tailleListe);
+//				System.out.println("tailleListe : "+tailleListe);
 				for(int i=tailleListe; i>=0; i--){
 					if(liste.item(i) != null){
 						pile.push(liste.item(i));
 					}
 				}
 			}
+			dernier = false;
 		}
+		else{
+			dernier = true;
+		}
+		return dernier;
 	}
 	
 	/*//version foireuse pour le moment

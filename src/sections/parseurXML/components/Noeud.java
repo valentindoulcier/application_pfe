@@ -12,6 +12,7 @@ public class Noeud {
 	private String nom;
 	private String valeur;
 	private int numero;
+	private boolean dernier;
 	
 	public Noeud(){
 		nom = "";
@@ -24,11 +25,12 @@ public class Noeud {
 	 * @param valeur
 	 * @param numero
 	 */
-	public Noeud(String nom, String valeur, int numero) {
+	public Noeud(String nom, String valeur, int numero, boolean dernier) {
 		super();
 		this.nom = nom;
 		this.valeur = valeur;
 		this.numero = numero;
+		this.dernier = dernier;
 	}
 
 	/**
@@ -71,5 +73,19 @@ public class Noeud {
 	 */
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	/**
+	 * @return the dernier
+	 */
+	public boolean isDernier() {
+		return dernier;
+	}
+
+	/**
+	 * @param dernier the dernier to set
+	 */
+	public void setDernier(boolean dernier) {
+		this.dernier = dernier;
 	}
 }
