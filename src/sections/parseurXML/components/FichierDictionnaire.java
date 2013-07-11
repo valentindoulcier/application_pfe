@@ -64,14 +64,19 @@ public class FichierDictionnaire {
 		if(nombreNoeud == -1){
 			Node tmpNode;
 			int tmpNum;
+			Stack<Node> tmpPile;
 			// sauvegarde le noeud courant
 			tmpNode = noeudCourant;
 			tmpNum = numeroNoeudCourant;
+			tmpPile = (Stack<Node>) pile.clone();
+
 			while(!chercherProchainNoeud());
 			nombreNoeud = numeroNoeudCourant;
+
 			// réinitialise le noeud courant et le numero à son etat initiale.
 			noeudCourant = tmpNode;
 			numeroNoeudCourant = tmpNum;
+			pile = (Stack<Node>) tmpPile.clone();
 		}
 		return nombreNoeud;
 	}
