@@ -50,14 +50,12 @@ public class FichierDictionnaire {
 		}
         try {
         	fichier = new File(nomDuFichier);
-//        	System.out.println(nomDuFichier);
 			doc = docBuilder.parse(fichier);
 		} catch (SAXException | IOException e) {
 			e.printStackTrace();
 		}
         noeudCourant = doc;
         pile.push(noeudCourant);
-//        System.out.println(doc.toString());
 	}
 	
 	public int getNombreNoeud(){
@@ -69,15 +67,8 @@ public class FichierDictionnaire {
 			// sauvegarde le noeud courant
 			tmpNode = noeudCourant;
 			tmpNum = numeroNoeudCourant;
-			System.out.println(numeroNoeudCourant);
-//			Noeud n;
-//			n = prochainNoeud();
-//			while(!n.isDernier()){
-//				n = prochainNoeud();
-//			}
 			while(!chercherProchainNoeud());
 			nombreNoeud = numeroNoeudCourant;
-			System.out.println(numeroNoeudCourant);
 			// réinitialise le noeud courant et le numero à son etat initiale.
 			noeudCourant = tmpNode;
 			numeroNoeudCourant = tmpNum;
@@ -102,7 +93,6 @@ public class FichierDictionnaire {
 		return noeud;
 	}
 	
-	// version avec pile
 	private boolean chercherProchainNoeud(){
 		NodeList liste;
 		int tailleListe;
@@ -114,7 +104,6 @@ public class FichierDictionnaire {
 			if(noeudCourant.getChildNodes() != null){
 				liste = noeudCourant.getChildNodes();
 				tailleListe = liste.getLength();
-//				System.out.println("tailleListe : "+tailleListe);
 				for(int i=tailleListe; i>=0; i--){
 					if(liste.item(i) != null){
 						pile.push(liste.item(i));
@@ -128,33 +117,4 @@ public class FichierDictionnaire {
 		}
 		return dernier;
 	}
-	
-	/*//version foireuse pour le moment
-	private void chercherProchainNoeud(){
-		// marque le noeud courant comme lu
-		noeudCourant.setUserData("visite", true, null);
-
-		// si enfant, passe au premier
-		if(noeudCourant.getFirstChild() != null){
-			noeudCourant = noeudCourant.getFirstChild();
-		}// si frere, passe au suivant
-		else if(noeudCourant.getNextSibling() != null){
-			noeudCourant = noeudCourant.getNextSibling();
-		}// sinon remonte au parent
-		else{
-			if(noeudCourant.getParentNode() != null){
-				boolean visite = noeudCourant.getUserData("visite")!=null;
-				System.out.println(visite);
-				while (visite && !noeudCourant.isSameNode(doc)){
-					if(noeudCourant.getParentNode().getNextSibling() != null){
-						noeudCourant = noeudCourant.getParentNode().getNextSibling();
-					}else{
-						noeudCourant = noeudCourant.getParentNode();
-					}
-				}
-			}
-		}
-		numeroNoeudCourant ++;
-	}
-	*/
 }
