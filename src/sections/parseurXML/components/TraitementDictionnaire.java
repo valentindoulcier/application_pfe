@@ -21,11 +21,20 @@ public class TraitementDictionnaire {
 	
 	public void traiter(){
 		Noeud n;
-		for(int i=0; i< 1500; i++){
+		System.out.println(dico.getNombreNoeud());
+		/*
+		n = dico.prochainNoeud();
+//		System.out.println("   nom : "+n.getNom());
+//		System.out.println("valeur : "+n.getValeur());
+//		System.out.println("numero : "+n.getNumero());
+		
+		while(!n.isDernier()){
 			n = dico.prochainNoeud();
-			System.out.println("   nom : "+n.getNom());
-			System.out.println("valeur : "+n.getValeur());
-			System.out.println("numero : "+n.getNumero());
+//			System.out.println("   nom : "+n.getNom());
+//			System.out.println("valeur : "+n.getValeur());
+//			System.out.println("numero : "+n.getNumero());
 		}
+		System.out.println("numero : "+n.getNumero());
+		*/
 	}
 }

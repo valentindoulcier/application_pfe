@@ -38,6 +38,7 @@ public class FichierDictionnaire {
 		
 		nomDuFichier = nomFichier;
 		numeroNoeudCourant = -1;
+		nombreNoeud = -1;
 		pile = new Stack<Node>();
 		
 		
@@ -58,14 +59,32 @@ public class FichierDictionnaire {
         pile.push(noeudCourant);
 //        System.out.println(doc.toString());
 	}
-	/*
+	
 	public int getNombreNoeud(){
-		if(nombreNoeud = -1){
-			
+		System.out.println("getNombreNoeud : "+ nombreNoeud);
+		// compte le nombre de noeud en parcourant tout l'arbre
+		if(nombreNoeud == -1){
+			Node tmpNode;
+			int tmpNum;
+			// sauvegarde le noeud courant
+			tmpNode = noeudCourant;
+			tmpNum = numeroNoeudCourant;
+			System.out.println(numeroNoeudCourant);
+//			Noeud n;
+//			n = prochainNoeud();
+//			while(!n.isDernier()){
+//				n = prochainNoeud();
+//			}
+			while(!chercherProchainNoeud());
+			nombreNoeud = numeroNoeudCourant;
+			System.out.println(numeroNoeudCourant);
+			// réinitialise le noeud courant et le numero à son etat initiale.
+			noeudCourant = tmpNode;
+			numeroNoeudCourant = tmpNum;
 		}
 		return nombreNoeud;
 	}
-	*/
+	
 	public Noeud prochainNoeud(){
 		Noeud noeud;
 		String nom;
@@ -114,7 +133,7 @@ public class FichierDictionnaire {
 	private void chercherProchainNoeud(){
 		// marque le noeud courant comme lu
 		noeudCourant.setUserData("visite", true, null);
-		
+
 		// si enfant, passe au premier
 		if(noeudCourant.getFirstChild() != null){
 			noeudCourant = noeudCourant.getFirstChild();
