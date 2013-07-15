@@ -5,6 +5,8 @@ package sections.parseurXML.components;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -121,5 +123,43 @@ public class FichierDictionnaire {
 			dernier = true;
 		}
 		return dernier;
+	}
+
+	private LinkedList<Node> chercherNoeud(Node noeudRacine, String nomNoeud) {
+		LinkedList<Node> listeResultat = new LinkedList<Node>();
+		Stack<Node> pile = new Stack<Node>();
+		Node noeud;
+
+		// initalisation
+		pile.push(noeudRacine);
+
+		// parcours de l'arbre sous le noeud racine
+		while (!pile.empty()) {
+			noeud = pile.pop();
+			// test si le noeud est celui recherché
+			if (noeud.getNodeName() == nomNoeud) {
+				listeResultat.add(noeud);
+			} else {
+				System.out.println("--- --- ---");
+				System.out.println(noeud.getNodeName());
+				System.out.println(noeud.getNodeValue());
+				System.out.println(noeud.getNodeType());
+			}
+
+			if (noeud.getChildNodes() != null) {
+				NodeList listeTmp;
+				int tailleListe;
+
+				listeTmp = noeud.getChildNodes();
+				tailleListe = listeTmp.getLength();
+				for (int i = tailleListe; i >= 0; i--) {
+					if (listeTmp.item(i) != null) {
+						pile.push(listeTmp.item(i));
+					}
+				}
+			}
+		}
+
+		return listeResultat;
 	}
 }
