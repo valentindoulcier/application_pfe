@@ -13,6 +13,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.hibernate.Session;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -36,6 +37,7 @@ public class FichierDictionnaire {
 	private Node noeudCourant;
 	private Stack<Node> pile;
 
+	protected Session session;
 	public FichierDictionnaire(String nomFichier){
 		
 		nomDuFichier = nomFichier;
@@ -58,6 +60,7 @@ public class FichierDictionnaire {
 		}
         noeudCourant = doc;
         pile.push(noeudCourant);
+		session = HibernateUtils.getInstanceLocale();
 	}
 	
 	public int getNombreNoeud(){
