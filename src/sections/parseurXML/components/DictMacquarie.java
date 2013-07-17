@@ -48,7 +48,7 @@ public class DictMacquarie extends FichierDictionnaire {
 		session.saveOrUpdate(dic);
 
 		// ajout des catégories de mots
-//		extraireToutesCategorie();
+		extraireToutesCategorie();
 
 		// parcours de tout les headword
 		LinkedList<Node> liste = chercherNoeud(doc, "record");
@@ -58,6 +58,51 @@ public class DictMacquarie extends FichierDictionnaire {
 
 		}
 	}
+
+	private void extraireToutesCategorie() {
+
+		// liste toutes les catégories déjà existantes dans la base de donnée
+		Set<String> listeStringCate = new HashSet<String>();
+		for (ListeCategories cate : (List<ListeCategories>) listeCategories) {
+			if (!listeStringCate.contains(cate.getNom())) {
+				listeStringCate.add(cate.getNom());
+			}
+		}
+
+		// cherche toute les catégories du dictionnaire
+		LinkedList<Node> listeNoeud = chercherNoeud(doc, "pos");
+		// test chaque catégorie si elle existe deja dans la base
+		while (!listeNoeud.isEmpty()) {
+			if (listeNoeud.peek() != null
+					&& listeNoeud.peek().getFirstChild() != null) {
+
+				String cate = listeNoeud.pop().getFirstChild().getNodeValue();
+				if (!listeStringCate.contains(cate)) {
+					Transaction tx = session.beginTransaction();
+					listeStringCate.add(cate);
+					ListeCategories lc = new ListeCategories();
+					lc.setNom(cate);
+					System.out.println(cate);
+					session.save(lc);
+					tx.commit();
+				}
+			} else {
+				listeNoeud.pop();
+				if (!listeStringCate.contains("unknow")) {
+					Transaction tx = session.beginTransaction();
+					listeStringCate.add("unknow");
+					ListeCategories lc = new ListeCategories();
+					lc.setNom("unknow");
+					session.save(lc);
+					tx.commit();
+				}
+			}
+		}
+
+		listeCategories = (List<ListeCategories>) new ListeCategoriesDAO(
+				"local").findAll();
+	}
+
 	private void enregistrerMot(Node noeudMot) {
 		Transaction tx = session.beginTransaction();
 
