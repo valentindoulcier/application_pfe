@@ -18,7 +18,6 @@ public class TraitementDictionnaire {
 	}
 
 	public void traiter() {
-		Noeud n;
 		System.out.println(dico.getNombreNoeud());
 		dico.traiter();
 	}
