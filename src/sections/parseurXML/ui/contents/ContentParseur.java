@@ -39,7 +39,6 @@ public class ContentParseur extends JPanel {
 	private static final long serialVersionUID = 848524817828466211L;
 
 	private JButton btnJfilechooserDictionnaire;
-	private JButton btnJfilechooserDesctipteur;
 	private JButton btnLauncher;
 
 	// private static Logger logger = Logger.getLogger(ContentParseur.class);
@@ -47,7 +46,6 @@ public class ContentParseur extends JPanel {
 	private GridBagLayout gridBagLayout;
 
 	private InformationsFichier informationsFichierDictionnaire;
-	private InformationsFichier informationsFichierDescripteur;
 
 	private Timer timer;
 	private ActionListener taskPerformer;
@@ -89,42 +87,6 @@ public class ContentParseur extends JPanel {
 							+ nomDeFichierDictionnaire);
 
 					if (".xml".equalsIgnoreCase(monFichier.getExtension())) {
-						monFichier.setNumero(Administration.getMesFichiers()
-								.size() + 1);
-
-						Administration.getMesFichiers().add(monFichier);
-					} else {
-						// Rien...
-					}
-				}
-			}
-		});
-
-		btnJfilechooserDesctipteur.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				FileDialog d = new FileDialog(
-						new JFrame(),
-						"Charger un fichier JSON (descripteur du dictionnaire)",
-						FileDialog.LOAD);
-				d.setVisible(true);
-
-				// Si un fichier est sélectionné
-				if (!"".equalsIgnoreCase(d.getFile()) && (d.getFile() != null)) {
-
-					// Init du timmer
-					timer.stop();
-					informationsFichierDictionnaire.getLblMessage().setVisible(false);
-
-					nomDeFichierDescripteur = d.getDirectory() + d.getFile();
-
-					Fichier monFichier = new Fichier(new File(nomDeFichierDescripteur));
-
-					afficherInfo(monFichier, informationsFichierDescripteur, ".json");
-					System.out.println("lecture info fichier : "
-							+ nomDeFichierDescripteur);
-
-					if (".json".equalsIgnoreCase(monFichier.getExtension())) {
 						monFichier.setNumero(Administration.getMesFichiers()
 								.size() + 1);
 
@@ -191,16 +153,6 @@ public class ContentParseur extends JPanel {
 		gbc_btnJfilechooserXML.gridy = 1;
 		add(btnJfilechooserDictionnaire, gbc_btnJfilechooserXML);
 
-		btnJfilechooserDesctipteur = new JButton(
-				"Choisir un Fichier json (descripteur)");
-		GridBagConstraints gbc_btnJfilechooserJSON = new GridBagConstraints();
-		gbc_btnJfilechooserJSON.anchor = GridBagConstraints.NORTH;
-		gbc_btnJfilechooserJSON.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnJfilechooserJSON.insets = new Insets(0, 0, 5, 5);
-		gbc_btnJfilechooserJSON.gridx = 1;
-		gbc_btnJfilechooserJSON.gridy = 2;
-		add(btnJfilechooserDesctipteur, gbc_btnJfilechooserJSON);
-
 		btnLauncher = new JButton("lancer le chargment du dictionnaire");
 		GridBagConstraints gbc_btnLauncher = new GridBagConstraints();
 		gbc_btnLauncher.anchor = GridBagConstraints.NORTH;
@@ -211,24 +163,14 @@ public class ContentParseur extends JPanel {
 		add(btnLauncher, gbc_btnLauncher);
 
 		informationsFichierDictionnaire = new InformationsFichier("fichier Dictionnaire");
-		informationsFichierDictionnaire.setMinimumSize(new Dimension(325, 250));
+		informationsFichierDictionnaire.setMinimumSize(new Dimension(325, 350));
 		GridBagConstraints gbc_panelDico = new GridBagConstraints();
 		gbc_panelDico.insets = new Insets(0, 0, 5, 5);
-		gbc_panelDico.gridheight = 8;
+		gbc_panelDico.gridheight = 16;
 		gbc_panelDico.fill = GridBagConstraints.BOTH;
 		gbc_panelDico.gridx = 3;
 		gbc_panelDico.gridy = 1;
 		add(informationsFichierDictionnaire, gbc_panelDico);
-
-		informationsFichierDescripteur = new InformationsFichier("fichier Descripteur");
-		informationsFichierDescripteur.setMinimumSize(new Dimension(325, 250));
-		GridBagConstraints gbc_panelDesc = new GridBagConstraints();
-		gbc_panelDesc.insets = new Insets(0, 0, 0, 5);
-		gbc_panelDesc.gridheight = 8;
-		gbc_panelDesc.fill = GridBagConstraints.BOTH;
-		gbc_panelDesc.gridx = 3;
-		gbc_panelDesc.gridy = 10;
-		add(informationsFichierDescripteur, gbc_panelDesc);
 	}
 
 	public void afficherInfo(Fichier monFichier, InformationsFichier infoFichier, String extensionFichier) {
