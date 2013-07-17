@@ -162,4 +162,11 @@ public class FichierDictionnaire {
 
 		return listeResultat;
 	}
+	protected Node chercherNoeudUnique(Node noeudRacine, String nomNoeud) {
+		LinkedList<Node> liste = chercherNoeud(noeudRacine, nomNoeud);
+		if (!liste.isEmpty() && liste.size() == 1) {
+			return liste.getFirst();
+		}
+		return null;
+	}
 }
