@@ -65,10 +65,27 @@ public class DictMacquarie extends FichierDictionnaire {
 		headword = new Headword();
 		headword.setDictionnaires(dic);
 
-//		extraireHeadword();
+		extraireHeadword();
 //		extraireCategorie();
 
 		session.save(headword);
 		tx.commit();
+	}
+	private void extraireHeadword() {
+		Node noeud = chercherNoeudUnique(noeudMot, "head");
+		NodeList liste = noeud.getChildNodes();
+		String data;
+		if (liste.getLength() < 2) {
+			// cas simple avec juste le mot
+			data = liste.item(0).getNodeValue();
+		} else {
+			// cas où la balise sup est présente
+			data = liste.item(0).getNodeValue();
+			data += "(";
+			data += liste.item(1).getFirstChild().getNodeValue();
+			data += ")";
+		}
+		System.out.println(data);
+		headword.setMot(data);
 	}
 }
