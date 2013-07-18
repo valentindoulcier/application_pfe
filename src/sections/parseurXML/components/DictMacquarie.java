@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import dao.HeadwordDAO;
 import dao.ListeCategoriesDAO;
 import database.AvoirPourCategorieHeadword;
 import database.Dictionnaires;
@@ -20,12 +21,19 @@ import database.ListeCategories;
 import database.Sens;
 
 /**
+ * Classe s'occupant du traitement du dictionnaire Macquarie
+ * 
  * @author Simon Kesteloot
+ * 
+ */
+/**
+ * @author kurze
  * 
  */
 public class DictMacquarie extends AbstractDictionnaire {
 
 	Headword headword;
+	HeadwordDAO hDAO;
 	Dictionnaires dic;
 	List<ListeCategories> listeCategories;
 	Node noeudMot;
@@ -41,8 +49,14 @@ public class DictMacquarie extends AbstractDictionnaire {
 
 		listeCategories = (List<ListeCategories>) new ListeCategoriesDAO(
 				"local").findAll();
+		hDAO = new HeadwordDAO("local");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see sections.parseurXML.components.AbstractDictionnaire#traiter()
+	 */
 	public void traiter() {
 
 		// sauvegarde du nom du dictionnaire
@@ -60,6 +74,10 @@ public class DictMacquarie extends AbstractDictionnaire {
 		}
 	}
 
+	/**
+	 * extrait toute les catégories existant dans le dictionnaire et les
+	 * enregistre dans la base de donnée (table liste_categories)
+	 */
 	private void extraireToutesCategorie() {
 
 		// liste toutes les catégories déjà existantes dans la base de donnée
@@ -79,6 +97,8 @@ public class DictMacquarie extends AbstractDictionnaire {
 
 				String cate = listeNoeud.pop().getFirstChild().getNodeValue();
 				if (!listeStringCate.contains(cate)) {
+					// si ne contient pas la catégorie, crée une nouvelle et
+					// l'enregistre en base
 					Transaction tx = session.beginTransaction();
 					listeStringCate.add(cate);
 					ListeCategories lc = new ListeCategories();
@@ -88,6 +108,8 @@ public class DictMacquarie extends AbstractDictionnaire {
 					tx.commit();
 				}
 			} else {
+				// si noeud "pos" non renseigner, crée catégorie "unknow" (si
+				// non existante)
 				listeNoeud.pop();
 				if (!listeStringCate.contains("unknow")) {
 					Transaction tx = session.beginTransaction();
@@ -99,24 +121,37 @@ public class DictMacquarie extends AbstractDictionnaire {
 				}
 			}
 		}
-
+		// mis à jour de la liste local
 		listeCategories = (List<ListeCategories>) new ListeCategoriesDAO(
 				"local").findAll();
 	}
 
+	/**
+	 * méthode qui s'occupe du traitement d'une entrée
+	 * 
+	 * @param noeudMot
+	 *            noeud correspondant à l'entrée à traiter
+	 */
 	private void enregistrerMot(Node noeudMot) {
-		Transaction tx = session.beginTransaction();
+		// session = new Session();
+		// Transaction tx = session.beginTransaction();
 
 		this.noeudMot = noeudMot;
 		headword = new Headword();
 		headword.setDictionnaires(dic);
 
 		extraireHeadword();
-//		extraireCategorie();
+		extraireCategorie();
+		extraireSens();
 
-		session.save(headword);
-		tx.commit();
+		// session.save(headword);
+		// hDAO.create(headword);
+		// tx.commit();
 	}
+
+	/**
+	 * extrait le mot (table headword/mot)
+	 */
 	private void extraireHeadword() {
 		Node noeud = chercherNoeudUnique(noeudMot, "head");
 		NodeList liste = noeud.getChildNodes();
@@ -134,6 +169,10 @@ public class DictMacquarie extends AbstractDictionnaire {
 		System.out.println(data);
 		headword.setMot(data);
 	}
+
+	/**
+	 * extrait la catégorie (table avoir_pour_categorie_headword)
+	 */
 	private void extraireCategorie() {
 		Node noeud = chercherNoeudUnique(noeudMot, "body");
 		LinkedList<Node> liste = chercherNoeud(noeud, "chunk");
@@ -170,32 +209,41 @@ public class DictMacquarie extends AbstractDictionnaire {
 		}
 		headword.setAvoirPourCategorieHeadwords(data);
 	}
+
+	/**
+	 * extrait le sens-définition (table sens)
+	 */
 	private void extraireSens() {
 		Node noeud = chercherNoeudUnique(noeudMot, "body");
 		LinkedList<Node> listeChunk = chercherNoeud(noeud, "chunk");
 		Set<Sens> data = new HashSet<Sens>();
-		// int i=1;
-		// parcours liste des définitions du mot courant
+
+		// parcours liste des chunk (catégorie + definition) du mot courant
 		while (!listeChunk.isEmpty()) {
 			noeud = listeChunk.pop();
+
+			// parcours des définitions du chunk
 			LinkedList<Node> listeDef = chercherNoeud(noeud, "def");
 
 			while (!listeDef.isEmpty()) {
 				noeud = listeDef.pop();
 				Node noeudText;
 				noeudText = chercherNoeudUnique(noeud, "dtext");
+
+				// récupere le label pour la définition
+				Node noeudLabel = chercherNoeudUnique(noeud, "label");
+				String texteSens = "";
+				if (noeudLabel != null && noeudLabel.getFirstChild() != null) {
+					texteSens += noeudLabel.getFirstChild().getNodeValue()
+							+ "\n";
+				}
+
 				// si un seul noeud dtext alors, pas de sous-définition
 				if (noeudText != null) {
-					data.add(new Sens(headword, noeudText.getFirstChild()
-							.getNodeValue(), null));
+					texteSens += noeudText.getFirstChild().getNodeValue();
+					data.add(new Sens(headword, texteSens, null));
 				} else {
-					Node noeudLabel = chercherNoeudUnique(noeud, "label");
-					String texteSens = "";
-					if (noeudLabel != null
-							&& noeudLabel.getFirstChild() != null) {
-						texteSens += noeudLabel.getFirstChild().getNodeValue()
-								+ "\n";
-					}
+					// scan toutes les sous-définitions
 					LinkedList<Node> listeSubDef = chercherNoeud(noeud,
 							"subdef");
 					while (!listeSubDef.isEmpty()) {

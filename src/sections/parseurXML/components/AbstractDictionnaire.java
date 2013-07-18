@@ -228,6 +228,9 @@ public class AbstractDictionnaire {
 		return null;
 	}
 
+	/**
+	 * méthodes à implémenter lancant le traitement du dictionnaire
+	 */
 	public void traiter() {
 
 	}
