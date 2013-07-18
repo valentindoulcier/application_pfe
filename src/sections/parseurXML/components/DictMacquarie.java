@@ -133,4 +133,40 @@ public class DictMacquarie extends FichierDictionnaire {
 		System.out.println(data);
 		headword.setMot(data);
 	}
+	private void extraireCategorie() {
+		Node noeud = chercherNoeudUnique(noeudMot, "body");
+		LinkedList<Node> liste = chercherNoeud(noeud, "chunk");
+		Set<AvoirPourCategorieHeadword> data = new HashSet<AvoirPourCategorieHeadword>();
+		int i = 1;
+		// parcours liste des définitions du mot courant
+		while (!liste.isEmpty()) {
+			noeud = liste.pop();
+			noeud = chercherNoeudUnique(noeud, "pos");
+			if (noeud != null) {
+				String cat;
+				if (noeud.getFirstChild() != null) {
+					// si une catégorie existe, stocke
+					noeud = noeud.getFirstChild();
+					cat = noeud.getNodeValue();
+				} else {
+					// sinon "unknow"
+					cat = "unknow";
+				}
+
+				// recherche dans la liste des catégories la catégorie du mot
+				// courant
+				for (ListeCategories cate : (List<ListeCategories>) listeCategories) {
+					if (cate.getNom() == cat) {
+						AvoirPourCategorieHeadword avoir = new AvoirPourCategorieHeadword();
+						avoir.setHeadword(headword);
+						avoir.setOrdre(i);
+						avoir.setListeCategories(cate);
+						data.add(avoir);
+					}
+				}
+			}
+			i++;
+		}
+		headword.setAvoirPourCategorieHeadwords(data);
+	}
 }
