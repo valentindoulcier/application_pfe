@@ -17,6 +17,7 @@ import database.AvoirPourCategorieHeadword;
 import database.Dictionnaires;
 import database.Headword;
 import database.ListeCategories;
+import database.Sens;
 
 /**
  * @author Simon Kesteloot
@@ -168,5 +169,49 @@ public class DictMacquarie extends FichierDictionnaire {
 			i++;
 		}
 		headword.setAvoirPourCategorieHeadwords(data);
+	}
+	private void extraireSens() {
+		Node noeud = chercherNoeudUnique(noeudMot, "body");
+		LinkedList<Node> listeChunk = chercherNoeud(noeud, "chunk");
+		Set<Sens> data = new HashSet<Sens>();
+		// int i=1;
+		// parcours liste des définitions du mot courant
+		while (!listeChunk.isEmpty()) {
+			noeud = listeChunk.pop();
+			LinkedList<Node> listeDef = chercherNoeud(noeud, "def");
+
+			while (!listeDef.isEmpty()) {
+				noeud = listeDef.pop();
+				Node noeudText;
+				noeudText = chercherNoeudUnique(noeud, "dtext");
+				// si un seul noeud dtext alors, pas de sous-définition
+				if (noeudText != null) {
+					data.add(new Sens(headword, noeudText.getFirstChild()
+							.getNodeValue(), null));
+				} else {
+					Node noeudLabel = chercherNoeudUnique(noeud, "label");
+					String texteSens = "";
+					if (noeudLabel != null
+							&& noeudLabel.getFirstChild() != null) {
+						texteSens += noeudLabel.getFirstChild().getNodeValue()
+								+ "\n";
+					}
+					LinkedList<Node> listeSubDef = chercherNoeud(noeud,
+							"subdef");
+					while (!listeSubDef.isEmpty()) {
+						noeudText = listeSubDef.pop();
+						if (noeudText != null
+								&& noeudText.getFirstChild() != null
+								&& noeudText.getFirstChild().getFirstChild() != null) {
+							texteSens += " * "
+									+ noeudText.getFirstChild().getFirstChild()
+											.getNodeValue() + "\n";
+						}
+					}
+					data.add(new Sens(headword, texteSens, null));
+				}
+			}
+		}
+		headword.setSenses(data);
 	}
 }
