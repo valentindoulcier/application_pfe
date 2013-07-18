@@ -9,7 +9,7 @@ package sections.parseurXML.components;
  */
 public class TraitementDictionnaire {
 
-	private FichierDictionnaire dico;
+	private AbstractDictionnaire dico;
 
 	public TraitementDictionnaire(String nomXML, String nomJSON) {
 		dico = new DictMacquarie(nomXML);

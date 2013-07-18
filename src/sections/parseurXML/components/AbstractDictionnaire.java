@@ -22,7 +22,7 @@ import utils.HibernateUtils;
  * @author Simon Kesteloot
  * 
  */
-public class FichierDictionnaire {
+public class AbstractDictionnaire {
 
 	private String nomDuFichier;
 
@@ -40,7 +40,7 @@ public class FichierDictionnaire {
 
 	protected Session session;
 
-	public FichierDictionnaire(String nomFichier) {
+	public AbstractDictionnaire(String nomFichier) {
 
 		nomDuFichier = nomFichier;
 		numeroNoeudCourant = -1;

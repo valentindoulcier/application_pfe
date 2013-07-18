@@ -23,7 +23,7 @@ import database.Sens;
  * @author Simon Kesteloot
  * 
  */
-public class DictMacquarie extends FichierDictionnaire {
+public class DictMacquarie extends AbstractDictionnaire {
 
 	Headword headword;
 	Dictionnaires dic;

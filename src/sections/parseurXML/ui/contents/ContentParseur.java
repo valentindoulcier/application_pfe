@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import sections.parseurXML.components.FichierDictionnaire;
+import sections.parseurXML.components.AbstractDictionnaire;
 import sections.parseurXML.components.InformationsFichier;
 import sections.parseurXML.components.TraitementDictionnaire;
 
