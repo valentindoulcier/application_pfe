@@ -19,6 +19,8 @@ import org.xml.sax.SAXException;
 import utils.HibernateUtils;
 
 /**
+ * classe ~abstraite servant de base pour le traitement des dictionnaires
+ * 
  * @author Simon Kesteloot
  * 
  */
@@ -28,14 +30,25 @@ public class AbstractDictionnaire {
 
 	private DocumentBuilderFactory docBuilderFactory;
 	private DocumentBuilder docBuilder;
+	/**
+	 * racine du fichier XML
+	 */
 	protected Document doc;
 
 	private File fichier;
 
 	private int numeroNoeudCourant;
+	/**
+	 * nombre de noeud total valeur calculée qui si demandé
+	 */
 	private int nombreNoeud;
-
+	/**
+	 * noeud courant lors du parcours en profondeur
+	 */
 	private Node noeudCourant;
+	/**
+	 * pile utile lors du parcours en profondeur
+	 */
 	private Stack<Node> pile;
 
 	protected Session session;
@@ -65,6 +78,11 @@ public class AbstractDictionnaire {
 		session = HibernateUtils.getInstanceLocale();
 	}
 
+	/**
+	 * retourne le nombre de noeud XML du dictionnaire courant
+	 * 
+	 * @return nombre de noeud du dictionnaire courant
+	 */
 	@SuppressWarnings("unchecked")
 	public int getNombreNoeud() {
 		System.out.println("getNombreNoeud : " + nombreNoeud);
@@ -90,6 +108,13 @@ public class AbstractDictionnaire {
 		return nombreNoeud;
 	}
 
+	/**
+	 * lors du parcours de l'abre XML (en profondeur d'abord), permet de
+	 * d'avancer au noeud suivant
+	 * 
+	 * @return le noeud suivant pendant un parcours de l'abre en profondeur
+	 *         d'abord
+	 */
 	public Noeud prochainNoeud() {
 		Noeud noeud;
 		String nom;
@@ -106,6 +131,11 @@ public class AbstractDictionnaire {
 		return noeud;
 	}
 
+	/**
+	 * cherche le prochain noeud, utilisé uniquement avec prochainNoeud()
+	 * 
+	 * @return true si c'est le dernier noeud de l'arbre, false sinon
+	 */
 	private boolean chercherProchainNoeud() {
 		NodeList liste;
 		int tailleListe;
@@ -115,8 +145,10 @@ public class AbstractDictionnaire {
 			numeroNoeudCourant++;
 
 			if (noeudCourant.getChildNodes() != null) {
+
 				liste = noeudCourant.getChildNodes();
 				tailleListe = liste.getLength();
+
 				for (int i = tailleListe; i >= 0; i--) {
 					if (liste.item(i) != null) {
 						pile.push(liste.item(i));
@@ -130,6 +162,16 @@ public class AbstractDictionnaire {
 		return dernier;
 	}
 
+	/**
+	 * cherche les noeuds d'apres leur nom dans le sous-arbre du noeud fourni en
+	 * paramètre
+	 * 
+	 * @param noeudRacine
+	 *            noeud servant de racine pour la recherche
+	 * @param nomNoeud
+	 *            nom des noeuds recherché
+	 * @return une liste chainé de noeud correspondant à la recherche
+	 */
 	protected LinkedList<Node> chercherNoeud(Node noeudRacine, String nomNoeud) {
 		LinkedList<Node> listeResultat = new LinkedList<Node>();
 		Stack<Node> pile = new Stack<Node>();
@@ -141,18 +183,20 @@ public class AbstractDictionnaire {
 		// parcours de l'arbre sous le noeud racine
 		while (!pile.empty()) {
 			noeud = pile.pop();
-			// test si le noeud est celui recherché
 			if (noeud != null) {
+				// test si le noeud est celui recherché
 				if (noeud.getNodeName() == nomNoeud) {
 					listeResultat.add(noeud);
 				}
 
+				// ajout des noeud enfant dans la pile
 				if (noeud.getChildNodes() != null) {
 					NodeList listeTmp;
 					int tailleListe;
 
 					listeTmp = noeud.getChildNodes();
 					tailleListe = listeTmp.getLength();
+
 					for (int i = tailleListe; i >= 0; i--) {
 						if (listeTmp.item(i) != null) {
 							pile.push(listeTmp.item(i));
@@ -165,6 +209,17 @@ public class AbstractDictionnaire {
 		return listeResultat;
 	}
 
+	/**
+	 * cherche un noeud d'apres son nom dans le sous-arbre du noeud fourni en
+	 * paramètre
+	 * 
+	 * @param noeudRacine
+	 *            noeud servant de racine pour la recherche
+	 * @param nomNoeud
+	 *            nom du noeud recherché
+	 * @return LE noeud correspondant à la recherche ou null si aucun ou
+	 *         plusieurs
+	 */
 	protected Node chercherNoeudUnique(Node noeudRacine, String nomNoeud) {
 		LinkedList<Node> liste = chercherNoeud(noeudRacine, nomNoeud);
 		if (!liste.isEmpty() && liste.size() == 1) {
