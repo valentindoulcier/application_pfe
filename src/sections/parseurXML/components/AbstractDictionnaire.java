@@ -163,16 +163,15 @@ public class AbstractDictionnaire {
 	}
 
 	/**
-	 * cherche les noeuds d'apres leur nom dans le sous-arbre du noeud fourni en
-	 * paramètre
+	 * Liste tout les noeuds du sous-abre ayant le noeud fourni en paramètre
+	 * comme racine. dans le sens en profondeur d'abord
 	 * 
 	 * @param noeudRacine
-	 *            noeud servant de racine pour la recherche
-	 * @param nomNoeud
-	 *            nom des noeuds recherché
-	 * @return une liste chainé de noeud correspondant à la recherche
+	 *            noeud servant de racine pour le parcours
+	 * 
+	 * @return une liste chainé de noeud appartenant au sous-arbre
 	 */
-	protected LinkedList<Node> chercherNoeud(Node noeudRacine, String nomNoeud) {
+	protected LinkedList<Node> listerNoeud(Node noeudRacine) {
 		LinkedList<Node> listeResultat = new LinkedList<Node>();
 		Stack<Node> pile = new Stack<Node>();
 		Node noeud;
@@ -184,10 +183,7 @@ public class AbstractDictionnaire {
 		while (!pile.empty()) {
 			noeud = pile.pop();
 			if (noeud != null) {
-				// test si le noeud est celui recherché
-				if (noeud.getNodeName() == nomNoeud) {
-					listeResultat.add(noeud);
-				}
+				listeResultat.add(noeud);
 
 				// ajout des noeud enfant dans la pile
 				if (noeud.getChildNodes() != null) {
@@ -206,6 +202,32 @@ public class AbstractDictionnaire {
 			}
 		}
 
+		return listeResultat;
+	}
+
+	/**
+	 * cherche les noeuds d'apres leur nom dans le sous-arbre du noeud fourni en
+	 * paramètre
+	 * 
+	 * @param noeudRacine
+	 *            noeud servant de racine pour la recherche
+	 * @param nomNoeud
+	 *            nom des noeuds recherché
+	 * @return une liste chainé de noeud correspondant à la recherche
+	 */
+	protected LinkedList<Node> chercherNoeud(Node noeudRacine, String nomNoeud) {
+
+		LinkedList<Node> listeResultat = listerNoeud(noeudRacine);
+		int taille = listeResultat.size();
+		int i = 0;
+		while (i < taille) {
+			if (listeResultat.get(i).getNodeName() != nomNoeud) {
+				listeResultat.remove(i);
+				taille--;
+			} else {
+				i++;
+			}
+		}
 		return listeResultat;
 	}
 
