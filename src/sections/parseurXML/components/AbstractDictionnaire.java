@@ -251,6 +251,31 @@ public class AbstractDictionnaire {
 	}
 
 	/**
+	 * met en forme la valeur de tout les noeuds descendants du noeud donnée
+	 */
+	protected String getValeurNoeudEnfant(Node noeud){
+		LinkedList<Node> liste = listerNoeud(noeud);
+		String result = "";
+		while(!liste.isEmpty()){
+			if(liste.peek().getNodeValue() != null){
+				switch (liste.peek().getNodeName()) {
+				case "sup":
+					result+="("+liste.pop().getNodeValue()+")";
+					break;
+
+				default:
+					result+=liste.pop().getNodeValue();
+					break;
+				}
+
+			}else{
+				liste.pop();
+			}
+		}
+		return result;
+	}
+
+	/**
 	 * méthodes à implémenter lancant le traitement du dictionnaire
 	 */
 	public void traiter() {
