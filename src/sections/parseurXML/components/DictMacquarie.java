@@ -262,4 +262,62 @@ public class DictMacquarie extends AbstractDictionnaire {
 		}
 		headword.setSenses(data);
 	}
+
+	/**
+	 * extrait etymologie du mot courant (table etymo_mcq)
+	 */
+	private void extraireEty() {
+		Node noeud = chercherNoeudUnique(noeudMot, "ety");
+		// vérifie si le noeud ety existe
+		if (noeud != null) {
+
+			LinkedList<Node> liste = listerNoeud(noeud);
+			Set<EtymoMcq> etys = new HashSet<EtymoMcq>();
+			EtymoMcq ety = new EtymoMcq();
+			String contenu = "";
+			while (!liste.isEmpty()) {
+				noeud = liste.pop();
+				switch (noeud.getNodeName()) {
+				case "lang":
+					ety.setLangue(noeud.getNodeValue());
+					if (noeud.getNodeValue() != null) {
+						contenu += noeud.getNodeValue();
+					}
+					break;
+
+				case "sup":
+					if (noeud.getNodeValue() != null) {
+						contenu += " (" + noeud.getNodeValue() + ") ";
+					}
+					break;
+
+				case "#text":
+					String[] contenus = noeud.getNodeValue().split(",");
+					if (contenus.length == 1) {
+						contenu += noeud.getNodeValue();
+					} else {
+						for (int j = 0; j < contenus.length; j++) {
+							contenu += contenus[j];
+							ety.setContenu(contenu);
+							contenu = new String("");
+							etys.add(ety);
+							ety = new EtymoMcq();
+						}
+					}
+					break;
+
+				default:
+					if (noeud.getNodeValue() != null) {
+						contenu += noeud.getNodeValue();
+					}
+					break;
+				}
+			}
+			headword.setEtymoMcqs(etys);
+			for (int i = 0; i < etys.size(); i++) {
+				System.out.println(((EtymoMcq) etys.toArray()[i]).getContenu());
+			}
+		}
+
+	}
 }
