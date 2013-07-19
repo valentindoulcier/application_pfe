@@ -16,6 +16,7 @@ import dao.HeadwordDAO;
 import dao.ListeCategoriesDAO;
 import database.AvoirPourCategorieHeadword;
 import database.Dictionnaires;
+import database.EtymoMcq;
 import database.Headword;
 import database.ListeCategories;
 import database.Sens;
@@ -27,10 +28,6 @@ import database.Syllabes;
  * @author Simon Kesteloot
  * 
  */
-/**
- * @author kurze
- * 
- */
 public class DictMacquarie extends AbstractDictionnaire {
 
 	Headword headword;
@@ -40,7 +37,10 @@ public class DictMacquarie extends AbstractDictionnaire {
 	Node noeudMot;
 
 	/**
+	 * nom du fichier contenant le dictionnaire Macquarie
+	 * 
 	 * @param nomFichier
+	 * 
 	 */
 	@SuppressWarnings("unchecked")
 	public DictMacquarie(String nomFichier) {
@@ -79,6 +79,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 	 * extrait toute les catégories existant dans le dictionnaire et les
 	 * enregistre dans la base de donnée (table liste_categories)
 	 */
+	@SuppressWarnings("unchecked")
 	private void extraireToutesCategorie() {
 
 		// liste toutes les catégories déjà existantes dans la base de donnée
@@ -144,6 +145,8 @@ public class DictMacquarie extends AbstractDictionnaire {
 		extraireHeadword();
 		extraireCategorie();
 		extraireSens();
+		extraireEty();
+		extrairePron();
 
 		// session.save(headword);
 		// hDAO.create(headword);
@@ -310,9 +313,9 @@ public class DictMacquarie extends AbstractDictionnaire {
 				}
 			}
 			headword.setEtymoMcqs(etys);
-			for (int i = 0; i < etys.size(); i++) {
-				System.out.println(((EtymoMcq) etys.toArray()[i]).getContenu());
-			}
+			// for (int i = 0; i < etys.size(); i++) {
+			// System.out.println(((EtymoMcq) etys.toArray()[i]).getContenu());
+			// }
 		}
 
 	}
@@ -345,9 +348,9 @@ public class DictMacquarie extends AbstractDictionnaire {
 		System.out.println("\t" + chaine);
 	}
 
-	private String convertirCharPron(String pron){
+	private String convertirCharPron(String pron) {
 		String result = "";
-		for(int i=0; i<pron.length(); i++){
+		for (int i = 0; i < pron.length(); i++) {
 			switch (pron.charAt(i)) {
 			case 'i':
 				result += "i";
@@ -419,19 +422,20 @@ public class DictMacquarie extends AbstractDictionnaire {
 				result += "U+0252 + U+0303";
 				break;
 			case 'A':
-				result += "i";
+				result += "æ + U+0303";
 				break;
 			case '!':
 				result += "y";
 				break;
 			case '\'':
-				result += "æ + U+0303";
+				result += "";
 				break;
 			case '.':
 				result += "y";
 				break;
 
 			default:
+				result += pron.charAt(i);
 				break;
 			}
 		}
