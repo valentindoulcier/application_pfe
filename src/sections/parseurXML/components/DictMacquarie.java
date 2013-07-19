@@ -155,16 +155,11 @@ public class DictMacquarie extends AbstractDictionnaire {
 	private void extraireHeadword() {
 		Node noeud = chercherNoeudUnique(noeudMot, "head");
 		NodeList liste = noeud.getChildNodes();
-		String data;
-		if (liste.getLength() < 2) {
-			// cas simple avec juste le mot
-			data = liste.item(0).getNodeValue();
-		} else {
-			// cas où la balise sup est présente
-			data = liste.item(0).getNodeValue();
-			data += "(";
-			data += liste.item(1).getFirstChild().getNodeValue();
-			data += ")";
+		String data = liste.item(0).getNodeValue();
+		if (liste.getLength() > 1) {
+			int sup = Integer.parseInt(liste.item(1).getFirstChild()
+					.getNodeValue());
+			headword.setFlagAutre(sup);
 		}
 		System.out.println(data);
 		headword.setMot(data);
