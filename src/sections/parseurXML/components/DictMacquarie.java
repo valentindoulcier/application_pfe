@@ -315,4 +315,97 @@ public class DictMacquarie extends AbstractDictionnaire {
 		}
 
 	}
+
+	private String convertirCharPron(String pron){
+		String result = "";
+		for(int i=0; i<pron.length(); i++){
+			switch (pron.charAt(i)) {
+			case 'i':
+				result += "i";
+				break;
+			case '1':
+				result += "I";
+				break;
+			case '8':
+				result += "ε";
+				break;
+			case '2':
+				result += "æ";
+				break;
+			case 'a':
+				result += "a";
+				break;
+			case '6':
+				result += "ɒ";
+				break;
+			case 'x':
+				result += "Λ";
+				break;
+			case 'c':
+				result += "ͻ";
+				break;
+			case 'y':
+				result += "ʊ";
+				break;
+			case 'u':
+				result += "u";
+				break;
+			case '3':
+				result += "ɜ";
+				break;
+			case '7':
+				result += "ɘ";
+				break;
+			case '0':
+				result += "θ";
+				break;
+			case 'q':
+				result += "ð";
+				break;
+			case '4':
+				result += "ʃ";
+				break;
+			case '5':
+				result += "ʒ";
+				break;
+			case 't':
+				result += "t";
+				break;
+			case 'd':
+				result += "d";
+				break;
+			case '9':
+				result += "ŋ";
+				break;
+			case 'j':
+				result += "j";
+				break;
+			case 'e':
+				result += "e";
+				break;
+			case 'o':
+				result += "o";
+				break;
+			case 'O':
+				result += "U+0252 + U+0303";
+				break;
+			case 'A':
+				result += "i";
+				break;
+			case '!':
+				result += "y";
+				break;
+			case '\'':
+				result += "æ + U+0303";
+				break;
+			case '.':
+				result += "y";
+				break;
+
+			default:
+				break;
+			}
+		}
+		return result;
+	}
 }
