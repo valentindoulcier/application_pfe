@@ -19,6 +19,7 @@ import database.Dictionnaires;
 import database.Headword;
 import database.ListeCategories;
 import database.Sens;
+import database.Syllabes;
 
 /**
  * Classe s'occupant du traitement du dictionnaire Macquarie
@@ -314,6 +315,34 @@ public class DictMacquarie extends AbstractDictionnaire {
 			}
 		}
 
+	}
+
+	/**
+	 * extrait la prononciation du mot courant (table syllabes)
+	 */
+	private void extrairePron() {
+		Node noeud = chercherNoeudUnique(noeudMot, "pron");
+		LinkedList<Node> liste = listerNoeud(noeud);
+		Set<Syllabes> ss = new HashSet<Syllabes>();
+		Syllabes s = new Syllabes();
+		s.setRegion("Australia");
+		String chaine = "";
+		while (!liste.isEmpty()) {
+			noeud = liste.pop();
+			if (noeud.getNodeName() == "prn" && noeud.getAttributes() == null) {
+				s.setSyllabe1(noeud.getNodeValue());
+				ss.add(s);
+				s = new Syllabes();
+				s.setRegion("Australia");
+			} else if (noeud.getNodeName() == "label") {
+				// s.
+			}
+			headword.setSyllabeses(ss);
+
+		}
+		// String chaine = getValeurNoeudEnfant(noeud);
+		chaine = convertirCharPron(chaine);
+		System.out.println("\t" + chaine);
 	}
 
 	private String convertirCharPron(String pron){
