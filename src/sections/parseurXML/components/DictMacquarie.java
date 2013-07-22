@@ -348,6 +348,11 @@ public class DictMacquarie extends AbstractDictionnaire {
 		System.out.println("\t" + chaine);
 	}
 
+	/**
+	 * convertit la prononciation du Macquarie en IPA
+	 * @param pron chaine à convertir (format macquarie)
+	 * @return chaine convertit (format IPA)
+	 */
 	private String convertirCharPron(String pron) {
 		String result = "";
 		for (int i = 0; i < pron.length(); i++) {
@@ -419,19 +424,19 @@ public class DictMacquarie extends AbstractDictionnaire {
 				result += "o";
 				break;
 			case 'O':
-				result += "U+0252 + U+0303";
+				result += "ɒ̃";
 				break;
 			case 'A':
-				result += "æ + U+0303";
+				result += "æ̃";
 				break;
 			case '!':
 				result += "y";
 				break;
 			case '\'':
-				result += "";
+				result += "ˈ";
 				break;
 			case '.':
-				result += "y";
+				result += "ˌ";
 				break;
 
 			default:
