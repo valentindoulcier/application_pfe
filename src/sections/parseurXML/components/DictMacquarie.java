@@ -343,26 +343,26 @@ public class DictMacquarie extends AbstractDictionnaire {
 		Node noeud = chercherNoeudUnique(noeudMot, "pron", 3);
 		LinkedList<Node> liste = listerNoeud(noeud);
 		Set<Syllabes> ss = new HashSet<Syllabes>();
-		Syllabes s = new Syllabes();
+		Syllabes s;
+		s = new Syllabes();
+		s.setHeadword(headword);
 		s.setRegion("Australia");
-		String chaine = "";
 		while (!liste.isEmpty()) {
 			noeud = liste.pop();
-			if (noeud.getNodeName() == "prn" && noeud.getAttributes() == null) {
-				s.setSyllabe1(noeud.getNodeValue());
+			System.out.println(noeud.getNodeName());
+			if (noeud.getNodeName().equals("prn")&& !noeud.hasAttributes()) {
+
+				s.setSyllabe1(convertirCharPron(getValeurNoeudEnfant(noeud)));
 				ss.add(s);
 				s = new Syllabes();
 				s.setHeadword(headword);
 				s.setRegion("Australia");
-			} else if (noeud.getNodeName() == "label") {
-				// s.
-			}
-			headword.setSyllabeses(ss);
 
+			} else if (noeud.getNodeName().equals("label")) {
+				 s.setCatdefMot(getValeurNoeudEnfant(noeud));
+			}
 		}
-		// String chaine = getValeurNoeudEnfant(noeud);
-		chaine = convertirCharPron(chaine);
-		System.out.println("\t" + chaine);
+		headword.setSyllabeses(ss);
 	}
 
 	/**
