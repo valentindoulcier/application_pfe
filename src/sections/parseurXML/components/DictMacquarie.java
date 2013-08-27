@@ -135,8 +135,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 	 *            noeud correspondant à l'entrée à traiter
 	 */
 	private void enregistrerMot(Node noeudMot) {
-		// session = new Session();
-		// Transaction tx = session.beginTransaction();
+		 Transaction tx = session.beginTransaction();
 
 		this.noeudMot = noeudMot;
 		headword = new Headword();
@@ -148,13 +147,15 @@ public class DictMacquarie extends AbstractDictionnaire {
 		extraireEty();
 		extrairePron();
 
-		// session.save(headword);
-		// hDAO.create(headword);
-		// tx.commit();
+		session.save(headword);
+		
 		for (AvoirPourCategorieHeadword cate: (Set<AvoirPourCategorieHeadword>) headword.getAvoirPourCategorieHeadwords()) {
 			cate.setHeadword(headword);
 			session.save(cate);
 		}
+//		session.persist(headword);
+//		hDAO.create(headword);
+		tx.commit();
 	}
 
 	/**
