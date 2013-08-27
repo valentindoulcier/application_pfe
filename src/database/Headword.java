@@ -132,7 +132,7 @@ public class Headword implements java.io.Serializable {
 		this.dictionnaires = dictionnaires;
 	}
 
-	@Column(name = "mot", length = 100)
+	@Column(name = "mot", length = 200)
 	public String getMot() {
 		return this.mot;
 	}
@@ -141,7 +141,7 @@ public class Headword implements java.io.Serializable {
 		this.mot = mot;
 	}
 
-	@Column(name = "var1", length = 100)
+	@Column(name = "var1", length = 200)
 	public String getVar1() {
 		return this.var1;
 	}
@@ -150,7 +150,7 @@ public class Headword implements java.io.Serializable {
 		this.var1 = var1;
 	}
 
-	@Column(name = "var2", length = 100)
+	@Column(name = "var2", length = 200)
 	public String getVar2() {
 		return this.var2;
 	}
@@ -159,7 +159,7 @@ public class Headword implements java.io.Serializable {
 		this.var2 = var2;
 	}
 
-	@Column(name = "var3", length = 100)
+	@Column(name = "var3", length = 200)
 	public String getVar3() {
 		return this.var3;
 	}
@@ -168,7 +168,7 @@ public class Headword implements java.io.Serializable {
 		this.var3 = var3;
 	}
 
-	@Column(name = "var4", length = 100)
+	@Column(name = "var4", length = 200)
 	public String getVar4() {
 		return this.var4;
 	}
@@ -177,7 +177,7 @@ public class Headword implements java.io.Serializable {
 		this.var4 = var4;
 	}
 
-	@Column(name = "var5", length = 100)
+	@Column(name = "var5", length = 200)
 	public String getVar5() {
 		return this.var5;
 	}

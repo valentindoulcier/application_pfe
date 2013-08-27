@@ -15,22 +15,22 @@
    <column name="id_dictionnaire" not-null="true"/>
   </many-to-one>
   <property generated="never" lazy="false" name="mot" type="string">
-   <column length="100" name="mot"/>
+   <column length="200" name="mot"/>
   </property>
   <property generated="never" lazy="false" name="var1" type="string">
-   <column length="100" name="var1"/>
+   <column length="200" name="var1"/>
   </property>
   <property generated="never" lazy="false" name="var2" type="string">
-   <column length="100" name="var2"/>
+   <column length="200" name="var2"/>
   </property>
   <property generated="never" lazy="false" name="var3" type="string">
-   <column length="100" name="var3"/>
+   <column length="200" name="var3"/>
   </property>
   <property generated="never" lazy="false" name="var4" type="string">
-   <column length="100" name="var4"/>
+   <column length="200" name="var4"/>
   </property>
   <property generated="never" lazy="false" name="var5" type="string">
-   <column length="100" name="var5"/>
+   <column length="200" name="var5"/>
   </property>
   <property generated="never" lazy="false" name="flagLien" type="java.lang.Integer">
    <column name="flag_lien"/>
