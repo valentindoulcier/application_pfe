@@ -352,6 +352,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 				s.setSyllabe1(noeud.getNodeValue());
 				ss.add(s);
 				s = new Syllabes();
+				s.setHeadword(headword);
 				s.setRegion("Australia");
 			} else if (noeud.getNodeName() == "label") {
 				// s.
