@@ -21,7 +21,7 @@
    <column length="50" name="region"/>
   </property>
   <property generated="never" lazy="false" name="schema" type="string">
-   <column length="20" name="schema"/>
+   <column length="20" name="scheme"/>
   </property>
   <property generated="never" lazy="false" name="nbSyllabes" type="java.lang.Integer">
    <column name="nb_syllabes"/>
