@@ -42,7 +42,7 @@
     <column name="id_meta_headword" />
   </property>
   <set fetch="select" inverse="true" lazy="false" name="syllabeses"
-   sort="unsorted" table="syllabes">
+   sort="unsorted" table="syllabes" cascade="all">
    <key>
     <column name="id_headword" not-null="true"/>
    </key>
@@ -112,7 +112,7 @@
    <one-to-many class="database.Frequence"/>
   </set>
   <set fetch="select" inverse="true" lazy="true" name="senses"
-   sort="unsorted" table="sens">
+   sort="unsorted" table="sens" cascade="all">
    <key>
     <column name="id_headword" not-null="true"/>
    </key>
@@ -126,7 +126,7 @@
    <one-to-many class="database.Composes"/>
   </set>
   <set fetch="select" inverse="true" lazy="true" name="etymoMcqs"
-   sort="unsorted" table="etymo_mcq">
+   sort="unsorted" table="etymo_mcq" cascade="all">
    <key>
     <column name="id_headword" not-null="true"/>
    </key>
