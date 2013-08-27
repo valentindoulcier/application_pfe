@@ -200,7 +200,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 				// recherche dans la liste des catégories la catégorie du mot
 				// courant
 				for (ListeCategories cate : (List<ListeCategories>) listeCategories) {
-					if (cate.getNom() == cat) {
+					if (cate.getNom().equals(cat)) {
 						AvoirPourCategorieHeadword avoir = new AvoirPourCategorieHeadword();
 						avoir.setHeadword(headword);
 						avoir.setOrdre(i);
@@ -260,11 +260,14 @@ public class DictMacquarie extends AbstractDictionnaire {
 											.getNodeValue() + "\n";
 						}
 					}
-					data.add(new Sens(headword, texteSens, null));
+					data.add( new Sens(headword, texteSens, ""));
 				}
 			}
 		}
 		headword.setSenses(data);
+//		for(int i = 0; i<data.size(); i++){
+//			session.persist(data.toArray()[i]);
+//		}
 	}
 
 	/**
