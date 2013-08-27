@@ -67,7 +67,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 		extraireToutesCategorie();
 
 		// parcours de tout les headword
-		LinkedList<Node> liste = chercherNoeud(doc, "record");
+		LinkedList<Node> liste = chercherNoeud(doc, "record", 3);
 
 		while (!liste.isEmpty()) {
 			enregistrerMot(liste.pollFirst());
@@ -91,7 +91,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 		}
 
 		// cherche toute les catégories du dictionnaire
-		LinkedList<Node> listeNoeud = chercherNoeud(doc, "pos");
+		LinkedList<Node> listeNoeud = chercherNoeud(doc, "pos", 5);
 		// test chaque catégorie si elle existe deja dans la base
 		while (!listeNoeud.isEmpty()) {
 			if (listeNoeud.peek() != null

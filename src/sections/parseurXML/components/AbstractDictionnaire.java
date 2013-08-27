@@ -161,7 +161,29 @@ public class AbstractDictionnaire {
 		}
 		return dernier;
 	}
-
+	
+	/**
+	 * calcule la profondeur d'un noeud par rapport au noeud racine fourni
+	 * 
+	 * @param noeudRacine
+	 *            noeud servant de racine pour le calcul
+	 * 
+	 * @param noeud
+	 *            noeud ciblé par le calcul de la profondeur
+	 * 
+	 * @return la profondeur du noeud (0 si les deux noeuds sont les mêmes).
+	 */
+	protected int calculerProfondeur(Node noeudRacine, Node noeud) {
+		int profondeur = 0;
+		Node noeudParent = noeud;
+		while(noeudParent != noeudRacine){
+			noeudParent = noeudParent.getParentNode();
+			profondeur++;
+		}
+		
+		return profondeur;
+	}
+	
 	/**
 	 * Liste tout les noeuds du sous-abre ayant le noeud fourni en paramètre
 	 * comme racine. dans le sens en profondeur d'abord
@@ -172,6 +194,22 @@ public class AbstractDictionnaire {
 	 * @return une liste chainé de noeud appartenant au sous-arbre
 	 */
 	protected LinkedList<Node> listerNoeud(Node noeudRacine) {
+		return listerNoeud(noeudRacine, 0);
+	}
+
+	/**
+	 * Liste tout les noeuds du sous-abre ayant le noeud fourni en paramètre
+	 * comme racine sans dépasser la profondeur maximum fourni. dans le sens en profondeur d'abord
+	 * 
+	 * @param noeudRacine
+	 *            noeud servant de racine pour le parcours
+	 *            
+	 * @param profondeurMax
+	 *            profondeur maximum à attendre lors de la recherche (0 pour infini)
+	 * 
+	 * @return une liste chainé de noeud appartenant au sous-arbre
+	 */
+	protected LinkedList<Node> listerNoeud(Node noeudRacine, int profondeurMax) {
 		LinkedList<Node> listeResultat = new LinkedList<Node>();
 		Stack<Node> pile = new Stack<Node>();
 		Node noeud;
@@ -182,7 +220,7 @@ public class AbstractDictionnaire {
 		// parcours de l'arbre sous le noeud racine
 		while (!pile.empty()) {
 			noeud = pile.pop();
-			if (noeud != null) {
+			if (noeud != null && (profondeurMax==0 || profondeurMax > calculerProfondeur(noeudRacine, noeud))) {
 				listeResultat.add(noeud);
 
 				// ajout des noeud enfant dans la pile
@@ -204,7 +242,7 @@ public class AbstractDictionnaire {
 
 		return listeResultat;
 	}
-
+	
 	/**
 	 * cherche les noeuds d'apres leur nom dans le sous-arbre du noeud fourni en
 	 * paramètre
@@ -216,8 +254,24 @@ public class AbstractDictionnaire {
 	 * @return une liste chainé de noeud correspondant à la recherche
 	 */
 	protected LinkedList<Node> chercherNoeud(Node noeudRacine, String nomNoeud) {
+		return chercherNoeud(noeudRacine, nomNoeud, 0);
+	}
 
-		LinkedList<Node> listeResultat = listerNoeud(noeudRacine);
+	/**
+	 * cherche les noeuds d'apres leur nom dans le sous-arbre du noeud fourni en
+	 * paramètre, limité à la profondeur maximum
+	 * 
+	 * @param noeudRacine
+	 *            noeud servant de racine pour la recherche
+	 * @param nomNoeud
+	 *            nom des noeuds recherché
+	 * @param profondeurMax
+	 *            profondeur maximum à atteindre lors de la recherche
+	 * @return une liste chainé de noeud correspondant à la recherche
+	 */
+	protected LinkedList<Node> chercherNoeud(Node noeudRacine, String nomNoeud, int profondeurMax) {
+
+		LinkedList<Node> listeResultat = listerNoeud(noeudRacine, profondeurMax);
 		int taille = listeResultat.size();
 		int i = 0;
 		while (i < taille) {
