@@ -151,6 +151,10 @@ public class DictMacquarie extends AbstractDictionnaire {
 		// session.save(headword);
 		// hDAO.create(headword);
 		// tx.commit();
+		for (AvoirPourCategorieHeadword cate: (Set<AvoirPourCategorieHeadword>) headword.getAvoirPourCategorieHeadwords()) {
+			cate.setHeadword(headword);
+			session.save(cate);
+		}
 	}
 
 	/**
