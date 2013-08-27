@@ -281,6 +281,9 @@ public class DictMacquarie extends AbstractDictionnaire {
 			LinkedList<Node> liste = listerNoeud(noeud);
 			Set<EtymoMcq> etys = new HashSet<EtymoMcq>();
 			EtymoMcq ety = new EtymoMcq();
+			ety.setDate("");
+			ety.setFlag(0);
+			ety.setLangue("");
 			String contenu = "";
 			while (!liste.isEmpty()) {
 				noeud = liste.pop();
@@ -307,8 +310,13 @@ public class DictMacquarie extends AbstractDictionnaire {
 							contenu += contenus[j];
 							ety.setContenu(contenu);
 							contenu = new String("");
+							ety.setHeadword(headword);
 							etys.add(ety);
+//							session.persist(ety);
 							ety = new EtymoMcq();
+							ety.setDate("");
+							ety.setFlag(0);
+							ety.setLangue("");
 						}
 					}
 					break;
