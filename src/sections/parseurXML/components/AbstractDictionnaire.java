@@ -297,7 +297,24 @@ public class AbstractDictionnaire {
 	 *         plusieurs
 	 */
 	protected Node chercherNoeudUnique(Node noeudRacine, String nomNoeud) {
-		LinkedList<Node> liste = chercherNoeud(noeudRacine, nomNoeud);
+		return chercherNoeudUnique(noeudRacine, nomNoeud, 0);
+	}
+	
+	/**
+	 * cherche un noeud d'apres son nom dans le sous-arbre du noeud fourni en
+	 * paramètre
+	 * 
+	 * @param noeudRacine
+	 *            noeud servant de racine pour la recherche
+	 * @param nomNoeud
+	 *            nom du noeud recherché
+	 * @param profondeurMax
+	 *            profondeur maximum de recherche (0 pour infini)
+	 * @return LE noeud correspondant à la recherche ou null si aucun ou
+	 *         plusieurs
+	 */
+	protected Node chercherNoeudUnique(Node noeudRacine, String nomNoeud, int profondeurMax) {
+		LinkedList<Node> liste = chercherNoeud(noeudRacine, nomNoeud, profondeurMax);
 		if (!liste.isEmpty() && liste.size() == 1) {
 			return liste.getFirst();
 		}

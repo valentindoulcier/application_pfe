@@ -340,7 +340,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 	 * extrait la prononciation du mot courant (table syllabes)
 	 */
 	private void extrairePron() {
-		Node noeud = chercherNoeudUnique(noeudMot, "pron");
+		Node noeud = chercherNoeudUnique(noeudMot, "pron", 3);
 		LinkedList<Node> liste = listerNoeud(noeud);
 		Set<Syllabes> ss = new HashSet<Syllabes>();
 		Syllabes s = new Syllabes();
