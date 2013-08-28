@@ -17,6 +17,7 @@ import dao.ListeCategoriesDAO;
 import database.AvoirPourCategorieHeadword;
 import database.Dictionnaires;
 import database.EtymoMcq;
+import database.Flexions;
 import database.Headword;
 import database.ListeCategories;
 import database.Sens;
@@ -145,6 +146,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 		extraireSens();
 		extraireEty();
 		extrairePron();
+		extraireFlexion();
 
 		session.save(headword);
 		
@@ -460,5 +462,63 @@ public class DictMacquarie extends AbstractDictionnaire {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * extrait les flexions du mot courant (table flexions)
+	 */
+	private void extraireFlexion() {
+		Flexions f = new Flexions();
+		Set<Flexions> ff = new HashSet<Flexions>();
+		String mot;
+		
+		// extraction des flexion présent dans la partie "inflection"
+		Node noeud = chercherNoeudUnique(noeudMot, "inflection", 3);
+		LinkedList<Node> liste = listerNoeud(noeud);
+		
+		while (!liste.isEmpty()) {
+			noeud = liste.pop();
+			if(noeud.getNodeName().equals("inf")){
+				mot = getValeurNoeudEnfant(noeud);
+				mot = convertirChaineXML(mot);
+				f.setHeadword(headword);
+				f.setMot(mot);
+				ff.add(f);
+				f = new Flexions();
+			}
+		}
+		
+		// extraction des flexion présent dans la partie "sterm"
+		liste = chercherNoeud(noeudMot, "sterm", 2);
+		
+		while (!liste.isEmpty()) {
+			noeud = liste.pop();
+			if(noeud.getNodeName().equals("sterm")){
+				mot = getValeurNoeudEnfant(noeud);
+				mot = convertirChaineXML(mot);
+				f.setHeadword(headword);
+				f.setMot(mot);
+				ff.add(f);
+				f = new Flexions();
+			}
+		}
+		
+		// extraction des flexion présent dans la partie "variants"
+				noeud = chercherNoeudUnique(noeudMot, "variants", 3);
+				liste = listerNoeud(noeud);
+				
+				while (!liste.isEmpty()) {
+					noeud = liste.pop();
+					if(noeud.getNodeName().equals("var")){
+						mot = getValeurNoeudEnfant(noeud);
+						mot = convertirChaineXML(mot);
+						f.setHeadword(headword);
+						f.setMot(mot);
+						ff.add(f);
+						f = new Flexions();
+					}
+				}
+
+		headword.setFlexionses(ff);
 	}
 }

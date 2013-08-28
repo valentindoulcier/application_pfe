@@ -77,7 +77,7 @@
    <one-to-many class="database.Lexique"/>
   </set>
   <set fetch="select" inverse="true" lazy="true" name="flexionses"
-   sort="unsorted" table="flexions">
+   sort="unsorted" table="flexions" cascade="all">
    <key>
     <column name="id_headword" not-null="true"/>
    </key>
