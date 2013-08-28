@@ -135,7 +135,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 	 *            noeud correspondant à l'entrée à traiter
 	 */
 	private void enregistrerMot(Node noeudMot) {
-		 Transaction tx = session.beginTransaction();
+		Transaction tx = session.beginTransaction();
 
 		this.noeudMot = noeudMot;
 		headword = new Headword();
@@ -149,13 +149,14 @@ public class DictMacquarie extends AbstractDictionnaire {
 		extraireFlexion();
 
 		session.save(headword);
-		
-		for (AvoirPourCategorieHeadword cate: (Set<AvoirPourCategorieHeadword>) headword.getAvoirPourCategorieHeadwords()) {
+
+		for (AvoirPourCategorieHeadword cate : (Set<AvoirPourCategorieHeadword>) headword
+				.getAvoirPourCategorieHeadwords()) {
 			cate.setHeadword(headword);
 			session.save(cate);
 		}
-//		session.persist(headword);
-//		hDAO.create(headword);
+		// session.persist(headword);
+		// hDAO.create(headword);
 		tx.commit();
 	}
 
@@ -261,14 +262,14 @@ public class DictMacquarie extends AbstractDictionnaire {
 											.getNodeValue() + "\n";
 						}
 					}
-					data.add( new Sens(headword, texteSens, ""));
+					data.add(new Sens(headword, texteSens, ""));
 				}
 			}
 		}
 		headword.setSenses(data);
-//		for(int i = 0; i<data.size(); i++){
-//			session.persist(data.toArray()[i]);
-//		}
+		// for(int i = 0; i<data.size(); i++){
+		// session.persist(data.toArray()[i]);
+		// }
 	}
 
 	/**
@@ -313,7 +314,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 							contenu = new String("");
 							ety.setHeadword(headword);
 							etys.add(ety);
-//							session.persist(ety);
+							// session.persist(ety);
 							ety = new EtymoMcq();
 							ety.setDate("");
 							ety.setFlag(0);
@@ -350,7 +351,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 		s.setRegion("Australia");
 		while (!liste.isEmpty()) {
 			noeud = liste.pop();
-			if (noeud.getNodeName().equals("prn")&& !noeud.hasAttributes()) {
+			if (noeud.getNodeName().equals("prn") && !noeud.hasAttributes()) {
 
 				s.setSyllabe1(convertirCharPron(getValeurNoeudEnfant(noeud)));
 				ss.add(s);
@@ -359,7 +360,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 				s.setRegion("Australia");
 
 			} else if (noeud.getNodeName().equals("label")) {
-				 s.setCatdefMot(getValeurNoeudEnfant(noeud));
+				s.setCatdefMot(getValeurNoeudEnfant(noeud));
 			}
 		}
 		headword.setSyllabeses(ss);
@@ -367,7 +368,9 @@ public class DictMacquarie extends AbstractDictionnaire {
 
 	/**
 	 * convertit la prononciation du Macquarie en IPA
-	 * @param pron chaine à convertir (format macquarie)
+	 * 
+	 * @param pron
+	 *            chaine à convertir (format macquarie)
 	 * @return chaine convertit (format IPA)
 	 */
 	private String convertirCharPron(String pron) {
@@ -471,14 +474,14 @@ public class DictMacquarie extends AbstractDictionnaire {
 		Flexions f = new Flexions();
 		Set<Flexions> ff = new HashSet<Flexions>();
 		String mot;
-		
+
 		// extraction des flexion présent dans la partie "inflection"
 		Node noeud = chercherNoeudUnique(noeudMot, "inflection", 3);
 		LinkedList<Node> liste = listerNoeud(noeud);
-		
+
 		while (!liste.isEmpty()) {
 			noeud = liste.pop();
-			if(noeud.getNodeName().equals("inf")){
+			if (noeud.getNodeName().equals("inf")) {
 				mot = getValeurNoeudEnfant(noeud);
 				mot = convertirChaineXML(mot);
 				f.setHeadword(headword);
@@ -487,13 +490,13 @@ public class DictMacquarie extends AbstractDictionnaire {
 				f = new Flexions();
 			}
 		}
-		
+
 		// extraction des flexion présent dans la partie "sterm"
 		liste = chercherNoeud(noeudMot, "sterm", 2);
-		
+
 		while (!liste.isEmpty()) {
 			noeud = liste.pop();
-			if(noeud.getNodeName().equals("sterm")){
+			if (noeud.getNodeName().equals("sterm")) {
 				mot = getValeurNoeudEnfant(noeud);
 				mot = convertirChaineXML(mot);
 				f.setHeadword(headword);
@@ -502,22 +505,22 @@ public class DictMacquarie extends AbstractDictionnaire {
 				f = new Flexions();
 			}
 		}
-		
+
 		// extraction des flexion présent dans la partie "variants"
-				noeud = chercherNoeudUnique(noeudMot, "variants", 3);
-				liste = listerNoeud(noeud);
-				
-				while (!liste.isEmpty()) {
-					noeud = liste.pop();
-					if(noeud.getNodeName().equals("var")){
-						mot = getValeurNoeudEnfant(noeud);
-						mot = convertirChaineXML(mot);
-						f.setHeadword(headword);
-						f.setMot(mot);
-						ff.add(f);
-						f = new Flexions();
-					}
-				}
+		noeud = chercherNoeudUnique(noeudMot, "variants", 3);
+		liste = listerNoeud(noeud);
+
+		while (!liste.isEmpty()) {
+			noeud = liste.pop();
+			if (noeud.getNodeName().equals("var")) {
+				mot = getValeurNoeudEnfant(noeud);
+				mot = convertirChaineXML(mot);
+				f.setHeadword(headword);
+				f.setMot(mot);
+				ff.add(f);
+				f = new Flexions();
+			}
+		}
 
 		headword.setFlexionses(ff);
 	}

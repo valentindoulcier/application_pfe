@@ -161,7 +161,7 @@ public class AbstractDictionnaire {
 		}
 		return dernier;
 	}
-	
+
 	/**
 	 * calcule la profondeur d'un noeud par rapport au noeud racine fourni
 	 * 
@@ -176,14 +176,14 @@ public class AbstractDictionnaire {
 	protected int calculerProfondeur(Node noeudRacine, Node noeud) {
 		int profondeur = 0;
 		Node noeudParent = noeud;
-		while(noeudParent != noeudRacine){
+		while (noeudParent != noeudRacine) {
 			noeudParent = noeudParent.getParentNode();
 			profondeur++;
 		}
-		
+
 		return profondeur;
 	}
-	
+
 	/**
 	 * Liste tout les noeuds du sous-abre ayant le noeud fourni en paramètre
 	 * comme racine. dans le sens en profondeur d'abord
@@ -199,13 +199,15 @@ public class AbstractDictionnaire {
 
 	/**
 	 * Liste tout les noeuds du sous-abre ayant le noeud fourni en paramètre
-	 * comme racine sans dépasser la profondeur maximum fourni. dans le sens en profondeur d'abord
+	 * comme racine sans dépasser la profondeur maximum fourni. dans le sens en
+	 * profondeur d'abord
 	 * 
 	 * @param noeudRacine
 	 *            noeud servant de racine pour le parcours
-	 *            
+	 * 
 	 * @param profondeurMax
-	 *            profondeur maximum à attendre lors de la recherche (0 pour infini)
+	 *            profondeur maximum à attendre lors de la recherche (0 pour
+	 *            infini)
 	 * 
 	 * @return une liste chainé de noeud appartenant au sous-arbre
 	 */
@@ -220,7 +222,9 @@ public class AbstractDictionnaire {
 		// parcours de l'arbre sous le noeud racine
 		while (!pile.empty()) {
 			noeud = pile.pop();
-			if (noeud != null && (profondeurMax==0 || profondeurMax > calculerProfondeur(noeudRacine, noeud))) {
+			if (noeud != null
+					&& (profondeurMax == 0 || profondeurMax > calculerProfondeur(
+							noeudRacine, noeud))) {
 				listeResultat.add(noeud);
 
 				// ajout des noeud enfant dans la pile
@@ -242,7 +246,7 @@ public class AbstractDictionnaire {
 
 		return listeResultat;
 	}
-	
+
 	/**
 	 * cherche les noeuds d'apres leur nom dans le sous-arbre du noeud fourni en
 	 * paramètre
@@ -269,7 +273,8 @@ public class AbstractDictionnaire {
 	 *            profondeur maximum à atteindre lors de la recherche
 	 * @return une liste chainé de noeud correspondant à la recherche
 	 */
-	protected LinkedList<Node> chercherNoeud(Node noeudRacine, String nomNoeud, int profondeurMax) {
+	protected LinkedList<Node> chercherNoeud(Node noeudRacine, String nomNoeud,
+			int profondeurMax) {
 
 		LinkedList<Node> listeResultat = listerNoeud(noeudRacine, profondeurMax);
 		int taille = listeResultat.size();
@@ -299,7 +304,7 @@ public class AbstractDictionnaire {
 	protected Node chercherNoeudUnique(Node noeudRacine, String nomNoeud) {
 		return chercherNoeudUnique(noeudRacine, nomNoeud, 0);
 	}
-	
+
 	/**
 	 * cherche un noeud d'apres son nom dans le sous-arbre du noeud fourni en
 	 * paramètre
@@ -313,8 +318,10 @@ public class AbstractDictionnaire {
 	 * @return LE noeud correspondant à la recherche ou null si aucun ou
 	 *         plusieurs
 	 */
-	protected Node chercherNoeudUnique(Node noeudRacine, String nomNoeud, int profondeurMax) {
-		LinkedList<Node> liste = chercherNoeud(noeudRacine, nomNoeud, profondeurMax);
+	protected Node chercherNoeudUnique(Node noeudRacine, String nomNoeud,
+			int profondeurMax) {
+		LinkedList<Node> liste = chercherNoeud(noeudRacine, nomNoeud,
+				profondeurMax);
 		if (!liste.isEmpty() && liste.size() == 1) {
 			return liste.getFirst();
 		}
@@ -324,22 +331,22 @@ public class AbstractDictionnaire {
 	/**
 	 * met en forme la valeur de tout les noeuds descendants du noeud donnée
 	 */
-	protected String getValeurNoeudEnfant(Node noeud){
+	protected String getValeurNoeudEnfant(Node noeud) {
 		LinkedList<Node> liste = listerNoeud(noeud);
 		String result = "";
-		while(!liste.isEmpty()){
-			if(liste.peek().getNodeValue() != null){
+		while (!liste.isEmpty()) {
+			if (liste.peek().getNodeValue() != null) {
 				switch (liste.peek().getNodeName()) {
 				case "sup":
-					result+="("+liste.pop().getNodeValue()+")";
+					result += "(" + liste.pop().getNodeValue() + ")";
 					break;
 
 				default:
-					result+=liste.pop().getNodeValue();
+					result += liste.pop().getNodeValue();
 					break;
 				}
 
-			}else{
+			} else {
 				liste.pop();
 			}
 		}
@@ -354,13 +361,16 @@ public class AbstractDictionnaire {
 	}
 
 	/**
-	 * convertit les caractères echapés pour respecter le format xml en caractères normaux
-	 * @param mot chaine à convertir
+	 * convertit les caractères echapés pour respecter le format xml en
+	 * caractères normaux
+	 * 
+	 * @param mot
+	 *            chaine à convertir
 	 * @return chaine convertit au format classique
 	 */
 	protected String convertirChaineXML(String mot) {
 		String result = mot;
-		if(result.matches("&")){
+		if (result.matches("&")) {
 			result.replace("&pos;", "'");
 			result.replace("&quot;", "\"");
 			result.replace("&amp;", "&");
