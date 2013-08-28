@@ -352,4 +352,21 @@ public class AbstractDictionnaire {
 	public void traiter() {
 
 	}
+
+	/**
+	 * convertit les caractères echapés pour respecter le format xml en caractères normaux
+	 * @param mot chaine à convertir
+	 * @return chaine convertit au format classique
+	 */
+	protected String convertirChaineXML(String mot) {
+		String result = mot;
+		if(result.matches("&")){
+			result.replace("&pos;", "'");
+			result.replace("&quot;", "\"");
+			result.replace("&amp;", "&");
+			result.replace("&gt;", ">");
+			result.replace("&lt;", "<");
+		}
+		return result;
+	}
 }
