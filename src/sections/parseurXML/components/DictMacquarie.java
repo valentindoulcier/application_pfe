@@ -105,7 +105,6 @@ public class DictMacquarie extends AbstractDictionnaire {
 					listeStringCate.add(cate);
 					ListeCategories lc = new ListeCategories();
 					lc.setNom(cate);
-					System.out.println(cate);
 					session.save(lc);
 					tx.commit();
 				}
@@ -349,7 +348,6 @@ public class DictMacquarie extends AbstractDictionnaire {
 		s.setRegion("Australia");
 		while (!liste.isEmpty()) {
 			noeud = liste.pop();
-			System.out.println(noeud.getNodeName());
 			if (noeud.getNodeName().equals("prn")&& !noeud.hasAttributes()) {
 
 				s.setSyllabe1(convertirCharPron(getValeurNoeudEnfant(noeud)));
