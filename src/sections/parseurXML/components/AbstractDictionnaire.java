@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Stack;
 
+import javax.swing.JProgressBar;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -52,10 +53,16 @@ public class AbstractDictionnaire {
 	private Stack<Node> pile;
 
 	protected Session session;
+	
+	/**
+	 * accès à la barre de chargement visible dans l'interface
+	 */
+	JProgressBar barreDeChargement;
 
-	public AbstractDictionnaire(String nomFichier) {
+	public AbstractDictionnaire(String nomFichier, JProgressBar barreDeChargement) {
 
 		nomDuFichier = nomFichier;
+		this.barreDeChargement = barreDeChargement;
 		numeroNoeudCourant = -1;
 		nombreNoeud = -1;
 		pile = new Stack<Node>();

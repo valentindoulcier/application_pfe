@@ -5,6 +5,7 @@ package sections.parseurXML.ui.contents;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.Timer;
 
 import sections.parseurXML.components.AbstractDictionnaire;
@@ -40,6 +41,8 @@ public class ContentParseur extends JPanel {
 
 	private JButton btnJfilechooserDictionnaire;
 	private JButton btnLauncher;
+	
+	private JProgressBar barreDeChargement;
 
 	// private static Logger logger = Logger.getLogger(ContentParseur.class);
 
@@ -53,7 +56,6 @@ public class ContentParseur extends JPanel {
 	public boolean rede = false;
 
 	private String nomDeFichierDictionnaire;
-	private String nomDeFichierDescripteur;
 
 	/**
 	 * Create the panel.
@@ -101,8 +103,12 @@ public class ContentParseur extends JPanel {
 		btnLauncher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("lecture fichier : " + nomDeFichierDictionnaire);
-				TraitementDictionnaire td = new TraitementDictionnaire(
-						nomDeFichierDictionnaire, nomDeFichierDescripteur);
+				Runnable t = new Thread(new TraitementDictionnaire(nomDeFichierDictionnaire, barreDeChargement));
+				revalidate();
+				repaint();
+				t.run();
+				revalidate();
+				repaint();
 			}
 		});
 
@@ -161,6 +167,16 @@ public class ContentParseur extends JPanel {
 		gbc_btnLauncher.gridx = 1;
 		gbc_btnLauncher.gridy = 3;
 		add(btnLauncher, gbc_btnLauncher);
+		
+		barreDeChargement = new JProgressBar();
+		barreDeChargement.setStringPainted(true);
+		GridBagConstraints gbc_barreDeChargement = new GridBagConstraints();
+		gbc_barreDeChargement.anchor = GridBagConstraints.NORTH;
+		gbc_barreDeChargement.fill = GridBagConstraints.HORIZONTAL;
+		gbc_barreDeChargement.insets = new Insets(0, 0, 5, 5);
+		gbc_barreDeChargement.gridx = 1;
+		gbc_barreDeChargement.gridy = 5;
+		add(barreDeChargement, gbc_barreDeChargement);
 
 		informationsFichierDictionnaire = new InformationsFichier("fichier Dictionnaire");
 		informationsFichierDictionnaire.setMinimumSize(new Dimension(325, 350));
@@ -171,6 +187,7 @@ public class ContentParseur extends JPanel {
 		gbc_panelDico.gridx = 3;
 		gbc_panelDico.gridy = 1;
 		add(informationsFichierDictionnaire, gbc_panelDico);
+	
 	}
 
 	public void afficherInfo(Fichier monFichier, InformationsFichier infoFichier, String extensionFichier) {

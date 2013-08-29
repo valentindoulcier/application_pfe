@@ -8,6 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
+
 import org.hibernate.Transaction;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -41,12 +44,13 @@ public class DictMacquarie extends AbstractDictionnaire {
 	 * nom du fichier contenant le dictionnaire Macquarie
 	 * 
 	 * @param nomFichier
+	 * @param barreDeChargement 
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public DictMacquarie(String nomFichier) {
+	public DictMacquarie(String nomFichier, JProgressBar barreDeChargement) {
 
-		super(nomFichier);
+		super(nomFichier, barreDeChargement);
 		dic = new Dictionnaires("Macquarie", null);
 
 		listeCategories = (List<ListeCategories>) new ListeCategoriesDAO(
@@ -69,11 +73,34 @@ public class DictMacquarie extends AbstractDictionnaire {
 
 		// parcours de tout les headword
 		LinkedList<Node> liste = chercherNoeud(doc, "record", 3);
-
+		
+		int nbMotTotal = liste.size();
+		int i = 0;
+		
 		while (!liste.isEmpty()) {
+			majGUI(i, nbMotTotal);
 			enregistrerMot(liste.pollFirst());
-
+			i++;
 		}
+		majGUI(i, nbMotTotal);
+	}
+	
+	private void majGUI(final int i, final int max){
+		if (!SwingUtilities.isEventDispatchThread()) {
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					majGUI(i, max);
+				}
+			});
+		}
+		barreDeChargement.setMaximum(max);
+		barreDeChargement.setValue(i);
+		barreDeChargement.setString(i+"/"+max);
+		barreDeChargement.revalidate();
+		barreDeChargement.repaint();
+//		barreDeChargement.getParent().revalidate();
+//		barreDeChargement.getParent().repaint();
 	}
 
 	/**
@@ -110,7 +137,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 					tx.commit();
 				}
 			} else {
-				// si noeud "pos" non renseigner, crée catégorie "unknow" (si
+				// si noeud "pos" non renseigné, crée catégorie "unknow" (si
 				// non existante)
 				listeNoeud.pop();
 				if (!listeStringCate.contains("unknow")) {
@@ -129,7 +156,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 	}
 
 	/**
-	 * méthode qui s'occupe du traitement d'une entrée
+	 * méthode qui s'occupe du traitement d'une entrée (d'un mot)
 	 * 
 	 * @param noeudMot
 	 *            noeud correspondant à l'entrée à traiter
@@ -157,7 +184,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 		}
 		// session.persist(headword);
 		// hDAO.create(headword);
-		tx.commit();
+		session.getTransaction().commit();
 	}
 
 	/**
@@ -201,13 +228,14 @@ public class DictMacquarie extends AbstractDictionnaire {
 
 				// recherche dans la liste des catégories la catégorie du mot
 				// courant
-				for (ListeCategories cate : (List<ListeCategories>) listeCategories) {
+				for (ListeCategories cate :  listeCategories) {
 					if (cate.getNom().equals(cat)) {
 						AvoirPourCategorieHeadword avoir = new AvoirPourCategorieHeadword();
 						avoir.setHeadword(headword);
 						avoir.setOrdre(i);
 						avoir.setListeCategories(cate);
 						data.add(avoir);
+						break;
 					}
 				}
 			}
@@ -346,14 +374,39 @@ public class DictMacquarie extends AbstractDictionnaire {
 		LinkedList<Node> liste = listerNoeud(noeud);
 		Set<Syllabes> ss = new HashSet<Syllabes>();
 		Syllabes s;
+		String pron;
+		String[] ppron =  new String[10];
 		s = new Syllabes();
 		s.setHeadword(headword);
 		s.setRegion("Australia");
 		while (!liste.isEmpty()) {
 			noeud = liste.pop();
 			if (noeud.getNodeName().equals("prn") && !noeud.hasAttributes()) {
+				
+				pron = convertirCharPron(getValeurNoeudEnfant(noeud));
+				ppron = pron.split(" ", 10);
+				
+				s.setSyllabe1(ppron[0]);
+				if (ppron.length >1) { 
+				s.setSyllabe2(ppron[1]);
+				if (ppron.length >2) { 
+				s.setSyllabe3(ppron[2]);
+				if (ppron.length >3) { 
+				s.setSyllabe4(ppron[3]);
+				if (ppron.length >4) { 
+				s.setSyllabe5(ppron[4]);
+				if (ppron.length >5) { 
+				s.setSyllabe6(ppron[5]);
+				if (ppron.length >6) { 
+				s.setSyllabe7(ppron[6]);
+				if (ppron.length >7) { 
+				s.setSyllabe8(ppron[7]);
+				if (ppron.length >8) { 
+				s.setSyllabe9(ppron[8]);
+				if (ppron.length >9) { 
+				s.setSyllabe10(ppron[9]);
+				}}}}}}}}}
 
-				s.setSyllabe1(convertirCharPron(getValeurNoeudEnfant(noeud)));
 				ss.add(s);
 				s = new Syllabes();
 				s.setHeadword(headword);
