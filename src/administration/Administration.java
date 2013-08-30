@@ -69,8 +69,8 @@ public class Administration implements Serializable {
 		contentFooterLogin = new ContentFooterLogin();
 		
 		// TEMPO
-		contentLogin.getTextFieldEmail().setText("valentin.doulcier");
-		contentLogin.getPasswordField().setText("azerty");
+		contentLogin.getTextFieldEmail().setText("simon");
+		contentLogin.getPasswordField().setText("p");
 		// FIN TEMPO
 		
 		Administration.application.getcHeader().add(contentHeaderLogin, "contentHeaderLogin");
