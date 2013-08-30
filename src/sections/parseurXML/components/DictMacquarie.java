@@ -384,7 +384,7 @@ public class DictMacquarie extends AbstractDictionnaire {
 			if (noeud.getNodeName().equals("prn") && !noeud.hasAttributes()) {
 				
 				pron = convertirCharPron(getValeurNoeudEnfant(noeud));
-				ppron = pron.split(" ", 10);
+				ppron = pron.split("( |.)", 10);
 				
 				s.setSyllabe1(ppron[0]);
 				if (ppron.length >1) { 
