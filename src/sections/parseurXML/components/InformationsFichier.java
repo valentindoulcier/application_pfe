@@ -66,6 +66,11 @@ public class InformationsFichier extends JPanel {
 		initComponents();
 
 	}
+	
+	public InformationsFichier(String titre) {
+		initComponents();
+		lblDataNomFichier.setText(titre);
+	}
 
 	public void initComponents() {
 		this.setBorder(new LineBorder(SystemColor.textHighlight));
@@ -74,7 +79,7 @@ public class InformationsFichier extends JPanel {
 
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{30, 100, 0, 0, 30, 0};
-		gridBagLayout.rowHeights = new int[]{20, 25, 40, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 30, 0};
+		gridBagLayout.rowHeights = new int[]{20, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -93,7 +98,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblPath.anchor = GridBagConstraints.WEST;
 		gbc_lblPath.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPath.gridx = 1;
-		gbc_lblPath.gridy = 3;
+		gbc_lblPath.gridy = 2;
 		add(lblPath, gbc_lblPath);
 
 		lblDatapath = new JLabel("N/A");
@@ -101,7 +106,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblDatapath.anchor = GridBagConstraints.WEST;
 		gbc_lblDatapath.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDatapath.gridx = 3;
-		gbc_lblDatapath.gridy = 3;
+		gbc_lblDatapath.gridy = 2;
 		add(lblDatapath, gbc_lblDatapath);
 
 		lblExtension = new JLabel("Extension");
@@ -109,7 +114,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblExtension.anchor = GridBagConstraints.WEST;
 		gbc_lblExtension.insets = new Insets(0, 0, 5, 5);
 		gbc_lblExtension.gridx = 1;
-		gbc_lblExtension.gridy = 5;
+		gbc_lblExtension.gridy = 4;
 		add(lblExtension, gbc_lblExtension);
 
 		lblDataextension = new JLabel("N/A");
@@ -117,7 +122,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblDataextension.anchor = GridBagConstraints.WEST;
 		gbc_lblDataextension.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDataextension.gridx = 3;
-		gbc_lblDataextension.gridy = 5;
+		gbc_lblDataextension.gridy = 4;
 		add(lblDataextension, gbc_lblDataextension);
 
 		lblType = new JLabel("Type");
@@ -125,7 +130,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblType.anchor = GridBagConstraints.WEST;
 		gbc_lblType.insets = new Insets(0, 0, 5, 5);
 		gbc_lblType.gridx = 1;
-		gbc_lblType.gridy = 7;
+		gbc_lblType.gridy = 6;
 		add(lblType, gbc_lblType);
 
 		lblDatatype = new JLabel("N/A");
@@ -133,7 +138,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblDatatype.anchor = GridBagConstraints.WEST;
 		gbc_lblDatatype.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDatatype.gridx = 3;
-		gbc_lblDatatype.gridy = 7;
+		gbc_lblDatatype.gridy = 6;
 		add(lblDatatype, gbc_lblDatatype);
 
 		lblTaille = new JLabel("Taille");
@@ -141,7 +146,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblTaille.anchor = GridBagConstraints.WEST;
 		gbc_lblTaille.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTaille.gridx = 1;
-		gbc_lblTaille.gridy = 9;
+		gbc_lblTaille.gridy = 8;
 		add(lblTaille, gbc_lblTaille);
 
 		lblDatataille = new JLabel("N/A");
@@ -149,7 +154,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblDatataille.anchor = GridBagConstraints.WEST;
 		gbc_lblDatataille.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDatataille.gridx = 3;
-		gbc_lblDatataille.gridy = 9;
+		gbc_lblDatataille.gridy = 8;
 		add(lblDatataille, gbc_lblDatataille);
 
 		lblAuteur = new JLabel("Auteur");
@@ -157,7 +162,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblAuteur.anchor = GridBagConstraints.WEST;
 		gbc_lblAuteur.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAuteur.gridx = 1;
-		gbc_lblAuteur.gridy = 11;
+		gbc_lblAuteur.gridy = 10;
 		add(lblAuteur, gbc_lblAuteur);
 
 		lblDataauteur = new JLabel("N/A");
@@ -165,7 +170,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblDataauteur.anchor = GridBagConstraints.WEST;
 		gbc_lblDataauteur.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDataauteur.gridx = 3;
-		gbc_lblDataauteur.gridy = 11;
+		gbc_lblDataauteur.gridy = 10;
 		add(lblDataauteur, gbc_lblDataauteur);
 
 		lblDatemodif = new JLabel("DateModif");
@@ -173,7 +178,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblDatemodif.anchor = GridBagConstraints.WEST;
 		gbc_lblDatemodif.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDatemodif.gridx = 1;
-		gbc_lblDatemodif.gridy = 13;
+		gbc_lblDatemodif.gridy = 12;
 		add(lblDatemodif, gbc_lblDatemodif);
 
 		lblDatadatemodif = new JLabel("N/A");
@@ -181,7 +186,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblDatadatemodif.anchor = GridBagConstraints.WEST;
 		gbc_lblDatadatemodif.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDatadatemodif.gridx = 3;
-		gbc_lblDatadatemodif.gridy = 13;
+		gbc_lblDatadatemodif.gridy = 12;
 		add(lblDatadatemodif, gbc_lblDatadatemodif);
 
 		lblLisible = new JLabel("Lisible");
@@ -189,7 +194,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblLisible.anchor = GridBagConstraints.WEST;
 		gbc_lblLisible.insets = new Insets(0, 0, 5, 5);
 		gbc_lblLisible.gridx = 1;
-		gbc_lblLisible.gridy = 15;
+		gbc_lblLisible.gridy = 14;
 		add(lblLisible, gbc_lblLisible);
 
 		lblDatalisible = new JLabel("N/A");
@@ -197,7 +202,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblDatalisible.anchor = GridBagConstraints.WEST;
 		gbc_lblDatalisible.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDatalisible.gridx = 3;
-		gbc_lblDatalisible.gridy = 15;
+		gbc_lblDatalisible.gridy = 14;
 		add(lblDatalisible, gbc_lblDatalisible);
 
 		lblDate = new JLabel("Date du jour");
@@ -205,7 +210,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblDate.anchor = GridBagConstraints.WEST;
 		gbc_lblDate.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDate.gridx = 1;
-		gbc_lblDate.gridy = 17;
+		gbc_lblDate.gridy = 16;
 		add(lblDate, gbc_lblDate);
 
 		lblDatadate = new JLabel("N/A");
@@ -213,7 +218,7 @@ public class InformationsFichier extends JPanel {
 		gbc_lblDatadate.anchor = GridBagConstraints.WEST;
 		gbc_lblDatadate.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDatadate.gridx = 3;
-		gbc_lblDatadate.gridy = 17;
+		gbc_lblDatadate.gridy = 16;
 		add(lblDatadate, gbc_lblDatadate);
 		
 		lblMessage = new JLabel("Fichier non supporté");

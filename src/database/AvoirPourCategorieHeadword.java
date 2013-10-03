@@ -27,6 +27,7 @@ public class AvoirPourCategorieHeadword implements java.io.Serializable {
 	private Integer ordre;
 
 	public AvoirPourCategorieHeadword() {
+		id = new AvoirPourCategorieHeadwordId();
 	}
 
 	public AvoirPourCategorieHeadword(AvoirPourCategorieHeadwordId id,
@@ -64,6 +65,7 @@ public class AvoirPourCategorieHeadword implements java.io.Serializable {
 
 	public void setListeCategories(ListeCategories listeCategories) {
 		this.listeCategories = listeCategories;
+		this.id.setIdListeCategories(listeCategories.getIdCategorie());
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -74,6 +76,9 @@ public class AvoirPourCategorieHeadword implements java.io.Serializable {
 
 	public void setHeadword(Headword headword) {
 		this.headword = headword;
+		if(headword != null && headword.getIdHeadword() != null){
+			this.id.setIdHeadword(headword.getIdHeadword());
+		}
 	}
 
 	@Column(name = "ordre")

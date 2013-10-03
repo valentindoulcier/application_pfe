@@ -4,11 +4,15 @@ package database;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -35,6 +39,7 @@ public class Headword implements java.io.Serializable {
 	private String var5;
 	private Integer flagLien;
 	private Integer flagAutre;
+	private Integer idMetaHeadword;
 	private Set<Syllabes> syllabeses = new HashSet<Syllabes>(0);
 	private Set<DecompositionMorphologique> decompositionMorphologiques = new HashSet<DecompositionMorphologique>(0);
 	private Set<Lexique> lexiquesForHeadwordIdMotReferent1 = new HashSet<Lexique>(0);
@@ -58,7 +63,8 @@ public class Headword implements java.io.Serializable {
 
 	public Headword(Note note, Dictionnaires dictionnaires, String mot,
 			String var1, String var2, String var3, String var4, String var5,
-			Integer flagLien, Integer flagAutre, Set<Syllabes> syllabeses,
+			Integer flagLien, Integer flagAutre, Integer idMetaHeadword,
+			Set<Syllabes> syllabeses,
 			Set<DecompositionMorphologique> decompositionMorphologiques,
 			Set<Lexique> lexiquesForHeadwordIdMotReferent1,
 			Set<Lexique> lexiquesForHeadwordIdMotReferent2,
@@ -79,6 +85,7 @@ public class Headword implements java.io.Serializable {
 		this.var5 = var5;
 		this.flagLien = flagLien;
 		this.flagAutre = flagAutre;
+		this.idMetaHeadword = idMetaHeadword;
 		this.syllabeses = syllabeses;
 		this.decompositionMorphologiques = decompositionMorphologiques;
 		this.lexiquesForHeadwordIdMotReferent1 = lexiquesForHeadwordIdMotReferent1;
@@ -105,7 +112,7 @@ public class Headword implements java.io.Serializable {
 		this.idHeadword = idHeadword;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 	@JoinColumn(name = "id_note")
 	public Note getNote() {
 		return this.note;
@@ -115,7 +122,7 @@ public class Headword implements java.io.Serializable {
 		this.note = note;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 	@JoinColumn(name = "id_dictionnaire", nullable = false)
 	public Dictionnaires getDictionnaires() {
 		return this.dictionnaires;
@@ -125,7 +132,7 @@ public class Headword implements java.io.Serializable {
 		this.dictionnaires = dictionnaires;
 	}
 
-	@Column(name = "mot", length = 100)
+	@Column(name = "mot", length = 200)
 	public String getMot() {
 		return this.mot;
 	}
@@ -134,7 +141,7 @@ public class Headword implements java.io.Serializable {
 		this.mot = mot;
 	}
 
-	@Column(name = "var1", length = 100)
+	@Column(name = "var1", length = 200)
 	public String getVar1() {
 		return this.var1;
 	}
@@ -143,7 +150,7 @@ public class Headword implements java.io.Serializable {
 		this.var1 = var1;
 	}
 
-	@Column(name = "var2", length = 100)
+	@Column(name = "var2", length = 200)
 	public String getVar2() {
 		return this.var2;
 	}
@@ -152,7 +159,7 @@ public class Headword implements java.io.Serializable {
 		this.var2 = var2;
 	}
 
-	@Column(name = "var3", length = 100)
+	@Column(name = "var3", length = 200)
 	public String getVar3() {
 		return this.var3;
 	}
@@ -161,7 +168,7 @@ public class Headword implements java.io.Serializable {
 		this.var3 = var3;
 	}
 
-	@Column(name = "var4", length = 100)
+	@Column(name = "var4", length = 200)
 	public String getVar4() {
 		return this.var4;
 	}
@@ -170,7 +177,7 @@ public class Headword implements java.io.Serializable {
 		this.var4 = var4;
 	}
 
-	@Column(name = "var5", length = 100)
+	@Column(name = "var5", length = 200)
 	public String getVar5() {
 		return this.var5;
 	}
@@ -197,7 +204,16 @@ public class Headword implements java.io.Serializable {
 		this.flagAutre = flagAutre;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	@Column(name = "id_meta_headword")
+	public Integer getIdMetaHeadword() {
+		return this.idMetaHeadword;
+	}
+
+	public void setIdMetaHeadword(Integer idMetaHeadword) {
+		this.idMetaHeadword = idMetaHeadword;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword", cascade = {CascadeType.ALL})
 	public Set<Syllabes> getSyllabeses() {
 		return this.syllabeses;
 	}
@@ -206,7 +222,7 @@ public class Headword implements java.io.Serializable {
 		this.syllabeses = syllabeses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword", cascade = {CascadeType.ALL})
 	public Set<DecompositionMorphologique> getDecompositionMorphologiques() {
 		return this.decompositionMorphologiques;
 	}
@@ -216,7 +232,7 @@ public class Headword implements java.io.Serializable {
 		this.decompositionMorphologiques = decompositionMorphologiques;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headwordByHeadwordIdMotReferent1")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headwordByHeadwordIdMotReferent1", cascade = {CascadeType.ALL})
 	public Set<Lexique> getLexiquesForHeadwordIdMotReferent1() {
 		return this.lexiquesForHeadwordIdMotReferent1;
 	}
@@ -226,7 +242,7 @@ public class Headword implements java.io.Serializable {
 		this.lexiquesForHeadwordIdMotReferent1 = lexiquesForHeadwordIdMotReferent1;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headwordByHeadwordIdMotReferent2")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headwordByHeadwordIdMotReferent2", cascade = {CascadeType.ALL})
 	public Set<Lexique> getLexiquesForHeadwordIdMotReferent2() {
 		return this.lexiquesForHeadwordIdMotReferent2;
 	}
@@ -236,7 +252,7 @@ public class Headword implements java.io.Serializable {
 		this.lexiquesForHeadwordIdMotReferent2 = lexiquesForHeadwordIdMotReferent2;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headwordByHeadwordIdMotEtudie")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headwordByHeadwordIdMotEtudie", cascade = {CascadeType.ALL})
 	public Set<Lexique> getLexiquesForHeadwordIdMotEtudie() {
 		return this.lexiquesForHeadwordIdMotEtudie;
 	}
@@ -246,7 +262,7 @@ public class Headword implements java.io.Serializable {
 		this.lexiquesForHeadwordIdMotEtudie = lexiquesForHeadwordIdMotEtudie;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword", cascade = {CascadeType.ALL})
 	public Set<Flexions> getFlexionses() {
 		return this.flexionses;
 	}
@@ -255,7 +271,7 @@ public class Headword implements java.io.Serializable {
 		this.flexionses = flexionses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword", cascade = {CascadeType.ALL})
 	public Set<DecompositionGraphique> getDecompositionGraphiques() {
 		return this.decompositionGraphiques;
 	}
@@ -265,7 +281,7 @@ public class Headword implements java.io.Serializable {
 		this.decompositionGraphiques = decompositionGraphiques;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword", cascade = {CascadeType.ALL})
 	public Set<ListeUsages> getListeUsageses() {
 		return this.listeUsageses;
 	}
@@ -274,7 +290,7 @@ public class Headword implements java.io.Serializable {
 		this.listeUsageses = listeUsageses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword", cascade = {CascadeType.ALL})
 	public Set<AvoirPourCategorieHeadword> getAvoirPourCategorieHeadwords() {
 		return this.avoirPourCategorieHeadwords;
 	}
@@ -284,7 +300,7 @@ public class Headword implements java.io.Serializable {
 		this.avoirPourCategorieHeadwords = avoirPourCategorieHeadwords;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword", cascade = {CascadeType.ALL})
 	public Set<Frequence> getFrequences() {
 		return this.frequences;
 	}
@@ -293,7 +309,7 @@ public class Headword implements java.io.Serializable {
 		this.frequences = frequences;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword", cascade = {CascadeType.ALL})
 	public Set<Sens> getSenses() {
 		return this.senses;
 	}
@@ -302,7 +318,7 @@ public class Headword implements java.io.Serializable {
 		this.senses = senses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword", cascade = {CascadeType.ALL})
 	public Set<Composes> getComposeses() {
 		return this.composeses;
 	}
@@ -311,7 +327,7 @@ public class Headword implements java.io.Serializable {
 		this.composeses = composeses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "headword", cascade = {CascadeType.ALL})
 	public Set<EtymoMcq> getEtymoMcqs() {
 		return this.etymoMcqs;
 	}

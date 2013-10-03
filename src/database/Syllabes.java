@@ -128,7 +128,7 @@ public class Syllabes implements java.io.Serializable {
 		this.region = region;
 	}
 
-	@Column(name = "schema", length = 20)
+	@Column(name = "scheme", length = 20)
 	public String getSchema() {
 		return this.schema;
 	}
